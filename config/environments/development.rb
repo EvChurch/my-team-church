@@ -1,3 +1,5 @@
+OmniAuth.config.full_host = 'http://localhost:3000'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -43,21 +45,20 @@ Rails.application.configure do
   config.assets.debug = true
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.sendgrid.net",
+    address: 'smtp.sendgrid.net',
     port: 587,
     domain: Rails.application.secrets.domain_name,
-    authentication: "plain",
+    authentication: 'plain',
     enable_starttls_auto: true,
     user_name: Rails.application.secrets.email_provider_username,
     password: Rails.application.secrets.email_provider_password
   }
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   # Send email in development mode?
   config.action_mailer.perform_deliveries = true
-
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
