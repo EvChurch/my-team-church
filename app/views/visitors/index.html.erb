@@ -1,1 +1,18 @@
-<h3>Welcome</h3>
+<h1>Departments</h1>
+<div class="card-columns">
+  <% current_user.person.positions.each do |position| %>
+    <div class="card">
+        <div class="card-block">
+          <h5 class="card-title"><%= position.name %></h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <% position.people.take(5).each do |person| %>
+            <li class="list-group-item"><%= "#{person.firstname} #{person.lastname}"%></li>
+          <% end %>
+          <% if position.people.length > 5 %>
+            <li class="list-group-item text-muted">And <%= position.people.length - 5 %> others</li>
+          <% end %>
+        </ul>
+    </div>
+  <% end %>
+</div>

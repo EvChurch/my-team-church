@@ -32,7 +32,7 @@ module Elvanto
         Department::SubDepartment::Position.create_collection_from_api(people)
         Location.create_collection_from_api(people)
         ServiceType.create_collection_from_api(people)
-        people
+        Person.create_collection_from_api(people)
       end
     end
   end

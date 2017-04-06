@@ -21,12 +21,14 @@ class User
         email: info[:email],
         phone: info[:phone],
         mobile: info[:mobile],
+        username: info[:username],
         password: Devise.friendly_token[0, 20]
       )
     end
 
     def assign_new_and_existing_omniauth_attributes(auth)
       assign_attributes(
+        username: auth[:info][:username],
         expires: auth[:credentials][:expires],
         expires_at: DateTime.strptime(auth[:credentials][:expires_at].to_s, '%s'),
         refresh_token: auth[:credentials][:refresh_token],
