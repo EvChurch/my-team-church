@@ -19,8 +19,12 @@ class Person < ApplicationRecord
            as: :resource,
            dependent: :destroy
   has_many :positions, through: :position_entities, class_name: 'Department::SubDepartment::Position'
-  has_many :sub_departments, through: :positions, class_name: 'Department::SubDepartment'
-  has_many :departments, through: :sub_departments, class_name: 'Department'
+  has_many :sub_departments,
+           through: :positions,
+           class_name: 'Department::SubDepartment'
+  has_many :departments,
+           through: :sub_departments,
+           class_name: 'Department'
   has_many :service_type_entities,
            class_name: 'ServiceType::Entity',
            as: :resource,

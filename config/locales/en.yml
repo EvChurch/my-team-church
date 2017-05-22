@@ -20,4 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  page_meta:
+    titles:
+      base: "%{value} • Department Manager"
+      departments:
+        index: "Departments"
+        show: "%{name}"
+        sub_departments:
+          show: "%{name}"
+          positions:
+            show: "%{name}"

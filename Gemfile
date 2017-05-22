@@ -4,9 +4,11 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 ruby '2.3.1'
+gem 'breadcrumbs_on_rails'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem 'page_meta'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.0.2'
 gem 'sass-rails', '~> 5.0'
@@ -23,6 +25,7 @@ group :development do
 end
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'devise'
+gem 'draper', '3.0.0.pre1'
 gem 'elvanto-api', github: 'ardation/api-ruby'
 gem 'omniauth'
 gem 'omniauth-oauth2'
