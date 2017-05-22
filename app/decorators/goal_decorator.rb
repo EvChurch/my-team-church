@@ -1,0 +1,2 @@
+class GoalDecorator < ApplicationDecorator
+end

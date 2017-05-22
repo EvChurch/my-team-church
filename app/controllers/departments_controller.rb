@@ -12,11 +12,6 @@ class DepartmentsController < ApplicationController
     authorize @department
   end
 
-  def render
-    setup_breadcrumbs
-    super
-  end
-
   protected
 
   def load_departments
@@ -32,6 +27,7 @@ class DepartmentsController < ApplicationController
   end
 
   def setup_breadcrumbs
+    super
     return if params[:controller] == 'departments' && params[:action] == 'index'
     add_breadcrumb department.name, department_path(department)
   end

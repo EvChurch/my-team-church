@@ -2,7 +2,9 @@ class DepartmentPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if person.admin?
-        scope.all.eager_load(sub_departments: [:positions])
+        scope.all.eager_load(
+          sub_departments: [:positions]
+        ).order('departments.name, department_sub_departments.name')
       else
         person.departments.eager_load(
           sub_departments: [:positions]

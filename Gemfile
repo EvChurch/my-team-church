@@ -31,6 +31,7 @@ gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'pg'
 gem 'pundit'
+gem 'simple_form'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

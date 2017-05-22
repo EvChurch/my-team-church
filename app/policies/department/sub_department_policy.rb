@@ -3,7 +3,9 @@ class Department
     class Scope < Scope
       def resolve
         if person.admin?
-          scope.eager_load(:positions)
+          scope.eager_load(
+          :positions
+          ).order('department_sub_departments.name, department_sub_department_positions.name')
         else
           person.sub_departments.eager_load(
             :positions

@@ -1,0 +1,17 @@
+<% if goals.empty? %>
+  <div class="card">
+    <div class="card-block">
+      <h4 class="card-title">No <%= resource.name.titleize %> Goals</h4>
+      <p class="card-text">Configuring goals help set expectations, promote conversations, reinforce values, and encourage every member to reach new heights.</p>
+      <%= link_to 'Add Goal', new_goal_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+<% goals.each do |goal| %>
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title"><%= goal.name %></h4>
+    <p class="card-text"><%= goal.description %></p>
+  </div>
+</div>
+<% end %>

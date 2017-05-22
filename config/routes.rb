@@ -11,4 +11,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :goals do
+    get 'resources', on: :collection
+  end
 end

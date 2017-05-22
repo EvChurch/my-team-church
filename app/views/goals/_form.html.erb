@@ -1,0 +1,34 @@
+<%= simple_form_for @goal do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :resource_type,
+                  collection: Goal::RESOURCE_TYPES,
+                  input_html: {
+                    id: 'resource_type_select',
+                    'data-url' => resources_goals_path(type: 'selected')
+                  } %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :resource_id, collection: [], input_html: {id: 'resource_id_select' } %>
+    </div>
+  </div>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :estimated_completion %>
+  <%= f.input :kind, collection: Goal.kinds, label_method: lambda { |t| t[0].titleize } %>
+  <div id="objective_goal_kind">
+    <div class="alert alert-info">
+      Objective Goals are measureable, quantifiable, or tangible goals that are rated based on success and completion.
+      Objective Goals are attainable and can be measured by hard data: time, amount, percentage, weight, money, etc.
+    </div>
+    <%= f.input :amount_kind, collection: Goal.amount_kinds, label_method: lambda { |t| t[0].titleize } %>
+    <%= f.input :amount %>
+  </div>
+  <div id="value_goal_kind">
+    <div class="alert alert-info">
+      Goals encourage growth in relationships, behavior, and culture. Value Goals are open-ended and ongoing, as we
+      actively strive to become better people and employees. They are subjective and based on conduct and performance.
+    </div>
+  </div>
+  <%= f.button :submit %>
+<% end %>
