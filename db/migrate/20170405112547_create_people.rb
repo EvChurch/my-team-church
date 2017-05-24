@@ -1,6 +1,7 @@
 class CreatePeople < ActiveRecord::Migration[5.0]
   def change
     create_table :people, id: :uuid do |t|
+      t.references :organization, index: true, type: :uuid
       t.timestamp :date_added
       t.timestamp :date_modified
       t.string :firstname

@@ -17,6 +17,7 @@ module MyPlace
                        controller_specs: false,
                        request_specs: false
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
+      g.orm :active_record, primary_key_type: :uuid
     end
 
     # Settings in config/environments/* take precedence over those specified here.

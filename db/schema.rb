@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170522012039) do
+ActiveRecord::Schema.define(version: 20170524102611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,16 @@ ActiveRecord::Schema.define(version: 20170522012039) do
     t.string   "resource_type"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.index ["access_permission_id"], name: "index_access_permission_entities_on_access_permission_id", using: :btree
+    t.index ["resource_type", "resource_id"], name: "index_access_permission_entities_on_resource", using: :btree
   end
 
   create_table "access_permissions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "organization_id"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_access_permissions_on_organization_id", using: :btree
   end
 
   create_table "demographic_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -36,40 +40,24 @@ ActiveRecord::Schema.define(version: 20170522012039) do
     t.string   "resource_type"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.index ["demographic_id"], name: "index_demographic_entities_on_demographic_id", using: :btree
+    t.index ["resource_type", "resource_id"], name: "index_demographic_entities_on_resource_type_and_resource_id", using: :btree
   end
 
   create_table "demographics", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "organization_id"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "department_sub_department_position_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "position_id"
-    t.uuid     "resource_id"
-    t.string   "resource_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  create_table "department_sub_department_positions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "name"
-    t.uuid     "sub_department_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  create_table "department_sub_departments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "department_id"
-    t.string   "name"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_demographics_on_organization_id", using: :btree
   end
 
   create_table "departments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "organization_id"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_departments_on_organization_id", using: :btree
   end
 
   create_table "goals", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -83,6 +71,7 @@ ActiveRecord::Schema.define(version: 20170522012039) do
     t.decimal  "amount"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.index ["resource_type", "resource_id"], name: "index_goals_on_resource_type_and_resource_id", using: :btree
   end
 
   create_table "location_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -91,15 +80,32 @@ ActiveRecord::Schema.define(version: 20170522012039) do
     t.string   "resource_type"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["location_id"], name: "index_location_entities_on_location_id", using: :btree
+    t.index ["resource_type", "resource_id"], name: "index_location_entities_on_resource_type_and_resource_id", using: :btree
   end
 
   create_table "locations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "organization_id"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_locations_on_organization_id", using: :btree
+  end
+
+  create_table "organizations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string   "name"
+    t.string   "api_key"
+    t.string   "client_id"
+    t.string   "client_secret"
+    t.string   "primary_color"
+    t.string   "secondary_color"
+    t.string   "subdomain"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "people", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "organization_id"
     t.datetime "date_added"
     t.datetime "date_modified"
     t.string   "firstname"
@@ -149,6 +155,27 @@ ActiveRecord::Schema.define(version: 20170522012039) do
     t.boolean  "special_needs_child"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.index ["organization_id"], name: "index_people_on_organization_id", using: :btree
+  end
+
+  create_table "position_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "position_id"
+    t.uuid     "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["position_id"], name: "index_position_entities_on_position_id", using: :btree
+    t.index ["resource_type", "resource_id"], name: "index_position_entities_on_resource_type_and_resource_id", using: :btree
+  end
+
+  create_table "positions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "organization_id"
+    t.uuid     "sub_department_id"
+    t.string   "name"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["organization_id"], name: "index_positions_on_organization_id", using: :btree
+    t.index ["sub_department_id"], name: "index_positions_on_sub_department_id", using: :btree
   end
 
   create_table "service_type_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -157,12 +184,26 @@ ActiveRecord::Schema.define(version: 20170522012039) do
     t.string   "resource_type"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["resource_type", "resource_id"], name: "index_service_type_entities_on_resource_type_and_resource_id", using: :btree
+    t.index ["service_type_id"], name: "index_service_type_entities_on_service_type_id", using: :btree
   end
 
   create_table "service_types", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "organization_id"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id"], name: "index_service_types_on_organization_id", using: :btree
+  end
+
+  create_table "sub_departments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "organization_id"
+    t.uuid     "department_id"
+    t.string   "name"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["department_id"], name: "index_sub_departments_on_department_id", using: :btree
+    t.index ["organization_id"], name: "index_sub_departments_on_organization_id", using: :btree
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

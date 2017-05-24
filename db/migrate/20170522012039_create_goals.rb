@@ -12,5 +12,6 @@ class CreateGoals < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_index :goals, %i[resource_type resource_id]
   end
 end
