@@ -1,8 +1,4 @@
 class GoalPolicy < ApplicationPolicy
-  def create?
-    person.admin?
-  end
-
   def resources?
     create?
   end

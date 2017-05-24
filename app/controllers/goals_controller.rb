@@ -14,6 +14,21 @@ class GoalsController < ApplicationController
     render 'new'
   end
 
+  def edit
+    load_goal
+    build_goal
+    authorize :goal
+    add_breadcrumb 'Edit', edit_goal_path
+  end
+
+  def update
+    load_goal
+    build_goal
+    authorize :goal
+    return redirect_to @goal.resource if @goal.save
+    render 'edit'
+  end
+
   def resources
     type = params[:type] ? params[:type] : 'Person'
     @resources = type.empty? ? [] : type.constantize.all

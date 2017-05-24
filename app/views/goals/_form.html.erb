@@ -9,19 +9,19 @@
                   } %>
     </div>
     <div class="col-md-6">
-      <%= f.input :resource_id, collection: [], input_html: {id: 'resource_id_select' } %>
+      <%= f.input :resource_id, collection: @goal.resource_type.try(:constantize).try(:all), input_html: {id: 'resource_id_select' } %>
     </div>
   </div>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :estimated_completion %>
-  <%= f.input :kind, collection: Goal.kinds, label_method: lambda { |t| t[0].titleize } %>
+  <%= f.input :kind, collection: Goal.kinds.keys.map { |w| [w.humanize, w] }, label_method: lambda { |t| t[0].titleize } %>
   <div id="objective_goal_kind">
     <div class="alert alert-info">
       Objective Goals are measureable, quantifiable, or tangible goals that are rated based on success and completion.
       Objective Goals are attainable and can be measured by hard data: time, amount, percentage, weight, money, etc.
     </div>
-    <%= f.input :amount_kind, collection: Goal.amount_kinds, label_method: lambda { |t| t[0].titleize } %>
+    <%= f.input :amount_kind, collection: Goal.amount_kinds.keys.map { |w| [w.humanize, w] }, label_method: lambda { |t| t[0].titleize } %>
     <%= f.input :amount %>
   </div>
   <div id="value_goal_kind">

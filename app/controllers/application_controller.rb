@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     before_action :better_errors_hack, if: -> { Rails.env.development? }
   end
 
-  def render *args
+  def render(*args)
     setup_breadcrumbs
     super
   end
@@ -24,6 +24,5 @@ class ApplicationController < ActionController::Base
     current_user.person
   end
 
-  def setup_breadcrumbs
-  end
+  def setup_breadcrumbs; end
 end

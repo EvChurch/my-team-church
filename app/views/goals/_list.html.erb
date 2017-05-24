@@ -3,15 +3,40 @@
     <div class="card-block">
       <h4 class="card-title">No <%= resource.name.titleize %> Goals</h4>
       <p class="card-text">Configuring goals help set expectations, promote conversations, reinforce values, and encourage every member to reach new heights.</p>
-      <%= link_to 'Add Goal', new_goal_path, class: 'btn btn-primary' %>
+      <%= link_to 'Add Goal', new_goal_path(goal: { resource_type: resource.object.class, resource_id: resource.id }), class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>
 <% goals.each do |goal| %>
-<div class="card">
-  <div class="card-block">
-    <h4 class="card-title"><%= goal.name %></h4>
-    <p class="card-text"><%= goal.description %></p>
+  <div class="card">
+    <div class="card-block">
+      <h4 class="card-title"><%= goal.name %></h4>
+      <p class="card-text"><%= goal.description %></p>
+    </div>
+    <div class="card-footer text-muted">
+      <% if goal.estimated_completion %>
+        <%= icon 'clock-o' %>
+        <%= time_ago_in_words goal.estimated_completion %>
+        &nbsp;
+      <% end %>
+      <% if goal.objective? %>
+      <%= icon 'line-chart' %>
+        <%= goal.presentable_amount %>
+      <% end %>
+      <% if goal.value? %>
+        <%= icon 'flag' %>
+        Value Based
+        &nbsp;
+      <% end %>
+      <div class="pull-right">
+        <% if policy(goal).update? %>
+          <%= link_to 'Edit', edit_goal_path(goal) %>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
+  <br>
+<% end %>
+<% content_for :actions do %>
+  <%= link_to 'Add Goal', new_goal_path(goal: { resource_type: resource.object.class, resource_id: resource.id }), class: 'btn btn-primary' %>
 <% end %>

@@ -26,9 +26,9 @@ en:
       departments:
         index: "Departments"
         show: "%{name}"
-        goals:
-          new: 'New Goal'
         sub_departments:
           show: "%{name}"
           positions:
             show: "%{name}"
+      goals:
+        new: 'New Goal'

@@ -4,10 +4,10 @@ function toggleGoalKind() {
   var selected = $('#goal_kind').find(':selected').val();
   $('#value_goal_kind').hide();
   $('#objective_goal_kind').hide();
-   if (selected === '0') {
+   if (selected === 'objective') {
     $('#value_goal_kind').hide();
     $('#objective_goal_kind').show();
-  } else if (selected === '1') {
+  } else if (selected === 'value') {
     $('#value_goal_kind').show();
     $('#objective_goal_kind').hide();
   }

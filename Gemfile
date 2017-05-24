@@ -6,6 +6,7 @@ end
 ruby '2.3.1'
 gem 'breadcrumbs_on_rails'
 gem 'coffee-rails', '~> 4.2'
+gem 'font-awesome-sass', '~> 4.7.0'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'page_meta'
