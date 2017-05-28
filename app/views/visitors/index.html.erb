@@ -1,0 +1,30 @@
+<header class="masthead">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="header-content">
+                    <div class="header-content-inner">
+                        <h1>
+                          <strong>My Place</strong> is a
+                          <br>
+                          <strong id="headertext"></strong>
+                          <br>
+                          Platform for your church.</h1>
+                        <a class="btn btn-outline btn-xl">Get Started Now for Free!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<script>
+	$(function(){
+		$("#headertext").typed({
+			strings: ['Leadership Development ', 'Human Resource ', 'Process Documentation ', 'Time Saving '],
+			typeSpeed: 0,
+      backDelay: 5000,
+      cursorChar: '<<',
+      loop: true
+		});
+	});
+</script>

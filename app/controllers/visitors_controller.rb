@@ -1,5 +1,4 @@
 class VisitorsController < ApplicationController
-  def index
-    render 'index'
-  end
+  layout 'visitors'
+  def index; end
 end

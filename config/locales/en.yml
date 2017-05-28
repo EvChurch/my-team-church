@@ -22,7 +22,9 @@
 en:
   page_meta:
     titles:
-      base: "%{value} • Department Manager"
+      base: "%{value} • My Place"
+      visitors:
+        index: "My Place • A LDHR Platform for your church"
       departments:
         index: "Departments"
         show: "%{name}"

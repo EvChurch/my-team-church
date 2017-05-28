@@ -11,13 +11,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
-    <header>
-      <%= render 'navigation' %>
-    </header>
-    <main role="main">
-      <%= render 'layouts/messages' %>
-      <%= yield %>
-    </main>
+  <body id="page-top">
+    <%= render 'navigation' %>
+    <%= render 'layouts/messages' %>
+    <%= yield %>
   </body>
 </html>
