@@ -4,6 +4,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "theme/new-age";
+@import "tether";
 // make all images responsive by default
 img {
   @extend .img-fluid;
