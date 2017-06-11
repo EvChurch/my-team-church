@@ -17,4 +17,18 @@ module ApplicationHelper
 
     html.html_safe
   end
+  
+  def flash_class(level)
+    case level.to_sym
+    when :notice then 'alert alert-info'
+    when :success then 'alert alert-success'
+    when :error then 'alert alert-danger'
+    when :alert then 'alert alert-warning'
+    else 'alert alert-info'
+    end
+  end
+  
+  def url_to_subdomain(url)
+    Domainatrix.parse(url).subdomain.split('.')[0]
+  end
 end

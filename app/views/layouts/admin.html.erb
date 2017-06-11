@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? content_for(:title) : "Dashboard" %> · Staff Portal</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <%= stylesheet_link_tag "admin/application" %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag %>
+  </head>
+  <body class="<%= controller_name %> <%= action_name %>">
+    <%= render 'peek/bar' %>
+    <%= render 'topbar' %>
+    <div class="container-fluid">
+      <%= render 'sidebar' %>
+      <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+        <%= render 'alerts' %>
+        <%= yield %>
+      </main>        
+    </div>
+    <%= render 'footer' %>
+  </body>
+</html>

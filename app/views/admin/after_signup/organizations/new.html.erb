@@ -1,0 +1,50 @@
+<div class="card">
+  <%= simple_form_for @organization, url: after_signup_organizations_path, defaults: { input_html: { class: 'form-control border-input' } } do |f| %>
+  <div class="header top">
+    <h4 class="title">Organization Profile</h4>
+    <span class="category">Getting Started</span>
+  </div>
+  <div class="content">
+    <%= f.input :name %>
+    <div class="row">
+      <div class="col-md-8">
+        <%= f.input :subdomain %>
+      </div>
+      <div class="col-md-4" style="margin-top: 37px;">
+        .<%= ENV['DOMAIN_NAME'] %>
+      </div>
+    </div>
+    <p class="help-block">
+      The following information will help us automatically build your email footers
+      to comply with the
+      <a target="_blank" href="https://www.ftc.gov/tips-advice/business-center/guidance/can-spam-act-compliance-guide-business">
+        CAN-SPAM Act
+      </a>
+      and International spam law.
+    </p>
+    <%= f.input :website_url %>
+    <%= f.input :address_1 %>
+    <%= f.input :address_2 %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :city %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :state, label: 'State / Province / Region' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :zip, label: 'Zip / Postal Code' %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :country %>
+      </div>
+    </div>
+    <%= f.input :time_zone, priority: /US/ %>
+  </div>
+  <div class="actions">
+    <button type="submit" class="btn btn-primary btn-fill">Next <%= icon 'chevron-right' %></button>
+  </div>
+  <% end %>
+</div>

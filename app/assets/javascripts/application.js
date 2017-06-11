@@ -16,4 +16,5 @@
 //= require typed
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require mdb
 //= require_tree .

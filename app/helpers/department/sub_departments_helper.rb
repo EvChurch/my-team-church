@@ -1,2 +1,0 @@
-module Department::SubDepartmentsHelper
-end

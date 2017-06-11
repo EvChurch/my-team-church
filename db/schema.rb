@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524102611) do
+ActiveRecord::Schema.define(version: 20170604222257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,8 +100,20 @@ ActiveRecord::Schema.define(version: 20170524102611) do
     t.string   "primary_color"
     t.string   "secondary_color"
     t.string   "subdomain"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "website_url"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "time_zone"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   create_table "people", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -178,6 +190,16 @@ ActiveRecord::Schema.define(version: 20170524102611) do
     t.index ["sub_department_id"], name: "index_positions_on_sub_department_id", using: :btree
   end
 
+  create_table "roles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string   "name"
+    t.string   "resource_type"
+    t.uuid     "resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
+    t.index ["name"], name: "index_roles_on_name", using: :btree
+  end
+
   create_table "service_type_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "service_type_id"
     t.uuid     "resource_id"
@@ -206,6 +228,15 @@ ActiveRecord::Schema.define(version: 20170524102611) do
     t.index ["organization_id"], name: "index_sub_departments_on_organization_id", using: :btree
   end
 
+  create_table "user_options", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "user_id"
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "key"], name: "index_user_options_on_user_id_and_key", unique: true, using: :btree
+  end
+
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",                          null: false
@@ -230,8 +261,16 @@ ActiveRecord::Schema.define(version: 20170524102611) do
     t.string   "refresh_token"
     t.string   "access_token"
     t.string   "username"
+    t.boolean  "configured"
+    t.string   "time_zone"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
 end

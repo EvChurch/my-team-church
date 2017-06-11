@@ -1,5 +1,42 @@
 Rails.application.routes.draw do
-  devise_for :users # , controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: {sessions: 'users/sessions'} # , controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  constraints subdomain: 'admin' do
+    root to: 'admin#index', as: :admin_root
+    scope module: :admin do
+      resources :users
+      resource :organization, only: %i[edit update]
+      resources :organizations, only: [] do
+        post 'select', on: :member
+      end
+      resource :profile, only: [:edit, :update] do
+        scope module: :profiles do
+          resources :options, only: [:update]
+        end
+      end
+      resources :after_signup, only: [:index] do
+        collection do
+          get 'finished'
+          scope module: :after_signup do
+            resources :organizations,
+                      only: %i[new create],
+                      as: :after_signup_organizations
+          end
+        end
+      end
+    end
+    root to: 'admin#index'
+  end
+
+  constraints subdomain: 'auth' do
+    scope module: :auth do
+      resource :application, only: [:show]
+      authenticate :user do
+        resource :user, only: %i[edit update], as: :auth_user
+        resource :organization, only: [:show], as: :auth_organization
+      end
+    end
+  end
+  
   constraints(Domain) do
     scope module: :dashboard do
       resources :people
