@@ -12,17 +12,14 @@ module Admin
         return render :edit, status: :bad_request
       end
       return render nothing: true if request.xhr?
-      flash[:success] = 'Organization Profile saved successfully'
+      flash[:success] = 'Church Profile saved successfully'
       redirect_to action: :edit
     end
 
     def select
       @organization = organization_scope.find(params[:id])
-
       authorize @organization
-
       session[:organization_id] = @organization.id
-
       redirect_to :dashboard_root
     end
 

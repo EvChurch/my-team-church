@@ -1,22 +1,15 @@
 <section class="row is-page-header-row">
-  <div class="row__inner">
-    <div class="page-header">
-      <div class="page-header__title">
-        Church Profile
-      </div>
-      <div class="page-header__tagline">
-        Configure your church settings.
-      </div>
-    </div>
-  </div>
 </section>
 <section class="row is-card">
   <div class="row__inner">
     <div class="card">
       <div class="row__inner">
         <div class="card-block">
+          <h4 class="card-title">
+            Church Settings
+          </h4>
           <div class="card-text">
-            <%= simple_form_for @organization, url: after_signup_organizations_path, defaults: { input_html: { class: 'form-control border-input' } } do |f| %>
+            <%= simple_form_for @organization do |f| %>
             <div class="md-form">
               <%= f.text_field :name, autofocus: true %>
               <%= f.label :name %>
@@ -24,7 +17,7 @@
             <div class="row">
               <div class="col-md-8">
                 <div class="md-form">
-                  <%= f.text_field :subdomain %>
+                  <%= f.text_field :subdomain, disabled: true %>
                   <%= f.label :subdomain %>
                 </div>
               </div>
@@ -74,7 +67,7 @@
             </div>
             <%= f.input :country, input_html: { class: 'chosen-select' } %>
             <%= f.input :time_zone, priority: /US/, input_html: { class: 'chosen-select' } %>
-            <%= f.submit 'Next', class: 'btn btn-primary btn-block' %>
+            <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
             <% end %>
           </div>
         </div>

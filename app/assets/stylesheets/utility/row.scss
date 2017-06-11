@@ -21,7 +21,7 @@
 }
 .is-page-header-row {
   position: relative;
-  min-height: 212px;
+  min-height: 100px;
   &::before {
     content: '';
     position: absolute;

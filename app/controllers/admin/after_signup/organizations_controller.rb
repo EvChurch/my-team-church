@@ -13,7 +13,7 @@ module Admin
         end
         current_user.add_role :admin, @organization
         current_user.add_role :member, @organization
-        flash[:success] = 'Organization Profile saved successfully'
+        flash[:success] = 'Church Profile saved successfully'
         redirect_to after_signup_index_path
       end
 

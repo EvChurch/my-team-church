@@ -5,7 +5,7 @@
         Church Profile
       </div>
       <div class="page-header__tagline">
-        Configure your church settings.
+        Configure your church settings
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
       <div class="row__inner">
         <div class="card-block">
           <div class="card-text">
-            <%= simple_form_for @organization, url: after_signup_organizations_path, defaults: { input_html: { class: 'form-control border-input' } } do |f| %>
+            <%= simple_form_for [:after_signup, @organization] do |f| %>
             <div class="md-form">
               <%= f.text_field :name, autofocus: true %>
               <%= f.label :name %>

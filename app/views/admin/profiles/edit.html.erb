@@ -1,31 +1,15 @@
 <section class="row is-page-header-row">
-  <div class="row__inner">
-    <div class="page-header">
-      <% if user.configured? %>
-      <div class="page-header__title">
-        My Profile
-      </div>
-      <div class="page-header__tagline">
-        Update Your Profile Information
-      </div>
-      <% else %>
-      <div class="page-header__title">
-        Set up your Profile
-      </div>
-      <div class="page-header__tagline">
-        Start off by telling us about yourself.
-      </div>
-      <% end %>
-    </div>
-  </div>
 </section>
 <section class="row is-card">
   <div class="row__inner">
     <div class="card">
       <div class="row__inner">
         <div class="card-block">
+          <h4 class="card-title">
+            My Profile
+          </h4>
           <div class="card-text">
-            <%= simple_form_for @user, url: after_signup_profile_path, html: { multipart: true } do |f| %>
+            <%= simple_form_for @user, url: profile_path do |f| %>
               <div class="row">
                 <div class="col-md-6">
                   <div class="md-form">
@@ -41,11 +25,7 @@
                 </div>
               </div>
               <%= f.input :time_zone, priority: /US/, input_html: { class: 'chosen-select' } %>
-              <% if user.configured? %>
               <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
-              <% else %>
-              <%= f.submit 'Next', class: 'btn btn-primary btn-block' %>
-              <% end %>
             <% end %>
           </div>
         </div>
