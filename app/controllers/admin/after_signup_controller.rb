@@ -1,8 +1,8 @@
 module Admin
   class AfterSignupController < AdminController
-    layout 'admin/wizard'
+    layout 'application'
     skip_before_action :load_organization, :validate_organization, except: [:finished]
-    before_action :validate_current_path, except: [:index, :create, :update]
+    before_action :validate_current_path, except: %i[index create update]
 
     def index
       redirect_to current_path
@@ -19,10 +19,7 @@ module Admin
     end
 
     def current_path
-      unless current_user.configured?
-        session[:redirect_after_configure] = new_after_signup_organization_url
-        return edit_auth_user_url
-      end
+      return edit_after_signup_profile_path unless current_user.configured?
       return new_after_signup_organization_path unless Organization.with_role(:admin, current_user).exists?
       return finished_after_signup_index_path unless completed_signup_process?
       admin_root_path

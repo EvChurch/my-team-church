@@ -1,0 +1,45 @@
+header {
+  height: 48px;
+  .navbar {
+    background: #fff !important;
+    padding: 0 1rem 0 0;
+    .navbar-brand {
+      color: #0C9CF2;
+      font: 500 14px/46px Roboto,sans-serif;
+      padding: 0;
+      margin: 1px 5px;
+      img {
+        height: 46px;
+      }
+      &:hover {
+        color: #0C9CF2;
+      }
+    }
+    .navbar-nav {
+      .nav-item {
+        height: 48px;
+        .nav-link {
+          border-bottom: 2px solid transparent;
+          border-top: 2px solid transparent;
+          color: rgba(0,0,0,.54);
+          display: inline-block;
+          font: 400 14px/44px Roboto,sans-serif;
+          margin: 0;
+          padding: 0 24px;
+          transition: color .4s;
+          &:hover {
+            color: rgba(0,0,0,.87);
+          }
+        }
+        &.active {
+          background-color: transparent;
+          .nav-link {
+            border-bottom-color: #0C9CF2;
+            color: rgba(0,0,0,.87);
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}

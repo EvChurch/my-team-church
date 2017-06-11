@@ -1,0 +1,11 @@
+body.admin {
+  .row {
+    &--tout {
+      &__inner {
+        background: #fff image-url('support_1x.png') no-repeat 105% calc(100% + 30px);
+        background-size: 450px;
+        padding-right: 400px;
+      }
+    }
+  }
+}

@@ -4962,11 +4962,16 @@ ul {
   border-radius: 0.2em; }
 
 .waves-button-input {
+  display: block;
+  text-align: center;
   margin: 0;
-  padding: 0.85em 1.1em; }
+  width: 100%;
+  padding: 0.85rem 2.13rem;
+}
 
 .waves-input-wrapper {
   border-radius: 0.2em;
+  padding: 0 !important;
   vertical-align: bottom; }
   .waves-input-wrapper.waves-button {
     padding: 0; }

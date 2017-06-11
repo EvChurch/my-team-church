@@ -3,7 +3,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable,
+         request_keys: [:subdomain]
          # :omniauthable, omniauth_providers: [:elvanto]
   enum role: %i[user vip admin]
   after_initialize :set_default_role, if: :new_record?
@@ -16,5 +17,9 @@ class User < ApplicationRecord
   
   def option_is_true?(key, default = false)
     options.create_with(value: default).find_or_create_by(key: key).value.to_bool
+  end
+  
+  def self.find_for_authentication(warden_conditions)
+    where(email: warden_conditions[:email], subdomain: warden_conditions[:subdomain]).first
   end
 end

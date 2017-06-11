@@ -1,9 +1,17 @@
-<div class="card">
-  <div class="header header-no-content top">
-    <h4 class="title"><%= @organization.name %> Configured</h4>
-    <p class="category">Looks like you're ready to go!</p>
+<section class="row is-graphic-row"></section>
+<section class="row is-card row--tout row--tout--faqs">
+  <div class="row__inner">
+    <div class="card">
+      <div class="row__inner row--tout__inner">
+        <div class="card-block">
+          <%= @organization.name %> Configured
+          <h1 class="card-title">
+            Looks like you're ready to go!
+          </h1>
+          <a href="<%= admin_root_path %>" class="btn btn-primary">Go to Dashboard</a>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="actions">
-    <a class="btn btn-primary btn-fill" href="<%= admin_root_path %>"><%= icon 'dashboard' %> Go to Dashboard</a>
-  </div>
-</div>
+</section>
+        

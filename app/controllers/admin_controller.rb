@@ -5,7 +5,6 @@ class AdminController < ApplicationController
   before_action :load_organizations
   before_action :validate_organization
   decorates_assigned :organization, :organizations
-  layout 'admin'
 
   def index; end
 

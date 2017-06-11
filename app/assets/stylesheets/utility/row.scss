@@ -1,0 +1,67 @@
+.row {
+  &__tagline {
+    font-size: 48px;
+    line-height: 68px;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  &__inner {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1352px;
+    padding: 80px 114px;
+    position: relative;
+    z-index: 1;
+  }
+  &.is-card {
+    > .row__inner {
+      padding: 0 114px;
+    }
+  }
+}
+.is-page-header-row {
+  position: relative;
+  min-height: 212px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100vw;
+    background: image-url('backslant-sub-top.svg') no-repeat 50% 0/100%;
+    background-size: 100%;
+  }
+  > .row__inner {
+    padding: 40px 114px 20px;
+  }
+}
+.is-graphic-row {
+  height: 180px;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100vw;
+    background: image-url('backslant-home-top.svg') no-repeat 50% 0;
+    background-size: 100%;
+  }
+}
+.is-footer-row {
+  color: #fff;
+  position: relative;
+  margin-bottom: -200px;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vw;
+    background: image-url('backslant-footer.svg') no-repeat 50% 100%;
+    background-size: 100%;
+  }
+}

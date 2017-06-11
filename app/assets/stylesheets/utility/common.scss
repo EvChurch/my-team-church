@@ -1,0 +1,70 @@
+@import 'navbar';
+@import 'row';
+
+body {
+  background-color: #3E4551;
+}
+main {
+  background: image-url('backslant-home-repeat.svg') repeat-y 50% 0;
+  background-size: 100vw;
+  padding-bottom: 200px;
+}
+footer.page-footer {
+  margin-top: 0;
+  padding-top: 0;
+  color: #cfd8dc;
+  font: 500 14px/16px Roboto,sans-serif;
+  h5.title {
+    color: #fff;
+    margin: 0 0 16px;
+    text-transform: none;
+  }
+}
+.btn-flat {
+  position: relative;
+  padding: 8px 30px;
+  border: none;
+  margin: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  outline: 0!important;
+  &:focus {
+    background-color: transparent;
+  }
+}
+.waves-button-input {
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+.page-header {
+  &__title {
+    color: #ffa000;
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  &__tagline {
+    color: #757575;
+    font-size: 48px;
+    line-height: 62px;
+    font-weight: 300;
+    max-width: 80%;
+    margin-bottom: 40px;
+  }
+}
+.alert {
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 0;
+}
+@media only screen and (max-width: 1000px) {
+  .row__inner {
+    padding: 60px 64px 80px;
+  }
+}
+@media only screen and (max-width: 720px) {
+  .row__inner {
+    padding: 40px 18px;
+  }
+}

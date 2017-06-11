@@ -8,13 +8,20 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
     <%= csrf_meta_tags %>
   </head>
-  <body class="<%= params[:controller] %>-<%= params[:action] %>">
+  <body class="<%= request.subdomain %> <%= params[:controller].split('/').join(' ') %>-<%= params[:action] %>">
     <header>
       <%= render 'navigation' %>
     </header>
-    <main role="main">
-      <%= render 'layouts/messages' %>
+    <%= render 'layouts/messages' %>
+    <main>
       <%= yield %>
     </main>
+    <footer class="page-footer center-on-small-only">
+      <div class="footer-copyright">
+        <div class="container-fluid">
+          Built for the Kingdom by <a href="https://aucklandev.co.nz">Auckland Evangelical Church</a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

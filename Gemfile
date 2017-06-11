@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
 end
 ruby '2.3.1'
 gem 'breadcrumbs_on_rails'
+gem 'chosen-rails'
 gem 'coffee-rails', '~> 4.2'
 gem 'country_select'
 gem 'domainatrix'

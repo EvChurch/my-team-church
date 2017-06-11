@@ -6,12 +6,7 @@
         <h1 class="card-title">
           My Place helps you build better leaders and grow your church.
         </h1>
-        <a href="#" class="btn btn-primary btn-lg">Get Started</a>
-        <a href="#" class="btn btn-secondary btn-lg">
-          <i class="fa fa-play"></i>
-          &nbsp;
-          Watch the video
-        </a>
+        <a href="<%= new_user_registration_url(subdomain: 'admin') %>" class="btn btn-primary btn-lg">Get Started</a>
         <div class="card-text">
           <div class="row">
             <div class="col-md-4">
@@ -35,8 +30,27 @@
           </div>
         </div>
       </div>
-      <div class="card-footer">
-        My Place supported ChMS: Elvanto
+    </div>
+  </div>
+</section>
+<section class="row is-card">
+  <div class="row__inner">
+    <div class="card integrations">
+      <div class="card-block">
+        <h3 class="card-title">
+          Integrations
+        </h3>
+        <div class="card-text">
+          <p>
+            Integrations sync your Church Members with your existing Church Management System saving you from the headache of managing yet another system.
+            We are constantly adding support for more ChMSes based on your feedback.
+          </p>
+          <div class="columns integrations__logos">
+              <div class="integrations__logo">
+                <img src="<%= image_url('logos/elvanto') %>">
+              </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -46,13 +60,6 @@
     <div class="row__tagline">
       Try My Place for free today.<br> Integrating it into your church is easy.
     </div>
-    <a href="https://console.firebase.google.com/" class="btn btn-secondary btn-lg">Get Started</a>
+    <a href="<%= new_user_registration_url(subdomain: 'admin') %>" class="btn btn-secondary btn-lg">Get Started</a>
   </div>
 </section>
-<footer class="page-footer center-on-small-only">
-  <div class="footer-copyright">
-    <div class="container-fluid">
-      Built for the Kingdom by <a href="https://aucklandev.co.nz">Auckland Evangelical Church</a>
-    </div>
-  </div>
-</footer>

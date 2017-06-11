@@ -1,8 +1,5 @@
-.visitors-index {
-  background: image-url('backslant-home-repeat.svg') repeat-y 50% 0;
-  background-size: 100vw;
+body.visitors-index {
   .card {
-    margin: -80px 0;
     .card-block {
       padding: 80px 114px 40px 114px;
       .card-title {
@@ -37,67 +34,28 @@
       color: #757575;
     }
   }
-  .row__inner {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 1352px;
-    padding: 80px 114px;
-    position: relative;
-    z-index: 1;
-  }
-  @media only screen and (max-width: 1000px) {
-    .row__inner {
-      padding: 60px 64px 80px;
+  .integrations {
+    margin-top: 10px;
+    background-color: #323232;
+    .card-block {
+      .card-title {
+        color: #fff;
+      }
+      .card-text p {
+        color: #fff;
+      }
+    }
+    &__logos {
+      align-items: center;
+      justify-content: space-between;
+      margin: 40px 0 20px 0;
+    }
+    &__logo img {
+      max-height: 30px;
     }
   }
-  @media only screen and (max-width: 720px) {
-    .row__inner {
-      padding: 40px 18px;
-    }
-  }
-  .is-graphic-row {
-    height: 212px;
-    position: relative;
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      height: 100vw;
-      background: image-url('backslant-home-top.svg') no-repeat 50% 0;
-      background-size: 100%;
-    }
-  }
-  .is-footer-row {
-    color: #fff;
-    position: relative;
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 100vw;
-      background: image-url('backslant-footer.svg') no-repeat 50% 100%;
-      background-size: 100%;
-    }
-    .row__tagline {
-      font-size: 48px;
-      line-height: 68px;
-      font-weight: 300;
-      margin-bottom: 20px;
-    }
-  }
-  footer.page-footer {
-    margin-top: 0;
-    padding-top: 0;
-    color: #cfd8dc;
-    font: 500 14px/16px Roboto,sans-serif;
-    h5.title {
-      color: #fff;
-      margin: 0 0 16px;
-      text-transform: none;
-    }
+  .columns {
+    display: flex;
+    flex-direction: row;
   }
 }

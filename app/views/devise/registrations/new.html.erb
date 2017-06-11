@@ -1,24 +1,55 @@
-<%= bootstrap_devise_error_messages! %>
-
-<h1><%= t('.sign_up', default: 'Get Started') %></h1>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: 'form' }) do |f| %>
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+<section class="row is-page-header-row">
+  <div class="row__inner">
+    <div class="page-header">
+      <div class="page-header__title">
+        Get Started
+      </div>
+      <div class="page-header__tagline">
+        Ready to build leaders and grow your church?
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
+</section>
+<section class="row is-card">
+  <div class="row__inner">
+    <div class="card">
+      <div class="row__inner">
+        <div class="card-block">
+          <h4 class="card-title">
+            Sign Up for an Account
+          </h4>
+          <div class="card-text">
+            <%= bootstrap_devise_error_messages! %>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: 'form' }) do |f| %>
+            <div class="md-form">
+              <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+              <%= f.label :email %>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="md-form">
+                  <%= f.password_field :password, class: 'form-control' %>
+                  <%= f.label :password %>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="md-form">
+                  <%= f.password_field :password_confirmation, class: 'form-control' %>
+                  <%= f.label :password_confirmation %>
+                </div>
+              </div>
+            </div>
+            <%= f.submit t('.sign_up', default: 'Sign up'), class: 'btn btn-primary btn-block' %>
+            <% end %>
+            <div class="terms text-center">
+              By Signing up you agree to the Terms and Conditions
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <%= render 'devise/shared/links' %>
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.submit t('.sign_up', default: 'Sign up'), class: 'btn btn-primary' %>
-  </div>
-<% end %>
-
-<%= render 'devise/shared/links' %>
+</section>

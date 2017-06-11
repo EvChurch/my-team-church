@@ -17,4 +17,9 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require mdb
+//= require chosen-jquery
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  $('.chosen-select').chosen();
+});

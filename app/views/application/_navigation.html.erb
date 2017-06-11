@@ -1,17 +1,16 @@
-<%# navigation styled for Bootstrap 4.0 %>
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded" id="applicationNav">
-  <div class="container">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="<%= root_url(subdomain: '') %>">My Place</a>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mr-auto">
-        <%= render 'navigation_links' %>
-      </ul>
-      <ul class="navbar-nav">
-        <%= render 'nav_links_for_auth' %>
-      </ul>
-    </div>
+<nav class="navbar fixed-top navbar-light navbar-toggleable-md bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="<%= root_url(subdomain: '') %>">
+    <%= image_tag 'logos/my-place' %>
+  </a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <%= render 'navigation_links' %>
+    </ul>
+    <ul class="navbar-nav">
+      <%= render 'nav_links_for_auth' %>
+    </ul>
   </div>
 </nav>

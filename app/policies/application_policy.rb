@@ -26,7 +26,7 @@ class ApplicationPolicy
   end
 
   def update?
-    person.admin?
+    user.has_role?(:admin, record)
   end
 
   def edit?
@@ -38,18 +38,15 @@ class ApplicationPolicy
   end
 
   def scope
-    Pundit.policy_scope!(person, record.class)
+    Pundit.policy_scope!(user, record.class)
   end
 
   class Scope
-    attr_reader :person, :scope
+    attr_reader :user, :person, :scope
 
     def initialize(user, scope)
-      @person = if user.is_a?(Person)
-                  user
-                else
-                  user.person
-                end
+      @user = user
+      @person = user.person
       @scope = scope
     end
 

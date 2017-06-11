@@ -5149,7 +5149,7 @@ $(function () {
 });
 
 (function ($) {
-    $(document).ready(function () {
+    $(document).on('turbolinks:load', function() {
 				//Initialization
 				Waves.attach('.btn, .btn-floating', ['waves-light']);
 				Waves.attach('.waves-light', ['waves-light']);
@@ -5185,7 +5185,7 @@ $(function () {
         });
 
         // Add active if input element has been pre-populated on document ready
-        $(document).ready(function () {
+        $(document).on('turbolinks:load', function() {
             Materialize.updateTextFields();
         });
 
