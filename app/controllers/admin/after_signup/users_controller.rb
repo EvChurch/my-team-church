@@ -1,6 +1,6 @@
 module Admin
   module AfterSignup
-    class ProfilesController < AfterSignupController
+    class UsersController < AfterSignupController
       decorates_assigned :user
 
       def edit

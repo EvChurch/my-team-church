@@ -19,7 +19,7 @@ module Admin
     end
 
     def current_path
-      return edit_after_signup_profile_path unless current_user.configured?
+      return edit_after_signup_user_path unless current_user.configured?
       return new_after_signup_organization_path unless Organization.with_role(:admin, current_user).exists?
       return finished_after_signup_index_path unless completed_signup_process?
       admin_root_path

@@ -17,9 +17,9 @@ Rails.application.routes.draw do
         collection do
           get 'finished'
           scope module: :after_signup do
-            resource :profile,
+            resource :user,
                      only: %i[edit update],
-                     as: :after_signup_profile
+                     as: :after_signup_user
             resources :organizations,
                       only: %i[new create],
                       as: :after_signup_organizations
