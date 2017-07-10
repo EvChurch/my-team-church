@@ -8,6 +8,15 @@ Rails.application.routes.draw do
     root to: 'admin#index', as: :admin_root
     scope module: :admin do
       resources :users
+      resources :departments, only: %i[index show] do
+        scope module: :departments do
+          resources :sub_departments, only: :show do
+            scope module: :sub_departments do
+              resources :positions, only: :show
+            end
+          end
+        end
+      end
       resource :organization, only: %i[edit update]
       resources :organizations, only: [] do
         post 'select', on: :member

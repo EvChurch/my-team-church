@@ -8,7 +8,7 @@ class Goal < ApplicationRecord
   RESOURCE_TYPES = {
     'Person' => 'Person',
     'Department' => 'Department',
-    'Sub Department' => 'Department::SubDepartment',
-    'Position' => 'Department::SubDepartment::Position'
+    'Sub Department' => 'SubDepartment',
+    'Position' => 'Position'
   }.freeze
 end
