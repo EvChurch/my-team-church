@@ -1,4 +1,5 @@
 class Person < ApplicationRecord
+  belongs_to :organization
   has_many :access_permission_entities,
            class_name: 'AccessPermission::Entity',
            as: :resource,

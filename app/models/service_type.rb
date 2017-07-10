@@ -1,6 +1,7 @@
 class ServiceType < ApplicationRecord
-  validates :name, presence: true
-  has_many :entities, class_name: 'ServiceType::Entity'
+  belongs_to :organization
+  has_many :entities, class_name: 'ServiceType::Entity', dependent: :destroy
   has_many :resources, through: :entities
+  validates :name, presence: true
   default_scope -> { order(:name) }
 end

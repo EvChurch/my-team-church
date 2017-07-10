@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170709235758) do
+ActiveRecord::Schema.define(version: 20170710042853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,10 @@ ActiveRecord::Schema.define(version: 20170709235758) do
     t.string   "name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "remote_id"
+    t.string   "remote_source"
     t.index ["organization_id"], name: "index_access_permissions_on_organization_id", using: :btree
+    t.index ["remote_id", "remote_source"], name: "index_access_permissions_on_remote_id_and_remote_source", unique: true, using: :btree
   end
 
   create_table "demographic_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -49,7 +52,10 @@ ActiveRecord::Schema.define(version: 20170709235758) do
     t.string   "name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "remote_id"
+    t.string   "remote_source"
     t.index ["organization_id"], name: "index_demographics_on_organization_id", using: :btree
+    t.index ["remote_id", "remote_source"], name: "index_demographics_on_remote_id_and_remote_source", unique: true, using: :btree
   end
 
   create_table "departments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -57,7 +63,10 @@ ActiveRecord::Schema.define(version: 20170709235758) do
     t.string   "name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "remote_id"
+    t.string   "remote_source"
     t.index ["organization_id"], name: "index_departments_on_organization_id", using: :btree
+    t.index ["remote_id", "remote_source"], name: "index_departments_on_remote_id_and_remote_source", unique: true, using: :btree
   end
 
   create_table "goals", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -100,7 +109,10 @@ ActiveRecord::Schema.define(version: 20170709235758) do
     t.string   "name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "remote_id"
+    t.string   "remote_source"
     t.index ["organization_id"], name: "index_locations_on_organization_id", using: :btree
+    t.index ["remote_id", "remote_source"], name: "index_locations_on_remote_id_and_remote_source", unique: true, using: :btree
   end
 
   create_table "organizations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -179,7 +191,10 @@ ActiveRecord::Schema.define(version: 20170709235758) do
     t.boolean  "special_needs_child"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "remote_id"
+    t.string   "remote_source"
     t.index ["organization_id"], name: "index_people_on_organization_id", using: :btree
+    t.index ["remote_id", "remote_source"], name: "index_people_on_remote_id_and_remote_source", unique: true, using: :btree
   end
 
   create_table "position_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -198,7 +213,10 @@ ActiveRecord::Schema.define(version: 20170709235758) do
     t.string   "name"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "remote_id"
+    t.string   "remote_source"
     t.index ["organization_id"], name: "index_positions_on_organization_id", using: :btree
+    t.index ["remote_id", "remote_source"], name: "index_positions_on_remote_id_and_remote_source", unique: true, using: :btree
     t.index ["sub_department_id"], name: "index_positions_on_sub_department_id", using: :btree
   end
 
@@ -227,7 +245,10 @@ ActiveRecord::Schema.define(version: 20170709235758) do
     t.string   "name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "remote_id"
+    t.string   "remote_source"
     t.index ["organization_id"], name: "index_service_types_on_organization_id", using: :btree
+    t.index ["remote_id", "remote_source"], name: "index_service_types_on_remote_id_and_remote_source", unique: true, using: :btree
   end
 
   create_table "sub_departments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -236,8 +257,11 @@ ActiveRecord::Schema.define(version: 20170709235758) do
     t.string   "name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "remote_id"
+    t.string   "remote_source"
     t.index ["department_id"], name: "index_sub_departments_on_department_id", using: :btree
     t.index ["organization_id"], name: "index_sub_departments_on_organization_id", using: :btree
+    t.index ["remote_id", "remote_source"], name: "index_sub_departments_on_remote_id_and_remote_source", unique: true, using: :btree
   end
 
   create_table "user_options", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

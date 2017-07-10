@@ -1,5 +1,14 @@
 class Organization < ApplicationRecord
   has_many :integrations, dependent: :destroy
+  has_many :access_permissions, dependent: :destroy
+  has_many :demographics, dependent: :destroy
+  has_many :departments, dependent: :destroy
+  has_many :locations, dependent: :destroy
+  has_many :people, dependent: :destroy
+  has_many :positions, dependent: :destroy
+  has_many :service_types, dependent: :destroy
+  has_many :sub_departments, dependent: :destroy
+
   accepts_nested_attributes_for :integrations
 
   resourcify
