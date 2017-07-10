@@ -34,3 +34,8 @@ en:
             show: "%{name}"
       goals:
         new: 'New Goal'
+      devise:
+        sessions:
+          new: 'Sign In'
+        registrations:
+          new: 'Sign Up'

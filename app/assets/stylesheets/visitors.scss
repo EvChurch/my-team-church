@@ -33,11 +33,7 @@ body.visitors-index {
       line-height: 24px;
       color: #757575;
     }
-  }
-  .integrations {
-    margin-top: 10px;
-    background-color: #323232;
-    .card-block {
+    &.integrations .card-block {
       .card-title {
         color: #fff;
       }
@@ -45,17 +41,5 @@ body.visitors-index {
         color: #fff;
       }
     }
-    &__logos {
-      align-items: center;
-      justify-content: space-between;
-      margin: 40px 0 20px 0;
-    }
-    &__logo img {
-      max-height: 30px;
-    }
-  }
-  .columns {
-    display: flex;
-    flex-direction: row;
   }
 }

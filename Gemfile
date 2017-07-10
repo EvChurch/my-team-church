@@ -28,6 +28,7 @@ gem 'redis-objects', '~> 0.6.1'
 gem 'redis-rails'
 gem 'rolify'
 gem 'sass-rails', '~> 5.0'
+gem 'sidekiq'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 group :development, :test do

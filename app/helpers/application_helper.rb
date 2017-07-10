@@ -4,8 +4,8 @@ module ApplicationHelper
 
     messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
     sentence = I18n.t('errors.messages.not_saved',
-      count: resource.errors.count,
-      resource: resource.class.model_name.human.downcase)
+                      count: resource.errors.count,
+                      resource: resource.class.model_name.human.downcase)
 
     html = <<-HTML
     <div class="alert alert-danger alert-block devise-bs">
@@ -17,7 +17,7 @@ module ApplicationHelper
 
     html.html_safe
   end
-  
+
   def flash_class(level)
     case level.to_sym
     when :notice then 'alert alert-info'
@@ -27,7 +27,7 @@ module ApplicationHelper
     else 'alert alert-info'
     end
   end
-  
+
   def url_to_subdomain(url)
     Domainatrix.parse(url).subdomain.split('.')[0]
   end

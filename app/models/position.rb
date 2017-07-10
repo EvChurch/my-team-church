@@ -1,5 +1,4 @@
 class Position < ApplicationRecord
-  include ElvantoCollection
   validates :name, presence: true
   validates :sub_department, presence: true
   has_many :entities, class_name: 'Position::Entity'

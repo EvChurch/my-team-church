@@ -1,10 +1,9 @@
-<section class="row is-graphic-row"></section>
 <section class="row is-card">
   <div class="row__inner">
     <div class="card">
       <div class="row__inner">
         <div class="card-block">
-          <h4 class="card-title"><%= t('.sign_up', default: 'Sign In') %></h4>
+          <h4 class="card-title"><%= t('.sign_in', default: 'Sign In') %></h4>
           <div class="card-text">
             <%= bootstrap_devise_error_messages! %>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form' }) do |f| %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611122842) do
+ActiveRecord::Schema.define(version: 20170709235758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,17 @@ ActiveRecord::Schema.define(version: 20170611122842) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["resource_type", "resource_id"], name: "index_goals_on_resource_type_and_resource_id", using: :btree
+  end
+
+  create_table "integrations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string   "type"
+    t.uuid     "organization_id"
+    t.string   "client_id"
+    t.string   "client_secret"
+    t.string   "api_key"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["organization_id", "type"], name: "index_integrations_on_organization_id_and_type", unique: true, using: :btree
   end
 
   create_table "location_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

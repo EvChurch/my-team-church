@@ -3,7 +3,7 @@ class SubDepartmentPolicy < ApplicationPolicy
     def resolve
       if person.admin?
         scope.eager_load(
-        :positions
+          :positions
         ).order('department_sub_departments.name, department_sub_department_positions.name')
       else
         person.sub_departments.eager_load(

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     setup_breadcrumbs
     super
   end
-  
+
   def preflight
     render nothing: true
   end

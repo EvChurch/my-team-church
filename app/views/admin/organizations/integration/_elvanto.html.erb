@@ -1,0 +1,32 @@
+<p class="help-block">
+  To allow church members to authenticate using their Elvanto Account,
+  you're going to need to register an OAuth Application with Elvanto.
+  To do this go to <strong>Settings > Integrations</strong> when logged into your Admin Elvanto account.
+  From there you'll be asked for a few details to register your OAuth app.
+</p>
+<p class="help-block">
+  Once you've registered your app, it will be assigned a unique Client ID and Client Secret.
+  You'll need to copy these two fields accurately into the fields below.
+</p>
+<div class="row">
+  <div class="col-md-6">
+    <div class="md-form">
+      <%= f.text_field :client_id %>
+      <%= f.label :client_id, 'Client ID' %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="md-form">
+      <%= f.text_field :client_secret %>
+      <%= f.label :client_secret, 'Client Secret' %>
+    </div>
+  </div>
+</div>
+<p class="help-block">
+  You can get your API key from <strong>Settings > Integrations > Get API Key</strong> when logged into your
+  Admin Elvanto account.
+</p>
+<div class="md-form">
+  <%= f.text_field :api_key %>
+  <%= f.label :api_key, 'API Key' %>
+</div>

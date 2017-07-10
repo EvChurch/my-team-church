@@ -1,4 +1,7 @@
 class Organization < ApplicationRecord
+  has_many :integrations, dependent: :destroy
+  accepts_nested_attributes_for :integrations
+
   resourcify
   validates :name, :subdomain, presence: true
   validates :subdomain, uniqueness: true

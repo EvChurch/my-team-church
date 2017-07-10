@@ -6,7 +6,7 @@ class String
   end
 
   def possessive
-    self + ('s' == self[-1, 1] ? "'" : "'s")
+    self + (self[-1, 1] == 's' ? "'" : "'s")
   end
 end
 

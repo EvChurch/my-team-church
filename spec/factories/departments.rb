@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :department do
-    id ""
-    name "MyString"
+    id ''
+    name 'MyString'
   end
 end

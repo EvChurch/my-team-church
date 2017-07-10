@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: 'users/registrations' } #, omniauth_callbacks: 'users/omniauth_callbacks' }
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+  devise_for :users, controllers: { registrations: 'users/registrations' } # , omniauth_callbacks: 'users/omniauth_callbacks' }
   constraints subdomain: 'admin' do
     root to: 'admin#index', as: :admin_root
     scope module: :admin do
@@ -8,7 +12,7 @@ Rails.application.routes.draw do
       resources :organizations, only: [] do
         post 'select', on: :member
       end
-      resource :profile, only: [:edit, :update] do
+      resource :profile, only: %i[edit update] do
         scope module: :profiles do
           resources :options, only: [:update]
         end

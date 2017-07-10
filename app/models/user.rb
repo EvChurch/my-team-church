@@ -5,8 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          request_keys: [:subdomain]
-         # :omniauthable, omniauth_providers: [:elvanto]
-         
+  # :omniauthable, omniauth_providers: [:elvanto]
+
   enum role: %i[user vip admin]
   after_initialize :set_default_role, if: :new_record?
   has_one :person, foreign_key: :username, primary_key: :username

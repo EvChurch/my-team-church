@@ -8,8 +8,7 @@ class DashboardController < ApplicationController
   before_action :verify_policy_scoped, only: :index, if: -> { Rails.env.development? }
   decorates_assigned :organization
 
-  def index
-  end
+  def index; end
 
   protected
 

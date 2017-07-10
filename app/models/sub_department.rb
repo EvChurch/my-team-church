@@ -1,5 +1,4 @@
 class SubDepartment < ApplicationRecord
-  include ElvantoCollection
   validates :name, presence: true
   validates :department, presence: true
   has_many :positions

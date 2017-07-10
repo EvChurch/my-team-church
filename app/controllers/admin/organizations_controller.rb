@@ -1,11 +1,10 @@
 module Admin
   class OrganizationsController < AdminController
     def edit
-      authorize @organization
+      build_organization
     end
 
     def update
-      authorize @organization
       build_organization
       unless save_organization
         flash[:error] = @organization.errors.full_messages
@@ -18,7 +17,6 @@ module Admin
 
     def select
       @organization = organization_scope.find(params[:id])
-      authorize @organization
       session[:organization_id] = @organization.id
       redirect_to :dashboard_root
     end
@@ -27,6 +25,7 @@ module Admin
 
     def build_organization
       @organization.attributes = organization_params
+      @organization.integrations.first_or_initialize(type: 'Integration::Elvanto')
     end
 
     def save_organization
@@ -37,10 +36,7 @@ module Admin
       return {} unless params[:organization]
       params.require(:organization).permit(:name, :address_1, :address_2,
                                            :city, :state, :zip, :country, :time_zone, :website_url,
-                                           :has_finances, :has_event_registrations, :has_reviews,
-                                           :has_directories, :has_documents, :has_statistics,
-                                           :directory_url, :statistics_url, :events_url, :mpd_url, :mpdx_url,
-                                           :has_mpd, :has_mpdx, :has_leave, :leave_url)
+                                           integrations_attributes: %i[id type client_id client_secret api_key])
     end
   end
 end

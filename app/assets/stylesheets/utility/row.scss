@@ -22,6 +22,8 @@
 .is-page-header-row {
   position: relative;
   min-height: 100px;
+  margin-top: -60px;
+  padding-top: 60px;
   &::before {
     content: '';
     position: absolute;
@@ -38,6 +40,7 @@
 }
 .is-graphic-row {
   height: 180px;
+  margin-top: -60px;
   position: relative;
   &::before {
     content: '';
@@ -53,7 +56,7 @@
 .is-footer-row {
   color: #fff;
   position: relative;
-  margin-bottom: -200px;
+  margin-bottom: -60px;
   &::before {
     content: '';
     position: absolute;

@@ -13,3 +13,30 @@
     margin-bottom: 40px;
   }
 }
+.integrations {
+  &.card {
+    margin-top: 10px;
+    background-color: #323232;
+    .card-block {
+      .card-title {
+        color: #fff;
+      }
+      .card-text {
+        input {
+          color: #fff;
+        }
+        p {
+          color: #fff;
+        }
+      }
+    }
+  }
+  &__logos {
+    align-items: center;
+    justify-content: space-between;
+    margin: 40px 0 20px 0;
+  }
+  &__logo img {
+    max-height: 30px;
+  }
+}

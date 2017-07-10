@@ -1,7 +1,6 @@
-<section class="row is-page-header-row">
-</section>
 <section class="row is-card">
   <div class="row__inner">
+    <%= simple_form_for @organization, url: organization_path do |f| %>
     <div class="card">
       <div class="row__inner">
         <div class="card-block">
@@ -9,7 +8,6 @@
             Church Settings
           </h4>
           <div class="card-text">
-            <%= simple_form_for @organization do |f| %>
             <div class="md-form">
               <%= f.text_field :name, autofocus: true %>
               <%= f.label :name %>
@@ -67,11 +65,31 @@
             </div>
             <%= f.input :country, input_html: { class: 'chosen-select' } %>
             <%= f.input :time_zone, priority: /US/, input_html: { class: 'chosen-select' } %>
-            <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
-            <% end %>
+            <%= f.submit 'Save Settings', class: 'btn btn-primary btn-block' %>
           </div>
         </div>
       </div>
     </div>
+    <% end %>
+    <%= simple_form_for @organization, url: organization_path do |f| %>
+      <%= f.simple_fields_for :integrations do |i| %>
+      <div class="card integrations">
+        <div class="row__inner">
+          <div class="card-block">
+            <div class="card-text">
+              <div class="columns integrations__logos">
+                  <div class="integrations__logo">
+                    <img src="<%= image_path("logos/#{i.object.type.constantize.name.demodulize.underscore}.png") %>">
+                  </div>
+              </div>
+              <%= i.hidden_field :type, value: i.object.type %>
+              <%= render partial: "admin/organizations/#{i.object.type.underscore}", locals: { f: i } %>
+              <%= f.submit "Save #{i.object.type.constantize.name.demodulize.titleize} Settings", class: 'btn btn-primary btn-block' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
   </div>
 </section>
