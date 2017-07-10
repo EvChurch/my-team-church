@@ -35,8 +35,8 @@ class Integration
         return people unless request['people']['total'] > 1000
         pages = (request['people']['total'] + 500).round(-3) / 1000
         (2..pages).each do |page|
-          people += request['people']['person']
           request = fetch_people(page)
+          people += request['people']['person']
         end
         @people = people
       end
