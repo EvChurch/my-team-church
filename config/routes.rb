@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   constraints subdomain: 'admin' do
     root to: 'admin#index', as: :admin_root
     scope module: :admin do
+      resources :objectives
       resources :users
       resources :departments, only: %i[index show] do
         scope module: :departments do
@@ -54,7 +55,7 @@ Rails.application.routes.draw do
           end
         end
       end
-      resources :goals do
+      resources :objectives do
         get 'resources', on: :collection
       end
     end

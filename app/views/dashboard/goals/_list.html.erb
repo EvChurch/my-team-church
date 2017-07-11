@@ -1,36 +1,36 @@
-<% if goals.empty? %>
+<% if objectives.empty? %>
   <div class="card">
     <div class="card-block">
-      <h4 class="card-title">No <%= resource.name.titleize %> Goals</h4>
-      <p class="card-text">Configuring goals help set expectations, promote conversations, reinforce values, and encourage every member to reach new heights.</p>
-      <%= link_to 'Add Goal', new_goal_path(goal: { resource_type: resource.object.class, resource_id: resource.id }), class: 'btn btn-primary' %>
+      <h4 class="card-title">No <%= resource.name.titleize %> Objectives</h4>
+      <p class="card-text">Configuring objectives help set expectations, promote conversations, reinforce values, and encourage every member to reach new heights.</p>
+      <%= link_to 'Add Objective', new_objective_path(objective: { resource_type: resource.object.class, resource_id: resource.id }), class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>
-<% goals.each do |goal| %>
+<% objectives.each do |objective| %>
   <div class="card">
     <div class="card-block">
-      <h4 class="card-title"><%= goal.name %></h4>
-      <p class="card-text"><%= goal.description %></p>
+      <h4 class="card-title"><%= objective.name %></h4>
+      <p class="card-text"><%= objective.description %></p>
     </div>
     <div class="card-footer text-muted">
-      <% if goal.estimated_completion %>
+      <% if objective.estimated_completion %>
         <%= icon 'clock-o' %>
-        <%= time_ago_in_words goal.estimated_completion %>
+        <%= time_ago_in_words objective.estimated_completion %>
         &nbsp;
       <% end %>
-      <% if goal.objective? %>
+      <% if objective.objective? %>
       <%= icon 'line-chart' %>
-        <%= goal.presentable_amount %>
+        <%= objective.presentable_amount %>
       <% end %>
-      <% if goal.value? %>
+      <% if objective.value? %>
         <%= icon 'flag' %>
         Value Based
         &nbsp;
       <% end %>
       <div class="pull-right">
-        <% if policy(goal).update? %>
-          <%= link_to 'Edit', edit_goal_path(goal) %>
+        <% if policy(objective).update? %>
+          <%= link_to 'Edit', edit_objective_path(objective) %>
         <% end %>
       </div>
     </div>
@@ -38,5 +38,5 @@
   <br>
 <% end %>
 <% content_for :actions do %>
-  <%= link_to 'Add Goal', new_goal_path(goal: { resource_type: resource.object.class, resource_id: resource.id }), class: 'btn btn-primary' %>
+  <%= link_to 'Add Objective', new_objective_path(objective: { resource_type: resource.object.class, resource_id: resource.id }), class: 'btn btn-primary' %>
 <% end %>

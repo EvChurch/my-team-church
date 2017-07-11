@@ -1,6 +1,6 @@
-class CreateGoals < ActiveRecord::Migration[5.0]
+class CreateObjectives < ActiveRecord::Migration[5.0]
   def change
-    create_table :goals, id: :uuid do |t|
+    create_table :objectives, id: :uuid do |t|
       t.uuid :resource_id
       t.string :resource_type
       t.string :name
@@ -12,6 +12,6 @@ class CreateGoals < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_index :goals, %i[resource_type resource_id]
+    add_index :objectives, %i[resource_type resource_id]
   end
 end

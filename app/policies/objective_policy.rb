@@ -1,11 +1,11 @@
-class GoalPolicy < ApplicationPolicy
+class ObjectivePolicy < ApplicationPolicy
   def resources?
     create?
   end
 
   class Scope < Scope
     def resolve
-      return scope.all if person.admin?
+      return scope.all if user.admin?
       scope.none
     end
   end

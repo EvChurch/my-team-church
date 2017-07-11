@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20170710042853) do
     t.index ["remote_id", "remote_source"], name: "index_departments_on_remote_id_and_remote_source", unique: true, using: :btree
   end
 
-  create_table "goals", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+  create_table "objectives", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "resource_id"
     t.string   "resource_type"
     t.string   "name"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20170710042853) do
     t.decimal  "amount"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
-    t.index ["resource_type", "resource_id"], name: "index_goals_on_resource_type_and_resource_id", using: :btree
+    t.index ["resource_type", "resource_id"], name: "index_objectives_on_resource_type_and_resource_id", using: :btree
   end
 
   create_table "integrations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

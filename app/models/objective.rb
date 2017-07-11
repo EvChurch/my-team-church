@@ -1,4 +1,4 @@
-class Goal < ApplicationRecord
+class Objective < ApplicationRecord
   belongs_to :resource, polymorphic: true
   validates :name, :resource_type, :resource_id, :kind, presence: true
   validates :amount, :amount_kind, presence: true, if: :objective?

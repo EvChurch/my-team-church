@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :goal do
+  factory :objective do
     resouce_id ''
     resource_type 'MyString'
     title 'MyString'

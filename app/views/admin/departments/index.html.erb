@@ -1,12 +1,32 @@
-<div class="row">
-  <div class="col-md-4">
-    <div class="list-group">
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Sub Departments</th>
+      <th>Positions</th>
+      <th>Unique People</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
     <% departments.each do |department| %>
-      <a href="<%= department_path(department) %>" class="list-group-item justify-content-between">
-        <%= department.name %>
-        <span class="badge badge-default badge-pill"><%= department.sub_departments.count %></span>
-      </a>
+    <tr>
+      <td>
+        <fieldset class="form-group">
+          <input type="checkbox">
+          <label for="checkbox"></label>
+        </fieldset>
+      </td>
+      <td><%= department.name %></td>
+      <td><%= department.sub_departments.count %></td>
+      <td><%= department.positions.count %></td>
+      <td><%= department.people.count %></td>
+      <td>
+        <a href="<%= department_path(department) %>" class="blue-text"><%= icon 'search' %></a>
+        <a class="teal-text"><i class="fa fa-pencil"></i></a>
+      </td>
+    </tr>
     <% end %>
-    </div>
-  </div>
-</div>
+  </tbody>
+</table>

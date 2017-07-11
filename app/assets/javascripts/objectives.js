@@ -1,15 +1,15 @@
-// app/assets/javascripts/goals.js
+// app/assets/javascripts/objectives.js
 
-function toggleGoalKind() {
-  var selected = $('#goal_kind').find(':selected').val();
-  $('#value_goal_kind').hide();
-  $('#objective_goal_kind').hide();
+function toggleObjectiveKind() {
+  var selected = $('#objective_kind').find(':selected').val();
+  $('#value_objective_kind').hide();
+  $('#objective_objective_kind').hide();
    if (selected === 'objective') {
-    $('#value_goal_kind').hide();
-    $('#objective_goal_kind').show();
+    $('#value_objective_kind').hide();
+    $('#objective_objective_kind').show();
   } else if (selected === 'value') {
-    $('#value_goal_kind').show();
-    $('#objective_goal_kind').hide();
+    $('#value_objective_kind').show();
+    $('#objective_objective_kind').hide();
   }
 }
 
@@ -27,6 +27,6 @@ $(document).on('turbolinks:load', function() {
         return false;
     });
 
-    $('#goal_kind').on('change', toggleGoalKind);
-    toggleGoalKind();
+    $('#objective_kind').on('change', toggleObjectiveKind);
+    toggleObjectiveKind();
 });
