@@ -51,10 +51,7 @@ module Dashboard
       return {} unless params[:objective]
       params.require(:objective).permit(
         :resource_type, :resource_id,
-        :name, :description,
-        :estimated_completion,
-        :kind,
-        :amount_kind, :amount
+        :name, :description
       )
     end
 
