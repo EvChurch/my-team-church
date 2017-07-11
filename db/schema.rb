@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710042853) do
+ActiveRecord::Schema.define(version: 20170711122912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,20 +69,6 @@ ActiveRecord::Schema.define(version: 20170710042853) do
     t.index ["remote_id", "remote_source"], name: "index_departments_on_remote_id_and_remote_source", unique: true, using: :btree
   end
 
-  create_table "objectives", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "resource_id"
-    t.string   "resource_type"
-    t.string   "name"
-    t.text     "description"
-    t.date     "estimated_completion"
-    t.integer  "kind"
-    t.integer  "amount_kind"
-    t.decimal  "amount"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["resource_type", "resource_id"], name: "index_objectives_on_resource_type_and_resource_id", using: :btree
-  end
-
   create_table "integrations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "type"
     t.uuid     "organization_id"
@@ -113,6 +99,39 @@ ActiveRecord::Schema.define(version: 20170710042853) do
     t.string   "remote_source"
     t.index ["organization_id"], name: "index_locations_on_organization_id", using: :btree
     t.index ["remote_id", "remote_source"], name: "index_locations_on_remote_id_and_remote_source", unique: true, using: :btree
+  end
+
+  create_table "objective_key_results", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "objective_id"
+    t.string   "name",                           null: false
+    t.text     "description",                    null: false
+    t.string   "result_type",  default: "%",     null: false
+    t.decimal  "start_value",  default: "0.0"
+    t.decimal  "target_value", default: "100.0"
+    t.decimal  "weight",       default: "1.0"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["objective_id"], name: "index_objective_key_results_on_objective_id", using: :btree
+  end
+
+  create_table "objective_links", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "parent_id"
+    t.uuid     "child_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id"], name: "index_objective_links_on_child_id", using: :btree
+    t.index ["parent_id", "child_id"], name: "index_objective_links_on_parent_id_and_child_id", unique: true, using: :btree
+    t.index ["parent_id"], name: "index_objective_links_on_parent_id", using: :btree
+  end
+
+  create_table "objectives", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "resource_id"
+    t.string   "resource_type"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["resource_type", "resource_id"], name: "index_goals_on_resource_type_and_resource_id", using: :btree
   end
 
   create_table "organizations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -310,4 +329,7 @@ ActiveRecord::Schema.define(version: 20170710042853) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
+  add_foreign_key "objective_key_results", "objectives"
+  add_foreign_key "objective_links", "objectives", column: "child_id"
+  add_foreign_key "objective_links", "objectives", column: "parent_id"
 end
