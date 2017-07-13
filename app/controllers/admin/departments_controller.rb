@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class DepartmentsController < AdminController
     decorates_assigned :departments, :department, :sub_departments
@@ -18,13 +20,9 @@ module Admin
     def create
       build_department
       if save_department
-        if request.xhr?
-          head :created
-        end
+        head :created if request.xhr?
       else
-        if request.xhr?
-          head :unprocessable_entity
-        end
+        head :unprocessable_entity if request.xhr?
       end
     end
 

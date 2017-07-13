@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PersonDecorator < ApplicationDecorator
   def name
     "#{firstname} #{lastname}".strip

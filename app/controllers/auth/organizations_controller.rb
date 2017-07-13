@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Auth
   class OrganizationsController < AuthController
     decorates_assigned :organization

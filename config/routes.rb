@@ -1,6 +1,14 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: '/graphiql', graphql_path: '/graphql'
+  end
+
+  post '/graphql', to: 'graphql#execute'
+
   require 'sidekiq/web'
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
   devise_for :users, controllers: { registrations: 'users/registrations' } # , omniauth_callbacks: 'users/omniauth_callbacks' }
@@ -61,5 +69,6 @@ Rails.application.routes.draw do
     end
     root to: 'dashboard#index'
   end
+
   root to: 'visitors#index'
 end

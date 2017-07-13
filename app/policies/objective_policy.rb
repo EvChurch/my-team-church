@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ObjectivePolicy < ApplicationPolicy
   def resources?
     create?

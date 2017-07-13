@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Demographic < ApplicationRecord
   belongs_to :organization
   has_many :entities, class_name: 'Demographic::Entity', dependent: :destroy

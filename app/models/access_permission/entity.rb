@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AccessPermission
   class Entity < ApplicationRecord
     belongs_to :access_permission

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AccessPermission < ApplicationRecord
   belongs_to :organization
   has_many :entities, class_name: 'AccessPermission::Entity', dependent: :destroy

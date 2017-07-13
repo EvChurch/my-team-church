@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import template from './app.html';
 
 @Component({
-  selector: 'admin',
-  template: `<h1>Hello {{name}}</h1>`
+  selector: 'app',
+  template: template
 })
+
 export class AppComponent {
 }

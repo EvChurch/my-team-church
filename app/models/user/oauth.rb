@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User
   class Oauth < User
     def self.from_omniauth(auth)

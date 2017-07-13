@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLocationEntities < ActiveRecord::Migration[5.0]
   def change
     create_table :location_entities, id: :uuid do |t|

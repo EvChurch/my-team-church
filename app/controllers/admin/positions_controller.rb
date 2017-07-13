@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module Admin
-  class PositionsController < SubDepartmentsController
+  class PositionsController < DepartmentsController
     decorates_assigned :position
 
     def show

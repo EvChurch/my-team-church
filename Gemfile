@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-ruby '2.3.1'
+ruby '2.3.4'
 gem 'ancestry'
 gem 'breadcrumbs_on_rails'
 gem 'chosen-rails'
@@ -11,6 +13,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'country_select'
 gem 'domainatrix'
 gem 'font-awesome-sass', '~> 4.7.0'
+gem 'graphql'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'page_meta'
@@ -54,11 +57,11 @@ gem 'simple_form'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'foreman'
   gem 'guard-bundler'
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'hub', require: false
+  gem 'rails-erd', require: false
   gem 'rails_layout'
   gem 'rb-fchange', require: false
   gem 'rb-fsevent', require: false
@@ -82,3 +85,5 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
+
+gem 'graphiql-rails', group: :development

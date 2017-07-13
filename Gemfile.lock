@@ -83,6 +83,7 @@ GEM
       xpath (~> 2.0)
     childprocess (0.7.1)
       ffi (~> 1.0, >= 1.0.11)
+    choice (0.2.0)
     chosen-rails (1.5.2)
       coffee-rails (>= 3.2)
       railties (>= 3.0)
@@ -154,6 +155,9 @@ GEM
     formatador (0.2.5)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    graphiql-rails (1.4.2)
+      rails
+    graphql (1.6.4)
     guard (2.14.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -300,6 +304,11 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
+    rails-erd (1.5.0)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
     rails_layout (1.0.41)
@@ -373,6 +382,7 @@ GEM
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
+    ruby-graphviz (1.2.3)
     ruby-progressbar (1.8.1)
     rubyzip (1.2.1)
     sass (3.5.0)
@@ -469,6 +479,8 @@ DEPENDENCIES
   faker
   font-awesome-sass (~> 4.7.0)
   foreman
+  graphiql-rails
+  graphql
   guard-bundler
   guard-rails
   guard-rspec
@@ -495,6 +507,7 @@ DEPENDENCIES
   puma (~> 3.0)
   pundit
   rails (~> 5.1.2)
+  rails-erd
   rails_layout
   rb-fchange
   rb-fsevent
@@ -518,7 +531,7 @@ DEPENDENCIES
   webpacker (~> 2.0)
 
 RUBY VERSION
-   ruby 2.3.1p112
+   ruby 2.3.4p301
 
 BUNDLED WITH
    1.15.1

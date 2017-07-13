@@ -1,0 +1,7 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink";
+@import '~normalize.css/normalize';
+@import '../admin/admin';
+
+body {
+  font-family: 'Roboto', sans-serif;
+}

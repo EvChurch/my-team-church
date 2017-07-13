@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAccessPermissionEntities < ActiveRecord::Migration[5.0]
   def change
     create_table :access_permission_entities, id: :uuid do |t|

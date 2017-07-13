@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDemographicEntities < ActiveRecord::Migration[5.0]
   def change
     create_table :demographic_entities, id: :uuid do |t|

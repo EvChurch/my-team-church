@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'elvanto'
 
 class Integration
@@ -56,7 +58,8 @@ class Integration
           container_object = klass.where(
             remote_id: object['id'],
             remote_source: 'Elvanto',
-            organization: @organization).first_or_initialize
+            organization: @organization
+          ).first_or_initialize
           container_object.attributes =
             object.select { |k, _v| container_object.attributes.keys.member?(k.to_s) && k.to_s != 'id' }
           container_object.save!

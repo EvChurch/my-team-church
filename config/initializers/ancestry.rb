@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ancestry
   # Setting the pattern this way silences the warning when
   # we overwrite a constant

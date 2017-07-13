@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ServiceType
   class Entity < ApplicationRecord
     belongs_to :service_type

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Auth
   class ApplicationsController < AuthController
     respond_to :json

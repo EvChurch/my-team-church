@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateObjectives < ActiveRecord::Migration[5.0]
   def change
     create_table :objectives, id: :uuid do |t|

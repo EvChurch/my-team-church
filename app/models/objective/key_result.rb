@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Objective
   class KeyResult < ApplicationRecord
     belongs_to :objective

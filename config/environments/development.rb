@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 OmniAuth.config.full_host = 'http://localhost:3000'
 
 Rails.application.configure do

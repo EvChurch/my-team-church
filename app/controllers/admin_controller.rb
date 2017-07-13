@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class AdminController < ApplicationController
   include Pundit
+  layout 'admin'
   before_action :authenticate_user!
   before_action :load_organization
   before_action :load_organizations

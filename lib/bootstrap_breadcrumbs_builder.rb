@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BootstrapBreadcrumbsBuilder < BreadcrumbsOnRails::Breadcrumbs::Builder
   def render
     @context.content_tag(:nav, class: 'breadcrumb') do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Demographic
   class Entity < ApplicationRecord
     belongs_to :demographic

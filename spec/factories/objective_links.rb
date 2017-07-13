@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :objective_link, class: 'Objective::Link' do
-    parent_id ""
-    child_id ""
+    parent_id ''
+    child_id ''
   end
 end

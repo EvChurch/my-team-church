@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUserOptions < ActiveRecord::Migration
   def change
     create_table :user_options, id: :uuid do |t|

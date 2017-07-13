@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Objective < ApplicationRecord
   belongs_to :resource, polymorphic: true
   has_many :child_links, class_name: 'Objective::Link', foreign_key: :parent_id

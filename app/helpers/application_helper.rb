@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def bootstrap_devise_error_messages!
     return '' if resource.errors.empty?

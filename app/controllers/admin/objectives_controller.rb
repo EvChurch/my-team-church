@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class ObjectivesController < AdminController
     decorates_assigned :objectives, :objective

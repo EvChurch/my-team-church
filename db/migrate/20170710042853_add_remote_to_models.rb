@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddRemoteToModels < ActiveRecord::Migration[5.0]
   def change
     add_column :access_permissions, :remote_id, :string

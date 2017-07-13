@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAccessPermissions < ActiveRecord::Migration[5.0]
   def change
     create_table :access_permissions, id: :uuid do |t|

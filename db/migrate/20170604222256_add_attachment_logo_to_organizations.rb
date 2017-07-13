@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAttachmentLogoToOrganizations < ActiveRecord::Migration
   def self.up
     change_table :organizations do |t|

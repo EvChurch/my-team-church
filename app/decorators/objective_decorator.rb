@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ObjectiveDecorator < ApplicationDecorator
   include ActionView::Helpers::NumberHelper
 
