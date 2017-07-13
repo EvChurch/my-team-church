@@ -15,9 +15,6 @@ class AddRemoteToModels < ActiveRecord::Migration[5.0]
     add_column :departments, :remote_id, :string
     add_column :departments, :remote_source, :string
     add_index :departments, %i[remote_id remote_source], unique: true
-    add_column :sub_departments, :remote_id, :string
-    add_column :sub_departments, :remote_source, :string
-    add_index :sub_departments, %i[remote_id remote_source], unique: true
     add_column :positions, :remote_id, :string
     add_column :positions, :remote_source, :string
     add_index :positions, %i[remote_id remote_source], unique: true

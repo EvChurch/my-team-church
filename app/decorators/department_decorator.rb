@@ -1,4 +1,5 @@
 class DepartmentDecorator < ApplicationDecorator
-  decorates_association :sub_departments
+  decorates_association :positions
   decorates_association :objectives
+  decorates_association :children
 end

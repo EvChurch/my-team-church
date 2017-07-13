@@ -11,22 +11,8 @@
   </thead>
   <tbody>
     <% departments.each do |department| %>
-    <tr>
-      <td>
-        <fieldset class="form-group">
-          <input type="checkbox">
-          <label for="checkbox"></label>
-        </fieldset>
-      </td>
-      <td><%= department.name %></td>
-      <td><%= department.sub_departments.count %></td>
-      <td><%= department.positions.count %></td>
-      <td><%= department.people.count %></td>
-      <td>
-        <a href="<%= department_path(department) %>" class="blue-text"><%= icon 'search' %></a>
-        <a class="teal-text"><i class="fa fa-pencil"></i></a>
-      </td>
-    </tr>
+      <%= render partial: 'row', locals: { department: department, depth: 0, parent_string: '' } %>
     <% end %>
+    <%= render partial: 'new_row', locals: { department: department, depth: 0, parent_string: '' } %>
   </tbody>
 </table>

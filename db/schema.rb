@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711122912) do
+ActiveRecord::Schema.define(version: 20170712024921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 20170711122912) do
     t.datetime "updated_at",      null: false
     t.string   "remote_id"
     t.string   "remote_source"
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_departments_on_ancestry", using: :btree
     t.index ["organization_id"], name: "index_departments_on_organization_id", using: :btree
     t.index ["remote_id", "remote_source"], name: "index_departments_on_remote_id_and_remote_source", unique: true, using: :btree
   end
@@ -78,6 +80,7 @@ ActiveRecord::Schema.define(version: 20170711122912) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["organization_id", "type"], name: "index_integrations_on_organization_id_and_type", unique: true, using: :btree
+    t.index ["organization_id"], name: "index_integrations_on_organization_id", using: :btree
   end
 
   create_table "location_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -131,7 +134,7 @@ ActiveRecord::Schema.define(version: 20170711122912) do
     t.text     "description"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["resource_type", "resource_id"], name: "index_goals_on_resource_type_and_resource_id", using: :btree
+    t.index ["resource_type", "resource_id"], name: "index_objectives_on_resource_type_and_resource_id", using: :btree
   end
 
   create_table "organizations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -228,15 +231,15 @@ ActiveRecord::Schema.define(version: 20170711122912) do
 
   create_table "positions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "organization_id"
-    t.uuid     "sub_department_id"
+    t.uuid     "department_id"
     t.string   "name"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "remote_id"
     t.string   "remote_source"
+    t.index ["department_id"], name: "index_positions_on_department_id", using: :btree
     t.index ["organization_id"], name: "index_positions_on_organization_id", using: :btree
     t.index ["remote_id", "remote_source"], name: "index_positions_on_remote_id_and_remote_source", unique: true, using: :btree
-    t.index ["sub_department_id"], name: "index_positions_on_sub_department_id", using: :btree
   end
 
   create_table "roles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -268,19 +271,6 @@ ActiveRecord::Schema.define(version: 20170711122912) do
     t.string   "remote_source"
     t.index ["organization_id"], name: "index_service_types_on_organization_id", using: :btree
     t.index ["remote_id", "remote_source"], name: "index_service_types_on_remote_id_and_remote_source", unique: true, using: :btree
-  end
-
-  create_table "sub_departments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "organization_id"
-    t.uuid     "department_id"
-    t.string   "name"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "remote_id"
-    t.string   "remote_source"
-    t.index ["department_id"], name: "index_sub_departments_on_department_id", using: :btree
-    t.index ["organization_id"], name: "index_sub_departments_on_organization_id", using: :btree
-    t.index ["remote_id", "remote_source"], name: "index_sub_departments_on_remote_id_and_remote_source", unique: true, using: :btree
   end
 
   create_table "user_options", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -329,7 +319,19 @@ ActiveRecord::Schema.define(version: 20170711122912) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
+  add_foreign_key "access_permission_entities", "access_permissions"
+  add_foreign_key "demographic_entities", "demographics"
+  add_foreign_key "demographics", "organizations"
+  add_foreign_key "integrations", "organizations"
+  add_foreign_key "location_entities", "locations"
+  add_foreign_key "locations", "organizations"
   add_foreign_key "objective_key_results", "objectives"
   add_foreign_key "objective_links", "objectives", column: "child_id"
   add_foreign_key "objective_links", "objectives", column: "parent_id"
+  add_foreign_key "position_entities", "positions"
+  add_foreign_key "positions", "departments"
+  add_foreign_key "positions", "organizations"
+  add_foreign_key "service_type_entities", "service_types"
+  add_foreign_key "service_types", "organizations"
+  add_foreign_key "user_options", "users"
 end

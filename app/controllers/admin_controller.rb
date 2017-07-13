@@ -18,7 +18,7 @@ class AdminController < ApplicationController
     @organization ||= organization_scope.find_by(id: session[:organization_id]) if session.key?(:organization_id)
     @organization ||= organization_scope.try(:first)
     session[:organization_id] = @organization.try(:id)
-    authorize @organization
+    authorize @organization, :update? unless @organization.nil?
   end
 
   def validate_organization

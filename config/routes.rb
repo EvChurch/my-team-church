@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     scope module: :admin do
       resources :objectives
       resources :users
-      resources :departments, only: %i[index show] do
+      resources :departments do
         scope module: :departments do
           resources :sub_departments, only: :show do
             scope module: :sub_departments do

@@ -1,7 +1,7 @@
 class CreateUserOptions < ActiveRecord::Migration
   def change
     create_table :user_options, id: :uuid do |t|
-      t.references :user, type: :uuid
+      t.references :user, foreign_key: true, type: :uuid
       t.string :key
       t.string :value
 

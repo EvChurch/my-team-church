@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
     <%= csrf_meta_tags %>
   </head>
-  <body class="<%= request.subdomain %> <%= params[:controller].split('/').join(' ') %>-<%= params[:action] %>">
+  <body class="<%= request.subdomain %> <%= params[:controller].split('/').join(' ') %> <%= params[:controller].split('/').last %>-<%= params[:action] %>">
     <header>
       <%= render 'navigation' %>
     </header>

@@ -14,7 +14,7 @@ class Integration
     end
 
     def validate_client_credentials
-      ElvantoAPI.authorize_url(client_id, redirect_uri, scope, state)
+      # ElvantoAPI.authorize_url(client_id, redirect_uri, scope, state)
     end
   end
 end

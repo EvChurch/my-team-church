@@ -72,30 +72,41 @@ class Integration
             sub_departments.each do |sub_department|
               positions = sub_department['positions'] == [] ? [] : sub_department['positions']['position']
               positions.each do |position|
-                collection[department['name']] ||= {}
-                collection[department['name']][sub_department['name']] ||= {}
-                collection[department['name']][sub_department['name']][position['id']] ||= position['name']
+                collection[department['id']] ||=
+                  { name: department['name'], sub_departments: {} }
+                collection[department['id']][:sub_departments][sub_department['id']] ||=
+                  { name: sub_department['name'], positions: {} }
+                collection[department['id']][:sub_departments][sub_department['id']][:positions][position['id']] ||=
+                  { name: position['name'] }
               end
             end
           end
         end
-        collection.each do |department_name, sub_departments|
+        collection.each do |department_id, department_object|
           department =
-            @organization.departments.where(
-              name: department_name,
-              remote_source: 'Elvanto').first_or_create
-          sub_departments.each do |sub_department_name, positions|
+            @organization.departments.create_with(
+              name: department_object[:name]
+            ).find_or_create_by(
+              remote_id: department_id,
+              remote_source: 'Elvanto'
+            )
+          department_object[:sub_departments].each do |sub_department_id, sub_department_object|
             sub_department =
-              @organization.sub_departments.where(
-                name: sub_department_name,
-                department: department,
-                remote_source: 'Elvanto').first_or_create
-            positions.each do |position_id, position_name|
-              @organization.positions.where(
-                name: position_name,
-                sub_department: sub_department,
+              @organization.departments.create_with(
+                name: sub_department_object[:name],
+                parent: department
+              ).find_or_create_by(
+                remote_id: sub_department_id,
+                remote_source: 'Elvanto'
+              )
+            sub_department_object[:positions].each do |position_id, position_object|
+              @organization.positions.create_with(
+                name: position_object[:name]
+              ).find_or_create_by(
+                department_id: sub_department.id,
                 remote_id: position_id,
-                remote_source: 'Elvanto').first_or_create
+                remote_source: 'Elvanto'
+              )
             end
           end
         end

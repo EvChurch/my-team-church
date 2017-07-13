@@ -4,6 +4,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 ruby '2.3.1'
+gem 'ancestry'
 gem 'breadcrumbs_on_rails'
 gem 'chosen-rails'
 gem 'coffee-rails', '~> 4.2'
@@ -22,7 +23,7 @@ gem 'peek-pg'
 gem 'peek-rblineprof'
 gem 'peek-redis'
 gem 'puma', '~> 3.0'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.1.2'
 gem 'redis-namespace'
 gem 'redis-objects', '~> 0.6.1'
 gem 'redis-rails'

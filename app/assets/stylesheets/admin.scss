@@ -1,3 +1,5 @@
+@import 'admin/departments';
+
 body.admin {
   .row {
     &--tout {
@@ -9,6 +11,7 @@ body.admin {
     }
   }
   main {
+    padding: 0;
     background: #fff;
   }
 }

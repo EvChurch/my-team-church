@@ -25,10 +25,8 @@ class Person < ApplicationRecord
            dependent: :destroy
   has_many :positions,
            through: :position_entities
-  has_many :sub_departments,
-           through: :positions
   has_many :departments,
-           through: :sub_departments
+           through: :positions
   has_many :service_type_entities,
            class_name: 'ServiceType::Entity',
            as: :resource,

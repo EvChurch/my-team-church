@@ -1,0 +1,27 @@
+.admin {
+  &.departments {
+    .new-unit {
+      td {
+        line-height: 0;
+        padding: 0 0.75rem;
+        form {
+          position: relative;
+          button {
+            background: none;
+            border: 0;
+            height: 50px;
+            padding: 0;
+          }
+          input[type="text"] {
+            border-bottom: 0;
+            box-shadow: none;
+            position: absolute;
+            right: 0;
+            left: 22px;
+            height: 50px;
+          }
+        }
+      }
+    }
+  }
+}
