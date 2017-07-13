@@ -32,6 +32,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'webpacker', '~> 2.0'
 group :development, :test do
   gem 'byebug', platform: :mri
 end
@@ -68,6 +69,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'foreman'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'pry-rescue'
