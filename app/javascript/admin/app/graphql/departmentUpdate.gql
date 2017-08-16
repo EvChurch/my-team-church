@@ -1,0 +1,13 @@
+mutation departmentUpdate(
+  $id: ID!,
+  $department: DepartmentInputType!
+) {
+  department_update(
+    id: $id,
+    department: $department
+  ) {
+    id
+    name
+    description
+  }
+}

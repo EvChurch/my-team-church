@@ -1,0 +1,3 @@
+<p-tree [value]="departments | async" (onNodeExpand)="loadNode($event)" (onNodeSelect)="selectNode($event)" selectionMode="single" [(selection)]="selectedFile" draggableNodes="true" droppableNodes="true" (onNodeDrop)="moveNode($event)">
+</p-tree>
+<router-outlet name="workspace"></router-outlet>

@@ -11,6 +11,10 @@ class AdminController < ApplicationController
 
   def index; end
 
+  def export
+
+  end
+
   protected
 
   def load_organizations

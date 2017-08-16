@@ -1,0 +1,22 @@
+query departmentGet(
+  $id: ID!
+) {
+  department_get(
+    id: $id
+  ) {
+    id
+    name
+    positions {
+      id
+      name
+    }
+    children {
+      id
+      name
+      positions {
+        id
+        name
+      }
+    }
+  }
+}

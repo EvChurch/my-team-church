@@ -1,7 +1,12 @@
-<md-toolbar color="primary">
-  <a routerLink="/departments" routerLinkActive="active" md-button>
-    <md-icon>fingerprint</md-icon>
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" routerLink="/departments" routerLinkActive="active">
     My Place
   </a>
-  <a routerLink="/departments" routerLinkActive="active" md-button>Departments</a>
-</md-toolbar>
+  <div class="collapse navbar-collapse" id="navbar">
+    <ul class="navbar-nav mr-auto">
+    </ul>
+  </div>
+</nav>

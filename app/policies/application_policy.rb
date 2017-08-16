@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 class ApplicationPolicy
-  attr_reader :user, :person, :record
+  attr_reader :user, :record
 
   def initialize(user, record)
     @user = user
-    @person = user.person
     @record = record
   end
 
@@ -44,11 +43,10 @@ class ApplicationPolicy
   end
 
   class Scope
-    attr_reader :user, :person, :scope
+    attr_reader :user, :scope
 
     def initialize(user, scope)
       @user = user
-      @person = user.person
       @scope = scope
     end
 

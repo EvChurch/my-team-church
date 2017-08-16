@@ -1,0 +1,15 @@
+query positionGet(
+  $id: ID!
+) {
+  position_get(
+    id: $id
+  ) {
+    id
+    name
+    people {
+      id
+      firstname
+      lastname
+    }
+  }
+}

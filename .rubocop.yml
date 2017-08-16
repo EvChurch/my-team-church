@@ -4,9 +4,9 @@ AllCops:
     - '**/Rakefile'
   Exclude:
    - 'bin/*'
-   - 'db/seeds.rb'
-   - 'db/schema.rb'
+   - 'db/**/*'
    - 'vendor/bundle/**/*'
+   - 'node_modules/**/*'
 Rails:
   Enabled: true
 Documentation:

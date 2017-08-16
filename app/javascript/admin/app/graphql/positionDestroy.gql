@@ -1,0 +1,9 @@
+mutation positionDestroy(
+  $id: ID!
+) {
+  position_destroy(
+    id: $id
+  ) {
+    id
+  }
+}

@@ -1,8 +1,9 @@
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule }    from '@angular/forms';
-import { DepartmentListComponent }    from './department-list.component';
-import { DepartmentDetailComponent }  from './department-detail.component';
+import { TreeModule } from 'primeng/primeng';
+import { DepartmentDetailComponent }  from './detail/department-detail.component';
+import { DepartmentListComponent }    from './list/department-list.component';
 import { DepartmentService } from './department.service';
 import { DepartmentsRoutingModule } from './departments-routing.module';
 
@@ -10,11 +11,12 @@ import { DepartmentsRoutingModule } from './departments-routing.module';
   imports: [
     CommonModule,
     FormsModule,
-    DepartmentsRoutingModule
+    DepartmentsRoutingModule,
+    TreeModule
   ],
   declarations: [
-    DepartmentListComponent,
-    DepartmentDetailComponent
+    DepartmentDetailComponent,
+    DepartmentListComponent
   ],
   providers: [
     DepartmentService

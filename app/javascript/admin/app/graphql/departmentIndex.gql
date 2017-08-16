@@ -1,0 +1,10 @@
+query departmentIndex(
+  $parent_id:ID
+) {
+  department_index(
+    parent_id: $parent_id
+  ) {
+    id
+    name
+  }
+}

@@ -5,5 +5,6 @@ import template from './navigation.html';
   selector: 'navigation',
   template: template
 })
+
 export class NavigationComponent {
 }

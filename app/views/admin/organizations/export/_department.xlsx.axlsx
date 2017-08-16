@@ -1,0 +1,20 @@
+sheet.add_row ['Department', department.name, 'Subdepartments:', department.children.count, 'Positions:', department.positions.count]
+
+department.positions.each do |position|
+  sheet.add_row ['Position', position.name, 'People:', position.people.count]
+  sheet.add_row ['First Name', 'Last Name', 'Email', 'Phone', 'Mobile'] unless position.people.empty?
+  position.people.each do |person|
+    sheet.add_row [person.firstname,
+                   person.lastname,
+                   person.email,
+                   person.phone,
+                   person.mobile,
+                   person.locations.map(&:name).join(', ')]
+  end
+  sheet.add_row
+end
+
+department.children.each do |sub_department|
+  render partial: 'admin/organizations/export/department',
+         locals: { sheet: sheet, department: sub_department }
+end

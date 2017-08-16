@@ -1,0 +1,10 @@
+mutation departmentCreate(
+  $department: DepartmentInputType!
+) {
+  department_create(
+    department: $department
+  ) {
+    id
+    name
+  }
+}

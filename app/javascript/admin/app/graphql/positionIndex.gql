@@ -1,0 +1,10 @@
+query positionIndex(
+  $department_id:ID
+) {
+  position_index(
+    department_id: $department_id
+  ) {
+    id
+    name
+  }
+}
