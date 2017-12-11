@@ -8,4 +8,5 @@ class Position < ApplicationRecord
   has_many :people, through: :entities, source_type: 'Person', source: :resource
   has_many :objectives, as: :resource, dependent: :destroy
   validates :name, presence: true
+  default_scope -> { order(:name) }
 end

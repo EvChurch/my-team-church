@@ -6,8 +6,9 @@ class Objective < ApplicationRecord
   has_many :children, class_name: 'Objective', through: :child_links
   has_many :parent_links, class_name: 'Objective::Link', foreign_key: :child_id
   has_many :parents, class_name: 'Objective', through: :parent_links
-  has_many :key_results, dependent: :destroy
+  has_many :key_results, dependent: :destroy, inverse_of: :objective
   validates :name, :resource_type, :resource_id, presence: true
+  accepts_nested_attributes_for :key_results, reject_if: :all_blank, allow_destroy: true
 
   RESOURCE_TYPES = {
     'Person' => 'Person',

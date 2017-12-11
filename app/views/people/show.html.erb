@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>My Roles</h1>
+  <ul>
+  <% person.position_entities.each do |position_entity| %>
+    <li><a href="<%= position_entity_path(position_entity) %>"><%= position_entity.name %></li>
+  <% end %>
+  </ul>
+</div>

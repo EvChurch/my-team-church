@@ -16,8 +16,8 @@
 //= require typed
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require mdb
 //= require chosen-jquery
+//= require cocoon
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {

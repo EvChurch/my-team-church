@@ -11,9 +11,7 @@ class AdminController < ApplicationController
 
   def index; end
 
-  def export
-
-  end
+  def export; end
 
   protected
 

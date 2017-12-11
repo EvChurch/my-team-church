@@ -1,65 +1,34 @@
-<section class="row is-graphic-row"></section>
-<section class="row is-card">
-  <div class="row__inner">
-    <div class="card">
-      <div class="card-block">
-        <h1 class="card-title">
-          My Place helps you build better leaders and grow your church.
-        </h1>
-        <a href="<%= new_user_registration_url(subdomain: 'admin') %>" class="btn btn-primary btn-lg">Get Started</a>
-        <div class="card-text">
-          <div class="row">
-            <div class="col-md-4">
-              <h4>Build strong &amp; clear leadership development pathways</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec risus vitae sem porta malesuada in ut justo. Nulla ac purus imperdiet.
-              </p>
-            </div>
-            <div class="col-md-4">
-              <h4>Focus on great human resource management</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec risus vitae sem porta malesuada in ut justo. Nulla ac purus imperdiet.
-              </p>
-            </div>
-            <div class="col-md-4">
-              <h4>Have a single place to document your systems &amp; processes</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec risus vitae sem porta malesuada in ut justo. Nulla ac purus imperdiet.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+<div class="jumbotron">
+  <h1 class="display-4">
+    My Place helps you build better leaders and grow your church.
+  </h1>
+  <h1 class="display-6">
+    Try My Place for free today.
+  </h1>
+  <p class="lead mt-5">
+    <a href="<%= new_user_registration_url(subdomain: 'admin') %>" class="btn btn-primary btn-lg">
+      Get Started
+    </a>
+  </p>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h4>Build strong &amp; clear leadership development pathways</h4>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec risus vitae sem porta malesuada in ut justo. Nulla ac purus imperdiet.
+    </p>
   </div>
-</section>
-<section class="row is-card">
-  <div class="row__inner">
-    <div class="card integrations">
-      <div class="card-block">
-        <h3 class="card-title">
-          Integrations
-        </h3>
-        <div class="card-text">
-          <p>
-            Integrations sync your Church Members with your existing Church Management System saving you from the headache of managing yet another system.
-            We are constantly adding support for more ChMSes based on your feedback.
-          </p>
-          <div class="columns integrations__logos">
-              <div class="integrations__logo">
-                <img src="<%= image_path('logos/elvanto.png') %>">
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="col-md-4">
+    <h4>Focus on great human resource management</h4>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec risus vitae sem porta malesuada in ut justo. Nulla ac purus imperdiet.
+    </p>
   </div>
-</section>
-<section class="row is-footer-row">
-  <div class="row__inner">
-    <div class="row__tagline">
-      Try My Place for free today.<br> Integrating it into your church is easy.
-    </div>
-    <a href="<%= new_user_registration_url(subdomain: 'admin') %>" class="btn btn-secondary btn-lg">Get Started</a>
+  <div class="col-md-4">
+    <h4>Have a single place to document your systems &amp; processes</h4>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec risus vitae sem porta malesuada in ut justo. Nulla ac purus imperdiet.
+    </p>
   </div>
-</section>
+</div>

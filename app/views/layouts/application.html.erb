@@ -14,14 +14,12 @@
       <%= render 'navigation' %>
     </header>
     <%= render 'layouts/messages' %>
-    <main>
+    <main class="container-fluid">
       <%= yield %>
     </main>
-    <footer class="page-footer center-on-small-only">
-      <div class="footer-copyright">
-        <div class="container-fluid">
-          Built for the Kingdom by <a href="https://aucklandev.co.nz">Auckland Evangelical Church</a>
-        </div>
+    <footer class="page-footer mt-3 py-3 text-center">
+      <div class="container-fluid">
+        Built for the Kingdom by <a href="https://aucklandev.co.nz">Auckland Evangelical Church</a>
       </div>
     </footer>
   </body>

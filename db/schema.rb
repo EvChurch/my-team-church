@@ -108,7 +108,6 @@ ActiveRecord::Schema.define(version: 20170714021758) do
   create_table "objective_key_results", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "objective_id"
     t.string "name", null: false
-    t.text "description", null: false
     t.string "result_type", default: "%", null: false
     t.decimal "start_value", default: "0.0"
     t.decimal "target_value", default: "100.0"
