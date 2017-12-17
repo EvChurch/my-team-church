@@ -1,6 +1,3 @@
 <li class="nav-item <%= 'active' if request.path === root_path %>">
   <%= link_to 'Home', root_path, class: 'nav-link' %>
 </li>
-<li class="nav-item <%= 'active' if request.path.starts_with? departments_path %>">
-  <%= link_to 'Departments', departments_path, class: 'nav-link' %>
-</li>

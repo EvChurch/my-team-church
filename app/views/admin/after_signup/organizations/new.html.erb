@@ -1,84 +1,51 @@
-<section class="row is-page-header-row">
-  <div class="row__inner">
-    <div class="page-header">
-      <div class="page-header__title">
-        Church Profile
-      </div>
-      <div class="page-header__tagline">
-        Configure your church settings
-      </div>
-    </div>
-  </div>
-</section>
-<section class="row is-card">
-  <div class="row__inner">
-    <div class="card">
-      <div class="row__inner">
-        <div class="card-block">
-          <div class="card-text">
-            <%= simple_form_for [:after_signup, @organization] do |f| %>
-            <div class="md-form">
-              <%= f.text_field :name, autofocus: true %>
-              <%= f.label :name %>
-            </div>
-            <div class="row">
-              <div class="col-md-8">
-                <div class="md-form">
-                  <%= f.text_field :subdomain %>
-                  <%= f.label :subdomain %>
-                </div>
-              </div>
-              <div class="col-md-4" style="margin-top: 15px;">
-                .<%= ENV['DOMAIN_NAME'] %>
-              </div>
-            </div>
-            <p class="help-block">
-              The following information will help us automatically build your email footers
-              to comply with the
-              <a target="_blank" href="https://www.ftc.gov/tips-advice/business-center/guidance/can-spam-act-compliance-guide-business">
-                CAN-SPAM Act
-              </a>
-              and International spam law.
-            </p>
-            <div class="md-form">
-              <%= f.text_field :website_url %>
-              <%= f.label :website_url %>
-            </div>
-            <div class="md-form">
-              <%= f.text_field :address_1 %>
-              <%= f.label :address_1 %>
-            </div>
-            <div class="md-form">
-              <%= f.text_field :address_2 %>
-              <%= f.label :address_2 %>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="md-form">
-                  <%= f.text_field :city %>
-                  <%= f.label :city %>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="md-form">
-                  <%= f.text_field :state %>
-                  <%= f.label :state, 'State / Province / Region' %>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="md-form">
-                  <%= f.text_field :zip %>
-                  <%= f.label :zip, 'Zip / Postal Code' %>
-                </div>
-              </div>
-            </div>
-            <%= f.input :country, input_html: { class: 'chosen-select' } %>
-            <%= f.input :time_zone, priority: /US/, input_html: { class: 'chosen-select' } %>
-            <%= f.submit 'Next', class: 'btn btn-primary btn-block' %>
-            <% end %>
+<div class="card">
+  <div class="card-body p-5">
+    <h4 class="card-title">
+      Church Profile
+    </h4>
+    <p>
+      Configure your church settings
+    </p>
+    <%= simple_form_for [:after_signup, @organization] do |f| %>
+      <%= f.input :name, autofocus: true %>
+      <div class="row">
+        <div class="col-md-8">
+          <%= f.input :subdomain %>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="form-control-label">
+              Domain
+            </label>
+            <input class="form-control string" readonly="readonly" type="text" value="<%= ENV['DOMAIN_NAME'] %>">
           </div>
         </div>
       </div>
-    </div>
+      <p class="text-muted">
+        The following information will help us automatically build your email footers
+        to comply with the
+        <a target="_blank" href="https://www.ftc.gov/tips-advice/business-center/guidance/can-spam-act-compliance-guide-business">
+          CAN-SPAM Act
+        </a>
+        and International spam law.
+      </p>
+      <%= f.input :website_url %>
+      <%= f.input :address_1 %>
+      <%= f.input :address_2 %>
+      <div class="row">
+        <div class="col-md-4">
+            <%= f.input :city %>
+        </div>
+        <div class="col-md-4">
+            <%= f.input :state, label: 'State / Province / Region' %>
+        </div>
+        <div class="col-md-4">
+            <%= f.input :zip, label: 'Zip / Postal Code' %>
+        </div>
+      </div>
+      <%= f.input :country,  priority: ['New Zealand'], input_html: { class: 'chosen-select' } %>
+      <%= f.input :time_zone, input_html: { class: 'chosen-select' } %>
+      <%= f.submit 'Next', class: 'btn btn-primary btn-block' %>
+    <% end %>
   </div>
-</section>
+</div>

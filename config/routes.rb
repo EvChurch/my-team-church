@@ -28,30 +28,30 @@ Rails.application.routes.draw do
       resource :organization, only: %i[edit update] do
         get 'export', on: :member
       end
-      #   resources :organizations, only: [] do
-      #     post 'select', on: :member
-      #   end
-      #   resource :profile, only: %i[edit update] do
-      #     scope module: :profiles do
-      #       resources :options, only: [:update]
-      #     end
-      #   end
-      #   resources :after_signup, only: [:index] do
-      #     collection do
-      #       get 'finished'
-      #       scope module: :after_signup do
-      #         resource :user,
-      #                  only: %i[edit update],
-      #                  as: :after_signup_user
-      #         resources :organizations,
-      #                   only: %i[new create],
-      #                   as: :after_signup_organizations
-      #       end
-      #     end
-      #   end
+      resources :organizations, only: [] do
+        post 'select', on: :member
+      end
+      resource :profile, only: %i[edit update] do
+        scope module: :profiles do
+          resources :options, only: [:update]
+        end
+      end
+      resources :after_signup, only: [:index] do
+        collection do
+          get 'finished'
+          scope module: :after_signup do
+            resource :user,
+                     only: %i[edit update],
+                     as: :after_signup_user
+            resources :organizations,
+                      only: %i[new create],
+                      as: :after_signup_organizations
+          end
+        end
+      end
     end
     match '*path', to: 'admin#index', via: :get
-    root to: 'admin#index'
+    root to: 'admin#index', as: :admin_root
   end
   constraints(Domain) do
     scope module: :people do

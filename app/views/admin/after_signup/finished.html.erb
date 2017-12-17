@@ -4,14 +4,23 @@
     <div class="card">
       <div class="row__inner row--tout__inner">
         <div class="card-block">
-          <%= @organization.name %> Configured
           <h1 class="card-title">
-            Looks like you're ready to go!
           </h1>
-          <a href="<%= admin_root_path %>" class="btn btn-primary">Go to Dashboard</a>
         </div>
       </div>
     </div>
   </div>
 </section>
-        
+<div class="card">
+  <div class="card-body p-5">
+    <h4 class="card-title">
+      <%= @organization.name %> Configured
+    </h4>
+    <p>
+      Looks like you're ready to go!
+    </p>
+    <a href="<%= admin_root_path %>" class="btn btn-primary btn-block">
+      Go to Dashboard
+    </a>
+  </div>
+</div>
