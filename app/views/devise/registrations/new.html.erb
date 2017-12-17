@@ -1,55 +1,30 @@
-<section class="row is-page-header-row">
-  <div class="row__inner">
-    <div class="page-header">
-      <div class="page-header__title">
-        Get Started
-      </div>
-      <div class="page-header__tagline">
-        Ready to build leaders and grow your church?
-      </div>
-    </div>
-  </div>
-</section>
-<section class="row is-card">
-  <div class="row__inner">
-    <div class="card">
-      <div class="row__inner">
-        <div class="card-block">
-          <h4 class="card-title">
-            Sign Up for an Account
-          </h4>
-          <div class="card-text">
-            <%= bootstrap_devise_error_messages! %>
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: 'form' }) do |f| %>
-            <div class="md-form">
-              <%= f.email_field :email, autofocus: true, class: 'form-control' %>
-              <%= f.label :email %>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="md-form">
-                  <%= f.password_field :password, class: 'form-control' %>
-                  <%= f.label :password %>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="md-form">
-                  <%= f.password_field :password_confirmation, class: 'form-control' %>
-                  <%= f.label :password_confirmation %>
-                </div>
-              </div>
-            </div>
-            <%= f.submit t('.sign_up', default: 'Sign up'), class: 'btn btn-primary btn-block' %>
-            <% end %>
-            <div class="terms text-center">
-              By Signing up you agree to the Terms and Conditions
-            </div>
-          </div>
+<div class="card">
+  <div class="card-body p-5">
+    <h4 class="card-title">
+      Sign Up for an Account
+    </h4>
+    <div class="card-text">
+      <%= bootstrap_devise_error_messages! %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: 'form' }) do |f| %>
+      <%= f.input :email, autofocus: true, class: 'form-control' %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.input :password, class: 'form-control' %>
+        </div>
+        <div class="col-md-6">
+          <%= f.input :password_confirmation, class: 'form-control' %>
         </div>
       </div>
-      <div class="card-footer">
-        <%= render 'devise/shared/links' %>
+      <%= f.submit t('.sign_up', default: 'Sign up'), class: 'btn btn-primary btn-block' %>
+      <% end %>
+      <div class="text-center text-muted mt-2">
+        <small>
+          By Signing up you agree to the Terms and Conditions
+        </small>
       </div>
     </div>
   </div>
-</section>
+  <div class="card-footer">
+    <%= render 'devise/shared/links' %>
+  </div>
+</div>
