@@ -24,7 +24,8 @@ module Admin
     end
 
     def export
-      render xlsx: 'export', filename: "#{organization.name.gsub!(/( )/, '_').downcase}_#{Time.zone.today.to_s(:iso8601)}.xlsx"
+      render xlsx: 'export',
+             filename: "#{organization.name.gsub!(/( )/, '_').downcase}_#{Time.zone.today.to_s(:iso8601)}.xlsx"
     end
 
     protected

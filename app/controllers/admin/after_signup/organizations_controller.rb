@@ -24,6 +24,7 @@ module Admin
       def build_organization
         @organization ||= organization_scope.new
         @organization.attributes = organization_params
+        @organization.integrations.first_or_initialize(type: 'Integration::Elvanto')
       end
 
       def save_organization
