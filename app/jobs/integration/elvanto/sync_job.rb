@@ -4,7 +4,7 @@ require 'elvanto'
 
 class Integration
   class Elvanto
-    class GetAllJob < ApplicationJob
+    class SyncJob < ApplicationJob
       queue_as :default
 
       ADDITIONAL_FIELDS =

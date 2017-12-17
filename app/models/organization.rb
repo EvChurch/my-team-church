@@ -12,6 +12,7 @@ class Organization < ApplicationRecord
   has_many :objectives, as: :resource, dependent: :destroy
 
   accepts_nested_attributes_for :integrations
+  after_commit :run_integration_sync_jobs, on: :create
 
   resourcify
   validates :name, :subdomain, presence: true
@@ -19,5 +20,13 @@ class Organization < ApplicationRecord
 
   def self.from_url(url)
     find_by!(subdomain: url_to_subdomain(url))
+  end
+
+  protected
+
+  def run_integration_sync_jobs
+    integrations.each do |integration|
+      "#{integration.class.name}::SyncJob".constantize.perform_later(integration)
+    end
   end
 end

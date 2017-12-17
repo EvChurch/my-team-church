@@ -34,10 +34,9 @@ module Admin
       def organization_params
         organization_params = params[:organization]
         return {} unless organization_params
-        organization_params.permit(:name, :subdomain, :address_1, :address_2,
-                                   :city, :state, :zip, :country, :time_zone,
-                                   :website_url, :has_finances, :has_event_registrations, :has_reviews,
-                                   :has_directories, :has_documents, :has_statistics)
+        params.require(:organization).permit(:name, :subdomain, :address_1, :address_2,
+                                             :city, :state, :zip, :country, :time_zone, :website_url,
+                                             integrations_attributes: %i[id type client_id client_secret api_key])
       end
     end
   end
