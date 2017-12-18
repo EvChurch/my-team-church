@@ -1,1 +1,1 @@
-require('../admin')
+require('../admin/app')

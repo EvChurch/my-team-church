@@ -1,8 +1,2 @@
-@import "~primeng/resources/themes/omega/theme";
-@import "~primeng/resources/primeng";
 @import "~bootstrap/scss/bootstrap";
-@import '../admin/admin';
-
-body {
-  font-family: 'Roboto', sans-serif;
-}
+@import '../admin/app';

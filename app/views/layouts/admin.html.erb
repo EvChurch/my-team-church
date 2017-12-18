@@ -8,12 +8,7 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= content_tag :div,
-      id: 'angular-data',
-      data: {
-        token: current_user.token
-      }.to_json do %>
-    <% end %>
+    <%= hidden_field_tag :access_token, current_user.token %>
     <app></app>
     <%= javascript_pack_tag 'admin' %>
     <%= stylesheet_pack_tag 'admin-styles' %>

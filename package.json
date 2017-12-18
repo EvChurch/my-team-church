@@ -4,20 +4,17 @@
     "schema:generate:admin": "apollo-codegen generate app/javascript/admin/app/graphql/*.gql --schema app/javascript/admin/app/schema.json --target typescript --output app/javascript/admin/app/graphql/schema.ts"
   },
   "dependencies": {
-    "@angular/animations": "^4.2.6",
-    "@angular/cdk": "^2.0.0-beta.8",
-    "@angular/common": "^4.2.6",
-    "@angular/compiler": "^4.2.6",
-    "@angular/core": "^4.2.6",
-    "@angular/forms": "^4.2.6",
-    "@angular/http": "^4.2.6",
-    "@angular/material": "^2.0.0-beta.8",
-    "@angular/platform-browser": "^4.2.6",
-    "@angular/platform-browser-dynamic": "^4.2.6",
-    "@angular/router": "^4.2.6",
-    "@types/lodash": "^4.14.68",
-    "apollo-angular": "^0.13.0",
-    "apollo-client": "^1.8.0",
+    "angular": "^1.5.0",
+    "angular-animate": "^1.6.6",
+    "angular-aria": "^1.6.6",
+    "angular-material": "^1.1.5",
+    "angular-messages": "^1.6.6",
+    "angular-ui-router": "^1.0.0-beta.1",
+    "angular1-apollo": "^0.3.0",
+    "apollo-client": "^1.9.3",
+    "graphql-tag": "^2.5.0"
+  },
+  "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.25.0",
     "babel-loader": "7.x",
@@ -34,13 +31,11 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "glob": "^7.1.2",
-    "graphql-tag": "^2.4.2",
     "hammerjs": "^2.0.8",
     "html-loader": "^0.4.5",
     "js-yaml": "^3.9.0",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.3",
-    "normalize.css": "^7.0.0",
     "path-complete-extname": "^0.1.0",
     "postcss-loader": "^2.0.6",
     "postcss-smart-import": "^0.7.5",
@@ -48,7 +43,6 @@
     "primeng": "^4.1.0",
     "rails-erb-loader": "^5.0.2",
     "resolve-url-loader": "^2.1.0",
-    "rxjs": "^5.4.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "ts-loader": "^2.2.2",
@@ -56,10 +50,7 @@
     "webpack": "^3.2.0",
     "webpack-manifest-plugin": "^1.1.2",
     "webpack-merge": "^4.1.0",
-    "zone.js": "^0.8.13"
-  },
-  "devDependencies": {
-    "apollo-codegen": "^0.18.2",
+    "zone.js": "^0.8.13",
     "webpack-dev-server": "^2.5.1"
   }
 }

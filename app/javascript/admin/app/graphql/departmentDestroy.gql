@@ -1,9 +1,0 @@
-mutation departmentDestroy(
-  $id: ID!
-) {
-  department_destroy(
-    id: $id
-  ) {
-    id
-  }
-}
