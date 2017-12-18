@@ -8,7 +8,7 @@ import { Subscription }   from 'rxjs/Subscription';
 
 import { DepartmentService }  from '../department.service';
 import { PositionService }  from '../../positions/position.service';
-import { DepartmentIndexQuery } from '../../graphql/schema';
+import { departmentIndexQuery } from '../../graphql/schema';
 import template from './department-list.html';
 
 
@@ -17,7 +17,7 @@ import template from './department-list.html';
   providers: [TreeDragDropService]
 })
 export class DepartmentListComponent implements OnInit, OnDestroy {
-  departments: ApolloQueryObservable<DepartmentIndexQuery>;
+  departments: ApolloQueryObservable<departmentIndexQuery>;
   private paramsSubscription: Subscription;
 
   constructor(

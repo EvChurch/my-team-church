@@ -13,6 +13,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { DepartmentsModule } from './departments/departments.module';
+import { OrganizationsModule } from './organizations/organizations.module';
 import { PositionsModule } from './positions/positions.module';
 
 // Create the client as outlined above
@@ -52,9 +53,9 @@ export function provideClient(): ApolloClient {
     BrowserAnimationsModule,
     ApolloModule.forRoot(provideClient),
     DepartmentsModule,
+    OrganizationsModule,
     PositionsModule,
-    AppRoutingModule
-
+    AppRoutingModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,8 +5,8 @@ import { OrganizationsService }  from './organizations.service';
 import { organizationIndexQuery } from '../graphql/schema';
 import template from './organizations.html';
 
-
 @Component({
+  selector: 'organizations',
   template: template
 })
 export class OrganizationsComponent implements OnInit {

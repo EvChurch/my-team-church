@@ -3,14 +3,14 @@ import { Apollo, ApolloQueryObservable } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import 'rxjs/add/operator/map';
 
-import { PositionIndexQuery } from '../graphql/schema';
-import PositionIndexQueryNode from '../graphql/positionIndex.gql';
+import { positionIndexQuery } from '../graphql/schema';
+import positionIndexQueryNode from '../graphql/positionIndex.gql';
 
-import { PositionGetQuery } from '../graphql/schema';
-import PositionGetQueryNode from '../graphql/positionGet.gql';
+import { positionGetQuery } from '../graphql/schema';
+import positionGetQueryNode from '../graphql/positionGet.gql';
 
-import { PositionUpdateMutation } from '../graphql/schema';
-import PositionUpdateMutationNode from '../graphql/positionUpdate.gql';
+import { positionUpdateMutation } from '../graphql/schema';
+import positionUpdateMutationNode from '../graphql/positionUpdate.gql';
 
 import { TreeNode } from 'primeng/primeng';
 
@@ -20,8 +20,8 @@ export class PositionService {
   constructor(private apollo: Apollo) {}
 
   positionIndex(parentId?: string) {
-    return this.apollo.watchQuery<PositionIndexQuery>({
-      query: PositionIndexQueryNode,
+    return this.apollo.watchQuery<positionIndexQuery>({
+      query: positionIndexQueryNode,
       variables: {
         parent_id: parentId,
       }
@@ -31,8 +31,8 @@ export class PositionService {
   }
 
   positionGet(id: string) {
-    return this.apollo.watchQuery<PositionGetQuery>({
-      query: PositionGetQueryNode,
+    return this.apollo.watchQuery<positionGetQuery>({
+      query: positionGetQueryNode,
       variables: {
         id: id,
       }
@@ -43,7 +43,7 @@ export class PositionService {
 
   positionUpdate(id: string, position: object) {
     return this.apollo.mutate({
-      mutation: PositionUpdateMutationNode,
+      mutation: positionUpdateMutationNode,
       variables: {
         id: id,
         position: position
