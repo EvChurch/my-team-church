@@ -1,0 +1,6 @@
+query organizationIndex {
+  organization_index {
+    id
+    name
+  }
+}

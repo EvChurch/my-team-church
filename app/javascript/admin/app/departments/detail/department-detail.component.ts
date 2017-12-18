@@ -11,7 +11,7 @@ import template from './department-detail.html';
 })
 
 export class DepartmentDetailComponent implements OnInit {
-  department: object;
+  public department: object;
   private paramsSubscription: Subscription;
 
   constructor(

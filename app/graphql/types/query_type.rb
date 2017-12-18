@@ -2,8 +2,15 @@
 
 Types::QueryType = GraphQL::ObjectType.define do
   name 'Query'
-  # Add root-level fields here.
-  # They will be entry points for queries on your schema.
+
+  field :organization_index do
+    type !types[Types::OrganizationType]
+    description 'List of Organizations'
+    resolve lambda { |_obj, _args, ctx|
+      Organization.with_role(:admin, ctx[:user])
+    }
+  end
+
   field :department_index do
     type !types[Types::DepartmentType]
     argument :parent_id, types.ID

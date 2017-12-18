@@ -25,7 +25,6 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :department_destroy, Types::DepartmentType do
     description 'Destroy Department.'
     argument :id, !types.ID
-    argument :department, !Types::DepartmentInputType
     resolve lambda { |_obj, args, ctx|
       ctx[:organization].departments.find_by!(id: args[:id]).destroy
     }
@@ -53,7 +52,6 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :position_destroy, Types::PositionType do
     description 'Destroy Position.'
     argument :id, !types.ID
-    argument :position, !Types::PositionInputType
     resolve lambda { |_obj, args, ctx|
       ctx[:organization].positions.find_by!(id: args[:id]).destroy
     }

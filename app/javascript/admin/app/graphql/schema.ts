@@ -19,11 +19,11 @@ export type PositionInputType = {
   department_id?: string | null,
 };
 
-export type DepartmentCreateMutationVariables = {
+export type departmentCreateMutationVariables = {
   department: DepartmentInputType,
 };
 
-export type DepartmentCreateMutation = {
+export type departmentCreateMutation = {
   // Create Department.
   department_create:  {
     id: string,
@@ -31,22 +31,22 @@ export type DepartmentCreateMutation = {
   } | null,
 };
 
-export type DepartmentDestroyMutationVariables = {
+export type departmentDestroyMutationVariables = {
   id: string,
 };
 
-export type DepartmentDestroyMutation = {
+export type departmentDestroyMutation = {
   // Destroy Department.
   department_destroy:  {
     id: string,
   } | null,
 };
 
-export type DepartmentGetQueryVariables = {
+export type departmentGetQueryVariables = {
   id: string,
 };
 
-export type DepartmentGetQuery = {
+export type departmentGetQuery = {
   // Find a Department by ID
   department_get:  {
     id: string,
@@ -54,36 +54,36 @@ export type DepartmentGetQuery = {
     positions:  Array< {
       id: string,
       name: string,
-    } > | null,
+    } | null > | null,
     children:  Array< {
       id: string,
       name: string,
       positions:  Array< {
         id: string,
         name: string,
-      } > | null,
-    } > | null,
+      } | null > | null,
+    } | null > | null,
   } | null,
 };
 
-export type DepartmentIndexQueryVariables = {
+export type departmentIndexQueryVariables = {
   parent_id?: string | null,
 };
 
-export type DepartmentIndexQuery = {
+export type departmentIndexQuery = {
   // List of Departments
   department_index:  Array< {
     id: string,
     name: string,
-  } >,
+  } | null >,
 };
 
-export type DepartmentUpdateMutationVariables = {
+export type departmentUpdateMutationVariables = {
   id: string,
   department: DepartmentInputType,
 };
 
-export type DepartmentUpdateMutation = {
+export type departmentUpdateMutation = {
   // Update Department.
   department_update:  {
     id: string,
@@ -92,11 +92,19 @@ export type DepartmentUpdateMutation = {
   } | null,
 };
 
-export type PositionCreateMutationVariables = {
+export type organizationIndexQuery = {
+  // List of Organizations
+  organization_index:  Array< {
+    id: string,
+    name: string,
+  } | null >,
+};
+
+export type positionCreateMutationVariables = {
   position: PositionInputType,
 };
 
-export type PositionCreateMutation = {
+export type positionCreateMutation = {
   // Create Position.
   position_create:  {
     id: string,
@@ -104,22 +112,22 @@ export type PositionCreateMutation = {
   } | null,
 };
 
-export type PositionDestroyMutationVariables = {
+export type positionDestroyMutationVariables = {
   id: string,
 };
 
-export type PositionDestroyMutation = {
+export type positionDestroyMutation = {
   // Destroy Position.
   position_destroy:  {
     id: string,
   } | null,
 };
 
-export type PositionGetQueryVariables = {
+export type positionGetQueryVariables = {
   id: string,
 };
 
-export type PositionGetQuery = {
+export type positionGetQuery = {
   // Find a Position by ID
   position_get:  {
     id: string,
@@ -128,28 +136,28 @@ export type PositionGetQuery = {
       id: string,
       firstname: string | null,
       lastname: string | null,
-    } > | null,
+    } | null > | null,
   } | null,
 };
 
-export type PositionIndexQueryVariables = {
+export type positionIndexQueryVariables = {
   department_id?: string | null,
 };
 
-export type PositionIndexQuery = {
+export type positionIndexQuery = {
   // List of Positions
   position_index:  Array< {
     id: string,
     name: string,
-  } >,
+  } | null >,
 };
 
-export type PositionUpdateMutationVariables = {
+export type positionUpdateMutationVariables = {
   id: string,
   position: PositionInputType,
 };
 
-export type PositionUpdateMutation = {
+export type positionUpdateMutation = {
   // Update Position.
   position_update:  {
     id: string,
@@ -157,4 +165,3 @@ export type PositionUpdateMutation = {
     description: string | null,
   } | null,
 };
-/* tslint:enable */

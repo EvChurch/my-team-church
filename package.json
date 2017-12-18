@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "schema:download:admin": "apollo-codegen download-schema http://localhost:5000/graphql --output app/javascript/admin/app/schema.json --header \"Authorization: Token VR2uCmJZJJ6VYeCosrfNCSjG\"",
+    "schema:download:admin": "apollo-codegen download-schema http://localhost:3000/graphql --output app/javascript/admin/app/schema.json --header \"Authorization: Token tKZZErr2fZ8TNd7pcbgff7dV\"",
     "schema:generate:admin": "apollo-codegen generate app/javascript/admin/app/graphql/*.gql --schema app/javascript/admin/app/schema.json --target typescript --output app/javascript/admin/app/graphql/schema.ts"
   },
   "dependencies": {
@@ -59,6 +59,7 @@
     "zone.js": "^0.8.13"
   },
   "devDependencies": {
+    "apollo-codegen": "^0.18.2",
     "webpack-dev-server": "^2.5.1"
   }
 }

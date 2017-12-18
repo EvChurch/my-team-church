@@ -3,14 +3,14 @@ import { Apollo, ApolloQueryObservable } from 'apollo-angular';
 import { DocumentNode } from 'graphql';
 import 'rxjs/add/operator/map';
 
-import { DepartmentIndexQuery } from '../graphql/schema';
-import DepartmentIndexQueryNode from '../graphql/departmentIndex.gql';
+import { departmentIndexQuery } from '../graphql/schema';
+import departmentIndexQueryNode from '../graphql/departmentIndex.gql';
 
-import { DepartmentGetQuery } from '../graphql/schema';
-import DepartmentGetQueryNode from '../graphql/departmentGet.gql';
+import { departmentGetQuery } from '../graphql/schema';
+import departmentGetQueryNode from '../graphql/departmentGet.gql';
 
-import { DepartmentUpdateMutation } from '../graphql/schema';
-import DepartmentUpdateMutationNode from '../graphql/departmentUpdate.gql';
+import { departmentUpdateMutation } from '../graphql/schema';
+import departmentUpdateMutationNode from '../graphql/departmentUpdate.gql';
 
 import { TreeNode } from 'primeng/primeng';
 
@@ -20,8 +20,8 @@ export class DepartmentService {
   constructor(private apollo: Apollo) {}
 
   departmentIndex(parentId?: string) {
-    return this.apollo.watchQuery<DepartmentIndexQuery>({
-      query: DepartmentIndexQueryNode,
+    return this.apollo.watchQuery<departmentIndexQuery>({
+      query: departmentIndexQueryNode,
       variables: {
         parent_id: parentId,
       }
@@ -31,8 +31,8 @@ export class DepartmentService {
   }
 
   departmentGet(id: string, deserialize = true) {
-    return this.apollo.watchQuery<DepartmentGetQuery>({
-      query: DepartmentGetQueryNode,
+    return this.apollo.watchQuery<departmentGetQuery>({
+      query: departmentGetQueryNode,
       variables: {
         id: id,
       }
@@ -47,7 +47,7 @@ export class DepartmentService {
 
   departmentUpdate(id: string, department: object) {
     return this.apollo.mutate({
-      mutation: DepartmentUpdateMutationNode,
+      mutation: departmentUpdateMutationNode,
       variables: {
         id: id,
         department: department
