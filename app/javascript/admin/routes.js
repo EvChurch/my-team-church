@@ -3,7 +3,10 @@ export default class Routes {
         $stateProvider.state({
             name: 'root',
             abstract: true,
-            component: 'root'
+            component: 'root',
+            resolve: {
+              0: /* @ngInject*/ (user) => user.load()
+            }
         }).state({
             name: 'home',
             title: 'Home',

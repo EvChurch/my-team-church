@@ -12,24 +12,14 @@ class User {
 
       return this.api.query(gql`
         query {
-          me {
+          user_get {
             first_name
             last_name
-            avatar_url
-            point {
-              address_line_1
-              address_line_2
-              suburb
-              city
-              country
-              zip
-              latitude
-              longitude
-            }
+            email
           }
         }
       `).then((data) => {
-        this.data = data.me;
+        this.data = data.user_get;
         return this.data;
       })
     }

@@ -3,16 +3,15 @@ import ApolloClient, { createNetworkInterface } from 'apollo-client';
 
 /* @ngInject*/
 export default function appConfig(
-  apolloProvider, $stateProvider, $locationProvider, $windowProvider
+  apolloProvider, $stateProvider, $locationProvider
 ) {
-  const $window = $windowProvider.$get();
   $locationProvider.html5Mode({
     enabled: true,
     rewriteLinks: false
   }).hashPrefix('!');
 
   const networkInterface = createNetworkInterface({
-    uri: 'http://localhost:3000/graphql'
+    uri: 'http://localhost:3000/queries'
   });
 
   networkInterface.use([{
@@ -20,15 +19,16 @@ export default function appConfig(
       if (!req.options.headers) {
         req.options.headers = {};
       }
-      req.options.headers['authorization'] = `Bearer ${angular.element(document).find('#access_token').val()}`
+      req.options.headers['authorization'] = `Bearer ${document.getElementById('access_token').getAttribute('value')}`
       next();
     }
   }]);
 
-  const client = new ApolloClient({
-    networkInterface
-  });
-  apolloProvider.defaultClient(client);
+  apolloProvider.defaultClient(
+    new ApolloClient({
+      networkInterface
+    })
+  );
 
   Routes.config($stateProvider);
 }

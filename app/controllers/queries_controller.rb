@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class GraphqlController < ApplicationController
+class QueriesController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :authenticate_with_http_token
 
-  def execute
+  def create
     load_organization
     variables = ensure_hash(params[:variables])
     query = params[:query]
@@ -22,7 +22,7 @@ class GraphqlController < ApplicationController
   def authenticate_with_http_token
     return if current_user
     auth_header = request.headers['Authorization'].to_s
-    token = auth_header.remove('Token ')
+    token = auth_header.remove('Bearer ')
     return unless token
     user = User.find_by(token: token)
     sign_in user if user

@@ -1,17 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  if Rails.env.development?
-    mount GraphiQL::Rails::Engine, at: '/graphiql', graphql_path: '/graphql'
-  end
-
-  post '/graphql', to: 'graphql#execute'
+  resources :queries, via: %i[post options]
 
   require 'sidekiq/web'
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
+
   devise_for :users, controllers: { registrations: 'users/registrations' }
+
   constraints subdomain: 'admin' do
     scope module: :admin do
       #   resources :objectives

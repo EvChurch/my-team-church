@@ -11,6 +11,15 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :user_get do
+    type Types::UserType
+    description 'Get Current User'
+    resolve lambda { |_obj, _args, ctx|
+      ctx[:user]
+    }
+  end
+
+
   field :department_index do
     type !types[Types::DepartmentType]
     argument :parent_id, types.ID
