@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-2">
+    <div class="list-group">
+        <a ng-repeat="department in $ctrl.departments.data track by department.id"
+           ui-sref="departments.detail({ id: department.id })"
+           class="list-group-item list-group-item-action"
+           ui-sref-active="active">
+          {{department.name}}
+        </a>
+    </div>
+  </div>
+  <div class="col-md-10">
+    <div ui-view>
+    </div>
+  </div>
+</div>

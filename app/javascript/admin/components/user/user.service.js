@@ -12,7 +12,7 @@ class User {
 
       return this.api.query(gql`
         query {
-          user_get {
+          user {
             first_name
             last_name
             email

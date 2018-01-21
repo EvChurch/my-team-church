@@ -19,8 +19,26 @@ export default class Routes {
             url: '/user',
             component: 'user',
             parent: 'root',
-            params: {
-              navbar: false
+        }).state({
+            name: 'departments',
+            title: 'Departments',
+            url: '/departments',
+            component: 'departments',
+            parent: 'root',
+            resolve: {
+              0: /* @ngInject*/ (departments) => departments.load()
+            }
+        }).state({
+            name: 'departments.detail',
+            url: '/:id',
+            component: 'departmentsDetail'
+        }).state({
+            name: 'departments.detail.objectives',
+            url: '/objectives',
+            component: 'objectives',
+            resolve: {
+              service: /* @ngInject*/ (departments) => departments,
+              collection: /* @ngInject*/ ($stateParams, departments) => departments.getObjectives($stateParams.id)
             }
         });
     }

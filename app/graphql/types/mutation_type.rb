@@ -3,7 +3,7 @@
 Types::MutationType = GraphQL::ObjectType.define do
   name 'Mutation'
 
-  field :department_create, Types::DepartmentType do
+  field :createDepartment, Types::DepartmentType do
     description 'Create Department.'
     argument :department, Types::DepartmentInputType
     resolve lambda { |_obj, args, ctx|
@@ -11,7 +11,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
-  field :department_update, Types::DepartmentType do
+  field :updateDepartment, Types::DepartmentType do
     description 'Update Department.'
     argument :id, !types.ID
     argument :department, !Types::DepartmentInputType
@@ -22,7 +22,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
-  field :department_destroy, Types::DepartmentType do
+  field :destroyDepartment, Types::DepartmentType do
     description 'Destroy Department.'
     argument :id, !types.ID
     resolve lambda { |_obj, args, ctx|
@@ -30,7 +30,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
-  field :position_create, Types::PositionType do
+  field :createPosition, Types::PositionType do
     description 'Create Position.'
     argument :position, Types::PositionInputType
     resolve lambda { |_obj, args, ctx|
@@ -38,7 +38,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
-  field :position_update, Types::PositionType do
+  field :updatePosition, Types::PositionType do
     description 'Update Position.'
     argument :id, !types.ID
     argument :position, !Types::PositionInputType
@@ -49,7 +49,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
-  field :position_destroy, Types::PositionType do
+  field :destroyPosition, Types::PositionType do
     description 'Destroy Position.'
     argument :id, !types.ID
     resolve lambda { |_obj, args, ctx|

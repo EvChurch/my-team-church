@@ -3,7 +3,7 @@
 Types::QueryType = GraphQL::ObjectType.define do
   name 'Query'
 
-  field :organization_index do
+  field :organizations do
     type !types[Types::OrganizationType]
     description 'List of Organizations'
     resolve lambda { |_obj, _args, ctx|
@@ -11,7 +11,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :user_get do
+  field :user do
     type Types::UserType
     description 'Get Current User'
     resolve lambda { |_obj, _args, ctx|
@@ -19,8 +19,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-
-  field :department_index do
+  field :departments do
     type !types[Types::DepartmentType]
     argument :parent_id, types.ID
     description 'List of Departments'
@@ -33,7 +32,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :department_get do
+  field :department do
     type Types::DepartmentType
     argument :id, !types.ID
     description 'Find a Department by ID'
@@ -42,7 +41,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :position_index do
+  field :positions do
     type !types[Types::PositionType]
     argument :department_id, types.ID
     description 'List of Positions'
@@ -56,7 +55,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :position_get do
+  field :position do
     type Types::PositionType
     argument :id, !types.ID
     description 'Find a Position by ID'

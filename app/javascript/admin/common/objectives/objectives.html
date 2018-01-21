@@ -1,0 +1,21 @@
+{{$ctrl.objectives}}
+<div class="row">
+  <div class="col-md-6">
+    <h1>
+      Objectives
+      <div class="pull-right">
+        <a class="btn btn-primary">Add Objective</a>
+      </div>
+    </h1>
+    <div ng-repeat="objective in $ctrl.objectives">
+      {{objective.name}}
+    </div>
+    <div ng-if="$ctrl.collection && $ctrl.objectives.length == 0">
+      <h3>No objectives defined yet.</h3>
+      It's time to define your first objective!
+    </div>
+  </div>
+  <div class="col-md-6">
+
+  </div>
+</div>

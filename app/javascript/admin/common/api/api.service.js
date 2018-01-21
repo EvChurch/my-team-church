@@ -9,9 +9,10 @@ class Api {
       this.apollo = apollo;
     }
 
-    query(gql) {
+    query(gql, variables = {}) {
       return this.apollo.query({
         query: gql,
+        variables: variables,
         fetchPolicy: 'network-only'
       }).then((data) => {
         this.$log.log(gql, data.data);
