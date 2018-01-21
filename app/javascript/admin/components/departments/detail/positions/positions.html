@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-6">
+    <h1>
+      Positions
+      <div class="pull-right">
+        <a class="btn btn-primary">Add Positions</a>
+      </div>
+    </h1>
+    <div ng-repeat="position in $ctrl.positions track by position.id">
+      {{position.name}}
+    </div>
+    <div ng-if="$ctrl.positions && $ctrl.positions.length == 0">
+      <h3>No positions defined yet.</h3>
+      It's time to define your first position!
+    </div>
+  </div>
+  <div class="col-md-6">
+  </div>
+</div>

@@ -58,7 +58,7 @@ GEM
     arel (8.0.0)
     ast (2.3.0)
     atomic (1.1.99)
-    autoprefixer-rails (7.2.2)
+    autoprefixer-rails (7.2.5)
       execjs
     axlsx (2.1.0.pre)
       htmlentities (~> 4.3.1)
@@ -75,9 +75,9 @@ GEM
     bindex (0.5.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap (4.0.0.beta2.1)
+    bootstrap (4.0.0)
       autoprefixer-rails (>= 6.0.3)
-      popper_js (>= 1.12.3, < 2)
+      popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
     breadcrumbs_on_rails (3.0.1)
     builder (3.2.3)
@@ -278,7 +278,7 @@ GEM
       peek
       redis
     pg (0.21.0)
-    popper_js (1.12.5)
+    popper_js (1.12.9)
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -476,7 +476,7 @@ DEPENDENCIES
   axlsx_rails
   better_errors
   binding_of_caller
-  bootstrap (~> 4.0.0.beta2.1)
+  bootstrap (~> 4.0.0)
   breadcrumbs_on_rails
   byebug
   capybara

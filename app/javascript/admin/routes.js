@@ -40,6 +40,13 @@ export default class Routes {
               service: /* @ngInject*/ (departments) => departments,
               collection: /* @ngInject*/ ($stateParams, departments) => departments.getObjectives($stateParams.id)
             }
+        }).state({
+            name: 'departments.detail.positions',
+            url: '/positions',
+            component: 'departmentsDetailPositions',
+            resolve: {
+              positions: /* @ngInject*/ ($stateParams, departments) => departments.getPositions($stateParams.id)
+            }
         });
     }
 }

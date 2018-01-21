@@ -1,0 +1,19 @@
+departments {
+  .departments-list {
+    padding-left: 0;
+    .list-group {
+      border-right: 1px solid rgba(0, 0, 0, 0.125);
+      .list-group-item {
+        border-left: 0;
+        border-right: 0;
+        &:first-child {
+          border-top: 0;
+          border-radius: 0;
+        }
+        &:last-child {
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}

@@ -15,14 +15,9 @@ class Departments {
         departments {
           id
           name
-          positions {
-            name
-          }
           children {
+            id
             name
-            positions {
-              name
-            }
           }
         }
       }
@@ -71,6 +66,23 @@ class Departments {
     `, { id: id }).then((data) => {
       return data.department.objectives;
     });
+  }
+
+  getPositions(id) {
+    return this.api.query(gql`
+      query department($id: ID!){
+        department(id: $id) {
+          id
+          positions {
+            id
+            name
+          }
+        }
+      }
+    `, { id: id }).then((data) => {
+      return data.department.positions;
+    });
+
   }
 }
 
