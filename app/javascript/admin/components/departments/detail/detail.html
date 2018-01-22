@@ -1,6 +1,17 @@
-<nav class="nav">
-  <a class="nav-link" ui-sref="departments.detail">Activity</a>
-  <a class="nav-link" ui-sref="departments.detail.objectives">Objectives</a>
-  <a class="nav-link" ui-sref="departments.detail.positions">Positions</a>
-</nav>
-<div ui-view></div>
+<h1 class="panel-title">
+  {{$ctrl.department.name}}
+</h1>
+<div class="content">
+  <nav class="nav">
+    <a class="nav-link" ui-sref="departments.detail.activity" ui-sref-active="active">
+      Activity
+    </a>
+    <a class="nav-link" ui-sref="departments.detail.objectives" ui-sref-active="active">
+      Objectives
+    </a>
+    <a class="nav-link" ui-sref="departments.detail.positions" ui-sref-active="active">
+      Positions
+    </a>
+  </nav>
+  <div ui-view></div>
+</div>

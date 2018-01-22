@@ -1,19 +1,20 @@
+@import 'list/list';
+@import 'detail/detail';
+
 departments {
-  .departments-list {
-    padding-left: 0;
-    .list-group {
-      border-right: 1px solid rgba(0, 0, 0, 0.125);
-      .list-group-item {
-        border-left: 0;
-        border-right: 0;
-        &:first-child {
-          border-top: 0;
-          border-radius: 0;
-        }
-        &:last-child {
-          border-radius: 0;
-        }
+  .wrapper {
+    display: flex;
+    height: 100vh;
+    > .menu {
+      width: 250px;
+      border-right: 1px solid #ccc;
+      .panel-title {
+        border-top-left-radius: 10px;
       }
+    }
+    > .content {
+      flex: 1 1 auto;
+      overflow: auto;
     }
   }
 }

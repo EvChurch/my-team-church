@@ -1,0 +1,7 @@
+$department-bg: #FCB051;
+
+.department {
+  &-bg {
+    background-color: $department-bg;
+  }
+}

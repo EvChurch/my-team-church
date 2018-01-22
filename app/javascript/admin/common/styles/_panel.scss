@@ -1,0 +1,18 @@
+.panel {
+  &-title {
+    background-color: #F1F0F0;
+    font-size: 20px;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding: 10px;
+  }
+  &-icon {
+    font-size: 20px;
+    line-height: 20px;
+    color: #fff;
+    padding: 8px 10px 10px 10px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 5px;
+  }
+}

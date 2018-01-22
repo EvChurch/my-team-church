@@ -1,0 +1,14 @@
+departments-list-item {
+  a {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    &.active {
+      background: #0275d8;
+      color: #fff;
+    }
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
+}

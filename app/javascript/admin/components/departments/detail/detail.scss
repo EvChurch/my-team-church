@@ -1,0 +1,25 @@
+departments-detail {
+  .panel-title {
+    border-top-right-radius: 10px;
+  }
+  .content {
+    padding: 10px;
+  }
+  nav.nav {
+    border-bottom: 1px solid #D8D6D5;
+    margin-bottom: 10px;
+    a.nav-link {
+      transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+      color: rgb(112, 110, 107);
+      text-transform: uppercase;
+      font-size: 80%;
+      letter-spacing: 0.1em;
+      margin-right: 10px;
+      &:hover, &.active {
+        color: rgb(22, 50, 92);
+        border-color: rgb(0, 112, 210);
+      }
+    }
+  }
+}

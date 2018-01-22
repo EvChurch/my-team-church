@@ -1,11 +1,10 @@
 <a ui-sref="departments.detail({ id: $ctrl.item.id })"
-   class="list-group-item list-group-item-action"
    ui-sref-active="active">
   <span ng-repeat="i in $ctrl.getNumber($ctrl.level) track by $index">
     &nbsp;
   </span>
   <span ng-if="$ctrl.level > 0">
-    <i class="fa fa-angle-right"></i>
+    <i class="fas fa-angle-right"></i>
     &nbsp;
   </span>
   {{$ctrl.item.name}}

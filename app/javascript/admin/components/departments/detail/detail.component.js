@@ -8,8 +8,8 @@ class DetailController {
   }
 
   $onInit() {
-    this.department = this.departments.get(this.$stateParams.id).then((department) => {
-      this.data = department;
+    this.departments.get(this.$stateParams.id).then((department) => {
+      this.department = department;
     });
   }
 }

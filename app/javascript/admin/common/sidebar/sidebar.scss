@@ -15,7 +15,7 @@ sidebar {
     display: block;
     text-align: center;
     &.active {
-      background-color: #FCB051;
+      background-color: $department-bg;
       border-radius: 5px;
     }
   }
