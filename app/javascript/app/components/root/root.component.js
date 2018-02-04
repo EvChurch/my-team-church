@@ -1,6 +1,4 @@
 class RootController {
-  constructor() {
-  }
 }
 
 let Root = {

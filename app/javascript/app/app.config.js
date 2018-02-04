@@ -19,7 +19,8 @@ export default function appConfig(
       if (!req.options.headers) {
         req.options.headers = {};
       }
-      // req.options.headers['authorization'] = `Bearer ${document.getElementById('access_token').getAttribute('value')}`
+      // req.options.headers['authorization'] =
+      //   `Bearer ${document.getElementById('access_token').getAttribute('value')}`
       next();
     }
   }]);
