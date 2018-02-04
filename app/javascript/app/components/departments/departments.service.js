@@ -4,7 +4,6 @@ class Departments {
   constructor(api) {
     this.api = api;
   }
-
   load(reset = false) {
     if (this.data && !reset) {
       Promise.resolve(this.data);
@@ -26,7 +25,6 @@ class Departments {
       return this.data;
     });
   }
-
   get(id) {
     return this.api.query(gql`
       query department($id: ID!){
@@ -51,7 +49,6 @@ class Departments {
       return data.department;
     });
   }
-
   getObjectives(id) {
     return this.api.query(gql`
       query department($id: ID!){
@@ -67,7 +64,6 @@ class Departments {
       return data.department.objectives;
     });
   }
-
   getPositions(id) {
     return this.api.query(gql`
       query department($id: ID!){
@@ -82,7 +78,6 @@ class Departments {
     `, { id: id }).then((data) => {
       return data.department.positions;
     });
-
   }
 }
 

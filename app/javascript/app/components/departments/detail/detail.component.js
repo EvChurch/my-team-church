@@ -6,7 +6,6 @@ class DetailController {
     this.$stateParams = $stateParams;
     this.departments = departments;
   }
-
   $onInit() {
     this.departments.get(this.$stateParams.id).then((department) => {
       this.department = department;

@@ -8,11 +8,11 @@ import appConfig from './app.config';
 import appRun from './app.run';
 
 angular.module('app', [
-    AngularApollo,
-    uiRouter,
-    Common,
-    Components
-  ])
+  AngularApollo,
+  uiRouter,
+  Common,
+  Components
+])
   .config(appConfig)
   .run(appRun)
   .component('app', AppComponent);

@@ -1,5 +1,5 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const { env } = require('../configuration.js')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const { env } = require('../configuration.js');
 
 module.exports = {
   test: /\.(scss|sass|css)$/i,
@@ -11,4 +11,4 @@ module.exports = {
       'resolve-url-loader', { loader: 'sass-loader', options: { sourceMap: true } }
     ]
   })
-}
+};

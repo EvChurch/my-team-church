@@ -10,14 +10,14 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require tether
-//= require turbolinks
-//= require bootstrap-sprockets
-//= require chosen-jquery
-//= require cocoon
-//= require_tree .
+// = require jquery
+// = require jquery_ujs
+// = require tether
+// = require turbolinks
+// = require bootstrap-sprockets
+// = require chosen-jquery
+// = require cocoon
+// = require_tree .
 
 $(document).on('turbolinks:load', function() {
   $('.chosen-select').chosen();

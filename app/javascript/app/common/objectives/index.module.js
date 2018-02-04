@@ -6,4 +6,4 @@ export default angular.module('app.common.objectives', [
   Component,
   Detail,
   Edit
-]).name
+]).name;

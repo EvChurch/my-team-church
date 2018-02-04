@@ -6,21 +6,15 @@ class UserController {
     this.$state = $state;
     this.user = user;
   }
-
   $onInit() {
     this.user.load(true).then((data) => {
       this.userCopy = angular.copy(data);
     });
   }
-
   save() {
     this.user.updateUser(this.userCopy).then((data) => {
       this.$state.go('points');
     });
-  }
-
-  workplace() {
-    this.$state.go('workplace');
   }
 }
 

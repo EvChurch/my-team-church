@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {
   $('.descendant').hide();
   $('.descendant-toggle').click(function() {
-    if($(this).hasClass('fa-plus-square-o')) {
+    if ($(this).hasClass('fa-plus-square-o')) {
       $('.parent-' + $(this).parents('tr').attr('id')).show();
     } else {
       $('.ancestor-' + $(this).parents('tr').attr('id')).hide();
@@ -10,7 +10,7 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.delete-department').click(function() {
-    var tr = $(this).parents('tr');
+    let tr = $(this).parents('tr');
     $.ajax({
       url: '/departments/' + tr.attr('id'),
       type: 'DELETE',
@@ -21,8 +21,8 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.new-unit-form').submit(function(event) {
-    var input = $(this).children('input[type="text"]');
-    if(input.val() !== '') {
+    let input = $(this).children('input[type="text"]');
+    if (input.val() !== '') {
       $.post({
         url: '/departments',
         data: $(this).serialize(),

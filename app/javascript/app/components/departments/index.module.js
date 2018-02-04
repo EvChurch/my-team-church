@@ -8,4 +8,4 @@ export default angular.module('app.components.departments', [
   Service,
   Detail,
   List
-]).name
+]).name;

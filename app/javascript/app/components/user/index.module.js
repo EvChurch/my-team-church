@@ -6,4 +6,4 @@ export default angular.module('app.components.user', [
   Component,
   Service,
   Item
-]).name
+]).name;
