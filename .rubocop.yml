@@ -5,8 +5,10 @@ AllCops:
   Exclude:
    - 'bin/*'
    - 'db/**/*'
+   - 'config/**/*'
    - 'vendor/bundle/**/*'
    - 'node_modules/**/*'
+   - 'Guardfile'
 Rails:
   Enabled: true
 Documentation:

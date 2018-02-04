@@ -5,26 +5,30 @@ class Person < ApplicationRecord
   has_many :access_permission_entities,
            class_name: 'AccessPermission::Entity',
            as: :resource,
-           dependent: :destroy
+           dependent: :destroy,
+           inverse_of: :resource
   has_many :access_permissions,
            through: :access_permission_entities
   has_many :demographic_entities,
            class_name: 'Demographic::Entity',
            as: :resource,
-           dependent: :destroy
+           dependent: :destroy,
+           inverse_of: :resource
   has_many :demographics,
            through: :demographic_entities
   has_many :location_entities,
            class_name: 'Location::Entity',
            as: :resource,
-           dependent: :destroy
+           dependent: :destroy,
+           inverse_of: :resource
   has_many :locations,
            through: :location_entities,
            as: :resource
   has_many :position_entities,
            class_name: 'Position::Entity',
            as: :resource,
-           dependent: :destroy
+           dependent: :destroy,
+           inverse_of: :resource
   has_many :positions,
            through: :position_entities
   has_many :departments,
@@ -32,7 +36,8 @@ class Person < ApplicationRecord
   has_many :service_type_entities,
            class_name: 'ServiceType::Entity',
            as: :resource,
-           dependent: :destroy
+           dependent: :destroy,
+           inverse_of: :resource
   has_many :service_types,
            through: :service_type_entities
   default_scope -> { order(:firstname, :lastname) }

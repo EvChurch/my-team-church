@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   enum role: %i[user vip admin]
   after_initialize :set_default_role, if: :new_record?
-  has_one :person, foreign_key: :username, primary_key: :username
+  has_one :person, foreign_key: :username, primary_key: :username, dependent: :nullify
   has_many :options, dependent: :destroy
   validates :email, uniqueness: { scope: :subdomain }
 

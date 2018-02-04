@@ -10,8 +10,7 @@ module Omniauth
           'name' => 'mockuser'
         },
         'credentials' => {
-          'token' => 'mock_token',
-          'secret' => 'mock_secret'
+          'token' => 'mock_token', 'secret' => 'mock_secret'
         }
       }
     end

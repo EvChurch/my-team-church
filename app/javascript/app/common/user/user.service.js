@@ -32,17 +32,7 @@ class User {
             user {
               first_name
               last_name
-              avatar_url
-              point {
-                address_line_1
-                address_line_2
-                suburb
-                city
-                country
-                zip
-                latitude
-                longitude
-              }
+              email
             }
           }
         }
@@ -50,8 +40,6 @@ class User {
       this.data = data.user;
       return this.data;
     });
-  }
-  logout() {
   }
 }
 

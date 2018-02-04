@@ -31,7 +31,7 @@ class User::Oauth < User
     assign_attributes(
       username: auth[:info][:username],
       expires: auth[:credentials][:expires],
-      expires_at: DateTime.strptime(auth[:credentials][:expires_at].to_s, '%s'),
+      expires_at: Time.strptime(auth[:credentials][:expires_at].to_s, '%s'),
       refresh_token: auth[:credentials][:refresh_token],
       access_token: auth[:credentials][:token]
     )

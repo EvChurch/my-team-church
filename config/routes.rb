@@ -5,7 +5,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   devise_for :users
-  
+
   constraints subdomain: 'api' do
     resources :queries, via: %i[post options]
   end

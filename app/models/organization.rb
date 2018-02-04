@@ -9,7 +9,7 @@ class Organization < ApplicationRecord
   has_many :people, dependent: :destroy
   has_many :positions, dependent: :destroy
   has_many :service_types, dependent: :destroy
-  has_many :objectives, as: :resource, dependent: :destroy
+  has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
 
   accepts_nested_attributes_for :integrations
   after_commit :run_integration_sync_jobs, on: :create
