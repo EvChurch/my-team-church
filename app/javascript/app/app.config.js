@@ -11,7 +11,7 @@ export default function appConfig(
   }).hashPrefix('!');
 
   const networkInterface = createNetworkInterface({
-    uri: 'http://localhost:3000/queries'
+    uri: 'http://api.lvh.me:3000/queries'
   });
 
   networkInterface.use([{
@@ -19,7 +19,7 @@ export default function appConfig(
       if (!req.options.headers) {
         req.options.headers = {};
       }
-      req.options.headers['authorization'] = `Bearer ${document.getElementById('access_token').getAttribute('value')}`
+      // req.options.headers['authorization'] = `Bearer ${document.getElementById('access_token').getAttribute('value')}`
       next();
     }
   }]);

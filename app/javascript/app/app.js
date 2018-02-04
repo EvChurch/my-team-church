@@ -7,7 +7,7 @@ import AngularApollo from 'angular1-apollo';
 import appConfig from './app.config';
 import appRun from './app.run';
 
-angular.module('admin', [
+angular.module('app', [
     AngularApollo,
     uiRouter,
     Common,

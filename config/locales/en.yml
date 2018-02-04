@@ -25,18 +25,3 @@ en:
       base: "%{value} • My Place"
       visitors:
         index: "My Place • A LDHR Platform for your church"
-      admin:
-        departments:
-          index: "Departments"
-          show: "%{name}"
-          sub_departments:
-            show: "%{name}"
-            positions:
-              show: "%{name}"
-        objectives:
-          new: 'New Objective'
-      devise:
-        sessions:
-          new: 'Sign In'
-        registrations:
-          new: 'Sign Up'

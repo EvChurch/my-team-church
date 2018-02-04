@@ -5,13 +5,11 @@ class QueriesController < ApplicationController
   before_action :authenticate_with_http_token
 
   def create
-    load_organization
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
     context = {
-      user: current_user,
-      organization: @organization
+      user: current_user
     }
     result = MyPlaceSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
@@ -26,21 +24,6 @@ class QueriesController < ApplicationController
     return unless token
     user = User.find_by(token: token)
     sign_in user if user
-  end
-
-  def load_organization
-    @organization ||= organization_scope.find_by(id: session[:organization_id]) if session.key?(:organization_id)
-    @organization ||= organization_scope.try(:first)
-    session[:organization_id] = @organization.try(:id)
-    authorize @organization, :update? unless @organization.nil?
-  end
-
-  def validate_organization
-    redirect_to after_signup_index_path unless @organization
-  end
-
-  def organization_scope
-    policy_scope(::Organization)
   end
 
   # Handle form data, JSON body, or a blank value

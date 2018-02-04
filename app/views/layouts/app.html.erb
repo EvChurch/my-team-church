@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="admin">
+<html ng-app="app">
   <head>
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,8 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= hidden_field_tag :access_token, current_user.token %>
     <app></app>
-    <%= javascript_pack_tag 'admin' %>
-    <%= stylesheet_pack_tag 'admin-styles' %>
+    <%= javascript_pack_tag 'app' %>
+    <%= stylesheet_pack_tag 'app-styles' %>
   </body>
 </html>
