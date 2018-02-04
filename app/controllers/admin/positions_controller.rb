@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::PositionsController < DepartmentsController
+class Admin::PositionsController < Admin::DepartmentsController
   decorates_assigned :position
 
   def show
