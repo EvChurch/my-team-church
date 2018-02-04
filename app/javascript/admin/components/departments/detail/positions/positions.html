@@ -1,17 +1,28 @@
 <div class="row">
   <div class="col-md-6">
-    <h1>
-      Positions
-      <div class="pull-right">
-        <a class="btn btn-primary">Add Positions</a>
-      </div>
-    </h1>
-    <div ng-repeat="position in $ctrl.positions track by position.id">
-      {{position.name}}
+    <div class="text-right pb-2">
+      <a href="#" class="btn btn-primary">Add Position</a>
     </div>
-    <div ng-if="$ctrl.positions && $ctrl.positions.length == 0">
-      <h3>No positions defined yet.</h3>
-      It's time to define your first position!
+    <table class="table" ng-if="$ctrl.positions && $ctrl.positions.length > 0">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Position Name</th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr ng-repeat="position in $ctrl.positions track by position.id">
+            <td>{{$index + 1}}</td>
+            <td>{{position.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    <div class="blankslate blankslate-spacious" ng-if="$ctrl.positions && $ctrl.positions.length == 0">
+        <i class="far fa-user blankslate-icon"></i>
+        <h3>No positions defined yet.</h3>
+        <p>It's time to define your first position!</p>
+        <a href="#" class="btn btn-primary">Add Position</a>
+      </div>
     </div>
   </div>
   <div class="col-md-6">
