@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::AfterSignup::UsersController < AfterSignupController
+class Admin::AfterSignup::UsersController < Admin::AfterSignupController
   decorates_assigned :user
 
   def edit

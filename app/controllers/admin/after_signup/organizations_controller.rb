@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::AfterSignup::OrganizationsController < AfterSignupController
+class Admin::AfterSignup::OrganizationsController < Admin::AfterSignupController
   def new
     build_organization
   end

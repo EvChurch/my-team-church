@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class People::PositionEntities::ObjectivesController < PositionEntitiesController
+class People::PositionEntities::ObjectivesController < People::PositionEntitiesController
   before_action :load_position_entity
   decorates_assigned :objective
 

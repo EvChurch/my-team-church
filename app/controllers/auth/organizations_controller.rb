@@ -23,7 +23,7 @@ class Auth::OrganizationsController < AuthController
 
   def organization_scope
     Organization.from_url(CGI.parse(session[:redirect_after_configure])['redirect_uri'][0])
-  rescue
+  rescue StandardError
     raise ActiveRecord::RecordNotFound
   end
 
