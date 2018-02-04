@@ -1,28 +1,26 @@
 # frozen_string_literal: true
 
-module Admin
-  class PositionsController < DepartmentsController
-    decorates_assigned :position
+class Admin::PositionsController < DepartmentsController
+  decorates_assigned :position
 
-    def show
-      load_position
-      page_meta[:name] = position.name
-      authorize @position
-    end
+  def show
+    load_position
+    page_meta[:name] = position.name
+    authorize @position
+  end
 
-    protected
+  protected
 
-    def load_position
-      @position ||= position_scope.find_by!(id: params[:position_id] || params[:id])
-    end
+  def load_position
+    @position ||= position_scope.find_by!(id: params[:position_id] || params[:id])
+  end
 
-    def position_scope
-      policy_scope(::Position)
-    end
+  def position_scope
+    policy_scope(::Position)
+  end
 
-    def setup_breadcrumbs
-      super
-      add_breadcrumb position.name, position_path(position)
-    end
+  def setup_breadcrumbs
+    super
+    add_breadcrumb position.name, position_path(position)
   end
 end
