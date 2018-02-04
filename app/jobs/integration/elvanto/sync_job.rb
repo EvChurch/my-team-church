@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/ClassLength, Metrics/BlockLength
+
 require 'elvanto'
 
 class Integration::Elvanto::SyncJob < ApplicationJob
@@ -144,3 +146,5 @@ class Integration::Elvanto::SyncJob < ApplicationJob
     end
   end
 end
+
+# rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/ClassLength, Metrics/BlockLength

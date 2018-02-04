@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
+
 Types::MutationType = GraphQL::ObjectType.define do
   name 'Mutation'
 
@@ -57,3 +59,5 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 end
+
+# rubocop:enable Metrics/BlockLength

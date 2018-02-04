@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
+
 Types::QueryType = GraphQL::ObjectType.define do
   name 'Query'
 
@@ -64,3 +66,5 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 end
+
+# rubocop:enable Metrics/BlockLength
