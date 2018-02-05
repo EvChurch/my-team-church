@@ -13,7 +13,7 @@ export default function appConfig(
   }).hashPrefix('!');
 
   const networkInterface = createNetworkInterface({
-    uri: 'http://api.lvh.me:3000/queries'
+    uri: $window.document.getElementById('queries_url').getAttribute('value')
   });
 
   networkInterface.use([{
