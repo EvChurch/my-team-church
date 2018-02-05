@@ -5,7 +5,11 @@ export default class Routes {
       abstract: true,
       component: 'root',
       resolve: {
-        0: /* @ngInject*/ (user) => user.load()
+        0: /* @ngInject*/ ($state, user) => {
+          return user.load().catch(() => {
+            $state.go('signIn')
+          })
+        }
       }
     }).state({
       name: 'home',
@@ -47,6 +51,22 @@ export default class Routes {
       resolve: {
         positions: /* @ngInject*/ ($stateParams, departments) => departments.getPositions($stateParams.id)
       }
+    }).state({
+      name: 'auth',
+      abstract: true,
+      component: 'auth'
+    }).state({
+      name: 'signIn',
+      title: 'Sign In',
+      url: '/sign_in',
+      component: 'authSignIn',
+      parent: 'auth'
+    }).state({
+      name: 'signUp',
+      title: 'Sign Up',
+      url: '/sign_up',
+      component: 'authSignUp',
+      parent: 'auth'
     });
   }
 }

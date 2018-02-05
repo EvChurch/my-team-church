@@ -58,6 +58,22 @@ Types::MutationType = GraphQL::ObjectType.define do
       ctx[:organization].positions.find_by!(id: args[:id]).destroy
     }
   end
+
+  field :authenticateUser, Types::UserType do
+    argument :user, !Types::UserInputType
+    resolve lambda { |_obj, args, _ctx|
+      user = User.find_for_authentication(email: args[:user][:email])
+      return unless user
+      user.valid_password?(args[:user][:password]) ? user : nil
+    }
+  end
+
+  field :createUser, Types::UserType do
+    argument :user, !Types::UserInputType
+    resolve lambda { |_obj, args, _ctx|
+      User.create!(args[:user].to_h)
+    }
+  end
 end
 
 # rubocop:enable Metrics/BlockLength

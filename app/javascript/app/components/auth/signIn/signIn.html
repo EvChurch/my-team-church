@@ -1,0 +1,16 @@
+<form name="signIn" ng-submit="$ctrl.submit()">
+  <h3>Sign In</h3>
+
+  <div class="form-group">
+    <input class="form-control" autofocus="autofocus" type="email" placeholder="Email" ng-model="$ctrl.email" required>
+  </div>
+
+  <div class="form-group">
+    <input class="form-control" placeholder="Password" type="password" ng-model="$ctrl.password" required>
+  </div>
+
+  <input type="submit" value="Sign In" class="btn btn-block btn-primary btn-xl" ng-disabled="signIn.$invalid || $ctrl.loading">
+</form>
+<div class="text-center py-3">
+  No Account? <a ui-sref="signUp">Sign Up</a>
+</div>

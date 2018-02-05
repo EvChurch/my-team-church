@@ -3,8 +3,10 @@ import ApolloClient, { createNetworkInterface } from 'apollo-client';
 
 /* @ngInject*/
 export default function appConfig(
-  apolloProvider, $stateProvider, $locationProvider
+  apolloProvider, $stateProvider, $locationProvider, $windowProvider
 ) {
+  let $window = $windowProvider.$get();
+
   $locationProvider.html5Mode({
     enabled: true,
     rewriteLinks: false
@@ -19,8 +21,8 @@ export default function appConfig(
       if (!req.options.headers) {
         req.options.headers = {};
       }
-      // req.options.headers['authorization'] =
-      //   `Bearer ${document.getElementById('access_token').getAttribute('value')}`
+      req.options.headers['authorization'] =
+        $window.localStorage.getItem('token');
       next();
     }
   }]);
