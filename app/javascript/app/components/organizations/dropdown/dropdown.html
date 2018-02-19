@@ -1,8 +1,8 @@
 <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <a class="nav-link dropdown-toggle" href="#" ng-click="$ctrl.toggle()">
     {{$ctrl.organizations.primary.name}}
   </a>
-  <div class="dropdown-menu">
+  <div class="dropdown-menu" ng-class="{ 'show' : $ctrl.show }">
     <a class="dropdown-item" ng-repeat="organization in $ctrl.organizations.data track by organization.id">
       {{organization.name}}
     </a>
