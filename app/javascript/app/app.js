@@ -6,6 +6,7 @@ import AppComponent from './app.component';
 import AngularApollo from 'angular1-apollo';
 import appConfig from './app.config';
 import appRun from './app.run';
+import 'countries-and-timezones';
 
 angular.module('app', [
   AngularApollo,

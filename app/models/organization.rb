@@ -15,12 +15,7 @@ class Organization < ApplicationRecord
   after_commit :run_integration_sync_jobs, on: :create
 
   resourcify
-  validates :name, :subdomain, presence: true
-  validates :subdomain, uniqueness: true
-
-  def self.from_url(url)
-    find_by!(subdomain: url_to_subdomain(url))
-  end
+  validates :name, :address_1, :city, :state, :zip, :country, :time_zone, presence: true
 
   protected
 

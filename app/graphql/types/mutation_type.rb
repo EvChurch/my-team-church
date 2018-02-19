@@ -74,6 +74,16 @@ Types::MutationType = GraphQL::ObjectType.define do
       User.create!(args[:user].to_h)
     }
   end
+
+  field :createOrganization, Types::OrganizationType do
+    argument :organization, !Types::OrganizationInputType
+    resolve lambda { |_obj, args, ctx|
+      organization = Organization.create!(args[:organization].to_h)
+      ctx[:user].add_role :member, organization
+      ctx[:user].add_role :admin, organization
+      organization
+    }
+  end
 end
 
 # rubocop:enable Metrics/BlockLength

@@ -7,8 +7,17 @@ export default class Routes {
       resolve: {
         0: /* @ngInject*/ ($state, user) => {
           return user.load().catch(() => {
-            $state.go('signIn')
-          })
+            $state.go('signIn');
+          });
+        },
+        1: /* @ngInject*/ ($state, organizations) => {
+          organizations.load().then((data) => {
+            if (data.length === 0) {
+              $state.go('organizations');
+            }
+          }).catch(() => {
+            $state.go('organizations');
+          });
         }
       }
     }).state({
@@ -67,6 +76,22 @@ export default class Routes {
       url: '/sign_up',
       component: 'authSignUp',
       parent: 'auth'
+    }).state({
+      name: 'organizations',
+      component: 'organizations',
+      url: '/organizations'
+    }).state({
+      name: 'organizations.create',
+      component: 'organizationsCreate',
+      url: '/create'
+    }).state({
+      name: 'organizations.edit',
+      component: 'organizationsEdit',
+      url: '/edit'
+    }).state({
+      name: 'organizations.connect',
+      component: 'organizationsConnect',
+      url: '/connect'
     });
   }
 }

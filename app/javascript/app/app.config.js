@@ -21,8 +21,8 @@ export default function appConfig(
       if (!req.options.headers) {
         req.options.headers = {};
       }
-      req.options.headers['authorization'] =
-        $window.localStorage.getItem('token');
+      req.options.headers['authorization']
+        = $window.localStorage.getItem('token');
       next();
     }
   }]);

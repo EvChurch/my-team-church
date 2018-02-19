@@ -1,0 +1,13 @@
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{$ctrl.organizations.primary.name}}
+  </a>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" ng-repeat="organization in $ctrl.organizations.data track by organization.id">
+      {{organization.name}}
+    </a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Organization Settings</a>
+    <a class="dropdown-item" href="#">Add Organization</a>
+  </div>
+</li>

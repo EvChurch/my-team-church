@@ -9,7 +9,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     type !types[Types::OrganizationType]
     description 'List of Organizations'
     resolve lambda { |_obj, _args, ctx|
-      Organization.with_role(:admin, ctx[:user])
+      Organization.with_role(:member, ctx[:user])
     }
   end
 

@@ -9,7 +9,8 @@ class QueriesController < ApplicationController
     query = params[:query]
     operation_name = params[:operationName]
     context = {
-      user: current_user
+      user: current_user,
+      organization: Organization.with_role(:member, current_user).find_by(id: variables[:organization_id])
     }
     result = MyPlaceSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result

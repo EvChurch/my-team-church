@@ -9,6 +9,7 @@ class Api {
     this.apollo = apollo;
   }
   query(gql, variables = {}) {
+    variables['organization_id'] = this.organization_id;
     return this.apollo.query({
       query: gql,
       variables: variables,
@@ -19,6 +20,7 @@ class Api {
     });
   }
   mutate(gql, variables) {
+    variables['organization_id'] = this.organization_id;
     return this.apollo.mutate({
       mutation: gql,
       variables: variables
