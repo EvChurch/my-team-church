@@ -2,12 +2,13 @@
   <a class="nav-link dropdown-toggle" href="#" ng-click="$ctrl.toggle()">
     {{$ctrl.organizations.primary.name}}
   </a>
-  <div class="dropdown-menu" ng-class="{ 'show' : $ctrl.show }">
+  <div class="dropdown-menu dropdown-menu-right" ng-class="{ 'show' : $ctrl.show }">
     <a class="dropdown-item" ng-repeat="organization in $ctrl.organizations.data track by organization.id">
+      <i class="fas fa-star text-warning" ng-if="organization.id === $ctrl.organizations.primary.id"></i>
       {{organization.name}}
     </a>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Organization Settings</a>
-    <a class="dropdown-item" href="#">Add Organization</a>
+    <a class="dropdown-item" ui-sref="organizations.edit">Organization Settings</a>
+    <a class="dropdown-item" ui-sref="organizations">Add Organization</a>
   </div>
 </li>

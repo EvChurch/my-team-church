@@ -87,7 +87,11 @@ export default class Routes {
     }).state({
       name: 'organizations.edit',
       component: 'organizationsEdit',
-      url: '/edit'
+      url: '/edit',
+      resolve: {
+        0: /* @ngInject*/ (organizations) => organizations.load(),
+        organization: /* @ngInject*/ (api, organizations) => organizations.get(api.organization_id)
+      }
     }).state({
       name: 'organizations.connect',
       component: 'organizationsConnect',

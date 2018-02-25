@@ -23,6 +23,26 @@ class Organizations {
       return this.data;
     });
   }
+  get(id) {
+    return this.api.query(gql`
+      query organization($id: ID!){
+        organization(id: $id) {
+          id
+          name
+          address_1
+          address_2
+          website_url
+          city
+          state
+          zip
+          country
+          time_zone
+        }
+      }
+    `, { id: id }).then((data) => {
+      return data.organization;
+    });
+  }
   create(organization) {
     return this.api.mutate(gql`
       mutation createOrganization($organization: OrganizationInputType!) {

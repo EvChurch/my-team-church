@@ -5,7 +5,9 @@ class EditController {
 }
 
 let Edit = {
-  bindings: {},
+  bindings: {
+    organization: '<'
+  },
   template: require('./edit.html'),
   controller: EditController
 };

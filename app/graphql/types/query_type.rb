@@ -13,6 +13,15 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :organization do
+    type Types::OrganizationType
+    argument :id, !types.ID
+    description 'Find a Organization by ID'
+    resolve lambda { |_obj, args, ctx|
+      Organization.with_role(:member, ctx[:user]).find_by(id: args['id'])
+    }
+  end
+
   field :user do
     type Types::UserType
     description 'Get Current User'

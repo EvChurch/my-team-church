@@ -1,0 +1,86 @@
+<form name="organizationsEditForm" ng-submit="$ctrl.submit()">
+  <h2>Organization Settings</h2>
+  <div class="form-group">
+    <label>
+      Organization Name
+      <span class="text-danger">*</span>
+    </label>
+    <input class="form-control" name="name" ng-model="$ctrl.organization.name" required>
+  </div>
+  <p class="text-muted">
+    The following information will help us automatically build your email footers
+    to comply with the
+    <a target="_blank" href="https://www.ftc.gov/tips-advice/business-center/guidance/can-spam-act-compliance-guide-business">
+      CAN-SPAM Act
+    </a>
+    and International spam law.
+  </p>
+  <div class="form-group">
+    <label>Website URL</label>
+    <input class="form-control" name="website_url" ng-model="$ctrl.organization.website_url" >
+  </div>
+  <div class="form-group">
+    <label>
+      Address 1
+      <span class="text-danger">*</span>
+    </label>
+    <input class="form-control" name="address_1" ng-model="$ctrl.organization.address_1" required>
+  </div>
+  <div class="form-group">
+    <label>Address 2</label>
+    <input class="form-control" name="address_2" ng-model="$ctrl.organization.address_2" >
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>
+          City
+          <span class="text-danger">*</span>
+        </label>
+        <input class="form-control" name="city" ng-model="$ctrl.organization.city" required>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>
+          State / Province / Region
+          <span class="text-danger">*</span>
+        </label>
+        <input class="form-control" name="state" ng-model="$ctrl.organization.state" required>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>
+          Zip / Postal Code
+          <span class="text-danger">*</span>
+        </label>
+        <input class="form-control" name="zip" ng-model="$ctrl.organization.zip" required>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>
+          Country
+          <span class="text-danger">*</span>
+        </label>
+        <select class="form-control" name="country" ng-model="$ctrl.organization.country" ng-options="obj.id as obj.name for obj in $ctrl.countriesAndTimezones.countries()" required></select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>
+          Timezone
+          <span class="text-danger">*</span>
+        </label>
+        <select class="form-control" name="time_zone" ng-model="$ctrl.organization.time_zone" ng-options="obj.name as obj.name for obj in $ctrl.countriesAndTimezones.timezones($ctrl.organization.country)" required></select>
+      </div>
+    </div>
+  </div>
+  <div class="text-right">
+    <a ui-sref="organizations" class="btn btn-link">Cancel</a>
+    <input type="submit" class="btn btn-primary" value="Update" ng-disabled="organizationsEditForm.$invalid && !$ctrl.loading">
+  </div>
+</form>
