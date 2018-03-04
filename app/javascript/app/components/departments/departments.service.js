@@ -1,8 +1,9 @@
 import gql from 'graphql-tag';
 
 class Departments {
-  constructor(api) {
+  constructor(api, modal) {
     this.api = api;
+    this.modal = modal;
   }
   load(reset = false) {
     if (this.data && !reset) {
@@ -77,6 +78,12 @@ class Departments {
       }
     `, { id: id }).then((data) => {
       return data.department.positions;
+    });
+  }
+  openNewDepartmentModal() {
+    return this.modal.open({
+      template: require('./new/new.html'),
+      controller: 'departmentsNewModalController'
     });
   }
 }

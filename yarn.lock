@@ -93,6 +93,10 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular-animate@^1.6.9:
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.6.9.tgz#a0f926c1ba3190bd8929ef966a7fa79760682622"
+
 angular-gettext-tools@^2.3.2:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/angular-gettext-tools/-/angular-gettext-tools-2.3.6.tgz#beceb160315baf72d96bf723f21cf1c2841a5225"
@@ -108,6 +112,10 @@ angular-gettext-tools@^2.3.2:
 angular-mocks@1.6.5:
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/angular-mocks/-/angular-mocks-1.6.5.tgz#c62f8014cc6d3ed3fd1b383a634ca0009af3efee"
+
+angular-strap@^2.3.12:
+  version "2.3.12"
+  resolved "https://registry.yarnpkg.com/angular-strap/-/angular-strap-2.3.12.tgz#fae21655cd77079671bf918ab7ed6227783062fa"
 
 angular-ui-router@^1.0.0-beta.1:
   version "1.0.3"

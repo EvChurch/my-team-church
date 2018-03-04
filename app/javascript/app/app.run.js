@@ -7,7 +7,7 @@ export default function appRun(
   });
 }
 
-function changePageTitle(transition, $rootScope, $window) {
-    const newState = transition.$to();
-    $rootScope.pageTitle = newState.title;
+function changePageTitle(transition, $rootScope) {
+  const newState = transition.$to();
+  $rootScope.pageTitle = newState.title;
 }

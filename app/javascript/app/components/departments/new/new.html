@@ -1,0 +1,13 @@
+<modal title="New Department" save="$ctrl.save()" cancel="$hide()">
+  <div class="row">
+    <div class="col-sm-12">
+      <label><translate>Name</translate> <span class="text-danger">*</span></label>
+      <input class="form-control"
+             type="text"
+             ng-model="$ctrl.department.name"
+             placeholder="Name"
+             autofocus
+             required>
+    </div>
+  </div>
+</modal>
