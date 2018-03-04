@@ -1,5 +1,10 @@
 <h1 class="panel-title">
   {{$ctrl.department.name}}
+  <div class="float-right">
+    <a ng-click="$ctrl.departments.openEditDepartmentModal($ctrl.department)">
+      <i class="far fa-edit"></i>
+    </a>
+  </div>
 </h1>
 <div class="content">
   <nav class="nav">

@@ -24,7 +24,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
-  field :destroyDepartment, Types::DepartmentType do
+  field :deleteDepartment, Types::DepartmentType do
     description 'Destroy Department.'
     argument :id, !types.ID
     resolve lambda { |_obj, args, ctx|
@@ -51,7 +51,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
-  field :destroyPosition, Types::PositionType do
+  field :deletePosition, Types::PositionType do
     description 'Destroy Position.'
     argument :id, !types.ID
     resolve lambda { |_obj, args, ctx|

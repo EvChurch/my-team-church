@@ -5,14 +5,12 @@ class DepartmentsNewModalController {
     this.$scope = $scope;
     this.$state = $state;
     this.departments = departments;
-    this.department = { name: '' };
+    this.department = { name: '', description: '', parent_id: null };
   }
   save() {
-    return this.departments.create(this.deparment).then((deparment) => {
-      if (deparment) {
-        this.$state.go('departments.show', { departmentId: deparment.id });
-        this.$scope.$hide();
-      }
+    return this.departments.create(this.department).then((department) => {
+      this.$state.go('departments.detail', { id: department.id });
+      this.$scope.$hide();
     });
   }
 }

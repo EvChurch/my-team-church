@@ -50,6 +50,50 @@ class Departments {
       return data.department;
     });
   }
+  create(department) {
+    return this.api.mutate(gql`
+      mutation createDepartment($department: DepartmentInputType!) {
+        createDepartment(
+          department: $department
+        ) {
+          id
+          name
+          description
+        }
+      }
+    `, { department: department }).then((data) => {
+      return data.createDepartment;
+    });
+  }
+  update(id, department) {
+    return this.api.mutate(gql`
+      mutation updateDepartment($id: ID!, $department: DepartmentInputType!) {
+        updateDepartment(
+          id: $id,
+          department: $department
+        ) {
+          id
+          name
+          description
+        }
+      }
+    `, { id: id, department: department }).then((data) => {
+      return data.updateDepartment;
+    });
+  }
+  delete(id) {
+    return this.api.mutate(gql`
+      mutation deleteDepartment($id: ID!) {
+        deleteDepartment(
+          id: $id,
+        ) {
+          id
+        }
+      }
+    `, { id: id }).then((data) => {
+      return data.deleteDepartment;
+    });
+  }
   getObjectives(id) {
     return this.api.query(gql`
       query department($id: ID!){
@@ -84,6 +128,15 @@ class Departments {
     return this.modal.open({
       template: require('./new/new.html'),
       controller: 'departmentsNewModalController'
+    });
+  }
+  openEditDepartmentModal(department) {
+    return this.modal.open({
+      template: require('./edit/edit.html'),
+      controller: 'departmentsEditModalController',
+      locals: {
+        department: department
+      }
     });
   }
 }

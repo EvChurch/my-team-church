@@ -4,7 +4,7 @@ Types::DepartmentInputType = GraphQL::InputObjectType.define do
   name 'DepartmentInputType'
   description 'Properties for creating a Department'
 
-  argument :name, types.String do
+  argument :name, !types.String do
     description 'Name of the department.'
   end
 
