@@ -4,3 +4,12 @@
 body {
   font-family: 'Lato', sans-serif;
 }
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    &.btn-primary {
+      cursor: pointer;
+      color: white !important;
+    }
+}

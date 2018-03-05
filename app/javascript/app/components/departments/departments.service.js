@@ -1,7 +1,10 @@
 import gql from 'graphql-tag';
 
 class Departments {
-  constructor(api, modal) {
+  constructor($rootScope,
+    api, modal
+  ) {
+    this.$rootScope = $rootScope;
     this.api = api;
     this.modal = modal;
   }
@@ -62,7 +65,9 @@ class Departments {
         }
       }
     `, { department: department }).then((data) => {
-      return data.createDepartment;
+      const department = data.createDepartment;
+      this.$rootScope.$emit('departmentCreate', department);
+      return department;
     });
   }
   update(id, department) {
@@ -78,7 +83,9 @@ class Departments {
         }
       }
     `, { id: id, department: department }).then((data) => {
-      return data.updateDepartment;
+      const department = data.updateDepartment;
+      this.$rootScope.$emit('departmentUpdate', department);
+      return department;
     });
   }
   delete(id) {
@@ -91,7 +98,9 @@ class Departments {
         }
       }
     `, { id: id }).then((data) => {
-      return data.deleteDepartment;
+      const department = data.deleteDepartment;
+      this.$rootScope.$emit('departmentDelete', department);
+      return department;
     });
   }
   getObjectives(id) {

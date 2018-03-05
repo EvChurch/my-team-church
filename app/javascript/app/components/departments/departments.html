@@ -12,6 +12,15 @@
       </div>
     </h1>
     <departments-list level="0" list="$ctrl.departments.data"></departments-list>
+    <div ng-if="$ctrl.departments.data.length == 0" class="text-center p-3">
+      <strong>No Departments</strong>
+      <p>
+        Get started by creating a department.
+      </p>
+      <a class="btn btn-primary" ng-click="$ctrl.departments.openNewDepartmentModal()">
+        Create Department
+      </a>
+    </div>
   </div>
   <div class="content">
     <div ui-view>
