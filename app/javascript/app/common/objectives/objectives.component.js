@@ -1,10 +1,20 @@
 class ObjectivesController {
+  constructor(
+    objectives
+  ) {
+    this.objectives = objectives;
+  }
+  $onInit() {
+    this.objectives.load(this.resourceId, this.resourceType).then((data) => {
+      this.list = data;
+    });
+  }
 }
 
 let Objectives = {
   bindings: {
-    collection: '<',
-    service: '<'
+    resourceType: '<',
+    resourceId: '<'
   },
   template: require('./objectives.html'),
   controller: ObjectivesController

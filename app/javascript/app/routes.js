@@ -50,8 +50,8 @@ export default class Routes {
       url: '/objectives',
       component: 'objectives',
       resolve: {
-        service: /* @ngInject*/ (departments) => departments,
-        collection: /* @ngInject*/ ($stateParams, departments) => departments.getObjectives($stateParams.id)
+        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.id,
+        resourceType: () => 'departments'
       }
     }).state({
       name: 'departments.detail.positions',

@@ -1,9 +1,11 @@
-import Component from './departments.component';
-import Detail from './detail/detail.component';
-import Edit from './edit/edit.component';
+import Component from './objectives.component';
+import Service from './objectives.service';
+import Edit from './edit/edit.controller';
+import New from './new/new.controller';
 
 export default angular.module('app.common.objectives', [
   Component,
-  Detail,
-  Edit
+  Service,
+  Edit,
+  New
 ]).name;

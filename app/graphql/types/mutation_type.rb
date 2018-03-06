@@ -7,7 +7,7 @@ Types::MutationType = GraphQL::ObjectType.define do
 
   field :createDepartment, Types::DepartmentType do
     description 'Create Department.'
-    argument :department, Types::DepartmentInputType
+    argument :department, !Types::DepartmentInputType
     resolve lambda { |_obj, args, ctx|
       ctx[:organization].departments.create!(args[:department].to_h)
     }
@@ -18,7 +18,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     argument :id, !types.ID
     argument :department, !Types::DepartmentInputType
     resolve lambda { |_obj, args, ctx|
-      department = ctx[:organization].departments.find_by!(id: args[:id])
+      department = ctx[:organization].departments.find(args[:id])
       department.update_attributes!(args[:department].to_h)
       department
     }
@@ -28,7 +28,47 @@ Types::MutationType = GraphQL::ObjectType.define do
     description 'Destroy Department.'
     argument :id, !types.ID
     resolve lambda { |_obj, args, ctx|
-      ctx[:organization].departments.find_by!(id: args[:id]).destroy
+      ctx[:organization].departments.find(args[:id]).destroy
+    }
+  end
+
+  field :createObjective, Types::ObjectiveType do
+    description 'Create Objective.'
+    argument :resource_id, !types.ID
+    argument :resource_type, !types.String
+    argument :objective, !Types::ObjectiveInputType
+    resolve lambda { |_obj, args, ctx|
+      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+                           .objectives
+                           .create!(args[:objective].to_h)
+    }
+  end
+
+  field :updateObjective, Types::ObjectiveType do
+    description 'Update Objective.'
+    argument :resource_id, !types.ID
+    argument :resource_type, !types.String
+    argument :id, !types.ID
+    argument :objective, !Types::ObjectiveInputType
+    resolve lambda { |_obj, args, ctx|
+      objective = ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+                                       .objectives
+                                       .find(args[:id])
+      objective.update_attributes!(args[:objectives].to_h)
+      objective
+    }
+  end
+
+  field :deleteObjective, Types::ObjectiveType do
+    description 'Destroy Objective.'
+    argument :resource_id, !types.ID
+    argument :resource_type, !types.String
+    argument :id, !types.ID
+    resolve lambda { |_obj, args, ctx|
+      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+                           .objectives
+                           .find(args[:id])
+                           .destroy!
     }
   end
 
@@ -45,7 +85,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     argument :id, !types.ID
     argument :position, !Types::PositionInputType
     resolve lambda { |_obj, args, ctx|
-      position = ctx[:organization].positions.find_by!(id: args[:id])
+      position = ctx[:organization].positions.find(args[:id])
       position.update_attributes!(args[:position].to_h)
       position
     }
@@ -55,7 +95,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     description 'Destroy Position.'
     argument :id, !types.ID
     resolve lambda { |_obj, args, ctx|
-      ctx[:organization].positions.find_by!(id: args[:id]).destroy
+      ctx[:organization].positions.find(args[:id]).destroy
     }
   end
 

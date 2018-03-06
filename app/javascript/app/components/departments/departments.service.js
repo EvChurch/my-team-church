@@ -103,21 +103,6 @@ class Departments {
       return department;
     });
   }
-  getObjectives(id) {
-    return this.api.query(gql`
-      query department($id: ID!){
-        department(id: $id) {
-          id
-          objectives {
-            id
-            name
-          }
-        }
-      }
-    `, { id: id }).then((data) => {
-      return data.department.objectives;
-    });
-  }
   getPositions(id) {
     return this.api.query(gql`
       query department($id: ID!){

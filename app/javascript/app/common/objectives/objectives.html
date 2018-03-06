@@ -1,17 +1,16 @@
-{{$ctrl.objectives}}
 <div class="row">
   <div class="col-md-6">
     <div class="text-right pb-2">
-      <a href="#" class="btn btn-primary">Add Objective</a>
+      <a ng-click="$ctrl.objectives.openNewObjectiveModal($ctrl.resourceId, $ctrl.resourceType)" class="btn btn-primary">Add Objective</a>
     </div>
-    <div ng-repeat="objective in $ctrl.collection">
+    <div ng-repeat="objective in $ctrl.list">
       {{objective.name}}
     </div>
-    <div class="blankslate blankslate-spacious" ng-if="$ctrl.collection && $ctrl.collection.length == 0">
+    <div class="blankslate blankslate-spacious" ng-if="$ctrl.list.length == 0">
         <i class="fas fa-bullseye blankslate-icon"></i>
         <h3>No objectives defined yet.</h3>
         <p>It's time to define your first objective!</p>
-        <a href="#" class="btn btn-primary">Add Objective</a>
+        <a ng-click="$ctrl.objectives.openNewObjectiveModal($ctrl.resourceId, $ctrl.resourceType)" class="btn btn-primary">Add Objective</a>
       </div>
     </div>
   </div>
