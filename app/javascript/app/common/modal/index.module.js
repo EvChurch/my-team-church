@@ -1,11 +1,11 @@
-import component from './modal.component';
-import confirm from './confirm/confirm.controller';
-import info from './info/info.controller';
-import service from './modal.service';
+import Component from './modal.component';
+import Service from './modal.service';
+import Confirm from './confirm/confirm.controller';
+import Info from './info/info.controller';
 
 export default angular.module('app.common.modal', [
-  component,
-  confirm,
-  info,
-  service
+  Component,
+  Service,
+  Confirm,
+  Info
 ]).name;

@@ -15,12 +15,16 @@ class DetailController {
       if (objective.id === this.objective.id) this.$state.go('^');
     });
   }
+  $onDestroy() {
+    this.watcher0();
+    this.watcher1();
+  }
 }
 
 let Detail = {
   bindings: {
-    resourceType: '<',
     resourceId: '<',
+    resourceType: '<',
     objective: '<'
   },
   template: require('./detail.html'),

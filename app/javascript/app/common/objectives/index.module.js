@@ -1,6 +1,6 @@
 import Component from './objectives.component';
 import Service from './objectives.service';
-import Detail from './detail/detail.component';
+import Detail from './detail/index.module';
 import Edit from './edit/edit.controller';
 import New from './new/new.controller';
 

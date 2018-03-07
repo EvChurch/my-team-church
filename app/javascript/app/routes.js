@@ -3,23 +3,7 @@ export default class Routes {
     $stateProvider.state({
       name: 'root',
       abstract: true,
-      component: 'root',
-      resolve: {
-        0: /* @ngInject*/ ($state, user) => {
-          return user.load().catch(() => {
-            $state.go('signIn');
-          });
-        },
-        1: /* @ngInject*/ ($state, organizations) => {
-          organizations.load().then((data) => {
-            if (data.length === 0) {
-              $state.go('organizations');
-            }
-          }).catch(() => {
-            $state.go('organizations');
-          });
-        }
-      }
+      component: 'root'
     }).state({
       name: 'home',
       title: 'Home',

@@ -10,7 +10,7 @@ class Departments {
   }
   load(reset = false) {
     if (this.data && !reset) {
-      Promise.resolve(this.data);
+      return Promise.resolve(this.data);
     }
 
     return this.api.query(gql`

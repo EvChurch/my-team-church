@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col p-0">
-      <div class="d-flex w-100 justify-content-between p-3">
+      <div class="d-flex w-100 justify-content-between p-3" ng-class="{ 'border-bottom' : $ctrl.list.length == 0 }">
         <h5 class="mb-1">Objectives</h5>
         <a ng-click="$ctrl.objectives.openNewObjectiveModal($ctrl.resourceId, $ctrl.resourceType)">
           <i class="fas fa-plus"></i>
@@ -16,7 +16,7 @@
           <p class="mb-1">{{objective.description}}</p>
         </a>
       </div>
-      <div class="blankslate blankslate-spacious mx-3" ng-if="$ctrl.list.length == 0">
+      <div class="blankslate blankslate-spacious m-3" ng-if="$ctrl.list.length == 0">
         <i class="fas fa-bullseye blankslate-icon"></i>
         <h3>No objectives defined yet.</h3>
         <p>It's time to define your first objective!</p>

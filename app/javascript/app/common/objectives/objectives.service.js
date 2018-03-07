@@ -19,10 +19,6 @@ class Objectives {
           id
           name
           description
-          key_results {
-            id
-            name
-          }
         }
       }
     `, { resource_id: resourceId, resource_type: resourceType }).then((data) => {
@@ -41,10 +37,6 @@ class Objectives {
           id
           name
           description
-          key_results {
-            id
-            name
-          }
         }
       }
     `, { resource_id: resourceId, resource_type: resourceType, id: id }).then((data) => {
@@ -66,10 +58,6 @@ class Objectives {
           id
           name
           description
-          key_results {
-            id
-            name
-          }
         }
       }
     `, { resource_id: resourceId, resource_type: resourceType, objective: objective }).then((data) => {
@@ -95,10 +83,6 @@ class Objectives {
           id
           name
           description
-          key_results {
-            id
-            name
-          }
         }
       }
     `, { resource_id: resourceId, resource_type: resourceType, id: id, objective: objective }).then((data) => {

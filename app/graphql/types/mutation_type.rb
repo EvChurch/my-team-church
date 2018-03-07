@@ -72,6 +72,55 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
+  field :createKeyResult, Types::KeyResultType do
+    description 'Create KeyResult.'
+    argument :resource_id, !types.ID
+    argument :resource_type, !types.String
+    argument :objective_id, !types.ID
+    argument :key_result, !Types::KeyResultInputType
+    resolve lambda { |_obj, args, ctx|
+      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+                           .objectives
+                           .find(args[:objective_id])
+                           .key_results
+                           .create!(args[:key_result].to_h)
+    }
+  end
+
+  field :updateKeyResult, Types::KeyResultType do
+    description 'Update KeyResult.'
+    argument :resource_id, !types.ID
+    argument :resource_type, !types.String
+    argument :objective_id, !types.ID
+    argument :id, !types.ID
+    argument :key_result, !Types::KeyResultInputType
+    resolve lambda { |_obj, args, ctx|
+      key_result = ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+                                        .objectives
+                                        .find(args[:objective_id])
+                                        .key_results
+                                        .find(args[:id])
+      key_result.update_attributes!(args[:key_result].to_h)
+      key_result
+    }
+  end
+
+  field :deleteKeyResult, Types::KeyResultType do
+    description 'Destroy KeyResult.'
+    argument :resource_id, !types.ID
+    argument :resource_type, !types.String
+    argument :objective_id, !types.ID
+    argument :id, !types.ID
+    resolve lambda { |_obj, args, ctx|
+      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+                           .objectives
+                           .find(args[:objective_id])
+                           .key_results
+                           .find(args[:id])
+                           .destroy!
+    }
+  end
+
   field :createPosition, Types::PositionType do
     description 'Create Position.'
     argument :position, Types::PositionInputType
