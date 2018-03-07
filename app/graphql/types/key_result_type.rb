@@ -7,6 +7,8 @@ Types::KeyResultType = GraphQL::ObjectType.define do
   field :result_type, !types.String
   field :start_value, !types.Float
   field :target_value, !types.Float
+  field :current_value, !types.Float
   field :weight, !types.Float
+
   field :objective, Types::ObjectiveType
 end

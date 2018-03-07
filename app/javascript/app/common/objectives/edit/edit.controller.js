@@ -1,4 +1,4 @@
-class ObjectivesEditModalController {
+class EditModalController {
   constructor(
     $scope,
     objectives,
@@ -27,4 +27,4 @@ class ObjectivesEditModalController {
 }
 
 export default angular.module('app.common.objectives.edit.controller', [])
-  .controller('objectivesEditModalController', ObjectivesEditModalController).name;
+  .controller('objectivesEditModalController', EditModalController).name;

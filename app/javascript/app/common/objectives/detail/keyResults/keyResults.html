@@ -1,1 +1,13 @@
-hello-world
+<div class="list-group list-group-flush">
+  <objectives-detail-key-results-item resource-id="$ctrl.resourceId"
+                                      resource-type="$ctrl.resourceType"
+                                      objective="$ctrl.objective"
+                                      key-result="keyResult"
+                                      ng-repeat="keyResult in $ctrl.list track by keyResult.id">
+  </objectives-detail-key-results-item>
+
+  <objectives-detail-key-results-new resource-id="$ctrl.resourceId"
+                                     resource-type="$ctrl.resourceType"
+                                     objective="$ctrl.objective">
+  </objectives-detail-key-results-new>
+</div>

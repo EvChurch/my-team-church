@@ -23,6 +23,11 @@ class KeyResults {
         ) {
           id
           name
+          result_type
+          start_value
+          target_value
+          current_value
+          weight
         }
       }
     `, {
@@ -50,6 +55,11 @@ class KeyResults {
         ) {
           id
           name
+          result_type
+          start_value
+          target_value
+          current_value
+          weight
         }
       }
     `, {
@@ -67,22 +77,28 @@ class KeyResults {
         $resource_id: ID!,
         $resource_type: String!,
         $objective_id: ID!,
-        $keyResult: KeyResultInputType!
+        $key_result: KeyResultInputType!
       ) {
         createKeyResult(
           resource_id: $resource_id,
           resource_type: $resource_type,
-          keyResult: $keyResult
+          objective_id: $objective_id,
+          key_result: $key_result
         ) {
           id
           name
+          result_type
+          start_value
+          target_value
+          current_value
+          weight
         }
       }
     `, {
       resource_id: resourceId,
       resource_type: resourceType,
       objective_id: objectiveId,
-      keyResult: keyResult
+      key_result: keyResult
     }).then((data) => {
       const keyResult = data.createKeyResult;
       this.$rootScope.$emit('keyResultCreate', objectiveId, keyResult);
@@ -96,16 +112,22 @@ class KeyResults {
         $resource_type: String!,
         $objective_id: ID!,
         $id: ID!,
-        $keyResult: KeyResultInputType!
+        $key_result: KeyResultInputType!
       ) {
         updateKeyResult(
           resource_id: $resource_id,
           resource_type: $resource_type,
+          objective_id: $objective_id,
           id: $id,
-          keyResult: $keyResult
+          key_result: $key_result
         ) {
           id
           name
+          result_type
+          start_value
+          target_value
+          current_value
+          weight
         }
       }
     `, {
@@ -113,7 +135,7 @@ class KeyResults {
       resource_type: resourceType,
       objective_id: objectiveId,
       id: id,
-      keyResult: keyResult
+      key_result: keyResult
     }).then((data) => {
       const keyResult = data.updateKeyResult;
       this.$rootScope.$emit('keyResultUpdate', objectiveId, keyResult);
@@ -131,6 +153,7 @@ class KeyResults {
         deleteKeyResult(
           resource_id: $resource_id,
           resource_type: $resource_type,
+          objective_id: $objective_id,
           id: $id,
         ) {
           id
@@ -147,25 +170,14 @@ class KeyResults {
       return keyResult;
     });
   }
-  openNewKeyResultModal(resourceId, resourceType, objectiveId) {
-    return this.modal.open({
-      template: require('./new/new.html'),
-      controller: 'keyResultsNewModalController',
-      locals: {
-        resourceId: resourceId,
-        resourceType: resourceType,
-        objectiveId: objectiveId
-      }
-    });
-  }
-  openEditKeyResultModal(resourceId, resourceType, objectiveId, keyResult) {
+  openEditKeyResultModal(resourceId, resourceType, objective, keyResult) {
     return this.modal.open({
       template: require('./edit/edit.html'),
-      controller: 'keyResultsEditModalController',
+      controller: 'objectivesDetailKeyResultsEditModalController',
       locals: {
         resourceId: resourceId,
         resourceType: resourceType,
-        objectiveId: objectiveId,
+        objective: objective,
         keyResult: keyResult
       }
     });

@@ -20,6 +20,10 @@ Types::KeyResultInputType = GraphQL::InputObjectType.define do
     description 'Target Value.'
   end
 
+  argument :current_value, !types.Float do
+    description 'Current Value.'
+  end
+
   argument :weight, !types.Float do
     description 'Weight is used to increase or decrease importance of single Key Result.'
   end

@@ -1,4 +1,4 @@
-class ObjectivesNewModalController {
+class NewModalController {
   constructor(
     $scope,
     objectives,
@@ -18,4 +18,4 @@ class ObjectivesNewModalController {
 }
 
 export default angular.module('app.common.objectives.new.controller', [])
-  .controller('objectivesNewModalController', ObjectivesNewModalController).name;
+  .controller('objectivesNewModalController', NewModalController).name;
