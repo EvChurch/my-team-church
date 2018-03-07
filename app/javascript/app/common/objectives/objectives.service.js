@@ -74,7 +74,7 @@ class Objectives {
       }
     `, { resource_id: resourceId, resource_type: resourceType, objective: objective }).then((data) => {
       const objective = data.createObjective;
-      this.$rootScope.$emit('objectiveCreate', objective);
+      this.$rootScope.$emit('objectiveCreate', resourceId, resourceType, objective);
       return objective;
     });
   }
@@ -103,7 +103,7 @@ class Objectives {
       }
     `, { resource_id: resourceId, resource_type: resourceType, id: id, objective: objective }).then((data) => {
       const objective = data.updateObjective;
-      this.$rootScope.$emit('objectiveUpdate', objective);
+      this.$rootScope.$emit('objectiveUpdate', resourceId, resourceType, objective);
       return objective;
     });
   }
@@ -124,7 +124,7 @@ class Objectives {
       }
     `, { resource_id: resourceId, resource_type: resourceType, id: id }).then((data) => {
       const objective = data.deleteObjective;
-      this.$rootScope.$emit('objectiveDelete', objective);
+      this.$rootScope.$emit('objectiveDelete', resourceId, resourceType, objective);
       return objective;
     });
   }

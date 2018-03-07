@@ -1,19 +1,30 @@
-<div class="row">
-  <div class="col-md-6">
-    <div class="text-right pb-2">
-      <a ng-click="$ctrl.objectives.openNewObjectiveModal($ctrl.resourceId, $ctrl.resourceType)" class="btn btn-primary">Add Objective</a>
-    </div>
-    <div ng-repeat="objective in $ctrl.list">
-      {{objective.name}}
-    </div>
-    <div class="blankslate blankslate-spacious" ng-if="$ctrl.list.length == 0">
+<div class="container">
+  <div class="row">
+    <div class="col p-0">
+      <div class="d-flex w-100 justify-content-between p-3">
+        <h5 class="mb-1">Objectives</h5>
+        <a ng-click="$ctrl.objectives.openNewObjectiveModal($ctrl.resourceId, $ctrl.resourceType)">
+          <i class="fas fa-plus"></i>
+        </a>
+      </div>
+      <div class="list-group list-group-flush">
+         <a class="list-group-item list-group-item-action flex-column align-items-start"
+            ng-repeat="objective in $ctrl.list track by objective.id"
+            ui-sref=".detail({objectiveId: objective.id})"
+            ui-sref-active="active">
+          <h5 class="mb-1">{{objective.name}}</h5>
+          <p class="mb-1">{{objective.description}}</p>
+        </a>
+      </div>
+      <div class="blankslate blankslate-spacious mx-3" ng-if="$ctrl.list.length == 0">
         <i class="fas fa-bullseye blankslate-icon"></i>
         <h3>No objectives defined yet.</h3>
         <p>It's time to define your first objective!</p>
         <a ng-click="$ctrl.objectives.openNewObjectiveModal($ctrl.resourceId, $ctrl.resourceType)" class="btn btn-primary">Add Objective</a>
       </div>
     </div>
-  </div>
-  <div class="col-md-6">
+    <div class="col">
+      <div ui-view></div>
+    </div>
   </div>
 </div>

@@ -43,22 +43,36 @@ export default class Routes {
       }
     }).state({
       name: 'departments.detail',
-      url: '/:id',
+      url: '/:departmentId',
       component: 'departmentsDetail'
     }).state({
       name: 'departments.detail.objectives',
       url: '/objectives',
       component: 'objectives',
       resolve: {
-        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.id,
+        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId,
         resourceType: () => 'departments'
+      }
+    }).state({
+      name: 'departments.detail.objectives.detail',
+      url: '/:objectiveId',
+      component: 'objectivesDetail',
+      resolve: {
+        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId,
+        resourceType: () => 'departments',
+        objective: /* @ngInject*/ ($state, $stateParams, objectives) => {
+          return objectives.get($stateParams.departmentId, 'departments', $stateParams.objectiveId).catch((ex) => {
+            $state.go('departments.detail.objectives', { departmentId: $stateParams.departmentId });
+            throw ex;
+          });
+        }
       }
     }).state({
       name: 'departments.detail.positions',
       url: '/positions',
       component: 'departmentsDetailPositions',
       resolve: {
-        positions: /* @ngInject*/ ($stateParams, departments) => departments.getPositions($stateParams.id)
+        positions: /* @ngInject*/ ($stateParams, departments) => departments.getPositions($stateParams.departmentId)
       }
     }).state({
       name: 'auth',

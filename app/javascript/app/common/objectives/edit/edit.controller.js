@@ -15,12 +15,12 @@ class ObjectivesEditModalController {
     };
   }
   save() {
-    return this.service.update(this.resourceId, this.resourceType, this.id, this.objective).then(() => {
+    return this.objectives.update(this.resourceId, this.resourceType, this.id, this.objective).then(() => {
       this.$scope.$hide();
     });
   }
   delete() {
-    return this.service.delete(this.resourceId, this.resourceType, this.id).then(() => {
+    return this.objectives.delete(this.resourceId, this.resourceType, this.id).then(() => {
       this.$scope.$hide();
     });
   }

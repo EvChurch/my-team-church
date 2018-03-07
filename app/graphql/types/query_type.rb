@@ -63,6 +63,18 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :objective do
+    type Types::ObjectiveType
+    argument :resource_id, !types.ID
+    argument :resource_type, !types.String
+    argument :id, !types.ID
+    description 'List of Objectives'
+    resolve lambda { |_obj, args, ctx|
+      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+                           .objectives.find(args[:id])
+    }
+  end
+
   field :positions do
     type !types[Types::PositionType]
     argument :department_id, types.ID

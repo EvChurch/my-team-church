@@ -54,7 +54,7 @@ Types::MutationType = GraphQL::ObjectType.define do
       objective = ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
                                        .objectives
                                        .find(args[:id])
-      objective.update_attributes!(args[:objectives].to_h)
+      objective.update_attributes!(args[:objective].to_h)
       objective
     }
   end
