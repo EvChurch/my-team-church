@@ -7,20 +7,31 @@ class ItemController {
     this.$state = $state;
     this.keyResults = keyResults;
   }
-  $onInit() {
-    this.id = this.keyResult.id;
-    this.keyResult = {
-      name: this.keyResult.name,
-      result_type: this.keyResult.result_type,
-      start_value: this.keyResult.start_value,
-      target_value: this.keyResult.target_value,
-      current_value: this.keyResult.current_value,
-      weight: this.keyResult.weight
-    };
+  $onChanges(changesObject) {
+    if (changesObject.keyResult) {
+      this.id = changesObject.keyResult.currentValue.id;
+      this.changedKeyResult = {
+        name: changesObject.keyResult.currentValue.name,
+        result_type: changesObject.keyResult.currentValue.result_type,
+        start_value: changesObject.keyResult.currentValue.start_value,
+        target_value: changesObject.keyResult.currentValue.target_value,
+        current_value: changesObject.keyResult.currentValue.current_value,
+        weight: changesObject.keyResult.currentValue.weight
+      };
+    }
+  }
+  openEditModal() {
+    this.keyResults.openEditKeyResultModal(
+      this.resourceId,
+      this.resourceType,
+      this.objective,
+      this.id,
+      this.changedKeyResult
+    );
   }
   save() {
     return this.keyResults.update(
-      this.resourceId, this.resourceType, this.objective.id, this.id, this.keyResult
+      this.resourceId, this.resourceType, this.objective.id, this.id, this.changedKeyResult
     );
   }
 }

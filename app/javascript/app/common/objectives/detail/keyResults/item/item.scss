@@ -1,0 +1,31 @@
+objectives-detail-key-results-item {
+  line-height: 30px;
+  .changed-key-result {
+    > div {
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      overflow: hidden;
+    }
+  }
+  .result-type {
+    width: 40px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    margin-right: 10px;
+  }
+  input[type=number] {
+    border: 0;
+    width: 80px;
+    outline: none;
+    box-shadow: none;
+    text-align: right;
+    font-weight: bold;
+  }
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    padding-left: 10px;
+    opacity: 1;
+  }
+}

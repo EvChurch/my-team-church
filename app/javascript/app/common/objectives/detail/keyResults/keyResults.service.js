@@ -170,7 +170,7 @@ class KeyResults {
       return keyResult;
     });
   }
-  openEditKeyResultModal(resourceId, resourceType, objective, keyResult) {
+  openEditKeyResultModal(resourceId, resourceType, objective, id, keyResult) {
     return this.modal.open({
       template: require('./edit/edit.html'),
       controller: 'objectivesDetailKeyResultsEditModalController',
@@ -178,6 +178,7 @@ class KeyResults {
         resourceId: resourceId,
         resourceType: resourceType,
         objective: objective,
+        id: id,
         keyResult: keyResult
       }
     });

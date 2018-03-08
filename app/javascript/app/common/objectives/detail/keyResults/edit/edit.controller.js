@@ -2,22 +2,15 @@ class EditModalController {
   constructor(
     $scope,
     keyResults,
-    resourceId, resourceType, objective, keyResult
+    resourceId, resourceType, objective, id, keyResult
   ) {
     this.$scope = $scope;
     this.keyResults = keyResults;
     this.resourceId = resourceId;
     this.resourceType = resourceType;
     this.objective = objective;
-    this.id = keyResult.id;
-    this.keyResult = {
-      name: keyResult.name,
-      result_type: keyResult.result_type,
-      start_value: keyResult.start_value,
-      target_value: keyResult.target_value,
-      current_value: keyResult.current_value,
-      weight: keyResult.weight
-    };
+    this.id = id;
+    this.keyResult = angular.copy(keyResult);
   }
   save() {
     return this.keyResults.update(

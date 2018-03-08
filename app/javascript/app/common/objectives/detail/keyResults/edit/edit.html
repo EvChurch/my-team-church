@@ -1,4 +1,4 @@
-<modal title="Edit Objective" save="$ctrl.save()" delete="$ctrl.delete()" cancel="$hide()" show-delete="true">
+<modal title="Edit Key Result" save="$ctrl.save()" delete="$ctrl.delete()" cancel="$hide()" show-delete="true">
   <div class="form-group">
     <label>Name<span class="text-danger">*</span></label>
     <input class="form-control"
@@ -61,5 +61,10 @@
         </select>
       </div>
     </div>
+  </div>
+  <div class="form-group">
+    <label>Weight <span class="text-danger">*</span></label>
+    <input ng-model="$ctrl.keyResult.weight" type="text" class="form-control" required>
+    <small class="text-muted">Weight is used to increase or decrease importance of single Key Result when calculating Objective completion %.</small>
   </div>
 </modal>
