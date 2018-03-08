@@ -12,11 +12,11 @@
     <div class="row">
       <div class="col">
         <label>Start Value<span class="text-danger">*</span></label>
-        <input ng-model="$ctrl.keyResult.start_value" type="text" class="form-control" required>
+        <input ng-model="$ctrl.keyResult.start_value" type="number" class="form-control" required>
       </div>
       <div class="col">
         <label>Target Value<span class="text-danger">*</span></label>
-        <input ng-model="$ctrl.keyResult.target_value" type="text" class="form-control" required>
+        <input ng-model="$ctrl.keyResult.target_value" type="number" class="form-control" required>
       </div>
     </div>
   </div>
@@ -64,7 +64,7 @@
   </div>
   <div class="form-group">
     <label>Weight <span class="text-danger">*</span></label>
-    <input ng-model="$ctrl.keyResult.weight" type="text" class="form-control" required>
+    <input ng-model="$ctrl.keyResult.weight" type="number" class="form-control" required>
     <small class="text-muted">Weight is used to increase or decrease importance of single Key Result when calculating Objective completion %.</small>
   </div>
 </modal>

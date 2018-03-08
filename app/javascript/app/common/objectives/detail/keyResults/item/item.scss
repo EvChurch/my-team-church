@@ -1,5 +1,13 @@
 objectives-detail-key-results-item {
   line-height: 30px;
+  .changed-key-result-name, .changed-key-result {
+    height: 30px;
+  }
+  .changed-key-result-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
   .changed-key-result {
     > div {
       display: inline-block;

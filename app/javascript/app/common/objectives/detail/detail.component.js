@@ -14,10 +14,27 @@ class DetailController {
     this.watcher1 = this.$rootScope.$on('objectiveDelete', (_event, _resourceId, _resourceType, objective) => {
       if (objective.id === this.objective.id) this.$state.go('^');
     });
+    this.watcher2 = this.$rootScope.$on('keyResultCreate', (_event, objectiveId) => {
+      if (objectiveId === this.objective.id) this.updateObjective();
+    });
+    this.watcher2 = this.$rootScope.$on('keyResultUpdate', (_event, objectiveId) => {
+      if (objectiveId === this.objective.id) this.updateObjective();
+    });
+    this.watcher2 = this.$rootScope.$on('keyResultDelete', (_event, objectiveId) => {
+      if (objectiveId === this.objective.id) this.updateObjective();
+    });
   }
   $onDestroy() {
     this.watcher0();
     this.watcher1();
+    this.watcher2();
+  }
+  updateObjective() {
+    this.objectives.get(
+      this.resourceId, this.resourceType, this.objective.id
+    ).then((objective) => {
+      this.objective = objective;
+    });
   }
 }
 

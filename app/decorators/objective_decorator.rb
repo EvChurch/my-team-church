@@ -1,15 +1,9 @@
 # frozen_string_literal: true
 
 class ObjectiveDecorator < ApplicationDecorator
-  include ActionView::Helpers::NumberHelper
+  decorates_association :key_results
 
-  def presentable_amount
-    if objective.percentage?
-      "#{objective.amount}%"
-    elsif objective.money?
-      number_to_currency(objective.amount)
-    elsif objective.number?
-      objective.amount
-    end
+  def percentage_complete
+    key_results.map(&:progress_percentage).sum.fdiv(object.key_results.sum(:weight)) * 100
   end
 end

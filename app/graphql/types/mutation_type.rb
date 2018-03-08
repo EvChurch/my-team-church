@@ -9,7 +9,9 @@ Types::MutationType = GraphQL::ObjectType.define do
     description 'Create Department.'
     argument :department, !Types::DepartmentInputType
     resolve lambda { |_obj, args, ctx|
-      ctx[:organization].departments.create!(args[:department].to_h)
+      ctx[:organization].departments
+                        .create!(args[:department].to_h)
+                        .decorate
     }
   end
 
@@ -20,7 +22,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     resolve lambda { |_obj, args, ctx|
       department = ctx[:organization].departments.find(args[:id])
       department.update_attributes!(args[:department].to_h)
-      department
+      department.decorate
     }
   end
 
@@ -41,6 +43,7 @@ Types::MutationType = GraphQL::ObjectType.define do
       ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
                            .objectives
                            .create!(args[:objective].to_h)
+                           .decorate
     }
   end
 
@@ -55,7 +58,7 @@ Types::MutationType = GraphQL::ObjectType.define do
                                        .objectives
                                        .find(args[:id])
       objective.update_attributes!(args[:objective].to_h)
-      objective
+      objective.decorate
     }
   end
 
@@ -84,6 +87,7 @@ Types::MutationType = GraphQL::ObjectType.define do
                            .find(args[:objective_id])
                            .key_results
                            .create!(args[:key_result].to_h)
+                           .decorate
     }
   end
 
@@ -101,7 +105,7 @@ Types::MutationType = GraphQL::ObjectType.define do
                                         .key_results
                                         .find(args[:id])
       key_result.update_attributes!(args[:key_result].to_h)
-      key_result
+      key_result.decorate
     }
   end
 
@@ -125,7 +129,9 @@ Types::MutationType = GraphQL::ObjectType.define do
     description 'Create Position.'
     argument :position, Types::PositionInputType
     resolve lambda { |_obj, args, ctx|
-      ctx[:organization].departments.create!(args[:department].to_h)
+      ctx[:organization].departments
+                        .create!(args[:department].to_h)
+                        .decorate
     }
   end
 
@@ -136,7 +142,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     resolve lambda { |_obj, args, ctx|
       position = ctx[:organization].positions.find(args[:id])
       position.update_attributes!(args[:position].to_h)
-      position
+      position.decorate
     }
   end
 
@@ -153,7 +159,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     resolve lambda { |_obj, args, _ctx|
       user = User.find_for_authentication(email: args[:user][:email])
       return unless user
-      user.valid_password?(args[:user][:password]) ? user : nil
+      user.valid_password?(args[:user][:password]) ? user.decorate : nil
     }
   end
 
@@ -161,6 +167,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     argument :user, !Types::UserInputType
     resolve lambda { |_obj, args, _ctx|
       User.create!(args[:user].to_h)
+          .decorate
     }
   end
 
@@ -170,7 +177,7 @@ Types::MutationType = GraphQL::ObjectType.define do
       organization = Organization.create!(args[:organization].to_h)
       ctx[:user].add_role :member, organization
       ctx[:user].add_role :admin, organization
-      organization
+      organization.decorate
     }
   end
 end

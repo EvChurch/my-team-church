@@ -8,4 +8,5 @@ Types::ObjectiveType = GraphQL::ObjectType.define do
   field :children, types[Types::ObjectiveType]
   field :parents, types[Types::ObjectiveType]
   field :key_results, types[Types::KeyResultType]
+  field :percentage_complete, !types.Float
 end

@@ -19,11 +19,11 @@ class Objectives {
           id
           name
           description
+          percentage_complete
         }
       }
     `, { resource_id: resourceId, resource_type: resourceType }).then((data) => {
-      this.data = data.objectives;
-      return this.data;
+      return data.objectives;
     });
   }
   get(resourceId, resourceType, id) {
@@ -37,6 +37,7 @@ class Objectives {
           id
           name
           description
+          percentage_complete
         }
       }
     `, { resource_id: resourceId, resource_type: resourceType, id: id }).then((data) => {
@@ -58,6 +59,7 @@ class Objectives {
           id
           name
           description
+          percentage_complete
         }
       }
     `, { resource_id: resourceId, resource_type: resourceType, objective: objective }).then((data) => {
@@ -83,6 +85,7 @@ class Objectives {
           id
           name
           description
+          percentage_complete
         }
       }
     `, { resource_id: resourceId, resource_type: resourceType, id: id, objective: objective }).then((data) => {
