@@ -1,8 +1,10 @@
 class DetailController {
   constructor(
-    $stateParams,
+    $rootScope, $state, $stateParams,
     departments
   ) {
+    this.$rootScope = $rootScope;
+    this.$state = $state;
     this.$stateParams = $stateParams;
     this.departments = departments;
   }
@@ -10,11 +12,20 @@ class DetailController {
     this.departments.get(this.$stateParams.departmentId).then((department) => {
       this.department = department;
     });
+
+    this.watcher0 = this.$rootScope.$on('departmentDelete', (_event, department) => {
+      if (department.id === this.department.id) this.$state.go('^');
+    });
+  }
+  $onDestroy() {
+    this.watcher0();
   }
 }
 
 let Detail = {
-  bindings: {},
+  bindings: {
+    department: '<'
+  },
   template: require('./detail.html'),
   controller: DetailController
 };

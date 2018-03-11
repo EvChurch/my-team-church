@@ -1,30 +1,30 @@
-<div class="row">
-  <div class="col-md-6">
-    <div class="text-right pb-2">
-      <a href="#" class="btn btn-primary">Add Position</a>
-    </div>
-    <table class="table" ng-if="$ctrl.positions && $ctrl.positions.length > 0">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Position Name</th>
-        </tr>
-      </thead>
-        <tbody>
-          <tr ng-repeat="position in $ctrl.positions track by position.id">
-            <td>{{$index + 1}}</td>
-            <td>{{position.name}}</td>
-          </tr>
-        </tbody>
-      </table>
-    <div class="blankslate blankslate-spacious" ng-if="$ctrl.positions && $ctrl.positions.length == 0">
-        <i class="far fa-user blankslate-icon"></i>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3 p-0">
+      <div class="d-flex w-100 justify-content-between p-3" ng-class="{ 'border-bottom' : $ctrl.list.length == 0 }">
+        <h5 class="mb-1">Positions</h5>
+        <a ng-click="$ctrl.positions.openNewPositionModal($ctrl.departmentId)">
+          <i class="fas fa-plus"></i>
+        </a>
+      </div>
+      <div class="list-group list-group-flush">
+         <a class="list-group-item list-group-item-action flex-column align-items-start"
+            ng-repeat="position in $ctrl.list track by position.id"
+            ui-sref=".detail({positionId: position.id})"
+            ui-sref-active="active">
+          <h5 class="mb-1">{{position.name}}</h5>
+          <p class="mb-1">{{position.description}}</p>
+        </a>
+      </div>
+      <div class="blankslate blankslate-spacious m-3" ng-if="$ctrl.list.length == 0">
+        <i class="fas fa-bullseye blankslate-icon"></i>
         <h3>No positions defined yet.</h3>
         <p>It's time to define your first position!</p>
-        <a href="#" class="btn btn-primary">Add Position</a>
+        <a ng-click="$ctrl.positions.openNewPositionModal($ctrl.departmentId)" class="btn btn-primary">Add Position</a>
       </div>
     </div>
-  </div>
-  <div class="col-md-6">
+    <div class="col-9">
+      <div ui-view></div>
+    </div>
   </div>
 </div>

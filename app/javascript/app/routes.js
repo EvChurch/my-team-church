@@ -28,7 +28,15 @@ export default class Routes {
     }).state({
       name: 'departments.detail',
       url: '/:departmentId',
-      component: 'departmentsDetail'
+      component: 'departmentsDetail',
+      resolve: {
+        department: /* @ngInject*/ ($state, $stateParams, departments) => {
+          return departments.get($stateParams.departmentId).catch((ex) => {
+            $state.go('departments');
+            throw ex;
+          });
+        }
+      }
     }).state({
       name: 'departments.detail.objectives',
       url: '/objectives',
@@ -56,7 +64,7 @@ export default class Routes {
       url: '/positions',
       component: 'departmentsDetailPositions',
       resolve: {
-        positions: /* @ngInject*/ ($stateParams, departments) => departments.getPositions($stateParams.departmentId)
+        departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId
       }
     }).state({
       name: 'auth',

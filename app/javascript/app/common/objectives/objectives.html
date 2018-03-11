@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col pr-0">
+    <div class="col-3 p-0">
       <div class="d-flex w-100 justify-content-between p-3" ng-class="{ 'border-bottom' : $ctrl.list.length == 0 }">
         <h5 class="mb-1">Objectives</h5>
         <a ng-click="$ctrl.objectives.openNewObjectiveModal($ctrl.resourceId, $ctrl.resourceType)">
@@ -23,7 +23,7 @@
         <a ng-click="$ctrl.objectives.openNewObjectiveModal($ctrl.resourceId, $ctrl.resourceType)" class="btn btn-primary">Add Objective</a>
       </div>
     </div>
-    <div class="col">
+    <div class="col-9">
       <div ui-view></div>
     </div>
   </div>

@@ -127,20 +127,25 @@ Types::MutationType = GraphQL::ObjectType.define do
 
   field :createPosition, Types::PositionType do
     description 'Create Position.'
+    argument :department_id, !types.ID
     argument :position, Types::PositionInputType
     resolve lambda { |_obj, args, ctx|
-      ctx[:organization].departments
-                        .create!(args[:department].to_h)
+      ctx[:organization].positions
+                        .where(department_id: args[:department_id])
+                        .create!(args[:position].to_h)
                         .decorate
     }
   end
 
   field :updatePosition, Types::PositionType do
     description 'Update Position.'
+    argument :department_id, !types.ID
     argument :id, !types.ID
     argument :position, !Types::PositionInputType
     resolve lambda { |_obj, args, ctx|
-      position = ctx[:organization].positions.find(args[:id])
+      position = ctx[:organization].positions
+                                   .where(department_id: args[:department_id])
+                                   .find(args[:id])
       position.update_attributes!(args[:position].to_h)
       position.decorate
     }
@@ -148,9 +153,13 @@ Types::MutationType = GraphQL::ObjectType.define do
 
   field :deletePosition, Types::PositionType do
     description 'Destroy Position.'
+    argument :department_id, !types.ID
     argument :id, !types.ID
     resolve lambda { |_obj, args, ctx|
-      ctx[:organization].positions.find(args[:id]).destroy
+      ctx[:organization].positions
+                        .where(department_id: args[:department_id])
+                        .find(args[:id])
+                        .destroy
     }
   end
 

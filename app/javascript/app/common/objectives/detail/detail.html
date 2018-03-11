@@ -10,6 +10,7 @@
          role="progressbar"
          ng-class="{ 'bg-success' : $ctrl.objective.percentage_complete >= 80, 'bg-warning' : $ctrl.objective.percentage_complete < 80 }"
          ng-style="{ 'width' : $ctrl.objective.percentage_complete + '%' }">
+      {{$ctrl.objective.percentage_complete | number : 0}}%
     </div>
   </div>
   <span ng-if="!$ctrl.objective.description" class="text-muted">No Description</span>

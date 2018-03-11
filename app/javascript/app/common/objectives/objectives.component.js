@@ -1,5 +1,3 @@
-import { findIndex } from 'lodash/fp';
-
 class ObjectivesController {
   constructor(
     $rootScope,
@@ -24,7 +22,6 @@ class ObjectivesController {
     this.watcher0();
     this.watcher1();
     this.watcher2();
-    this.watcher3();
   }
   load() {
     this.objectives.load(this.resourceId, this.resourceType).then((data) => {

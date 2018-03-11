@@ -121,12 +121,11 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :positions do
     type !types[Types::PositionType]
-    argument :department_id, types.ID
+    argument :department_id, !types.ID
     description 'List of Positions'
     resolve lambda { |_obj, args, ctx|
-      return ctx[:organization].positions unless args['parent_id']
       ctx[:organization].positions
-                        .where(department_id: args['department_id'])
+                        .where(department_id: args[:department_id])
                         .decorate
     }
   end

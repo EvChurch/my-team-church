@@ -9,7 +9,7 @@ class DepartmentsNewModalController {
   }
   save() {
     return this.departments.create(this.department).then((department) => {
-      this.$state.go('departments.detail', { id: department.id });
+      this.$state.go('departments.detail', { departmentId: department.id });
       this.$scope.$hide();
     });
   }
