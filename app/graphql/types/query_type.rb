@@ -132,11 +132,13 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :position do
     type Types::PositionType
+    argument :department_id, !types.ID
     argument :id, !types.ID
     description 'Find a Position by ID'
     resolve lambda { |_obj, args, ctx|
       ctx[:organization].positions
-                        .find(args['id'])
+                        .where(department_id: args[:department_id])
+                        .find(args[:id])
                         .decorate
     }
   end

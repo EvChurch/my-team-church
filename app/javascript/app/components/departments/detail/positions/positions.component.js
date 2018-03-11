@@ -1,10 +1,10 @@
 class PositionsController {
   constructor(
     $rootScope,
-    positions
+    departmentPositions
   ) {
     this.$rootScope = $rootScope;
-    this.positions = positions;
+    this.departmentPositions = departmentPositions;
   }
   $onInit() {
     this.load();
@@ -24,7 +24,7 @@ class PositionsController {
     this.watcher2();
   }
   load() {
-    this.positions.load(this.departmentId).then((data) => {
+    this.departmentPositions.load(this.departmentId).then((data) => {
       this.list = angular.copy(data);
     });
   }

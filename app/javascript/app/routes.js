@@ -67,6 +67,43 @@ export default class Routes {
         departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId
       }
     }).state({
+      name: 'departments.detail.positions.detail',
+      url: '/:positionId',
+      component: 'departmentsDetailPositionsDetail',
+      resolve: {
+        departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId,
+        position: /* @ngInject*/ ($state, $stateParams, departmentPositions) => {
+          return departmentPositions.get($stateParams.departmentId, $stateParams.positionId).catch((ex) => {
+            $state.go('departments.detail.positions');
+            throw ex;
+          });
+        }
+      }
+    }).state({
+      name: 'departments.detail.positions.detail.objectives',
+      url: '/objectives',
+      component: 'objectives',
+      resolve: {
+        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.positionId,
+        resourceType: () => 'positions'
+      }
+    }).state({
+      name: 'departments.detail.positions.detail.objectives.detail',
+      url: '/:objectiveId',
+      component: 'objectivesDetail',
+      resolve: {
+        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.positionId,
+        resourceType: () => 'positions',
+        objective: /* @ngInject*/ ($state, $stateParams, objectives) => {
+          return objectives.get($stateParams.positionId, 'positions', $stateParams.objectiveId).catch((ex) => {
+            $state.go('departments.detail.positions.detail.objectives',
+              { departmentId: $stateParams.departmentId, positionId: $stateParams.positionId }
+            );
+            throw ex;
+          });
+        }
+      }
+    }).state({
       name: 'auth',
       abstract: true,
       component: 'auth'

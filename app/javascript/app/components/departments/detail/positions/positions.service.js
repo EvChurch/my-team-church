@@ -124,5 +124,5 @@ class Positions {
   }
 }
 
-export default angular.module('app.componenets.departments.detail.positions.service', [
-]).service('positions', Positions).name;
+export default angular.module('app.components.departments.detail.positions.service', [
+]).service('departmentPositions', Positions).name;
