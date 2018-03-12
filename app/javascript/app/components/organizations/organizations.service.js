@@ -57,6 +57,21 @@ class Organizations {
       return data.createOrganization;
     });
   }
+  update(id, organization) {
+    return this.api.mutate(gql`
+      mutation updateOrganization($id: ID!, $organization: OrganizationInputType!) {
+        updateOrganization(
+          id: $id
+          organization: $organization
+        ) {
+          id
+          name
+        }
+      }
+    `, { id: id, organization: organization }).then((data) => {
+      return data.updateOrganization;
+    });
+  }
 }
 
 export default angular.module('app.components.organizations.service', [

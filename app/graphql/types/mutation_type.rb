@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # rubocop:disable Metrics/BlockLength
-
 Types::MutationType = GraphQL::ObjectType.define do
   name 'Mutation'
 
@@ -186,6 +185,17 @@ Types::MutationType = GraphQL::ObjectType.define do
       organization = Organization.create!(args[:organization].to_h)
       ctx[:user].add_role :member, organization
       ctx[:user].add_role :admin, organization
+      organization.decorate
+    }
+  end
+
+  field :updateOrganization, Types::OrganizationType do
+    argument :id, !types.ID
+    argument :organization, !Types::OrganizationInputType
+    resolve lambda { |_obj, args, ctx|
+      organization = Organization.with_role(:admin, ctx[:user])
+                                 .find(args[:id])
+      organization.update_attributes!(args[:organization].to_h)
       organization.decorate
     }
   end

@@ -19,7 +19,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     description 'Find a Organization by ID'
     resolve lambda { |_obj, args, ctx|
       Organization.with_role(:member, ctx[:user])
-                  .find(args['id'])
+                  .find(args[:id])
                   .decorate
     }
   end
@@ -37,9 +37,9 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :parent_id, types.ID
     description 'List of Departments'
     resolve lambda { |_obj, args, ctx|
-      if args['parent_id']
+      if args[:parent_id]
         ctx[:organization].departments
-                          .find(args['parent_id'])
+                          .find(args[:parent_id])
                           .children
                           .decorate
       else
@@ -56,7 +56,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     description 'Find a Department by ID'
     resolve lambda { |_obj, args, ctx|
       ctx[:organization].departments
-                        .find(args['id'])
+                        .find(args[:id])
                         .decorate
     }
   end

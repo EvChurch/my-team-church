@@ -1,5 +1,9 @@
 class CreateController {
-  constructor($state, countriesAndTimezones, organizations) {
+  constructor(
+    $state,
+    countriesAndTimezones,
+    organizations
+  ) {
     this.$state = $state;
     this.countriesAndTimezones = countriesAndTimezones;
     this.organizations = organizations;

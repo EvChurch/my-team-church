@@ -35,14 +35,10 @@ class Departments {
         department(id: $id) {
           id
           name
-          positions {
-            id
-            name
-          }
           children {
             id
             name
-            positions {
+            children {
               id
               name
             }

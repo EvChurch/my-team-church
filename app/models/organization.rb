@@ -12,16 +12,9 @@ class Organization < ApplicationRecord
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
 
   accepts_nested_attributes_for :integrations
-  after_commit :run_integration_sync_jobs, on: :create
 
   resourcify
   validates :name, :address_1, :city, :state, :zip, :country, :time_zone, presence: true
 
   protected
-
-  def run_integration_sync_jobs
-    integrations.each do |integration|
-      "#{integration.class.name}::SyncJob".constantize.perform_later(integration)
-    end
-  end
 end
