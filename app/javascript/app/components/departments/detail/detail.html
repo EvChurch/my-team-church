@@ -1,20 +1,22 @@
-<h1 class="panel-title">
-  {{$ctrl.department.name}}
-  <div class="float-right">
-    <a ng-click="$ctrl.departments.openEditDepartmentModal($ctrl.department)">
-      <i class="far fa-edit"></i>
+<div class="wrapper">
+  <h1 class="panel-title">
+    {{$ctrl.department.name}}
+    <div class="float-right">
+      <a ng-click="$ctrl.departments.openEditDepartmentModal($ctrl.department)">
+        <i class="far fa-edit"></i>
+      </a>
+    </div>
+  </h1>
+  <nav class="nav pt-2">
+    <a class="nav-link" ui-sref=".activity" ui-sref-active="active">
+      Activity
     </a>
-  </div>
-</h1>
-<nav class="nav pt-2">
-  <a class="nav-link" ui-sref=".activity" ui-sref-active="active">
-    Activity
-  </a>
-  <a class="nav-link" ui-sref=".objectives" ui-sref-active="active">
-    Objectives
-  </a>
-  <a class="nav-link" ui-sref=".positions" ui-sref-active="active">
-    Positions
-  </a>
-</nav>
-<div ui-view></div>
+    <a class="nav-link" ui-sref=".objectives" ui-sref-active="active">
+      Objectives
+    </a>
+    <a class="nav-link" ui-sref=".positions" ui-sref-active="active">
+      Positions
+    </a>
+  </nav>
+  <div class="content" ui-view></div>
+</div>

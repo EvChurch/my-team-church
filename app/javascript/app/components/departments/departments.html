@@ -1,16 +1,20 @@
 <div class="wrapper">
+  <h1 class="panel-title">
+    <div class="panel-icon department-bg">
+      <i class="far fa-building"></i>
+    </div>
+    Departments
+    <div class="float-right">
+      <a ng-click="$ctrl.departments.openNewDepartmentModal()">
+        <i class="fas fa-plus"></i>
+      </a>
+    </div>
+  </h1>
+  <div class="content">
+    <div ui-view>
+    </div>
+  </div>
   <div class="menu">
-    <h1 class="panel-title">
-      <div class="panel-icon department-bg">
-        <i class="far fa-building"></i>
-      </div>
-      Departments
-      <div class="float-right">
-        <a ng-click="$ctrl.departments.openNewDepartmentModal()">
-          <i class="fas fa-plus"></i>
-        </a>
-      </div>
-    </h1>
     <departments-list level="0" list="$ctrl.departments.data"></departments-list>
     <div ng-if="$ctrl.departments.data.length == 0" class="text-center p-3">
       <strong>No Departments</strong>
@@ -20,10 +24,6 @@
       <a class="btn btn-primary" ng-click="$ctrl.departments.openNewDepartmentModal()">
         Create Department
       </a>
-    </div>
-  </div>
-  <div class="content">
-    <div ui-view>
     </div>
   </div>
 </div>
