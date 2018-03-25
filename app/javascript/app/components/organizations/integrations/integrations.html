@@ -1,0 +1,35 @@
+<h2>Connect Services</h2>
+<h3>Elvanto</h3>
+<form name="integrationsElvantoForm" ng-submit="$ctrl.elvantoSubmit()">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>
+          Client ID
+          <span class="text-danger">*</span>
+        </label>
+        <input class="form-control" name="client_id" ng-model="$ctrl.elvanto.client_id" required>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>
+          Client Secret
+          <span class="text-danger">*</span>
+        </label>
+        <input class="form-control" name="client_secret" ng-model="$ctrl.elvanto.client_secret" required>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>
+      API Key
+      <span class="text-danger">*</span>
+    </label>
+    <input class="form-control" name="api_key" ng-model="$ctrl.elvanto.api_key" required>
+  </div>
+  <div class="text-right">
+    <a ui-sref="home" class="btn btn-link">Cancel</a>
+    <input type="submit" class="btn btn-primary" value="Save" ng-disabled="integrationsElvantoForm.$invalid && !$ctrl.loading">
+  </div>
+</form>

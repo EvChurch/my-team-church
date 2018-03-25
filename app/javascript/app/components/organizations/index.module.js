@@ -4,6 +4,7 @@ import Create from './create/create.component';
 import Connect from './connect/connect.component';
 import Dropdown from './dropdown/dropdown.component';
 import Edit from './edit/edit.component';
+import Integrations from './integrations/integrations.component';
 
 export default angular.module('app.components.organizations', [
   Component,
@@ -11,5 +12,6 @@ export default angular.module('app.components.organizations', [
   Create,
   Connect,
   Dropdown,
-  Edit
+  Edit,
+  Integrations
 ]).name;

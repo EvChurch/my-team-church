@@ -136,6 +136,14 @@ export default class Routes {
         organization: /* @ngInject*/ (api, organizations) => organizations.get(api.organization_id)
       }
     }).state({
+      name: 'organizations.integrations',
+      component: 'organizationsIntegrations',
+      url: '/integrations',
+      resolve: {
+        0: /* @ngInject*/ (organizations) => organizations.load(),
+        organization: /* @ngInject*/ (api, organizations) => organizations.get(api.organization_id)
+      }
+    }).state({
       name: 'organizations.connect',
       component: 'organizationsConnect',
       url: '/connect'

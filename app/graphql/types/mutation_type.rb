@@ -199,6 +199,26 @@ Types::MutationType = GraphQL::ObjectType.define do
       organization.decorate
     }
   end
+
+  field :createOrUpdateIntegration, Types::IntegrationType do
+    description 'Create or update Integration.'
+    argument :integration, Types::IntegrationInputType
+    resolve lambda { |_obj, args, ctx|
+      integration = ctx[:organization].integrations.find_or_initialize_by(type: args[:integration][:type])
+      integration.update_attributes(args[:integration].to_h)
+      integration.decorate
+    }
+  end
+
+  field :deleteIntegration, Types::IntegrationType do
+    description 'Destroy Integration.'
+    argument :id, !types.ID
+    resolve lambda { |_obj, args, ctx|
+      ctx[:organization].integrations
+                        .find(args[:id])
+                        .destroy
+    }
+  end
 end
 
 # rubocop:enable Metrics/BlockLength
