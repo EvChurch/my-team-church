@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Types::OrganizationInputType = GraphQL::InputObjectType.define do
+InputTypes::OrganizationInputType = GraphQL::InputObjectType.define do
   name 'OrganizationInputType'
   description 'Properties for creating an Organization'
 

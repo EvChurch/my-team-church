@@ -119,6 +119,8 @@ class Integration::Elvanto::SyncJob < ApplicationJob
     people.each do |attributes|
       person = @organization.people.find_or_initialize_by(remote_id: attributes['id'], remote_source: 'Elvanto')
       attributes['family'] = attributes['family'] == [] ? {} : attributes['family']
+      attributes['first_name'] = attributes.delete('firstname')
+      attributes['last_name'] = attributes.delete('lastname')
       person.attributes = attributes.select { |k, _v| person.attributes.keys.member?(k.to_s) && k.to_s != 'id' }
       person.save
       person.access_permission_ids = remote_ids_to_ids(attributes, 'access_permission')

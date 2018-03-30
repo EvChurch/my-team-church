@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180311213723) do
+ActiveRecord::Schema.define(version: 20180326001108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,12 +18,10 @@ ActiveRecord::Schema.define(version: 20180311213723) do
 
   create_table "access_permission_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "access_permission_id"
-    t.uuid "resource_id"
-    t.string "resource_type"
+    t.uuid "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["access_permission_id"], name: "index_access_permission_entities_on_access_permission_id"
-    t.index ["resource_type", "resource_id"], name: "index_access_permission_entities_on_resource"
   end
 
   create_table "access_permissions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -39,12 +37,10 @@ ActiveRecord::Schema.define(version: 20180311213723) do
 
   create_table "demographic_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "demographic_id"
-    t.uuid "resource_id"
-    t.string "resource_type"
+    t.uuid "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["demographic_id"], name: "index_demographic_entities_on_demographic_id"
-    t.index ["resource_type", "resource_id"], name: "index_demographic_entities_on_resource_type_and_resource_id"
   end
 
   create_table "demographics", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -86,12 +82,10 @@ ActiveRecord::Schema.define(version: 20180311213723) do
 
   create_table "location_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "location_id"
-    t.uuid "resource_id"
-    t.string "resource_type"
+    t.uuid "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_location_entities_on_location_id"
-    t.index ["resource_type", "resource_id"], name: "index_location_entities_on_resource_type_and_resource_id"
   end
 
   create_table "locations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -167,10 +161,10 @@ ActiveRecord::Schema.define(version: 20180311213723) do
     t.uuid "organization_id"
     t.datetime "date_added"
     t.datetime "date_modified"
-    t.string "firstname"
+    t.string "first_name"
     t.string "preferred_name"
     t.string "middle_name"
-    t.string "lastname"
+    t.string "last_name"
     t.string "email"
     t.string "phone"
     t.string "mobile"
@@ -222,12 +216,10 @@ ActiveRecord::Schema.define(version: 20180311213723) do
 
   create_table "position_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "position_id"
-    t.uuid "resource_id"
-    t.string "resource_type"
+    t.uuid "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["position_id"], name: "index_position_entities_on_position_id"
-    t.index ["resource_type", "resource_id"], name: "index_position_entities_on_resource_type_and_resource_id"
   end
 
   create_table "positions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -256,11 +248,9 @@ ActiveRecord::Schema.define(version: 20180311213723) do
 
   create_table "service_type_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "service_type_id"
-    t.uuid "resource_id"
-    t.string "resource_type"
+    t.uuid "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["resource_type", "resource_id"], name: "index_service_type_entities_on_resource_type_and_resource_id"
     t.index ["service_type_id"], name: "index_service_type_entities_on_service_type_id"
   end
 
@@ -324,17 +314,22 @@ ActiveRecord::Schema.define(version: 20180311213723) do
   end
 
   add_foreign_key "access_permission_entities", "access_permissions"
+  add_foreign_key "access_permission_entities", "people"
   add_foreign_key "demographic_entities", "demographics"
+  add_foreign_key "demographic_entities", "people"
   add_foreign_key "demographics", "organizations"
   add_foreign_key "integrations", "organizations"
   add_foreign_key "location_entities", "locations"
+  add_foreign_key "location_entities", "people"
   add_foreign_key "locations", "organizations"
   add_foreign_key "objective_key_results", "objectives"
   add_foreign_key "objective_links", "objectives", column: "child_id"
   add_foreign_key "objective_links", "objectives", column: "parent_id"
+  add_foreign_key "position_entities", "people"
   add_foreign_key "position_entities", "positions"
   add_foreign_key "positions", "departments"
   add_foreign_key "positions", "organizations"
+  add_foreign_key "service_type_entities", "people"
   add_foreign_key "service_type_entities", "service_types"
   add_foreign_key "service_types", "organizations"
   add_foreign_key "user_options", "users"

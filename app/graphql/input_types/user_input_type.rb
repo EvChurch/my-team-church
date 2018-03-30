@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Types::UserInputType = GraphQL::InputObjectType.define do
+InputTypes::UserInputType = GraphQL::InputObjectType.define do
   name 'UserInputType'
   description 'Properties for creating a User'
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Types::DepartmentInputType = GraphQL::InputObjectType.define do
+InputTypes::DepartmentInputType = GraphQL::InputObjectType.define do
   name 'DepartmentInputType'
   description 'Properties for creating a Department'
 

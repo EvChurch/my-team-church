@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Types::IntegrationInputType = GraphQL::InputObjectType.define do
+InputTypes::IntegrationInputType = GraphQL::InputObjectType.define do
   name 'IntegrationInputType'
   description 'Properties for creating an Integration'
 

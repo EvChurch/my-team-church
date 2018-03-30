@@ -2,5 +2,5 @@
 
 class Location::Entity < ApplicationRecord
   belongs_to :location, inverse_of: :entities
-  belongs_to :resource, polymorphic: true
+  belongs_to :person, inverse_of: :location_entities
 end

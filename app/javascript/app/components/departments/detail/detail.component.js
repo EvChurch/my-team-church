@@ -1,9 +1,11 @@
 class DetailController {
   constructor(
-    $rootScope, $state
+    $rootScope, $state,
+    departments
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
+    this.departments = departments;
   }
   $onInit() {
     this.watcher0 = this.$rootScope.$on('departmentDelete', (_event, department) => {

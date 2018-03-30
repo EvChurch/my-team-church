@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Types::PositionInputType = GraphQL::InputObjectType.define do
+InputTypes::PositionInputType = GraphQL::InputObjectType.define do
   name 'PositionInputType'
   description 'Properties for creating a Position'
 

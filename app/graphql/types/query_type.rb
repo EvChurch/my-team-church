@@ -67,7 +67,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :resource_type, !types.String
     description 'List of Objectives'
     resolve lambda { |_obj, args, ctx|
-      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type], [:objectives])
                            .objectives
                            .decorate
     }
@@ -80,7 +80,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :id, !types.ID
     description 'List of Objectives'
     resolve lambda { |_obj, args, ctx|
-      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type], [:objectives])
                            .objectives
                            .find(args[:id])
                            .decorate
@@ -94,7 +94,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :objective_id, !types.ID
     description 'List of Key Results'
     resolve lambda { |_obj, args, ctx|
-      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type], [:objectives])
                            .objectives
                            .find(args[:objective_id])
                            .key_results
@@ -110,7 +110,10 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :id, !types.ID
     description 'List of Key Results'
     resolve lambda { |_obj, args, ctx|
-      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+      ResourceFinderService.find(ctx[:organization],
+                                 args[:resource_id],
+                                 args[:resource_type],
+                                 [objectives: [:key_results]])
                            .objectives
                            .find(args[:objective_id])
                            .key_results
@@ -138,6 +141,38 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve lambda { |_obj, args, ctx|
       ctx[:organization].positions
                         .where(department_id: args[:department_id])
+                        .find(args[:id])
+                        .decorate
+    }
+  end
+
+  field :entities do
+    type !types[Types::Position::EntityType]
+    argument :department_id, !types.ID
+    argument :position_id, !types.ID
+    description 'List of Positions'
+    resolve lambda { |_obj, args, ctx|
+      ctx[:organization].positions
+                        .includes(:entities)
+                        .where(department_id: args[:department_id])
+                        .find(args[:position_id])
+                        .entities
+                        .decorate
+    }
+  end
+
+  field :entity do
+    type Types::Position::EntityType
+    argument :department_id, !types.ID
+    argument :position_id, !types.ID
+    argument :id, !types.ID
+    description 'Find a Position by ID'
+    resolve lambda { |_obj, args, ctx|
+      ctx[:organization].positions
+                        .includes(:entities)
+                        .where(department_id: args[:department_id])
+                        .find(args[:position_id])
+                        .entities
                         .find(args[:id])
                         .decorate
     }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Types::KeyResultInputType = GraphQL::InputObjectType.define do
+InputTypes::Objective::KeyResultInputType = GraphQL::InputObjectType.define do
   name 'KeyResultInputType'
   description 'Properties for creating a Key Result'
 

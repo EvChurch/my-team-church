@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Types::ObjectiveInputType = GraphQL::InputObjectType.define do
+InputTypes::ObjectiveInputType = GraphQL::InputObjectType.define do
   name 'ObjectiveInputType'
   description 'Properties for creating an Objective'
 
