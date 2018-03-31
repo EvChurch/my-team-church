@@ -75,6 +75,8 @@ GEM
     bindex (0.5.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootsnap (1.2.1)
+      msgpack (~> 1.0)
     bootstrap (4.0.0)
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
@@ -223,6 +225,7 @@ GEM
     minitest (5.11.3)
     money (6.9.0)
       i18n (>= 0.6.4, < 0.9)
+    msgpack (1.2.4)
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
@@ -477,6 +480,7 @@ DEPENDENCIES
   axlsx_rails
   better_errors
   binding_of_caller
+  bootsnap
   bootstrap (~> 4.0.0)
   breadcrumbs_on_rails
   byebug

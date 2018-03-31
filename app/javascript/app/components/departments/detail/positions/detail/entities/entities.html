@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6 p-0">
+      <div class="d-flex w-100 justify-content-between p-3" ng-class="{ 'border-bottom' : $ctrl.entities.length == 0 }">
+        <h5 class="mb-1">People</h5>
+        <a ng-click="$ctrl.departmentPositions.openNewPositionModal($ctrl.departmentId)">
+          <i class="fas fa-plus"></i>
+        </a>
+      </div>
+      <div class="list-group list-group-flush">
+         <a class="list-group-item list-group-item-action flex-column align-items-start"
+            ng-repeat="entity in $ctrl.entities track by entity.id"
+            ui-sref=".detail({entityId: entity.id})"
+            ui-sref-active="active">
+          <h5 class="mb-1">{{entity.person.first_name}} {{entity.person.last_name}}</h5>
+        </a>
+      </div>
+      <div class="blankslate blankslate-spacious m-3" ng-if="$ctrl.list.length == 0">
+        <i class="fas fa-bullseye blankslate-icon"></i>
+        <h3>No people have been assigned to this position yet.</h3>
+        <p>It's time to assign the first person!</p>
+        <a ng-click="$ctrl.departmentPositions.openNewPositionModal($ctrl.departmentId)" class="btn btn-primary">Add Position</a>
+      </div>
+    </div>
+    <div class="col-6">
+      <div ui-view></div>
+    </div>
+  </div>
+</div>

@@ -9,6 +9,7 @@ ruby '2.4.3'
 gem 'ancestry'
 gem 'axlsx', '2.1.0.pre'
 gem 'axlsx_rails'
+gem 'bootsnap', require: false
 gem 'breadcrumbs_on_rails'
 gem 'chosen-rails'
 gem 'cocoon'

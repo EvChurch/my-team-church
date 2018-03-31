@@ -104,6 +104,20 @@ export default class Routes {
         }
       }
     }).state({
+      name: 'departments.detail.positions.detail.entities',
+      url: '/entities',
+      component: 'departmentsDetailPositionsDetailEntities',
+      resolve: {
+        departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId,
+        positionId: /* @ngInject*/ ($stateParams) => $stateParams.positionId,
+        entities: /* @ngInject*/ ($stateParams, departmentPositionEntities) => {
+          return departmentPositionEntities.load(
+            $stateParams.departmentId,
+            $stateParams.positionId
+          );
+        }
+      }
+    }).state({
       name: 'auth',
       abstract: true,
       component: 'auth'

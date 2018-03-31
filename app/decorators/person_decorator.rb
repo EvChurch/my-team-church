@@ -4,7 +4,7 @@ class PersonDecorator < ApplicationDecorator
   decorates_association :position_entities
 
   def name
-    "#{firstname} #{lastname}".strip
+    "#{first_name} #{last_name}".strip
   end
 
   def initials

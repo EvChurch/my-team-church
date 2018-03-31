@@ -153,10 +153,10 @@ Types::QueryType = GraphQL::ObjectType.define do
     description 'List of Positions'
     resolve lambda { |_obj, args, ctx|
       ctx[:organization].positions
-                        .includes(:entities)
                         .where(department_id: args[:department_id])
                         .find(args[:position_id])
                         .entities
+                        .includes(:person)
                         .decorate
     }
   end
@@ -173,6 +173,7 @@ Types::QueryType = GraphQL::ObjectType.define do
                         .where(department_id: args[:department_id])
                         .find(args[:position_id])
                         .entities
+                        .includes(:person)
                         .find(args[:id])
                         .decorate
     }
