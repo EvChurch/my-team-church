@@ -9,14 +9,12 @@ class Entities {
     this.api = api;
     this.modal = modal;
   }
-  load(departmentId, positionId) {
+  load(positionId) {
     return this.api.query(gql`
-      query entities(
-        $department_id: ID!,
+      query positionEntities(
         $position_id: ID!
       ) {
-        entities(
-          department_id: $department_id
+        positionEntities(
           position_id: $position_id
         ) {
           id
@@ -26,18 +24,17 @@ class Entities {
           }
         }
       }
-    `, { department_id: departmentId, position_id: positionId }).then((data) => {
-      return data.entities;
+    `, { position_id: positionId }).then((data) => {
+      return data.positionEntities;
     });
   }
-  get(departmentId, positionId, id) {
+  get(positionId, id) {
     return this.api.query(gql`
-      query entity(
-        $department_id: ID!,
-        $position_id: ID!, $id: ID!
+      query positionEntity(
+        $position_id: ID!,
+        $id: ID!
       ) {
-        entity(
-          department_id: $department_id,
+        positionEntity(
           position_id: $position_id,
           id: $id
         ) {
@@ -48,21 +45,19 @@ class Entities {
           }
         }
       }
-    `, { department_id: departmentId, position_id: positionId, id: id }).then((data) => {
-      return data.entity;
+    `, { position_id: positionId, id: id }).then((data) => {
+      return data.positionEntity;
     });
   }
-  create(departmentId, positionId, entity) {
+  create(positionId, positionEntity) {
     return this.api.mutate(gql`
-      mutation createEntity(
-        $department_id: ID!,
+      mutation createPositionEntity(
         $position_id: ID!,
-        $entity: EntityInputType!
+        $position_entity: PositionEntityInputType!
       ) {
-        createEntity(
-          department_id: $department_id,
+        createPositionEntity(
           position_id: $position_id,
-          entity: $entity
+          position_entity: $position_entity
         ) {
           id
           person {
@@ -71,47 +66,37 @@ class Entities {
           }
         }
       }
-    `, { department_id: departmentId, position_id: positionId, entity: entity }).then((data) => {
-      const entity = data.createEntity;
-      this.$rootScope.$emit('departmentPositionEntityCreate', departmentId, positionId, entity);
-      return entity;
+    `, { position_id: positionId, position_entity: positionEntity }).then((data) => {
+      const positionEntity = data.createPositionEntity;
+      this.$rootScope.$emit('departmentPositionEntityCreate', positionId, positionEntity);
+      return positionEntity;
     });
   }
-  delete(departmentId, positionId, id) {
+  delete(positionId, id) {
     return this.api.mutate(gql`
-      mutation deleteEntity(
-        $department_id: ID!,
+      mutation deletePositionEntity(
+        $position_id: ID!,
         $id: ID!
       ) {
-        deleteEntity(
-          department_id: $department_id,
+        deletePositionEntity(
+          position_id: $position_id,
           id: $id,
         ) {
           id
         }
       }
-    `, { department_id: departmentId, id: id }).then((data) => {
-      const entity = data.deleteEntity;
-      this.$rootScope.$emit('departmentPositionEntityDelete', departmentId, positionId, entity);
-      return entity;
+    `, { position_id: positionId, id: id }).then((data) => {
+      const positionEntity = data.deletePositionEntity;
+      this.$rootScope.$emit('departmentPositionEntityDelete', positionId, positionEntity);
+      return positionEntity;
     });
   }
-  openNewEntityModal(departmentId) {
+  openNewModal(positionId) {
     return this.modal.open({
       template: require('./new/new.html'),
-      controller: 'entitiesNewModalController',
+      controller: 'departmentPositionEntitiesNewModalController',
       locals: {
-        departmentId: departmentId
-      }
-    });
-  }
-  openEditEntityModal(departmentId, entity) {
-    return this.modal.open({
-      template: require('./edit/edit.html'),
-      controller: 'entitiesEditModalController',
-      locals: {
-        departmentId: departmentId,
-        entity: entity
+        positionId: positionId
       }
     });
   }

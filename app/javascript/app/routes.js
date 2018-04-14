@@ -43,21 +43,7 @@ export default class Routes {
       component: 'objectives',
       resolve: {
         resourceId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId,
-        resourceType: () => 'departments'
-      }
-    }).state({
-      name: 'departments.detail.objectives.detail',
-      url: '/:objectiveId',
-      component: 'objectivesDetail',
-      resolve: {
-        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId,
-        resourceType: () => 'departments',
-        objective: /* @ngInject*/ ($state, $stateParams, objectives) => {
-          return objectives.get($stateParams.departmentId, 'departments', $stateParams.objectiveId).catch((ex) => {
-            $state.go('departments.detail.objectives', { departmentId: $stateParams.departmentId });
-            throw ex;
-          });
-        }
+        resourceType: () => 'department'
       }
     }).state({
       name: 'departments.detail.positions',
@@ -85,37 +71,38 @@ export default class Routes {
       component: 'objectives',
       resolve: {
         resourceId: /* @ngInject*/ ($stateParams) => $stateParams.positionId,
-        resourceType: () => 'positions'
-      }
-    }).state({
-      name: 'departments.detail.positions.detail.objectives.detail',
-      url: '/:objectiveId',
-      component: 'objectivesDetail',
-      resolve: {
-        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.positionId,
-        resourceType: () => 'positions',
-        objective: /* @ngInject*/ ($state, $stateParams, objectives) => {
-          return objectives.get($stateParams.positionId, 'positions', $stateParams.objectiveId).catch((ex) => {
-            $state.go('departments.detail.positions.detail.objectives',
-              { departmentId: $stateParams.departmentId, positionId: $stateParams.positionId }
-            );
-            throw ex;
-          });
-        }
+        resourceType: () => 'position'
       }
     }).state({
       name: 'departments.detail.positions.detail.entities',
       url: '/entities',
       component: 'departmentsDetailPositionsDetailEntities',
       resolve: {
-        departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId,
+        positionId: /* @ngInject*/ ($stateParams) => $stateParams.positionId
+      }
+    }).state({
+      name: 'departments.detail.positions.detail.entities.detail',
+      url: '/:entityId',
+      component: 'departmentsDetailPositionsDetailEntitiesDetail',
+      resolve: {
         positionId: /* @ngInject*/ ($stateParams) => $stateParams.positionId,
-        entities: /* @ngInject*/ ($stateParams, departmentPositionEntities) => {
-          return departmentPositionEntities.load(
-            $stateParams.departmentId,
-            $stateParams.positionId
-          );
+        entityId: /* @ngInject*/ ($stateParams) => $stateParams.entityId,
+        entity: /* @ngInject*/ ($state, $stateParams, departmentPositionEntities) => {
+          return departmentPositionEntities.get(
+            $stateParams.positionId, $stateParams.entityId
+          ).catch((ex) => {
+            $state.go('departments.detail.positions.detail.entities');
+            throw ex;
+          });
         }
+      }
+    }).state({
+      name: 'departments.detail.positions.detail.entities.detail.objectives',
+      url: '/objectives',
+      component: 'objectives',
+      resolve: {
+        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.entityId,
+        resourceType: () => 'position_entity'
       }
     }).state({
       name: 'auth',

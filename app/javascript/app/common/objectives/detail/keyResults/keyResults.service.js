@@ -11,12 +11,12 @@ class KeyResults {
   }
   load(resourceId, resourceType, objectiveId) {
     return this.api.query(gql`
-      query keyResults(
+      query objectiveKeyResults(
         $resource_id: ID!,
         $resource_type: String!,
         $objective_id: ID!
       ) {
-        keyResults(
+        objectiveKeyResults(
           resource_id: $resource_id,
           resource_type: $resource_type,
           objective_id: $objective_id
@@ -35,19 +35,19 @@ class KeyResults {
       resource_type: resourceType,
       objective_id: objectiveId
     }).then((data) => {
-      this.data = data.keyResults;
+      this.data = data.objectiveKeyResults;
       return this.data;
     });
   }
   get(resourceId, resourceType, objectiveId, id) {
     return this.api.query(gql`
-      query keyResult(
+      query objectiveKeyResult(
         $resource_id: ID!,
         $resource_type: String!,
         $objective_id: ID!,
         $id: ID!
       ){
-        keyResult(
+        objectiveKeyResult(
           resource_id: $resource_id,
           resource_type: $resource_type,
           objective_id: $objective_id,
@@ -68,18 +68,18 @@ class KeyResults {
       objective_id: objectiveId,
       id: id
     }).then((data) => {
-      return data.keyResult;
+      return data.objectiveKeyResult;
     });
   }
   create(resourceId, resourceType, objectiveId, keyResult) {
     return this.api.mutate(gql`
-      mutation createKeyResult(
+      mutation createObjectiveKeyResult(
         $resource_id: ID!,
         $resource_type: String!,
         $objective_id: ID!,
         $key_result: KeyResultInputType!
       ) {
-        createKeyResult(
+        createObjectiveKeyResult(
           resource_id: $resource_id,
           resource_type: $resource_type,
           objective_id: $objective_id,
@@ -100,21 +100,21 @@ class KeyResults {
       objective_id: objectiveId,
       key_result: keyResult
     }).then((data) => {
-      const keyResult = data.createKeyResult;
+      const keyResult = data.createObjectiveKeyResult;
       this.$rootScope.$emit('keyResultCreate', objectiveId, keyResult);
       return keyResult;
     });
   }
   update(resourceId, resourceType, objectiveId, id, keyResult) {
     return this.api.mutate(gql`
-      mutation updateKeyResult(
+      mutation updateObjectiveKeyResult(
         $resource_id: ID!,
         $resource_type: String!,
         $objective_id: ID!,
         $id: ID!,
         $key_result: KeyResultInputType!
       ) {
-        updateKeyResult(
+        updateObjectiveKeyResult(
           resource_id: $resource_id,
           resource_type: $resource_type,
           objective_id: $objective_id,
@@ -137,20 +137,20 @@ class KeyResults {
       id: id,
       key_result: keyResult
     }).then((data) => {
-      const keyResult = data.updateKeyResult;
+      const keyResult = data.updateObjectiveKeyResult;
       this.$rootScope.$emit('keyResultUpdate', objectiveId, keyResult);
       return keyResult;
     });
   }
   delete(resourceId, resourceType, objectiveId, id) {
     return this.api.mutate(gql`
-      mutation deleteKeyResult(
+      mutation deleteObjectiveKeyResult(
         $resource_id: ID!,
         $resource_type: String!,
         $objective_id: ID!,
         $id: ID!
       ) {
-        deleteKeyResult(
+        deleteObjectiveKeyResult(
           resource_id: $resource_id,
           resource_type: $resource_type,
           objective_id: $objective_id,
@@ -165,7 +165,7 @@ class KeyResults {
       objective_id: objectiveId,
       id: id
     }).then((data) => {
-      const keyResult = data.deleteKeyResult;
+      const keyResult = data.deleteObjectiveKeyResult;
       this.$rootScope.$emit('keyResultDelete', objectiveId, keyResult);
       return keyResult;
     });

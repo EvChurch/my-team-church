@@ -8,6 +8,7 @@ class Organization < ApplicationRecord
   has_many :locations, dependent: :destroy
   has_many :people, dependent: :destroy
   has_many :positions, dependent: :destroy
+  has_many :position_entities, through: :positions, source: :entities
   has_many :service_types, dependent: :destroy
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
 
@@ -15,6 +16,4 @@ class Organization < ApplicationRecord
 
   resourcify
   validates :name, :address_1, :city, :state, :zip, :country, :time_zone, presence: true
-
-  protected
 end

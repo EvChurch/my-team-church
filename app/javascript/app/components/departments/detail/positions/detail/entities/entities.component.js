@@ -7,11 +7,28 @@ class EntitiesController {
     this.$state = $state;
     this.departmentPositionEntities = departmentPositionEntities;
   }
+  $onInit() {
+    this.load();
+    this.watcher0 = this.$rootScope.$on('departmentPositionEntityCreate', (_event, positionId) => {
+      if (positionId === this.positionId) this.load();
+    });
+    this.watcher1 = this.$rootScope.$on('departmentPositionEntityDelete', (_event, positionId) => {
+      if (positionId === this.positionId) this.load();
+    });
+  }
+  $onDestroy() {
+    this.watcher0();
+    this.watcher1();
+  }
+  load() {
+    this.departmentPositionEntities.load(this.positionId).then((data) => {
+      this.list = angular.copy(data);
+    });
+  }
 }
 
 let Entities = {
   bindings: {
-    departmentId: '<',
     positionId: '<',
     entities: '<'
   },

@@ -1,13 +1,20 @@
+@import 'positions/positions';
+
 departments-detail {
+  display: flex;
+  flex-direction: column;
   > .wrapper {
-    display: grid;
-    height: 100vh;
-    grid-template-rows: 60px 45px auto;
-    .panel-title {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    > .panel-title {
       border-top-right-radius: 10px;
+      padding: 10px 20px;
+      flex: 60px 0;
     }
     nav.nav {
       border-bottom: 1px solid #D8D6D5;
+      line-height: 36px;
       a.nav-link {
         transition: all 0.2s;
         border-bottom: 2px solid transparent;
@@ -15,15 +22,29 @@ departments-detail {
         text-transform: uppercase;
         font-size: 80%;
         letter-spacing: 0.1em;
-        margin-right: 10px;
+        margin-left: 10px;
+        padding: 0 1em;
         &:hover, &.active {
           color: rgb(22, 50, 92);
           border-color: rgb(0, 112, 210);
         }
+        &:first-child {
+          margin-left: 0;
+          padding-left: 20px;
+        }
       }
     }
-    .content {
+    > .navigation {
+      flex: 45px 0;
+      > nav.nav {
+        line-height: 46px;
+      }
+    }
+    > .content {
       overflow: auto;
+      display: flex;
+      flex-direction: row;
+      flex-grow: 1;
     }
   }
 }

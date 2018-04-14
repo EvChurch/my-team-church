@@ -1,13 +1,16 @@
 class DetailController {
   constructor(
     $rootScope, $state,
-    departmentPositions
+    departmentPositions, departmentPositionEntities, objectives
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.departmentPositions = departmentPositions;
+    this.departmentPositionEntities = departmentPositionEntities;
+    this.objectives = objectives;
   }
   $onInit() {
+    this.$state.go('.entities');
     this.watcher0 = this.$rootScope.$on('positionUpdate', (_event, departmentId, position) => {
       if (position.id === this.position.id) this.position = position;
     });

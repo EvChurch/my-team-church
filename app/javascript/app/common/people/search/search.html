@@ -1,0 +1,27 @@
+<input ng-model="$ctrl.searchString" ng-change="$ctrl.search()" ng-model-options="{ debounce: 1000 }" class="form-control">
+<ul class="list-group mt-2" ng-if="$ctrl.person">
+  <li class="list-group-item d-flex align-items-center active">
+    <img ng-src="{{$ctrl.person.picture}}" class="mr-3">
+    <div>
+      {{$ctrl.person.first_name}}
+      {{$ctrl.person.last_name}}
+      <div ng-if="$ctrl.person.email">{{$ctrl.person.email}}</div>
+    </div>
+    <a ng-click="$ctrl.setPerson()">
+      <i class="fas fa-times"></i>
+    </a>
+  </li>
+</ul>
+<ul class="list-group mt-2">
+  <li class="list-group-item d-flex align-items-center"
+      ng-repeat="person in $ctrl.data track by person.id"
+      ng-if="$ctrl.person.id != person.id"
+      ng-click="$ctrl.setPerson(person)">
+    <img ng-src="{{person.picture}}" class="mr-3">
+    <div>
+      {{person.first_name}}
+      {{person.last_name}}
+      <div ng-if="person.email">{{person.email}}</div>
+    </div>
+  </li>
+</ul>

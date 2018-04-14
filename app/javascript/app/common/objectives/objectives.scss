@@ -1,6 +1,7 @@
 @import 'detail/detail';
 
 objectives {
+  flex-grow: 1;
   > .container > .row > .col:first-child {
     border-right: 1px solid #D8D6D5;
   }

@@ -1,0 +1,14 @@
+<div class="title d-flex w-100 justify-content-between border-bottom p-3">
+  <h5 class="mb-1">{{$ctrl.entity.person.first_name}} {{$ctrl.entity.person.last_name}}</h5>
+</div>
+<nav class="nav">
+  <a class="nav-link" ui-sref=".objectives" ui-sref-active="active">
+    Objectives
+  </a>
+  <a class="nav-link active ml-0 pl-0"
+     ng-class="{ 'd-none' : !$ctrl.$state.includes('departments.detail.positions.detail.entities.details.objectives') }"
+     ng-click="$ctrl.objectives.openNewObjectiveModal($ctrl.entity.id, 'positionEntities')">
+    <i class="fas fa-plus"></i>
+  </a>
+</nav>
+<div class="content" ui-view></div>

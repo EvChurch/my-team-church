@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-Types::KeyResultType = GraphQL::ObjectType.define do
-  name 'KeyResult'
+Types::Objective::KeyResultType = GraphQL::ObjectType.define do
+  name 'objectiveKeyResult'
   field :id, !types.ID
   field :name, !types.String
   field :result_type, !types.String

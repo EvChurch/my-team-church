@@ -87,8 +87,8 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :keyResults do
-    type !types[Types::KeyResultType]
+  field :objectiveKeyResults do
+    type !types[Types::Objective::KeyResultType]
     argument :resource_id, !types.ID
     argument :resource_type, !types.String
     argument :objective_id, !types.ID
@@ -102,8 +102,8 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :keyResult do
-    type Types::KeyResultType
+  field :objectiveKeyResult do
+    type Types::Objective::KeyResultType
     argument :resource_id, !types.ID
     argument :resource_type, !types.String
     argument :objective_id, !types.ID
@@ -146,14 +146,12 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :entities do
+  field :positionEntities do
     type !types[Types::Position::EntityType]
-    argument :department_id, !types.ID
     argument :position_id, !types.ID
     description 'List of Positions'
     resolve lambda { |_obj, args, ctx|
       ctx[:organization].positions
-                        .where(department_id: args[:department_id])
                         .find(args[:position_id])
                         .entities
                         .includes(:person)
@@ -161,21 +159,32 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :entity do
+  field :positionEntity do
     type Types::Position::EntityType
-    argument :department_id, !types.ID
     argument :position_id, !types.ID
     argument :id, !types.ID
     description 'Find a Position by ID'
     resolve lambda { |_obj, args, ctx|
       ctx[:organization].positions
                         .includes(:entities)
-                        .where(department_id: args[:department_id])
                         .find(args[:position_id])
                         .entities
                         .includes(:person)
                         .find(args[:id])
                         .decorate
+    }
+  end
+
+  field :people do
+    type !types[Types::PersonType]
+    argument :search_string, types.String
+    description 'List of People'
+    resolve lambda { |_obj, args, ctx|
+      people = ctx[:organization].people
+      if args[:search_string].present?
+        people = people.where("concat_ws(' ', email, first_name, last_name) ILIKE ?", "%#{args[:search_string]}%")
+      end
+      people.decorate
     }
   end
 end

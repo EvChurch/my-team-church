@@ -2,12 +2,12 @@
 
 module Mutations::Objective::KeyResultMutation
   Create = GraphQL::Field.define do
-    description 'Create KeyResult'
+    description 'Create ObjectiveKeyResult'
     argument :resource_id, !types.ID
     argument :resource_type, !types.String
     argument :objective_id, !types.ID
     argument :key_result, !InputTypes::Objective::KeyResultInputType
-    type Types::KeyResultType
+    type Types::Objective::KeyResultType
     resolve lambda { |_obj, args, ctx|
       ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
                            .objectives
@@ -19,13 +19,13 @@ module Mutations::Objective::KeyResultMutation
   end
 
   Update = GraphQL::Field.define do
-    description 'Update KeyResult'
+    description 'Update ObjectiveKeyResult'
     argument :resource_id, !types.ID
     argument :resource_type, !types.String
     argument :objective_id, !types.ID
     argument :id, !types.ID
     argument :key_result, !InputTypes::Objective::KeyResultInputType
-    type Types::KeyResultType
+    type Types::Objective::KeyResultType
     resolve lambda { |_obj, args, ctx|
       key_result = ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
                                         .objectives
@@ -38,12 +38,12 @@ module Mutations::Objective::KeyResultMutation
   end
 
   Delete = GraphQL::Field.define do
-    description 'Delete KeyResult'
+    description 'Delete ObjectiveKeyResult'
     argument :resource_id, !types.ID
     argument :resource_type, !types.String
     argument :objective_id, !types.ID
     argument :id, !types.ID
-    type Types::KeyResultType
+    type Types::Objective::KeyResultType
     resolve lambda { |_obj, args, ctx|
       ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
                            .objectives
