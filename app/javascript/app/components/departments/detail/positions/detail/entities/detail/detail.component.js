@@ -10,8 +10,8 @@ class DetailController {
   }
   $onInit() {
     this.$state.go('.objectives');
-    this.watcher0 = this.$rootScope.$on('positionEntityDelete', (_event, departmentId, position) => {
-      if (position.id === this.position.id) this.$state.go('^');
+    this.watcher0 = this.$rootScope.$on('departmentPositionEntityDelete', (_event, positionId, entity) => {
+      if (entity.id === this.entity.id) this.$state.go('departments.detail.positions.detail.entities');
     });
   }
   $onDestroy() {

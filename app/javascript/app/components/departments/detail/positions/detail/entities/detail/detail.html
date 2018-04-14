@@ -1,5 +1,8 @@
 <div class="title d-flex w-100 justify-content-between border-bottom p-3">
   <h5 class="mb-1">{{$ctrl.entity.person.first_name}} {{$ctrl.entity.person.last_name}}</h5>
+  <a ng-click="$ctrl.departmentPositionEntities.delete($ctrl.positionId, $ctrl.entity.id)">
+    <i class="fas fa-times"></i>
+  </a>
 </div>
 <nav class="nav">
   <a class="nav-link" ui-sref=".objectives" ui-sref-active="active">
