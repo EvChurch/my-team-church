@@ -1,3 +1,5 @@
+import { concat } from 'lodash/fp';
+
 class SearchController {
   constructor(
     $state,
@@ -10,13 +12,23 @@ class SearchController {
     this.person = null;
   }
   search() {
-    this.people.load(this.searchString).then((data) => {
-      this.data = data;
+    if (this.searchString === '') {
+      this.data = [];
+    } else {
+      this.people.load(this.searchString).then((data) => {
+        this.data = data;
+      });
+    }
+  }
+  loadMore() {
+    this.people.load(this.searchString, this.data[this.data.length - 1].cursor).then((data) => {
+      this.data = concat(this.data, data);
+      this.data.hasNextPage = data.hasNextPage;
     });
   }
   setPerson(person = null) {
-    this.person = person;
     const id = person ? person.id : null;
+    this.person = person;
     this.setPersonId({ $id: id });
   }
 }

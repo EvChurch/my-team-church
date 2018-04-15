@@ -175,8 +175,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :people do
-    type !types[Types::PersonType]
+  connection :people, Types::PersonType.connection_type do
     argument :search_string, types.String
     description 'List of People'
     resolve lambda { |_obj, args, ctx|
@@ -184,7 +183,7 @@ Types::QueryType = GraphQL::ObjectType.define do
       if args[:search_string].present?
         people = people.where("concat_ws(' ', email, first_name, last_name) ILIKE ?", "%#{args[:search_string]}%")
       end
-      people.decorate
+      people
     }
   end
 end

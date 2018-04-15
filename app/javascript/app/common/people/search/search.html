@@ -1,27 +1,36 @@
-<input ng-model="$ctrl.searchString" ng-change="$ctrl.search()" ng-model-options="{ debounce: 1000 }" class="form-control">
-<ul class="list-group mt-2" ng-if="$ctrl.person">
-  <li class="list-group-item d-flex align-items-center active">
-    <img ng-src="{{$ctrl.person.picture}}" class="mr-3">
-    <div>
-      {{$ctrl.person.first_name}}
-      {{$ctrl.person.last_name}}
-      <div ng-if="$ctrl.person.email">{{$ctrl.person.email}}</div>
-    </div>
-    <a ng-click="$ctrl.setPerson()">
-      <i class="fas fa-times"></i>
-    </a>
+<ul class="list-group mb-2"
+    ng-if="$ctrl.person">
+  <li class="list-group-item d-flex align-items-center">
+      <div class="col pl-0">
+        {{$ctrl.person.first_name}}
+        {{$ctrl.person.last_name}}
+      </div>
+      <a ng-click="$ctrl.setPerson()">
+        <i class="fas fa-times"></i>
+      </a>
   </li>
 </ul>
-<ul class="list-group mt-2">
+<input class="form-control"
+       ng-model="$ctrl.searchString"
+       ng-change="$ctrl.search()"
+       ng-model-options="{ debounce: 1000 }">
+<ul class="list-group mt-2"
+    ng-if="$ctrl.data.length > 0">
   <li class="list-group-item d-flex align-items-center"
-      ng-repeat="person in $ctrl.data track by person.id"
-      ng-if="$ctrl.person.id != person.id"
-      ng-click="$ctrl.setPerson(person)">
-    <img ng-src="{{person.picture}}" class="mr-3">
+      ng-repeat="edge in $ctrl.data track by edge.cursor"
+      ng-class="{'active': $ctrl.person.id === edge.node.id }"
+      ng-click="$ctrl.setPerson(edge.node)">
+    <img class="mr-3"
+         ng-src="{{edge.node.picture}}">
     <div>
-      {{person.first_name}}
-      {{person.last_name}}
-      <div ng-if="person.email">{{person.email}}</div>
+      {{edge.node.first_name}}
+      {{edge.node.last_name}}
+      <div ng-if="edge.node.email">{{edge.node.email}}</div>
     </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-center"
+      ng-if="$ctrl.data.hasNextPage"
+      ng-click="$ctrl.loadMore()">
+    Load more people
   </li>
 </ul>
