@@ -34,19 +34,10 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :departments do
     type !types[Types::DepartmentType]
-    argument :parent_id, types.ID
     description 'List of Departments'
-    resolve lambda { |_obj, args, ctx|
-      if args[:parent_id]
-        ctx[:organization].departments
-                          .find(args[:parent_id])
-                          .children
-                          .decorate
-      else
-        ctx[:organization].departments
-                          .roots
-                          .decorate
-      end
+    resolve lambda { |_obj, _args, ctx|
+      ctx[:organization].departments
+                        .decorate
     }
   end
 

@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { clone, pickBy, reduce } from 'lodash/fp';
 
 class Departments {
   constructor($rootScope,
@@ -18,14 +19,19 @@ class Departments {
         departments {
           id
           name
-          children {
-            id
-            name
-          }
+          parent_id
         }
       }
     `).then((data) => {
       this.data = data.departments;
+      this.data = reduce((result, department) => {
+        if (!department.parent_id) {
+          department = clone(department);
+          department.children = pickBy((child) => department.id === child.parent_id, this.data);
+          result.push(department);
+        }
+        return result;
+      }, [], this.data);
       return this.data;
     });
   }
@@ -35,14 +41,8 @@ class Departments {
         department(id: $id) {
           id
           name
-          children {
-            id
-            name
-            children {
-              id
-              name
-            }
-          }
+          description
+          parent_id
         }
       }
     `, { id: id }).then((data) => {
@@ -58,6 +58,7 @@ class Departments {
           id
           name
           description
+          parent_id
         }
       }
     `, { department: department }).then((data) => {
@@ -76,6 +77,7 @@ class Departments {
           id
           name
           description
+          parent_id
         }
       }
     `, { id: id, department: department }).then((data) => {
@@ -97,21 +99,6 @@ class Departments {
       const department = data.deleteDepartment;
       this.$rootScope.$emit('departmentDelete', department);
       return department;
-    });
-  }
-  getPositions(id) {
-    return this.api.query(gql`
-      query department($id: ID!){
-        department(id: $id) {
-          id
-          positions {
-            id
-            name
-          }
-        }
-      }
-    `, { id: id }).then((data) => {
-      return data.department.positions;
     });
   }
   openNewDepartmentModal() {
