@@ -174,7 +174,7 @@ Types::QueryType = GraphQL::ObjectType.define do
       if args[:search_string].present?
         people = people.where("concat_ws(' ', email, first_name, last_name) ILIKE ?", "%#{args[:search_string]}%")
       end
-      people
+      people.decorate
     }
   end
 end
