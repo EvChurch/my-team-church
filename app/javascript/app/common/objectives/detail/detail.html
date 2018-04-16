@@ -1,27 +1,22 @@
-<div class="border-bottom p-3">
-  <div class="row">
-    <div class="col-auto mr-auto">
-      <h5 class="m-0">{{$ctrl.objective.name}}</h5>
-    </div>
-    <div class="col-3 mt-1">
-      <div class="progress">
-        <div class="progress-bar"
-             role="progressbar"
-             ng-class="{ 'bg-success' : $ctrl.objective.percentage_complete >= 80, 'bg-warning' : $ctrl.objective.percentage_complete < 80 }"
-             ng-style="{ 'width' : $ctrl.objective.percentage_complete + '%' }">
-          {{$ctrl.objective.percentage_complete | number : 0}}%
-        </div>
+<div class="d-flex align-items-center">
+  <div class="col">
+    {{$ctrl.objective.name}}
+  </div>
+  <div class="col-4">
+    <div class="progress">
+      <div class="progress-bar"
+           role="progressbar"
+           ng-class="{ 'bg-success' : $ctrl.objective.percentage_complete >= 80, 'bg-warning' : $ctrl.objective.percentage_complete < 80 }"
+           ng-style="{ 'width' : $ctrl.objective.percentage_complete + '%' }">
+        {{$ctrl.objective.percentage_complete | number : 0}}%
       </div>
     </div>
-    <div class="col-auto">
-      <a ng-click="$ctrl.objectives.openEditObjectiveModal($ctrl.resourceId, $ctrl.resourceType, $ctrl.objective)">
-        <i class="far fa-edit"></i>
-      </a>
-    </div>
   </div>
-</div>
-<div class="border-bottom p-3" ng-if="$ctrl.objective.description">
-  {{$ctrl.objective.description}}
+  <div class="col-auto">
+    <a ng-click="$ctrl.objectives.openEditModal($ctrl.resourceId, $ctrl.resourceType, $ctrl.objective)">
+      <i class="far fa-edit"></i>
+    </a>
+  </div>
 </div>
 <objectives-detail-key-results resource-id="$ctrl.resourceId"
                                resource-type="$ctrl.resourceType"

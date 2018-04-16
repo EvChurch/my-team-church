@@ -101,13 +101,13 @@ class Departments {
       return department;
     });
   }
-  openNewDepartmentModal() {
+  openNewModal() {
     return this.modal.open({
       template: require('./new/new.html'),
       controller: 'departmentsNewModalController'
     });
   }
-  openEditDepartmentModal(department) {
+  openEditModal(department) {
     return this.modal.open({
       template: require('./edit/edit.html'),
       controller: 'departmentsEditModalController',

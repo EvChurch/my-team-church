@@ -1,9 +1,1 @@
-departments-detail-positions-detail-entities {
-  display: grid;
-  grid-template-columns: 250px auto;
-  flex-grow: 1;
-  > .menu {
-    border-right: 1px solid #ccc;
-    overflow: auto;
-  }
-}
+@import 'detail/detail';

@@ -1,8 +1,22 @@
 @import 'detail/detail';
 
 objectives {
-  flex-grow: 1;
-  > .container > .row > .col:first-child {
-    border-right: 1px solid #D8D6D5;
+  > .heading {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ccc;
+    height: 60px;
+    > .title {
+      flex-grow: 1;
+      max-height: 40px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      > h1 {
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0;
+      }
+    }
   }
 }

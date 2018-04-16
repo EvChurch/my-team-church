@@ -46,15 +46,8 @@ export default class Routes {
         resourceType: () => 'department'
       }
     }).state({
-      name: 'departments.detail.positions',
-      url: '/positions',
-      component: 'departmentsDetailPositions',
-      resolve: {
-        departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId
-      }
-    }).state({
-      name: 'departments.detail.positions.detail',
-      url: '/:positionId',
+      name: 'departments.detail.position',
+      url: '/position/:positionId',
       component: 'departmentsDetailPositionsDetail',
       resolve: {
         departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId,
@@ -66,7 +59,7 @@ export default class Routes {
         }
       }
     }).state({
-      name: 'departments.detail.positions.detail.objectives',
+      name: 'departments.detail.position.objectives',
       url: '/objectives',
       component: 'objectives',
       resolve: {
@@ -74,15 +67,8 @@ export default class Routes {
         resourceType: () => 'position'
       }
     }).state({
-      name: 'departments.detail.positions.detail.entities',
-      url: '/entities',
-      component: 'departmentsDetailPositionsDetailEntities',
-      resolve: {
-        positionId: /* @ngInject*/ ($stateParams) => $stateParams.positionId
-      }
-    }).state({
-      name: 'departments.detail.positions.detail.entities.detail',
-      url: '/:entityId',
+      name: 'departments.detail.position.entity',
+      url: '/entity/:entityId',
       component: 'departmentsDetailPositionsDetailEntitiesDetail',
       resolve: {
         positionId: /* @ngInject*/ ($stateParams) => $stateParams.positionId,
@@ -97,7 +83,7 @@ export default class Routes {
         }
       }
     }).state({
-      name: 'departments.detail.positions.detail.entities.detail.objectives',
+      name: 'departments.detail.position.entity.objectives',
       url: '/objectives',
       component: 'objectives',
       resolve: {

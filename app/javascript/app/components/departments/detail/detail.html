@@ -1,31 +1,22 @@
-<div class="wrapper">
-  <h1 class="panel-title">
-    {{$ctrl.department.name}}
-    <div class="float-right">
-      <a ng-click="$ctrl.departments.openEditDepartmentModal($ctrl.department)">
+<div class="tree">
+  <div class="heading">
+    <div class="title">
+      <h1>Department</h1>
+      {{$ctrl.department.name}}
+    </div>
+    <div class="actions">
+      <a ui-sref=".objectives">
+        <i class="fas fa-chess-queen"></i>
+      </a>
+      <a ng-click="$ctrl.departments.openEditModal($ctrl.department)">
         <i class="far fa-edit"></i>
       </a>
     </div>
-  </h1>
-  <div class="navigation">
-    <nav class="nav">
-      <a class="nav-link" ui-sref=".positions" ui-sref-active="active">
-        Positions
-      </a>
-      <a class="nav-link active ml-0 pl-0"
-         ng-class="{ 'd-none' : !$ctrl.$state.includes('departments.detail.positions') }"
-         ng-click="$ctrl.departmentPositions.openNewPositionModal($ctrl.department.id)">
-        <i class="fas fa-plus"></i>
-      </a>
-      <a class="nav-link" ui-sref=".objectives" ui-sref-active="active">
-        Objectives
-      </a>
-      <a class="nav-link active ml-0 pl-0"
-         ng-class="{ 'd-none' : !$ctrl.$state.includes('departments.detail.objectives') }"
-         ng-click="$ctrl.objectives.openNewObjectiveModal($ctrl.department.id, 'departments')">
-        <i class="fas fa-plus"></i>
-      </a>
-    </nav>
   </div>
-  <div class="content" ui-view></div>
+  <div class="list">
+    <departments-detail-positions department-id="$ctrl.department.id"></departments-detail-positions>
+  </div>
+  <div class="branch" ui-view>
+    <div class="placeholder"></div>
+  </div>
 </div>

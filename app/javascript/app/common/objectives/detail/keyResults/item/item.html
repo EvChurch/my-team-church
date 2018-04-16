@@ -1,34 +1,28 @@
-<div class="pl-5 pr-3 py-2 border-bottom">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="changed-key-result-name col p-0">
-        <span class="text-muted mr-2">KR</span>
-        {{$ctrl.keyResult.name}}
-      </div>
-      <div class="changed-key-result col p-0 text-right">
-        <div>
-          <input type="range"
-                 ng-model="$ctrl.changedKeyResult.current_value"
-                 ng-model-options="{ debounce: 500 }"
-                 ng-change="$ctrl.save()"
-                 slider
-                 options="$ctrl.options">
-        </div>
-        <div>
-          <input type="number"
-                 ng-model="$ctrl.changedKeyResult.current_value"
-                 ng-model-options="{ updateOn: 'blur' }"
-                 ng-change="$ctrl.save()">
-        </div>
-        <div class="result-type text-muted">
-          {{$ctrl.changedKeyResult.result_type}}
-        </div>
-        <div>
-          <a ng-click="$ctrl.openEditModal()">
-            <i class="far fa-edit"></i>
-          </a>
-        </div>
-      </div>
-    </div>
+<div class="changed-key-result-name col p-0">
+  <span class="text-muted mr-2">KR</span>
+  {{$ctrl.keyResult.name}}
+</div>
+<div class="changed-key-result">
+  <div>
+    <input type="range"
+           ng-model="$ctrl.changedKeyResult.current_value"
+           ng-model-options="{ debounce: 500 }"
+           ng-change="$ctrl.save()"
+           slider
+           options="$ctrl.options">
+  </div>
+  <div>
+    <input type="number"
+           ng-model="$ctrl.changedKeyResult.current_value"
+           ng-model-options="{ updateOn: 'blur' }"
+           ng-change="$ctrl.save()">
+  </div>
+  <div class="result-type text-muted">
+    {{$ctrl.changedKeyResult.result_type}}
+  </div>
+  <div>
+    <a ng-click="$ctrl.openEditModal()">
+      <i class="far fa-edit"></i>
+    </a>
   </div>
 </div>

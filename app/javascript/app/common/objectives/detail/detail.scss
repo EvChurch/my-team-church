@@ -1,1 +1,8 @@
 @import 'keyResults/keyResults';
+
+objectives-detail {
+  > div {
+    height: 49px;
+    border-bottom: 1px solid #ccc;
+  }
+}

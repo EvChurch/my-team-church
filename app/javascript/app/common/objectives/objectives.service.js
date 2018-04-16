@@ -115,7 +115,7 @@ class Objectives {
       return objective;
     });
   }
-  openNewObjectiveModal(resourceId, resourceType) {
+  openNewModal(resourceId, resourceType) {
     return this.modal.open({
       template: require('./new/new.html'),
       controller: 'objectivesNewModalController',
@@ -125,7 +125,7 @@ class Objectives {
       }
     });
   }
-  openEditObjectiveModal(resourceId, resourceType, objective) {
+  openEditModal(resourceId, resourceType, objective) {
     return this.modal.open({
       template: require('./edit/edit.html'),
       controller: 'objectivesEditModalController',

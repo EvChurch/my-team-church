@@ -103,7 +103,7 @@ class Positions {
       return position;
     });
   }
-  openNewPositionModal(departmentId) {
+  openNewModal(departmentId) {
     return this.modal.open({
       template: require('./new/new.html'),
       controller: 'positionsNewModalController',
@@ -112,7 +112,7 @@ class Positions {
       }
     });
   }
-  openEditPositionModal(departmentId, position) {
+  openEditModal(departmentId, position) {
     return this.modal.open({
       template: require('./edit/edit.html'),
       controller: 'positionsEditModalController',

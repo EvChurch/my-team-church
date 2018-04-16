@@ -1,9 +1,11 @@
 objectives-detail-key-results-item {
-  line-height: 30px;
-  .changed-key-result-name, .changed-key-result {
-    height: 30px;
-  }
+  display: flex;
+  align-items: center;
+  height: 49px;
+  padding: 0 15px;
+  border-bottom: 1px solid #ccc;
   .changed-key-result-name {
+    flex-grow: 1;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

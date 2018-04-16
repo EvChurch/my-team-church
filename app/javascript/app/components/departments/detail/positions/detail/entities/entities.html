@@ -1,21 +1,23 @@
-<div class="menu">
-  <div class="input-group search">
-    <input type="text" class="form-control" ng-model="$ctrl.search" placeholder="Filter">
-    <span class="input-group-addon"><i class="fas fa-search"></i></span>
-  </div>
-  <div class="list-group list-group-flush">
-     <a class="list-group-item list-group-item-action flex-column align-items-start"
-        ng-repeat="entity in $ctrl.list | filter: { person: { name: $ctrl.search } } track by entity.id"
-        ui-sref=".detail({entityId: entity.id})"
-        ui-sref-active="active">
-        {{entity.person.name}}
-    </a>
-  </div>
-  <div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">
-    <i class="fas fa-bullseye blankslate-icon"></i>
-    <h3>No people have been assigned to this position yet.</h3>
-    <p>It's time to assign the first person!</p>
-    <a ng-click="$ctrl.departmentPositionEntities.openNewModal($ctrl.positionId)" class="btn btn-primary">Add Person</a>
-  </div>
+<div class="input-group search">
+  <input type="text" class="form-control" ng-model="$ctrl.search" placeholder="Filter People">
+  <span class="input-group-addon">
+    <i class="fas fa-search"></i>
+  </span>
+  <span class="input-group-addon" ng-click="$ctrl.departmentPositionEntities.openNewModal($ctrl.positionId)">
+    <i class="fas fa-plus"></i>
+  </span>
 </div>
-<div class="content" ui-view></div>
+<div class="list-group list-group-flush">
+   <a class="list-group-item list-group-item-action flex-column align-items-start"
+      ng-repeat="entity in $ctrl.list | filter: { person: { name: $ctrl.search } } track by entity.id"
+      ui-sref="departments.detail.position.entity({entityId: entity.id})"
+      ui-sref-active="active">
+      {{entity.person.name}}
+  </a>
+</div>
+<div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">
+  <i class="fas fa-bullseye blankslate-icon"></i>
+  <h3>No people have been assigned to this position yet.</h3>
+  <p>It's time to assign the first person!</p>
+  <a ng-click="$ctrl.departmentPositionEntities.openNewModal($ctrl.positionId)" class="btn btn-primary">Add Person</a>
+</div>

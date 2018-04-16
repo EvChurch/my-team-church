@@ -1,13 +1,25 @@
-<div class="list-group list-group-flush">
-   <objectives-detail resource-id= "$ctrl.resourceId"
-                      resource-type= "$ctrl.resourceType"
-                      objective= "objective"
-                      ng-repeat="objective in $ctrl.list track by objective.id">
-  </objectives-detail>
-</div>
-<div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">
-  <i class="fas fa-bullseye blankslate-icon"></i>
-  <h3>No objectives defined yet.</h3>
-  <p>It's time to define your first objective!</p>
-  <a ng-click="$ctrl.objectives.openNewObjectiveModal($ctrl.resourceId, $ctrl.resourceType)" class="btn btn-primary">Add Objective</a>
+<div class="tree terminus">
+  <div class="heading">
+    <div class="title">
+      <h1>Objectives</h1>
+    </div>
+    <div class="actions">
+      <a ng-click="$ctrl.objectives.openNewModal($ctrl.resourceId, $ctrl.resourceType)">
+        <i class="fas fa-plus"></i>
+      </a>
+    </div>
+  </div>
+  <div class="list">
+     <objectives-detail resource-id= "$ctrl.resourceId"
+                        resource-type= "$ctrl.resourceType"
+                        objective= "objective"
+                        ng-repeat="objective in $ctrl.list track by objective.id">
+    </objectives-detail>
+    <div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">
+      <i class="fas fa-bullseye blankslate-icon"></i>
+      <h3>No objectives defined yet.</h3>
+      <p>It's time to define your first objective!</p>
+      <a ng-click="$ctrl.objectives.openNewModal($ctrl.resourceId, $ctrl.resourceType)" class="btn btn-primary">Add Objective</a>
+    </div>
+  </div>
 </div>

@@ -1,25 +1,22 @@
-<div class="title d-flex w-100 justify-content-between border-bottom p-3">
-  <h5 class="mb-1">{{$ctrl.position.name}}</h5>
-  <a ng-click="$ctrl.departmentPositions.openEditPositionModal($ctrl.departmentId, $ctrl.position)">
-    <i class="far fa-edit"></i>
-  </a>
+<div class="tree">
+  <div class="heading">
+    <div class="title">
+      <h1>Position</h1>
+      {{$ctrl.position.name}}
+    </div>
+    <div class="actions">
+      <a ui-sref=".objectives">
+        <i class="fas fa-chess-queen"></i>
+      </a>
+      <a ng-click="$ctrl.departmentPositions.openEditModal($ctrl.departmentId, $ctrl.position)">
+        <i class="far fa-edit"></i>
+      </a>
+    </div>
+  </div>
+  <div class="list">
+    <departments-detail-positions-detail-entities position-id="$ctrl.position.id"></departments-detail-positions-detail-entities>
+  </div>
+  <div class="branch" ui-view>
+    <div class="placeholder"></div>
+  </div>
 </div>
-<nav class="nav">
-  <a class="nav-link" ui-sref=".entities" ui-sref-active="active">
-    People
-  </a>
-  <a class="nav-link active ml-0 pl-0"
-     ng-class="{ 'd-none' : !$ctrl.$state.includes('departments.detail.positions.detail.entities') }"
-     ng-click="$ctrl.departmentPositionEntities.openNewModal($ctrl.position.id)">
-    <i class="fas fa-plus"></i>
-  </a>
-  <a class="nav-link" ui-sref=".objectives" ui-sref-active="active">
-    Objectives
-  </a>
-  <a class="nav-link active ml-0 pl-0"
-     ng-class="{ 'd-none' : !$ctrl.$state.includes('departments.detail.positions.detail.objectives') }"
-     ng-click="$ctrl.objectives.openNewObjectiveModal($ctrl.position.id, 'position')">
-    <i class="fas fa-plus"></i>
-  </a>
-</nav>
-<div class="content" ui-view></div>

@@ -1,26 +1,31 @@
-<div class="wrapper">
-  <h1 class="panel-title">
-    Departments
-    <div class="float-right">
-      <a ng-click="$ctrl.departments.openNewDepartmentModal()">
+<div class="tree">
+  <div class="heading">
+    <div class="title">
+      <h1>Departments</h1>
+    </div>
+    <div class="actions">
+      <a ng-click="$ctrl.departments.openNewModal()">
         <i class="fas fa-plus"></i>
       </a>
     </div>
-  </h1>
-  <div class="content">
-    <div ui-view>
-    </div>
   </div>
-  <div class="menu">
+  <div class="list">
+    <div class="input-group search">
+      <input type="text" class="form-control" ng-model="$ctrl.search" placeholder="Filter Departments">
+      <span class="input-group-addon"><i class="fas fa-search"></i></span>
+    </div>
     <departments-list level="0" list="$ctrl.departments.data"></departments-list>
     <div ng-if="$ctrl.departments.data.length == 0" class="text-center m-3 my-5">
       <strong>No Departments</strong>
       <p>
         Get started by creating a department.
       </p>
-      <a class="btn btn-primary" ng-click="$ctrl.departments.openNewDepartmentModal()">
+      <a class="btn btn-primary" ng-click="$ctrl.departments.openNewModal()">
         Create Department
       </a>
     </div>
+  </div>
+  <div class="branch" ui-view>
+    <div class="placeholder"></div>
   </div>
 </div>
