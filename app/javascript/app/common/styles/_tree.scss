@@ -27,6 +27,14 @@
       cursor: pointer;
       min-width: 40px;
       text-align: right;
+      a, a:link, a:visited {
+        color: #aaa;
+        transition: color 0.1s ease-out;
+        &:hover {
+          text-decoration: none;
+          color: #0275d8;
+        }
+      }
     }
   }
   > .list {
