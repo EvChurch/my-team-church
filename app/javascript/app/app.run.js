@@ -14,7 +14,7 @@ export default function appRun(
         trans.router.stateService.target('organizations');
       });
     }).catch(() => {
-      trans.router.stateService.target('login');
+      trans.router.stateService.target('signIn');
     });
   });
 

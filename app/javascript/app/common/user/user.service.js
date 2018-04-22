@@ -43,6 +43,9 @@ class User {
       }
     `, { user: user }).then((data) => {
       this.data = data.authenticateUser;
+      if (!data.authenticateUser) {
+        return Promise.reject('Incorrect Credentials');
+      }
       this.$window.localStorage.setItem('token', this.data.token);
       return this.data;
     });

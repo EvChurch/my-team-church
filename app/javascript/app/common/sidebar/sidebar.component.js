@@ -1,14 +1,16 @@
 class SidebarController {
   constructor(
-    $state,
+    $state, toastr,
     user
   ) {
     this.$state = $state;
+    this.toastr = toastr;
     this.user = user;
   }
   signOut() {
     this.user.signOut().then(() => {
       this.$state.go('signIn');
+      this.toastr.success('Successfully Signed Out');
     });
   }
 }

@@ -9,6 +9,7 @@ import appConfig from './app.config';
 import appRun from './app.run';
 import 'countries-and-timezones';
 import 'angular-strap';
+import 'angular-toastr';
 
 angular.module('app', [
   AngularApollo,
@@ -16,7 +17,8 @@ angular.module('app', [
   ngAnimate,
   Common,
   Components,
-  'mgcrea.ngStrap'
+  'mgcrea.ngStrap',
+  'toastr'
 ])
   .config(appConfig)
   .run(appRun)

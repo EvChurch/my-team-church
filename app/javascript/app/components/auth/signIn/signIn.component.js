@@ -1,18 +1,23 @@
 class SignInController {
   constructor(
-    $state,
+    $state, toastr,
     user
   ) {
     this.$state = $state;
     this.user = user;
     this.email = '';
     this.password = '';
+
+    this.toastr = toastr;
   }
   submit() {
     this.loading = true;
     this.user.signIn({ email: this.email, password: this.password }).then(() => {
       this.loading = false;
       this.$state.go('home');
+    }).catch(() => {
+      this.toastr.error('Incorrect Credentials', 'Error');
+      this.loading = false;
     });
   }
 }

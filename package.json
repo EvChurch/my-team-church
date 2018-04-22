@@ -3,6 +3,7 @@
     "angular": "^1.5.0",
     "angular-animate": "^1.6.9",
     "angular-strap": "^2.3.12",
+    "angular-toastr": "^2.1.1",
     "angular-ui-router": "^1.0.0-beta.1",
     "angular1-apollo": "^0.3.0",
     "apollo-client": "^1.9.3",
