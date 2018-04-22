@@ -46,5 +46,5 @@ class People {
 }
 
 
-export default angular.module('app.common.people.service', [
+export default angular.module('app.components.people.service', [
 ]).service('people', People).name;

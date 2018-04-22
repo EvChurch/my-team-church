@@ -3,7 +3,15 @@ export default class Routes {
     $stateProvider.state({
       name: 'root',
       abstract: true,
-      component: 'root'
+      component: 'root',
+      resolve: {
+        0: /* @ngInject*/ ($state, user) => {
+          return user.load().catch((ex) => {
+            $state.go('signIn');
+            throw ex;
+          });
+        }
+      }
     }).state({
       name: 'home',
       title: 'Home',
@@ -89,6 +97,15 @@ export default class Routes {
       resolve: {
         resourceId: /* @ngInject*/ ($stateParams) => $stateParams.entityId,
         resourceType: () => 'position_entity'
+      }
+    }).state({
+      name: 'people',
+      title: 'People',
+      url: '/people',
+      component: 'people',
+      parent: 'root',
+      resolve: {
+        0: /* @ngInject*/ (people) => people.load()
       }
     }).state({
       name: 'auth',

@@ -41,5 +41,5 @@ let Search = {
   controller: SearchController
 };
 
-export default angular.module('app.common.people.search.component', [
+export default angular.module('app.components.people.search.component', [
 ]).component('peopleSearch', Search).name;

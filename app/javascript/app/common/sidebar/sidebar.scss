@@ -6,7 +6,10 @@ sidebar {
   left: 0;
   top: 0;
   bottom: 0;
-  a:link, a:visited {
+  a,
+  a:link,
+  a:visited,
+  a:not([href]):not([tabindex]) {
     font-size: 20px;
     line-height: 20px;
     color: #fff;
@@ -14,6 +17,10 @@ sidebar {
     margin: 10px;
     display: block;
     text-align: center;
+    cursor: pointer;
+    &:hover {
+      color: #fff;
+    }
     &.active {
       background-color: $department-bg;
       border-radius: 5px;
