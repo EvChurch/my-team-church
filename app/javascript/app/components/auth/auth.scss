@@ -1,11 +1,11 @@
 auth {
-  background-color: #F0F3F8;
+  background-color: #323232;
   flex-direction: column;
   display: flex;
   height: 100vh;
   align-items: center;
   justify-content: center;
-  > div {
+  > .view {
     background: #fff;
     min-width: 500px;
     padding: 60px 50px;
@@ -15,5 +15,8 @@ auth {
       text-transform: uppercase;
       margin-bottom: 50px;
     }
+  }
+  .footer {
+    color: #fff;
   }
 }
