@@ -1,0 +1,48 @@
+<div class="tree">
+  <div class="heading">
+    <div class="title">
+      <h1>People</h1>
+    </div>
+    <div class="actions">
+      <a ng-click="$ctrl.people.openNewModal()">
+        <i class="fas fa-plus"></i>
+      </a>
+    </div>
+  </div>
+  <div class="list">
+    <div class="input-group search">
+      <input type="text"
+             class="form-control"
+             placeholder="Filter People"
+             ng-model="$ctrl.searchString"
+             ng-change="$ctrl.load()"
+             ng-model-options="{ debounce: 1000 }">
+      <span class="input-group-addon"><i class="fas fa-search"></i></span>
+    </div>
+    <div class="list-group list-group-flush">
+       <a class="list-group-item list-group-item-action flex-column align-items-start"
+          ng-repeat="edge in $ctrl.data track by edge.cursor"
+          ui-sref="people.detail({personId: edge.node.id})"
+          ui-sref-active="active">
+          {{edge.node.first_name}} {{edge.node.last_name}}
+      </a>
+      <a class="list-group-item d-flex"
+          ng-if="$ctrl.data.hasNextPage"
+          ng-click="$ctrl.loadMore()">
+        Load more people
+      </a>
+    </div>
+    <div ng-if="$ctrl.data.length == 0" class="text-center m-3 my-5">
+      <strong>No People</strong>
+      <p>
+        Get started by adding a person.
+      </p>
+      <a class="btn btn-primary" ng-click="$ctrl.people.openNewModal()">
+        Add Person
+      </a>
+    </div>
+  </div>
+  <div class="branch" ui-view>
+    <div class="placeholder"></div>
+  </div>
+</div>

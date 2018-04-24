@@ -108,6 +108,26 @@ export default class Routes {
         0: /* @ngInject*/ (people) => people.load()
       }
     }).state({
+      name: 'people.detail',
+      url: '/:personId',
+      component: 'peopleDetail',
+      resolve: {
+        person: /* @ngInject*/ ($state, $stateParams, people) => {
+          return people.get($stateParams.personId).catch((ex) => {
+            $state.go('people');
+            throw ex;
+          });
+        }
+      }
+    }).state({
+      name: 'people.detail.objectives',
+      url: '/objectives',
+      component: 'objectives',
+      resolve: {
+        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.personId,
+        resourceType: () => 'person'
+      }
+    }).state({
       name: 'auth',
       abstract: true,
       component: 'auth'

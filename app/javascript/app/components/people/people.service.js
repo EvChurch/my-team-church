@@ -1,11 +1,12 @@
 import gql from 'graphql-tag';
-import { reduce } from 'lodash/fp';
+import { pick, reduce } from 'lodash/fp';
 
 class People {
   constructor(
     $rootScope,
     api
   ) {
+    this.$rootScope = $rootScope;
     this.api = api;
   }
   load(searchString, cursor = 'opaqueCursor') {
@@ -42,6 +43,75 @@ class People {
       result.hasNextPage = data.people.pageInfo.hasNextPage;
       return result;
     });
+  }
+  get(id) {
+    return this.api.query(gql`
+      query person($id: ID!){
+        person(id: $id) {
+          id
+          first_name
+          last_name
+          picture
+          email
+          mobile
+          phone
+          gender
+        }
+      }
+    `, { id: id }).then((data) => {
+      return angular.copy(data.person);
+    });
+  }
+  create(person) {
+    return this.api.mutate(gql`
+      mutation createPerson($person: PersonInputType!) {
+        createPerson(
+          person: $person
+        ) {
+          id
+          first_name
+          last_name
+          picture
+          email
+          mobile
+          phone
+          gender
+        }
+      }
+    `, { person: person }).then((data) => {
+      const person = data.createPerson;
+      this.$rootScope.$emit('personCreate', person);
+      return person;
+    });
+  }
+  update(id, person) {
+    return this.api.mutate(gql`
+      mutation updatePerson($id: ID!, $person: PersonInputType!) {
+        updatePerson(
+          id: $id,
+          person: $person
+        ) {
+          id
+          first_name
+          last_name
+          picture
+          email
+          mobile
+          phone
+          gender
+        }
+      }
+    `, { id: id, person: this.inputPerson(person) }).then((data) => {
+      const person = data.updatePerson;
+      this.$rootScope.$emit('personUpdate', person);
+      return person;
+    });
+  }
+  inputPerson(person) {
+    return pick(
+      ['first_name', 'last_name', 'email', 'mobile', 'phone', 'gender'],
+      person
+    );
   }
 }
 

@@ -8,6 +8,9 @@ Types::PersonType = GraphQL::ObjectType.define do
   field :last_name, types.String
   field :picture, types.String
   field :email, types.String
+  field :mobile, types.String
+  field :phone, types.String
+  field :gender, types.String
   field :positions, types[Types::PositionType]
   field :departments, types[Types::DepartmentType]
   field :objectives, types[Types::ObjectiveType]

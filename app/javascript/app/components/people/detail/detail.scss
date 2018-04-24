@@ -1,0 +1,15 @@
+people-detail {
+  .tree {
+    grid-template-columns: 500px auto;
+    > .heading {
+      > img {
+        height: 40px;
+        margin-right: 10px;
+        border-radius: 100%;
+      }
+    }
+    > .list {
+      padding: 10px 15px;
+    }
+  }
+}

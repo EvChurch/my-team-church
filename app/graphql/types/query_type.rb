@@ -177,6 +177,17 @@ Types::QueryType = GraphQL::ObjectType.define do
       people.decorate
     }
   end
+
+  field :person do
+    type Types::PersonType
+    argument :id, !types.ID
+    description 'Find a Person by ID'
+    resolve lambda { |_obj, args, ctx|
+      ctx[:organization].people
+                        .find(args[:id])
+                        .decorate
+    }
+  end
 end
 
 # rubocop:enable Metrics/BlockLength
