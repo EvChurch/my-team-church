@@ -1,0 +1,31 @@
+<div class="tree">
+  <div class="heading">
+    <div class="title">
+      <h1>Positions</h1>
+      {{$ctrl.department.name}}
+    </div>
+  </div>
+  <div class="list">
+    <div class="input-group search">
+      <input type="text" class="form-control" ng-model="$ctrl.search" placeholder="Filter Positions">
+      <span class="input-group-addon">
+        <i class="fas fa-search"></i>
+      </span>
+    </div>
+    <div class="list-group list-group-flush">
+       <a class="list-group-item list-group-item-action flex-column align-items-start"
+          ng-repeat="positionEntity in $ctrl.list | filter: { position: { name: $ctrl.search } } track by positionEntity.id"
+          ui-sref="people.detail.positionEntities.detail({positionEntityId: positionEntity.id})"
+          ui-sref-active="active">
+          {{positionEntity.position.name}}
+      </a>
+    </div>
+    <div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">
+      <i class="fas fa-id-card blankslate-icon"></i>
+      <h5>No positions assigned yet.</h5>
+    </div>
+  </div>
+  <div class="branch" ui-view>
+    <div class="placeholder"></div>
+  </div>
+</div>

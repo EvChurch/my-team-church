@@ -4,7 +4,7 @@
       <h1>People</h1>
     </div>
     <div class="actions">
-      <a ng-click="$ctrl.people.openNewModal()">
+      <a ui-sref="people.new">
         <i class="fas fa-plus"></i>
       </a>
     </div>
@@ -37,7 +37,7 @@
       <p>
         Get started by adding a person.
       </p>
-      <a class="btn btn-primary" ng-click="$ctrl.people.openNewModal()">
+      <a class="btn btn-primary" ui-sref="people.new">
         Add Person
       </a>
     </div>

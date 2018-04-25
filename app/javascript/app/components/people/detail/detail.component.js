@@ -1,5 +1,9 @@
 class DetailController {
-  constructor(people) {
+  constructor(
+    $rootScope,
+    people
+  ) {
+    this.$rootScope = $rootScope;
     this.people = people;
   }
   $onInit() {
@@ -11,7 +15,13 @@ class DetailController {
     this.watcher0();
   }
   save() {
-    this.people.update(this.person.id, this.person);
+    if (this.person.id) {
+      this.people.update(this.person.id, this.person);
+    } else {
+      this.people.create(this.person).then((person) => {
+        this.person = person;
+      });
+    }
   }
 }
 

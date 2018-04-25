@@ -1,5 +1,6 @@
+@import 'positionEntities/positionEntities';
 people-detail {
-  .tree {
+  > .tree {
     grid-template-columns: 500px auto;
     > .heading {
       > img {

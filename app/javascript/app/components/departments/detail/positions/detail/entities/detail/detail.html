@@ -2,7 +2,9 @@
   <div class="heading">
     <div class="title">
       <h1>Person</h1>
-      {{$ctrl.entity.person.first_name}} {{$ctrl.entity.person.last_name}}
+      <a ui-sref="people.detail.positionEntities.detail({personId: $ctrl.entity.person.id, positionEntityId: $ctrl.entity.id})">
+        {{$ctrl.entity.person.first_name}} {{$ctrl.entity.person.last_name}}
+      </a>
     </div>
     <div class="actions">
       <a ng-click="$ctrl.departmentPositionEntities.delete($ctrl.positionId, $ctrl.entity.id)">

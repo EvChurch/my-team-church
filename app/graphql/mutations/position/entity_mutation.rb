@@ -20,12 +20,27 @@ module Mutations::Position::EntityMutation
     description 'Delete PositionEntity'
     argument :position_id, !types.ID
     argument :id, !types.ID
-    type Types::DepartmentType
+    type Types::Position::EntityType
     resolve lambda { |_obj, args, ctx|
       ctx[:organization].positions
                         .includes(:entities)
                         .find(args[:position_id])
                         .entities
+                        .find(args[:id])
+                        .destroy
+    }
+  end
+
+  DeleteByPerson = GraphQL::Field.define do
+    description 'Delete PositionEntity by person'
+    argument :person_id, !types.ID
+    argument :id, !types.ID
+    type Types::Position::EntityType
+    resolve lambda { |_obj, args, ctx|
+      ctx[:organization].people
+                        .includes(:position_entities)
+                        .find(args[:person_id])
+                        .position_entities
                         .find(args[:id])
                         .destroy
     }

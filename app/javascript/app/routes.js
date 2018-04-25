@@ -108,6 +108,10 @@ export default class Routes {
         0: /* @ngInject*/ (people) => people.load()
       }
     }).state({
+      name: 'people.new',
+      url: '/new',
+      component: 'peopleDetail'
+    }).state({
       name: 'people.detail',
       url: '/:personId',
       component: 'peopleDetail',
@@ -126,6 +130,45 @@ export default class Routes {
       resolve: {
         resourceId: /* @ngInject*/ ($stateParams) => $stateParams.personId,
         resourceType: () => 'person'
+      }
+    }).state({
+      name: 'people.detail.positionEntities',
+      url: '/position_entities',
+      component: 'peopleDetailPositionEntities',
+      resolve: {
+        personId: /* @ngInject*/ ($stateParams) => $stateParams.personId,
+        list: /* @ngInject*/ ($state, $stateParams, personPositionEntities) => {
+          return personPositionEntities.load(
+            $stateParams.personId
+          ).catch((ex) => {
+            $state.go('people.detail');
+            throw ex;
+          });
+        }
+      }
+    }).state({
+      name: 'people.detail.positionEntities.detail',
+      url: '/:positionEntityId',
+      component: 'peopleDetailPositionEntitiesDetail',
+      resolve: {
+        personId: /* @ngInject*/ ($stateParams) => $stateParams.personId,
+        positionEntityId: /* @ngInject*/ ($stateParams) => $stateParams.positionEntityId,
+        positionEntity: /* @ngInject*/ ($state, $stateParams, personPositionEntities) => {
+          return personPositionEntities.get(
+            $stateParams.personId, $stateParams.positionEntityId
+          ).catch((ex) => {
+            $state.go('person.detail.positionEntities.detail');
+            throw ex;
+          });
+        }
+      }
+    }).state({
+      name: 'people.detail.positionEntities.detail.objectives',
+      url: '/objectives',
+      component: 'objectives',
+      resolve: {
+        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.positionEntityId,
+        resourceType: () => 'position_entity'
       }
     }).state({
       name: 'auth',

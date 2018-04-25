@@ -6,8 +6,11 @@
       {{$ctrl.person.first_name}} {{$ctrl.person.last_name}}
     </div>
     <div class="actions">
-      <a ui-sref=".objectives">
+      <a ui-sref=".objectives" ng-if="$ctrl.person.id">
         <i class="fas fa-chess-queen"></i>
+      </a>
+      <a ui-sref=".positionEntities" ng-if="$ctrl.person.id">
+        <i class="fas fa-id-card"></i>
       </a>
     </div>
   </div>

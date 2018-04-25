@@ -19,6 +19,7 @@ class Entities {
         ) {
           id
           person {
+            id
             name
             first_name
             last_name
@@ -41,6 +42,7 @@ class Entities {
         ) {
           id
           person {
+            id
             name
             first_name
             last_name
@@ -63,6 +65,7 @@ class Entities {
         ) {
           id
           person {
+            id
             name
             first_name
             last_name

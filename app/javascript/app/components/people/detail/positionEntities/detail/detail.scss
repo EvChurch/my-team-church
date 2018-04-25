@@ -1,0 +1,23 @@
+departments-detail-positions-detail-entities-detail {
+  objectives {
+    .tree.terminus {
+      grid-template-rows: 37px auto;
+      .list {
+        height: calc(100vh - 176px);
+        .heading {
+          height: 37px;
+          padding: 0;
+          padding-left: 15px;
+          .actions {
+            background-color: #eceeef;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            height: 38px;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+          }
+        }
+      }
+    }
+  }
+}

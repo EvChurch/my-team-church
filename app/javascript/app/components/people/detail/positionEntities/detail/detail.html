@@ -1,0 +1,16 @@
+<div class="tree terminus">
+  <div class="heading">
+    <div class="title">
+      <h1>Position</h1>
+      <a ui-sref="departments.detail.position.entity({departmentId: $ctrl.positionEntity.position.department.id, positionId: $ctrl.positionEntity.position.id, entityId: $ctrl.positionEntity.id})">
+        {{$ctrl.positionEntity.position.department.name}} > {{$ctrl.positionEntity.position.name}}
+      </a>
+    </div>
+    <div class="actions">
+      <a ng-click="$ctrl.personPositionEntities.delete($ctrl.personId, $ctrl.positionEntity.id)">
+        <i class="fas fa-times"></i>
+      </a>
+    </div>
+  </div>
+  <div class="list" ui-view></div>
+</div>
