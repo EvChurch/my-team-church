@@ -1,6 +1,17 @@
 class ConnectController {
-  constructor(organizations) {
+  constructor(
+    $state,
+    organizations
+  ) {
+    this.$state = $state;
     this.organizations = organizations;
+  }
+  submit() {
+    this.loading = true;
+    this.organizations.connect(this.personId).then(() => {
+      this.loading = false;
+      this.$state.go('me');
+    });
   }
 }
 

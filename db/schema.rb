@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180326001108) do
+ActiveRecord::Schema.define(version: 20180427001325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+  enable_extension "pgcrypto"
 
   create_table "access_permission_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "access_permission_id"
@@ -265,6 +266,18 @@ ActiveRecord::Schema.define(version: 20180326001108) do
     t.index ["remote_id", "remote_source"], name: "index_service_types_on_remote_id_and_remote_source", unique: true
   end
 
+  create_table "user_links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "person_id"
+    t.uuid "organization_id"
+    t.uuid "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id", "user_id"], name: "index_user_links_on_organization_id_and_user_id", unique: true
+    t.index ["organization_id"], name: "index_user_links_on_organization_id"
+    t.index ["person_id"], name: "index_user_links_on_person_id"
+    t.index ["user_id"], name: "index_user_links_on_user_id"
+  end
+
   create_table "user_options", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "user_id"
     t.string "key"
@@ -332,5 +345,8 @@ ActiveRecord::Schema.define(version: 20180326001108) do
   add_foreign_key "service_type_entities", "people"
   add_foreign_key "service_type_entities", "service_types"
   add_foreign_key "service_types", "organizations"
+  add_foreign_key "user_links", "organizations"
+  add_foreign_key "user_links", "people"
+  add_foreign_key "user_links", "users"
   add_foreign_key "user_options", "users"
 end

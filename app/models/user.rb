@@ -13,7 +13,8 @@ class User < ApplicationRecord
 
   enum role: %i[user vip admin]
   after_initialize :set_default_role, if: :new_record?
-  has_many :options, dependent: :destroy
+  has_many :options, dependent: :destroy, inverse_of: :user
+  has_many :links, dependent: :destroy, inverse_of: :user
   validates :email, uniqueness: { scope: :subdomain }
 
   def set_default_role

@@ -62,6 +62,24 @@ class People {
       return angular.copy(data.person);
     });
   }
+  getMe() {
+    return this.api.query(gql`
+      query me {
+        me {
+          id
+          first_name
+          last_name
+          picture
+          email
+          mobile
+          phone
+          gender
+        }
+      }
+    `).then((data) => {
+      return angular.copy(data.me);
+    });
+  }
   create(person) {
     return this.api.mutate(gql`
       mutation createPerson($person: PersonInputType!) {

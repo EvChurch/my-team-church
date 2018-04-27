@@ -216,6 +216,17 @@ Types::QueryType = GraphQL::ObjectType.define do
                         .decorate
     }
   end
+
+  field :me do
+    type Types::PersonType
+    description 'Find Person associated with user'
+    resolve lambda { |_obj, _args, ctx|
+      ctx[:organization].user_links
+                        .find_by!(user: ctx[:user])
+                        .person
+                        .decorate
+    }
+  end
 end
 
 # rubocop:enable Metrics/BlockLength

@@ -171,6 +171,66 @@ export default class Routes {
         resourceType: () => 'position_entity'
       }
     }).state({
+      name: 'me',
+      url: '/me',
+      component: 'peopleDetail',
+      parent: 'root',
+      resolve: {
+        person: /* @ngInject*/ ($state, $stateParams, people) => {
+          return people.getMe().catch((ex) => {
+            $state.go('organizations.connect');
+            throw ex;
+          });
+        }
+      }
+    }).state({
+      name: 'me.objectives',
+      url: '/objectives',
+      component: 'objectives',
+      resolve: {
+        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.personId,
+        resourceType: () => 'person'
+      }
+    }).state({
+      name: 'me.positionEntities',
+      url: '/position_entities',
+      component: 'peopleDetailPositionEntities',
+      resolve: {
+        personId: /* @ngInject*/ ($stateParams) => $stateParams.personId,
+        list: /* @ngInject*/ ($state, $stateParams, personPositionEntities) => {
+          return personPositionEntities.load(
+            $stateParams.personId
+          ).catch((ex) => {
+            $state.go('people.detail');
+            throw ex;
+          });
+        }
+      }
+    }).state({
+      name: 'me.positionEntities.detail',
+      url: '/:positionEntityId',
+      component: 'peopleDetailPositionEntitiesDetail',
+      resolve: {
+        personId: /* @ngInject*/ ($stateParams) => $stateParams.personId,
+        positionEntityId: /* @ngInject*/ ($stateParams) => $stateParams.positionEntityId,
+        positionEntity: /* @ngInject*/ ($state, $stateParams, personPositionEntities) => {
+          return personPositionEntities.get(
+            $stateParams.personId, $stateParams.positionEntityId
+          ).catch((ex) => {
+            $state.go('person.detail.positionEntities.detail');
+            throw ex;
+          });
+        }
+      }
+    }).state({
+      name: 'me.positionEntities.detail.objectives',
+      url: '/objectives',
+      component: 'objectives',
+      resolve: {
+        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.positionEntityId,
+        resourceType: () => 'position_entity'
+      }
+    }).state({
       name: 'auth',
       abstract: true,
       component: 'auth'

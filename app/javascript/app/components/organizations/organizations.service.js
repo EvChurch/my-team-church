@@ -43,6 +43,19 @@ class Organizations {
       return data.organization;
     });
   }
+  connect(personId) {
+    return this.api.mutate(gql`
+      mutation createUserLink($person_id: ID!) {
+        createUserLink(
+          person_id: $person_id
+        ) {
+          id
+        }
+      }
+    `, { person_id: personId }).then((data) => {
+      return data.createUserLink;
+    });
+  }
   create(organization) {
     return this.api.mutate(gql`
       mutation createOrganization($organization: OrganizationInputType!) {
