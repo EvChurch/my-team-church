@@ -2,7 +2,8 @@
   <div class="heading">
     <img ng-src="{{$ctrl.person.picture}}">
     <div class="title">
-      <h1>Person</h1>
+      <h1 ng-if="$ctrl.$state.includes('people')">Person</h1>
+      <h1 ng-if="$ctrl.$state.includes('me')">My Profile</h1>
       {{$ctrl.person.first_name}} {{$ctrl.person.last_name}}
     </div>
     <div class="actions">

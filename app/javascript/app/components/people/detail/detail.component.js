@@ -1,8 +1,9 @@
 class DetailController {
   constructor(
-    $rootScope,
+    $state, $rootScope,
     people
   ) {
+    this.$state = $state;
     this.$rootScope = $rootScope;
     this.people = people;
   }
