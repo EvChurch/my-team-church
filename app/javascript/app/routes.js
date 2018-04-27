@@ -188,7 +188,7 @@ export default class Routes {
       url: '/objectives',
       component: 'objectives',
       resolve: {
-        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.personId,
+        resourceId: /* @ngInject*/ (people) => people.me.id,
         resourceType: () => 'person'
       }
     }).state({
@@ -196,10 +196,10 @@ export default class Routes {
       url: '/position_entities',
       component: 'peopleDetailPositionEntities',
       resolve: {
-        personId: /* @ngInject*/ ($stateParams) => $stateParams.personId,
-        list: /* @ngInject*/ ($state, $stateParams, personPositionEntities) => {
+        personId: /* @ngInject*/ (people) => people.me.id,
+        list: /* @ngInject*/ ($state, people, personPositionEntities) => {
           return personPositionEntities.load(
-            $stateParams.personId
+            people.me.id
           ).catch((ex) => {
             $state.go('people.detail');
             throw ex;
@@ -211,11 +211,11 @@ export default class Routes {
       url: '/:positionEntityId',
       component: 'peopleDetailPositionEntitiesDetail',
       resolve: {
-        personId: /* @ngInject*/ ($stateParams) => $stateParams.personId,
+        personId: /* @ngInject*/ (people) => people.me.id,
         positionEntityId: /* @ngInject*/ ($stateParams) => $stateParams.positionEntityId,
-        positionEntity: /* @ngInject*/ ($state, $stateParams, personPositionEntities) => {
+        positionEntity: /* @ngInject*/ ($state, $stateParams, people, personPositionEntities) => {
           return personPositionEntities.get(
-            $stateParams.personId, $stateParams.positionEntityId
+            people.me.id, $stateParams.positionEntityId
           ).catch((ex) => {
             $state.go('person.detail.positionEntities.detail');
             throw ex;

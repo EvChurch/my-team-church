@@ -8,6 +8,7 @@ class People {
   ) {
     this.$rootScope = $rootScope;
     this.api = api;
+    this.me = {};
   }
   load(searchString, cursor = 'opaqueCursor') {
     return this.api.query(gql`
@@ -77,6 +78,7 @@ class People {
         }
       }
     `).then((data) => {
+      this.me = data.me;
       return angular.copy(data.me);
     });
   }
