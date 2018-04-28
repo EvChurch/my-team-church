@@ -7,8 +7,8 @@ module Mutations::OrganizationMutation
     type Types::OrganizationType
     resolve lambda { |_obj, args, ctx|
       organization = Organization.create!(args[:organization].to_h)
-      ctx[:user].add_role :member, organization
-      ctx[:user].add_role :admin, organization
+      ctx[:current_user].add_role :member, organization
+      ctx[:current_user].add_role :admin, organization
       organization.decorate
     }
   end
@@ -19,7 +19,7 @@ module Mutations::OrganizationMutation
     argument :organization, !InputTypes::OrganizationInputType
     type Types::OrganizationType
     resolve lambda { |_obj, args, ctx|
-      organization = Organization.with_role(:admin, ctx[:user])
+      organization = Organization.with_role(:admin, ctx[:current_user])
                                  .find(args[:id])
       organization.update_attributes!(args[:organization].to_h)
       organization.decorate

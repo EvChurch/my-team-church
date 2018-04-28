@@ -6,9 +6,9 @@ module Mutations::User::LinkMutation
     argument :person_id, !types.ID
     type Types::User::LinkType
     resolve lambda { |_obj, args, ctx|
-      ctx[:user].links
-                .create!(person_id: args[:person_id])
-                .decorate
+      ctx[:current_user].links
+                        .create!(person_id: args[:person_id])
+                        .decorate
     }
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180427001325) do
+ActiveRecord::Schema.define(version: 20180428173035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 20180427001325) do
     t.string "remote_source"
     t.index ["organization_id"], name: "index_demographics_on_organization_id"
     t.index ["remote_id", "remote_source"], name: "index_demographics_on_remote_id_and_remote_source", unique: true
+  end
+
+  create_table "department_leaders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "person_id"
+    t.uuid "department_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_department_leaders_on_department_id"
+    t.index ["person_id", "department_id"], name: "index_department_leaders_on_person_id_and_department_id", unique: true
+    t.index ["person_id"], name: "index_department_leaders_on_person_id"
   end
 
   create_table "departments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -331,6 +341,8 @@ ActiveRecord::Schema.define(version: 20180427001325) do
   add_foreign_key "demographic_entities", "demographics"
   add_foreign_key "demographic_entities", "people"
   add_foreign_key "demographics", "organizations"
+  add_foreign_key "department_leaders", "departments"
+  add_foreign_key "department_leaders", "people"
   add_foreign_key "integrations", "organizations"
   add_foreign_key "location_entities", "locations"
   add_foreign_key "location_entities", "people"

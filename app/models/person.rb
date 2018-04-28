@@ -38,6 +38,11 @@ class Person < ApplicationRecord
            class_name: 'User::Link',
            dependent: :destroy,
            inverse_of: :person
+  has_many :department_leaders,
+           class_name: 'Department::Leader',
+           dependent: :destroy,
+           inverse_of: :person
+
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
   default_scope -> { order(:first_name, :last_name) }
   serialize :family, Hash

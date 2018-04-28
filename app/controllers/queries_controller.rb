@@ -5,23 +5,10 @@ class QueriesController < ApplicationController
   before_action :authenticate_with_http_token
 
   def create
-    variables = ensure_hash(params[:variables])
-    query = params[:query]
-    operation_name = params[:operationName]
-    context = {
-      user: current_user,
-      organization: organization_scope.find_by(id: variables[:organization_id])
-    }
-    result = MyPlaceSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   end
 
-  private
-
-  def organization_scope
-    OrganizationPolicy::Scope.new(current_user, Organization)
-                             .resolve
-  end
+  protected
 
   def authenticate_with_http_token
     return if current_user
@@ -32,7 +19,31 @@ class QueriesController < ApplicationController
     sign_in user if user
   end
 
-  def ensure_hash(ambiguous_param)
+  def result
+    MyPlaceSchema.execute(
+      params[:query],
+      variables: variables,
+      context: context,
+      operation_name: operation_name,
+      root_value: organization
+    )
+  end
+
+  def context
+    { current_user: current_user }
+  end
+
+  def organization
+    OrganizationPolicy::Scope.new(current_user, Organization)
+                             .resolve
+                             .find_by(id: variables[:organization_id])
+  end
+
+  def operation_name
+    params[:operationName]
+  end
+
+  def variables(ambiguous_param = params[:variables])
     case ambiguous_param
     when String
       ambiguous_param.present? ? ensure_hash(JSON.parse(ambiguous_param)) : {}
