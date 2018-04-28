@@ -5,8 +5,14 @@ export default class Routes {
       abstract: true,
       component: 'root',
       resolve: {
-        0: /* @ngInject*/ ($state, user) => {
-          return user.load().catch((ex) => {
+        0: /* @ngInject*/ ($state, user, organizations) => {
+          return user.load().then(() => {
+            return organizations.load().then((data) => {
+              if (data.length === 0) {
+                $state.go('organizations');
+              }
+            });
+          }).catch((ex) => {
             $state.go('signIn');
             throw ex;
           });

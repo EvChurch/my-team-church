@@ -10,13 +10,18 @@ class QueriesController < ApplicationController
     operation_name = params[:operationName]
     context = {
       user: current_user,
-      organization: Organization.with_role(:member, current_user).find_by(id: variables[:organization_id])
+      organization: organization_scope.find_by(id: variables[:organization_id])
     }
     result = MyPlaceSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   end
 
   private
+
+  def organization_scope
+    OrganizationPolicy::Scope.new(current_user, Organization)
+                             .resolve
+  end
 
   def authenticate_with_http_token
     return if current_user

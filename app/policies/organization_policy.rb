@@ -3,7 +3,8 @@
 class OrganizationPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.with_role(:admin, user)
+      scope.joins(:user_links).where(user_links: { user: user })
+      # scope.with_role(:admin, user).or()
     end
   end
 end
