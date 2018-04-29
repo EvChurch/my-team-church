@@ -22,43 +22,43 @@
   </div>
   <div class="form-group">
     <div class="row">
+    <div class="col">
+      <label>Result Type</label>
+      <select ng-model="$ctrl.keyResult.result_type" class="form-control">
+        <option disabled>Select preset</option>
+        <optgroup label="Percent">
+          <option>%</option>
+        </optgroup>
+        <optgroup label="Currency">
+          <option>$</option>
+          <option>€</option>
+          <option>£</option>
+          <option>¥</option>
+          <option>USD</option>
+          <option>EUR</option>
+          <option>dollars</option>
+          <option>euros</option>
+          <option>Pounds</option>
+        </optgroup>
+        <optgroup label="Units">
+          <option>items</option>
+          <option>articles</option>
+          <option>posts</option>
+          <option>signups</option>
+          <option>people</option>
+          <option>persons</option>
+          <option>NPS</option>
+          <option>meetings</option>
+          <option>answers</option>
+          <option>clients</option>
+          <option>visitors</option>
+          <option>trials</option>
+        </optgroup>
+      </select>
+    </div>
       <div class="col">
-        <label>Result Type<span class="text-danger">*</span></label>
+        <label>Custom Result Type<span class="text-danger">*</span></label>
         <input ng-model="$ctrl.keyResult.result_type" type="text" class="form-control" required>
-      </div>
-      <div class="col">
-        <label>Preset</label>
-        <select ng-model="$ctrl.keyResult.result_type" class="form-control">
-          <option disabled>Select preset</option>
-          <optgroup label="Percent">
-            <option>%</option>
-          </optgroup>
-          <optgroup label="Currency">
-            <option>$</option>
-            <option>€</option>
-            <option>£</option>
-            <option>¥</option>
-            <option>USD</option>
-            <option>EUR</option>
-            <option>dollars</option>
-            <option>euros</option>
-            <option>Pounds</option>
-          </optgroup>
-          <optgroup label="Units">
-            <option>items</option>
-            <option>articles</option>
-            <option>posts</option>
-            <option>signups</option>
-            <option>people</option>
-            <option>persons</option>
-            <option>NPS</option>
-            <option>meetings</option>
-            <option>answers</option>
-            <option>clients</option>
-            <option>visitors</option>
-            <option>trials</option>
-          </optgroup>
-        </select>
       </div>
     </div>
   </div>
