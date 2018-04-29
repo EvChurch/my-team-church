@@ -5,10 +5,10 @@ module Mutations::PersonMutation
     description 'Create Person'
     argument :person, !InputTypes::PersonInputType
     type Types::PersonType
-    resolve lambda { |_obj, args, ctx|
-      ctx[:organization].people
-                        .create!(args[:person].to_h)
-                        .decorate
+    resolve lambda { |organization, args, _ctx|
+      organization.people
+                  .create!(args[:person].to_h)
+                  .decorate
     }
   end
 
@@ -17,8 +17,8 @@ module Mutations::PersonMutation
     argument :id, !types.ID
     argument :person, !InputTypes::PersonInputType
     type Types::PersonType
-    resolve lambda { |_obj, args, ctx|
-      person = ctx[:organization].people.find(args[:id])
+    resolve lambda { |organization, args, _ctx|
+      person = organization.people.find(args[:id])
       person.update_attributes!(args[:person].to_h)
       person.decorate
     }

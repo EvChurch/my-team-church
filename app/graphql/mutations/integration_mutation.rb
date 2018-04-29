@@ -5,8 +5,8 @@ module Mutations::IntegrationMutation
     description 'Create or update Integration'
     argument :integration, InputTypes::IntegrationInputType
     type Types::IntegrationType
-    resolve lambda { |_obj, args, ctx|
-      integration = ctx[:organization].integrations.find_or_initialize_by(type: args[:integration][:type])
+    resolve lambda { |organization, args, _ctx|
+      integration = organization.integrations.find_or_initialize_by(type: args[:integration][:type])
       integration.update_attributes(args[:integration].to_h)
       integration.decorate
     }
@@ -16,10 +16,10 @@ module Mutations::IntegrationMutation
     description 'Delete Integration'
     argument :id, !types.ID
     type Types::IntegrationType
-    resolve lambda { |_obj, args, ctx|
-      ctx[:organization].integrations
-                        .find(args[:id])
-                        .destroy
+    resolve lambda { |organization, args, _ctx|
+      organization.integrations
+                  .find(args[:id])
+                  .destroy
     }
   end
 end

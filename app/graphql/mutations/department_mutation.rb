@@ -5,10 +5,10 @@ module Mutations::DepartmentMutation
     description 'Create Department'
     argument :department, !InputTypes::DepartmentInputType
     type Types::DepartmentType
-    resolve lambda { |_obj, args, ctx|
-      ctx[:organization].departments
-                        .create!(args[:department].to_h)
-                        .decorate
+    resolve lambda { |organization, args, _ctx|
+      organization.departments
+                  .create!(args[:department].to_h)
+                  .decorate
     }
   end
 
@@ -17,8 +17,8 @@ module Mutations::DepartmentMutation
     argument :id, !types.ID
     argument :department, !InputTypes::DepartmentInputType
     type Types::DepartmentType
-    resolve lambda { |_obj, args, ctx|
-      department = ctx[:organization].departments.find(args[:id])
+    resolve lambda { |organization, args, _ctx|
+      department = organization.departments.find(args[:id])
       department.update_attributes!(args[:department].to_h)
       department.decorate
     }
@@ -28,8 +28,8 @@ module Mutations::DepartmentMutation
     description 'Delete Department'
     argument :id, !types.ID
     type Types::DepartmentType
-    resolve lambda { |_obj, args, ctx|
-      ctx[:organization].departments.find(args[:id]).destroy
+    resolve lambda { |organization, args, _ctx|
+      organization.departments.find(args[:id]).destroy
     }
   end
 end

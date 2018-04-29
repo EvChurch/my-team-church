@@ -5,7 +5,7 @@ module Mutations::OrganizationMutation
     description 'Create Organization'
     argument :organization, !InputTypes::OrganizationInputType
     type Types::OrganizationType
-    resolve lambda { |_obj, args, ctx|
+    resolve lambda { |organization, args, ctx|
       organization = Organization.create!(args[:organization].to_h)
       ctx[:current_user].add_role :member, organization
       ctx[:current_user].add_role :admin, organization
@@ -18,7 +18,7 @@ module Mutations::OrganizationMutation
     argument :id, !types.ID
     argument :organization, !InputTypes::OrganizationInputType
     type Types::OrganizationType
-    resolve lambda { |_obj, args, ctx|
+    resolve lambda { |organization, args, ctx|
       organization = Organization.with_role(:admin, ctx[:current_user])
                                  .find(args[:id])
       organization.update_attributes!(args[:organization].to_h)
