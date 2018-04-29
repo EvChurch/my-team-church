@@ -5,7 +5,7 @@ module Mutations::User::LinkMutation
     description 'Create UserLink'
     argument :person_id, !types.ID
     type Types::User::LinkType
-    resolve lambda { |_obj, args, ctx|
+    resolve lambda { |_organization, args, ctx|
       ctx[:current_user].links
                         .create!(person_id: args[:person_id])
                         .decorate

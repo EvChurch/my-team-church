@@ -8,8 +8,8 @@ module Mutations::Objective::KeyResultMutation
     argument :objective_id, !types.ID
     argument :key_result, !InputTypes::Objective::KeyResultInputType
     type Types::Objective::KeyResultType
-    resolve lambda { |_obj, args, ctx|
-      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+    resolve lambda { |organization, args, _ctx|
+      ResourceFinderService.find(organization, args[:resource_id], args[:resource_type])
                            .objectives
                            .find(args[:objective_id])
                            .key_results
@@ -26,8 +26,8 @@ module Mutations::Objective::KeyResultMutation
     argument :id, !types.ID
     argument :key_result, !InputTypes::Objective::KeyResultInputType
     type Types::Objective::KeyResultType
-    resolve lambda { |_obj, args, ctx|
-      key_result = ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+    resolve lambda { |organization, args, _ctx|
+      key_result = ResourceFinderService.find(organization, args[:resource_id], args[:resource_type])
                                         .objectives
                                         .find(args[:objective_id])
                                         .key_results
@@ -44,8 +44,8 @@ module Mutations::Objective::KeyResultMutation
     argument :objective_id, !types.ID
     argument :id, !types.ID
     type Types::Objective::KeyResultType
-    resolve lambda { |_obj, args, ctx|
-      ResourceFinderService.find(ctx[:organization], args[:resource_id], args[:resource_type])
+    resolve lambda { |organization, args, _ctx|
+      ResourceFinderService.find(organization, args[:resource_id], args[:resource_type])
                            .objectives
                            .find(args[:objective_id])
                            .key_results

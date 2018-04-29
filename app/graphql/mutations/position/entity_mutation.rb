@@ -6,13 +6,13 @@ module Mutations::Position::EntityMutation
     argument :position_id, !types.ID
     argument :position_entity, !InputTypes::Position::EntityInputType
     type Types::Position::EntityType
-    resolve lambda { |_obj, args, ctx|
-      ctx[:organization].positions
-                        .includes(:entities)
-                        .find(args[:position_id])
-                        .entities
-                        .create!(args[:position_entity].to_h)
-                        .decorate
+    resolve lambda { |organization, args, _ctx|
+      organization.positions
+                  .includes(:entities)
+                  .find(args[:position_id])
+                  .entities
+                  .create!(args[:position_entity].to_h)
+                  .decorate
     }
   end
 
@@ -21,13 +21,13 @@ module Mutations::Position::EntityMutation
     argument :position_id, !types.ID
     argument :id, !types.ID
     type Types::Position::EntityType
-    resolve lambda { |_obj, args, ctx|
-      ctx[:organization].positions
-                        .includes(:entities)
-                        .find(args[:position_id])
-                        .entities
-                        .find(args[:id])
-                        .destroy
+    resolve lambda { |organization, args, _ctx|
+      organization.positions
+                  .includes(:entities)
+                  .find(args[:position_id])
+                  .entities
+                  .find(args[:id])
+                  .destroy
     }
   end
 
@@ -36,13 +36,13 @@ module Mutations::Position::EntityMutation
     argument :person_id, !types.ID
     argument :id, !types.ID
     type Types::Position::EntityType
-    resolve lambda { |_obj, args, ctx|
-      ctx[:organization].people
-                        .includes(:position_entities)
-                        .find(args[:person_id])
-                        .position_entities
-                        .find(args[:id])
-                        .destroy
+    resolve lambda { |organization, args, _ctx|
+      organization.people
+                  .includes(:position_entities)
+                  .find(args[:person_id])
+                  .position_entities
+                  .find(args[:id])
+                  .destroy
     }
   end
 end
