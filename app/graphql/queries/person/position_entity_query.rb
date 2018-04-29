@@ -5,12 +5,12 @@ module Queries::Person::PositionEntityQuery
     type !types[Types::Position::EntityType]
     argument :person_id, !types.ID
     description 'List of Positions belonging to a person'
-    resolve lambda { |organization, args, _ctx|
-      organization.people
-                  .find(args[:person_id])
-                  .position_entities
-                  .includes(:position)
-                  .decorate
+    before_scope
+    resource lambda { |organization, args, _ctx|
+      organization.position_entities.where(person_id: args[:person_id])
+    }
+    resolve lambda { |entities, _args, _ctx|
+      entities.decorate
     }
   end
 
@@ -19,13 +19,10 @@ module Queries::Person::PositionEntityQuery
     argument :person_id, !types.ID
     argument :id, !types.ID
     description 'Find a Position by ID belonging to a person'
-    resolve lambda { |organization, args, _ctx|
-      organization.people
-                  .find(args[:person_id])
-                  .position_entities
-                  .includes(position: :department)
-                  .find(args[:id])
-                  .decorate
+    authorize :show
+    resource lambda { |organization, args, _ctx|
+      organization.position_entities.where(person_id: args[:person_id]).find(args[:id])
     }
+    resolve ->(entity, _args, _ctx) { entity.decorate }
   end
 end

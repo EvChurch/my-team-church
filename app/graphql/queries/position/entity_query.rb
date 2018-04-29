@@ -4,13 +4,13 @@ module Queries::Position::EntityQuery
   List = GraphQL::Field.define do
     type !types[Types::Position::EntityType]
     argument :position_id, !types.ID
-    description 'List of Positions'
-    resolve lambda { |organization, args, _ctx|
-      organization.positions
-                  .find(args[:position_id])
-                  .entities
-                  .includes(:person)
-                  .decorate
+    description 'List of PositionEntities'
+    before_scope
+    resource lambda { |organization, args, _ctx|
+      organization.position_entities.where(position_id: args[:position_id])
+    }
+    resolve lambda { |entities, _args, _ctx|
+      entities.decorate
     }
   end
 
@@ -18,15 +18,11 @@ module Queries::Position::EntityQuery
     type Types::Position::EntityType
     argument :position_id, !types.ID
     argument :id, !types.ID
-    description 'Find a Position by ID'
-    resolve lambda { |organization, args, _ctx|
-      organization.positions
-                  .includes(:entities)
-                  .find(args[:position_id])
-                  .entities
-                  .includes(:person)
-                  .find(args[:id])
-                  .decorate
+    description 'Get PositionEntity by ID'
+    authorize :show
+    resource lambda { |organization, args, _ctx|
+      organization.position_entities.where(position_id: args[:position_id]).find(args[:id])
     }
+    resolve ->(entity, _args, _ctx) { entity.decorate }
   end
 end

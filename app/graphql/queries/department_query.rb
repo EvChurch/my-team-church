@@ -16,13 +16,11 @@ module Queries::DepartmentQuery
   Get = GraphQL::Field.define do
     type Types::DepartmentType
     argument :id, !types.ID
-    description 'Find a Department by ID'
+    description 'Get Department by ID'
     authorize :show
     resource lambda { |organization, args, _ctx|
       organization.departments.find(args[:id])
     }
-    resolve lambda { |department, _args, _ctx|
-      department.decorate
-    }
+    resolve ->(department, _args, _ctx) { department.decorate }
   end
 end

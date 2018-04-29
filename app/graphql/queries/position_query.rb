@@ -5,23 +5,22 @@ module Queries::PositionQuery
     type !types[Types::PositionType]
     argument :department_id, !types.ID
     description 'List of Positions'
-    resolve lambda { |organization, args, _ctx|
-      organization.positions
-                  .where(department_id: args[:department_id])
-                  .decorate
+    before_scope
+    resource lambda { |organization, args, _ctx|
+      organization.positions.where(department_id: args[:department_id])
     }
+    resolve ->(positions, _args, _ctx) { positions.decorate }
   end
 
   Get = GraphQL::Field.define do
     type Types::PositionType
     argument :department_id, !types.ID
     argument :id, !types.ID
-    description 'Find a Position by ID'
-    resolve lambda { |organization, args, _ctx|
-      organization.positions
-                  .where(department_id: args[:department_id])
-                  .find(args[:id])
-                  .decorate
+    description 'Get Position by ID'
+    authorize :show
+    resource lambda { |organization, args, _ctx|
+      organization.positions.find(args[:id])
     }
+    resolve ->(position, _args, _ctx) { position.decorate }
   end
 end
