@@ -5,6 +5,6 @@ InputTypes::Position::EntityInputType = GraphQL::InputObjectType.define do
   description 'Properties for creating a Position -> Person Relationship'
 
   argument :person_id, !types.ID do
-    description 'Description of the position.'
+    description 'ID of the Person.'
   end
 end

@@ -5,6 +5,7 @@ class Organization < ApplicationRecord
   has_many :access_permissions, dependent: :destroy
   has_many :demographics, dependent: :destroy
   has_many :departments, dependent: :destroy
+  has_many :department_leaders, class_name: 'Department::Leader', through: :departments
   has_many :locations, dependent: :destroy
   has_many :people, dependent: :destroy
   has_many :positions, dependent: :destroy
