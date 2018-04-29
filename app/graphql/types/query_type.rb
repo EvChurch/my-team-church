@@ -8,8 +8,8 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :user, Queries::UserQuery::Get
   field :departments, Queries::DepartmentQuery::List
   field :department, Queries::DepartmentQuery::Get
-  field :department_leaders, Queries::Department::LeaderQuery::List
-  field :department_leader, Queries::Department::LeaderQuery::Get
+  field :departmentLeaders, Queries::Department::LeaderQuery::List
+  field :departmentLeader, Queries::Department::LeaderQuery::Get
   field :objectives, Queries::ObjectiveQuery::List
   field :objective, Queries::ObjectiveQuery::Get
   field :objectiveKeyResults, Queries::Objective::KeyResultQuery::List

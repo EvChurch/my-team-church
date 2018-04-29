@@ -7,8 +7,9 @@ module Mutations::Department::LeaderMutation
     argument :department_leader, !InputTypes::Department::LeaderInputType
     type Types::Department::LeaderType
     resolve lambda { |organization, args, _ctx|
-      organization.department_leaders
-                  .where(department_id: args[:department_id])
+      organization.departments
+                  .find(args[:department_id])
+                  .leaders
                   .create!(args[:department_leader].to_h)
                   .decorate
     }

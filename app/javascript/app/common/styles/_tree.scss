@@ -59,6 +59,14 @@
         border-top: 0;
       }
     }
+    .list-divided {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      > * {
+        flex-grow: 1;
+      }
+    }
   }
   > .branch {
     grid-row: 1 / span 2;

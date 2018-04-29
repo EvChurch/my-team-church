@@ -1,0 +1,29 @@
+<div class="tree terminus">
+  <div class="heading">
+    <div class="title">
+      <h1>Leaders</h1>
+    </div>
+    <div class="actions">
+      <a ng-click="$ctrl.departmentLeaders.openNewModal($ctrl.departmentId)">
+        <i class="fas fa-plus"></i>
+      </a>
+    </div>
+  </div>
+  <div class="list">
+    <div class="list-group list-group-flush">
+       <div class="list-group-item list-group-item-action flex-row align-items-center"
+          ng-repeat="leader in $ctrl.list track by leader.id">
+          <div style="flex-grow: 1;">{{leader.person.name}}</div>
+          <a ng-click="$ctrl.departmentLeaders.delete($ctrl.departmentId, leader.id)">
+            <i class="fas fa-times"></i>
+          </a>
+      </div>
+    </div>
+    <div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">
+      <i class="fas fa-id-card blankslate-icon"></i>
+      <h5>No leaders defined yet.</h5>
+      <p>It's time to add your first leader!</p>
+      <a ng-click="$ctrl.departmentLeaders.openNewModal($ctrl.departmentId)" class="btn btn-primary">Add Leader</a>
+    </div>
+  </div>
+</div>

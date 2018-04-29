@@ -14,7 +14,10 @@
     </div>
   </div>
   <div class="list">
-    <departments-detail-positions department-id="$ctrl.department.id"></departments-detail-positions>
+    <div class="list-divided">
+      <departments-detail-positions department-id="$ctrl.department.id"></departments-detail-positions>
+      <departments-detail-leaders department-id="$ctrl.department.id"></departments-detail-leaders>
+    </div>
   </div>
   <div class="branch" ui-view>
     <div class="placeholder"></div>

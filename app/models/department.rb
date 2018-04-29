@@ -8,5 +8,5 @@ class Department < ApplicationRecord
   has_many :people, -> { uniq }, through: :positions
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
   validates :name, presence: true
-  default_scope { order('LOWER(name)') }
+  default_scope { order('LOWER(departments.name)') }
 end
