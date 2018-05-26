@@ -84,3 +84,11 @@ pickle-email-*.html
 *~
 /public/packs
 /node_modules
+/public/packs-test
+yarn-debug.log*
+.yarn-integrity
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity

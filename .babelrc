@@ -1,13 +1,19 @@
 {
-    "presets": [
-        ["env", {
-            "targets": {
-                "browsers": ["last 2 versions"]
-            }
-        }],
-        "stage-1"
-    ],
-    "plugins": [
-        "angularjs-annotate"
-    ]
+  "presets": [
+    ["env", {
+      "modules": false,
+      "targets": {
+        "browsers": "> 1%",
+        "uglify": true
+      },
+      "useBuiltIns": true
+    }]
+  ],
+
+  "plugins": [
+    "angularjs-annotate",    
+    "syntax-dynamic-import",
+    "transform-object-rest-spread",
+    ["transform-class-properties", { "spec": true }]
+  ]
 }
