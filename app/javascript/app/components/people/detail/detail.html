@@ -1,64 +1,83 @@
-<div class="tree">
+<div class="tree" ng-class="{ 'edit': $ctrl.$state.is('people.detail') || $ctrl.$state.is('me'), 'terminus': $ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives') }">
   <div class="heading">
     <img ng-src="{{$ctrl.person.picture}}">
     <div class="title">
-      <h1 ng-if="$ctrl.$state.includes('people')">Person</h1>
+      <h1 ng-if="$ctrl.$state.includes('people')">{{$ctrl.person.first_name}} {{$ctrl.person.last_name}}</h1>
       <h1 ng-if="$ctrl.$state.includes('me')">My Profile</h1>
-      {{$ctrl.person.first_name}} {{$ctrl.person.last_name}}
+      <div class="menu-toggle" ng-click="open = !open" ng-class="{ 'open': open }">
+          <div class="icon">
+            <i class="fas fa-chevron-up"></i>
+          </div>
+          <div ng-if="$ctrl.$state.is('people.detail') || $ctrl.$state.is('me')">
+            Details
+          </div>
+          <div ng-if="$ctrl.$state.includes('people.detail.positionEntities') || $ctrl.$state.includes('me.positionEntities')">
+            Positions
+          </div>
+          <div ng-if="$ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives')">
+            Objectives
+          </div>
+        </div>
     </div>
     <div class="actions">
-      <a ui-sref=".objectives" ng-if="$ctrl.person.id"
-         data-title="Personal Objectives"
-         data-placement="left"
-         data-trigger="hover"
-         bs-tooltip>
-        <i class="fas fa-chess-queen"></i>
-      </a>
-      <a ui-sref=".positionEntities" ng-if="$ctrl.person.id"
-         data-title="Positions"
-         data-placement="left"
-         data-trigger="hover"
-         bs-tooltip>
-        <i class="fas fa-id-card"></i>
-      </a>
     </div>
   </div>
   <div class="list">
-    <form ng-submit="$ctrl.save()">
-      <div class="row">
-        <div class="form-group col">
-          <label>First Name</label>
-          <input class="form-control" ng-model="$ctrl.person.first_name">
+    <div class="menu fade" ng-if="open" ng-click="open = false">
+      <a class="menu-item" ui-sref="people.detail" ng-if="$ctrl.$state.includes('people.detail')">
+        <div>Details</div>
+        <div class="icon"><i class="fas fa-edit"></i></div>
+      </a>
+      <a class="menu-item" ui-sref="me" ng-if="$ctrl.$state.includes('me')">
+        <div>Details</div>
+        <div class="icon"><i class="fas fa-edit"></i></div>
+      </a>
+      <a class="menu-item" ui-sref=".positionEntities">
+        <div>Positions</div>
+        <div class="icon"><i class="fas fa-id-card"></i></div>
+      </a>
+      <a class="menu-item" ui-sref=".objectives">
+        <div>Objectives</div>
+        <div class="icon"><i class="fas fa-bullseye"></i></div>
+      </a>
+    </div>
+    <div ui-view="list">
+      <form ng-submit="$ctrl.save()">
+        <div class="row">
+          <div class="form-group col">
+            <label>First Name</label>
+            <input class="form-control" ng-model="$ctrl.person.first_name">
+          </div>
+          <div class="form-group col">
+            <label>Last Name</label>
+            <input class="form-control" ng-model="$ctrl.person.last_name">
+          </div>
         </div>
-        <div class="form-group col">
-          <label>Last Name</label>
-          <input class="form-control" ng-model="$ctrl.person.last_name">
+        <div class="form-group">
+          <label>Email</label>
+          <input class="form-control" ng-model="$ctrl.person.email">
         </div>
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input class="form-control" ng-model="$ctrl.person.email">
-      </div>
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input class="form-control" ng-model="$ctrl.person.phone">
-      </div>
-      <div class="form-group">
-        <label>Mobile Number</label>
-        <input class="form-control" ng-model="$ctrl.person.mobile">
-      </div>
-      <div class="form-group">
-        <label>Gender</label>
-        <select class="form-control" ng-model="$ctrl.person.gender">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-      </div>
-      <div class="text-right">
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input class="form-control" ng-model="$ctrl.person.phone">
+        </div>
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input class="form-control" ng-model="$ctrl.person.mobile">
+        </div>
+        <div class="form-group">
+          <label>Gender</label>
+          <select class="form-control" ng-model="$ctrl.person.gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
   </div>
-  <div class="branch" ui-view>
+  <div class="branch" ui-view="branch" ng-if="!($ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives'))">
     <div class="placeholder"></div>
   </div>
 </div>

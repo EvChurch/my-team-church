@@ -185,7 +185,11 @@ export default class Routes {
     }).state({
       name: 'people.detail.objectives',
       url: '/objectives',
-      component: 'objectives',
+      views: {
+        'list@people.detail': {
+          component: 'objectives'
+        }
+      },
       resolve: {
         resourceId: /* @ngInject*/ ($stateParams) => $stateParams.personId,
         resourceType: () => 'person'
@@ -193,7 +197,11 @@ export default class Routes {
     }).state({
       name: 'people.detail.positionEntities',
       url: '/position_entities',
-      component: 'peopleDetailPositionEntities',
+      views: {
+        'list@people.detail': {
+          component: 'peopleDetailPositionEntities'
+        }
+      },
       resolve: {
         personId: /* @ngInject*/ ($stateParams) => $stateParams.personId,
         list: /* @ngInject*/ ($state, $stateParams, personPositionEntities) => {
@@ -208,7 +216,11 @@ export default class Routes {
     }).state({
       name: 'people.detail.positionEntities.detail',
       url: '/:positionEntityId',
-      component: 'peopleDetailPositionEntitiesDetail',
+      views: {
+        'branch@people.detail': {
+          component: 'peopleDetailPositionEntitiesDetail',
+        }
+      },
       resolve: {
         personId: /* @ngInject*/ ($stateParams) => $stateParams.personId,
         positionEntityId: /* @ngInject*/ ($stateParams) => $stateParams.positionEntityId,
@@ -245,7 +257,11 @@ export default class Routes {
     }).state({
       name: 'me.objectives',
       url: '/objectives',
-      component: 'objectives',
+      views: {
+        'list@me': {
+          component: 'objectives'
+        }
+      },
       resolve: {
         resourceId: /* @ngInject*/ (people) => people.me.id,
         resourceType: () => 'person'
@@ -253,7 +269,11 @@ export default class Routes {
     }).state({
       name: 'me.positionEntities',
       url: '/position_entities',
-      component: 'peopleDetailPositionEntities',
+      views: {
+        'list@me': {
+          component: 'peopleDetailPositionEntities'
+        }
+      },
       resolve: {
         personId: /* @ngInject*/ (people) => people.me.id,
         list: /* @ngInject*/ ($state, people, personPositionEntities) => {
@@ -268,7 +288,11 @@ export default class Routes {
     }).state({
       name: 'me.positionEntities.detail',
       url: '/:positionEntityId',
-      component: 'peopleDetailPositionEntitiesDetail',
+      views: {
+        'branch@me': {
+          component: 'peopleDetailPositionEntitiesDetail'
+        }
+      },
       resolve: {
         personId: /* @ngInject*/ (people) => people.me.id,
         positionEntityId: /* @ngInject*/ ($stateParams) => $stateParams.positionEntityId,

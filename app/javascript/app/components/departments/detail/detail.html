@@ -1,4 +1,4 @@
-<div class="tree" ng-class="{ 'terminus' : $ctrl.$state.includes('departments.detail.objectives') }">
+<div class="tree" ng-class="{ 'terminus' : $ctrl.$state.is('departments.detail.objectives') }">
   <div class="heading">
     <div class="title" >
       <h1>{{$ctrl.department.name}}</h1>
@@ -44,7 +44,7 @@
     </div>
     <div ui-view="list"></div>
   </div>
-  <div class="branch" ui-view="branch" ng-if="!$ctrl.$state.includes('departments.detail.objectives')">
+  <div class="branch" ui-view="branch" ng-if="!$ctrl.$state.is('departments.detail.objectives')">
     <div class="placeholder"></div>
   </div>
 </div>
