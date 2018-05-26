@@ -7,62 +7,33 @@ git_source(:github) do |repo_name|
 end
 ruby '2.4.3'
 gem 'ancestry'
-gem 'axlsx', '2.1.0.pre'
-gem 'axlsx_rails'
+gem 'bootstrap', '~> 4.1.1'
 gem 'bootsnap', require: false
-gem 'breadcrumbs_on_rails'
-gem 'chosen-rails'
-gem 'cocoon'
-gem 'coffee-rails', '~> 4.2'
-gem 'country_select'
-gem 'domainatrix'
+gem 'devise'
+gem 'draper', '3.0.0'
+gem 'elvanto-api', github: 'ardation/api-ruby'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'graphql'
 gem 'graphql-pundit'
 gem 'jbuilder', '~> 2.5'
-gem 'jquery-rails'
 gem 'oj', '~> 2.16.1'
-gem 'page_meta'
+gem 'omniauth'
+gem 'omniauth-oauth2'
 gem 'paperclip'
-gem 'peek'
-gem 'peek-gc'
-gem 'peek-git'
-gem 'peek-performance_bar'
-gem 'peek-pg'
-gem 'peek-rblineprof'
-gem 'peek-redis'
+gem 'pg'
 gem 'puma', '~> 3.0'
+gem 'pundit'
 gem 'rack-cors', require: 'rack/cors'
-gem 'rails', '~> 5.1.2'
-gem 'redis-namespace'
-gem 'redis-objects', '~> 0.6.1'
+gem 'rails', '~> 5.2'
 gem 'redis-rails'
 gem 'rolify'
 gem 'rollbar'
-gem 'rubyzip', '~> 1.1.0'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
+gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'webpacker', '~> 2.0'
-group :development, :test do
-  gem 'byebug', platform: :mri
-end
-group :development do
-  gem 'listen', '~> 3.0.5'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
-end
-gem 'bootstrap', '~> 4.0.0'
-gem 'devise'
-gem 'draper', '3.0.0'
-gem 'elvanto-api', github: 'ardation/api-ruby'
-gem 'omniauth'
-gem 'omniauth-oauth2'
-gem 'pg'
-gem 'pundit'
-gem 'simple_form'
+gem 'webpacker', '~> 3'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -70,16 +41,19 @@ group :development do
   gem 'guard-rails'
   gem 'guard-rspec'
   gem 'hub', require: false
+  gem 'listen', '~> 3.0.5'
   gem 'rails-erd', require: false
   gem 'rails_layout'
   gem 'rb-fchange', require: false
   gem 'rb-fsevent', require: false
   gem 'rb-inotify', require: false
+  gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 group :development, :test do
   gem 'dotenv-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'foreman'
   gem 'pry-byebug'
@@ -89,10 +63,7 @@ group :development, :test do
   gem 'rubocop'
 end
 group :test do
-  gem 'capybara'
   gem 'database_cleaner'
-  gem 'launchy'
-  gem 'selenium-webdriver'
 end
 
 gem 'graphiql-rails', group: :development

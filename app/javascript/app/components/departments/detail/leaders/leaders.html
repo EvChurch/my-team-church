@@ -4,7 +4,11 @@
       <h1>Leaders</h1>
     </div>
     <div class="actions">
-      <a ng-click="$ctrl.departmentLeaders.openNewModal($ctrl.departmentId)">
+      <a ng-click="$ctrl.departmentLeaders.openNewModal($ctrl.departmentId)"
+         data-title="Add Leader"
+         data-placement="left"
+         data-trigger="hover"
+         bs-tooltip>
         <i class="fas fa-plus"></i>
       </a>
     </div>

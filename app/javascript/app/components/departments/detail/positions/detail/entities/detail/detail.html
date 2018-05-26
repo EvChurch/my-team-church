@@ -1,16 +1,22 @@
 <div class="tree terminus">
   <div class="heading">
     <div class="title">
-      <h1>Person</h1>
-      <a ui-sref="people.detail.positionEntities.detail({personId: $ctrl.entity.person.id, positionEntityId: $ctrl.entity.id})">
-        {{$ctrl.entity.person.first_name}} {{$ctrl.entity.person.last_name}}
-      </a>
+      <h1>
+        <a ui-sref="people.detail.positionEntities.detail({personId: $ctrl.entity.person.id, positionEntityId: $ctrl.entity.id})">
+          {{$ctrl.entity.person.first_name}} {{$ctrl.entity.person.last_name}}
+        </a>
+      </h1>
+      Objectives
     </div>
     <div class="actions">
-      <a ng-click="$ctrl.departmentPositionEntities.delete($ctrl.positionId, $ctrl.entity.id)">
+      <a ng-click="$ctrl.departmentPositionEntities.delete($ctrl.positionId, $ctrl.entity.id)"
+         data-title="Remove from Position"
+         data-placement="left"
+         data-trigger="hover"
+         bs-tooltip>
         <i class="fas fa-times"></i>
       </a>
     </div>
   </div>
-  <div class="list" ui-view></div>
+  <div class="list" ui-view="list"></div>
 </div>

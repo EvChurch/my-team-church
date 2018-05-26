@@ -1,22 +1,43 @@
-<div class="tree">
+<div class="tree" ng-class="{ 'terminus' : $ctrl.$state.includes('departments.detail.positions.detail.objectives') }">
   <div class="heading">
-    <div class="title">
-      <h1>Position</h1>
-      {{$ctrl.position.name}}
+    <div class="title" >
+      <h1>{{$ctrl.position.name}}</h1>
+      <div class="menu-toggle" ng-click="open = !open" ng-class="{ 'open': open }">
+        <div class="icon">
+          <i class="fas fa-chevron-up"></i>
+        </div>
+        <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.entities')">
+          People
+        </div>
+        <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.objectives')">
+          Objectives
+        </div>
+      </div>
     </div>
     <div class="actions">
-      <a ui-sref=".objectives">
-        <i class="fas fa-chess-queen"></i>
-      </a>
-      <a ng-click="$ctrl.departmentPositions.openEditModal($ctrl.departmentId, $ctrl.position)">
+      <a ng-click="$ctrl.departmentPositions.openEditModal($ctrl.departmentId, $ctrl.position)"
+         data-title="Edit Position"
+         data-placement="left"
+         data-trigger="hover"
+         bs-tooltip>
         <i class="far fa-edit"></i>
       </a>
     </div>
   </div>
   <div class="list">
-    <departments-detail-positions-detail-entities position-id="$ctrl.position.id"></departments-detail-positions-detail-entities>
+    <div class="menu fade" ng-if="open" ng-click="open = false">
+      <a class="menu-item" ui-sref=".entities">
+        <div>People</div>
+        <div class="icon"><i class="fas fa-user"></i></div>
+      </a>
+      <a class="menu-item" ui-sref=".objectives">
+        <div>Objectives</div>
+        <div class="icon"><i class="fas fa-bullseye"></i></div>
+      </a>
+    </div>
+    <div ui-view="list"></div>
   </div>
-  <div class="branch" ui-view>
+  <div class="branch" ui-view="branch" ng-if="!$ctrl.$state.includes('departments.detail.positions.detail.objectives')">
     <div class="placeholder"></div>
   </div>
 </div>

@@ -1,5 +1,9 @@
 <div ng-click="$ctrl.click()">
-  <sidebar></sidebar>
+  <sidebar
+    ng-class="{ 'hover': hover }"
+    ng-mouseenter="hover = true"
+    ng-mouseleave="hover = false">
+  </sidebar>
   <div class="base">
     <navbar></navbar>
     <div class="pad">

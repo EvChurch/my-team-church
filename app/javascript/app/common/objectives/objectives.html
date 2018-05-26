@@ -4,7 +4,11 @@
       <h1>Objectives</h1>
     </div>
     <div class="actions">
-      <a ng-click="$ctrl.objectives.openNewModal($ctrl.resourceId, $ctrl.resourceType)">
+      <a ng-click="$ctrl.objectives.openNewModal($ctrl.resourceId, $ctrl.resourceType)"
+         data-title="Add Objective"
+         data-placement="left"
+         data-trigger="hover"
+         bs-tooltip>
         <i class="fas fa-plus"></i>
       </a>
     </div>

@@ -4,7 +4,11 @@
       <h1>Departments</h1>
     </div>
     <div class="actions">
-      <a ng-click="$ctrl.departments.openNewModal()">
+      <a ng-click="$ctrl.departments.openNewModal()"
+         data-title="Add Department"
+         data-placement="left"
+         data-trigger="hover"
+         bs-tooltip>
         <i class="fas fa-plus"></i>
       </a>
     </div>

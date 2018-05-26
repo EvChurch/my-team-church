@@ -21,7 +21,11 @@
     {{$ctrl.changedKeyResult.result_type}}
   </div>
   <div>
-    <a ng-click="$ctrl.openEditModal()">
+    <a ng-click="$ctrl.openEditModal()"
+       data-title="Edit Key Result"
+       data-placement="left"
+       data-trigger="hover"
+       bs-tooltip>
       <i class="far fa-edit"></i>
     </a>
   </div>

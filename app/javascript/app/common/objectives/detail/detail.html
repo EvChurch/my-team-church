@@ -13,7 +13,11 @@
     </div>
   </div>
   <div class="col-auto">
-    <a ng-click="$ctrl.objectives.openEditModal($ctrl.resourceId, $ctrl.resourceType, $ctrl.objective)">
+    <a ng-click="$ctrl.objectives.openEditModal($ctrl.resourceId, $ctrl.resourceType, $ctrl.objective)"
+       data-title="Edit Objective"
+       data-placement="left"
+       data-trigger="hover"
+       bs-tooltip>
       <i class="far fa-edit"></i>
     </a>
   </div>

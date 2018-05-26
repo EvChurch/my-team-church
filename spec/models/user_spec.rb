@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe User do
-  before(:each) { @user = FactoryGirl.create(:user) }
+  before(:each) { @user = FactoryBot.create(:user) }
 
   subject { @user }
 

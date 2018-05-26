@@ -7,10 +7,18 @@
       {{$ctrl.person.first_name}} {{$ctrl.person.last_name}}
     </div>
     <div class="actions">
-      <a ui-sref=".objectives" ng-if="$ctrl.person.id">
+      <a ui-sref=".objectives" ng-if="$ctrl.person.id"
+         data-title="Personal Objectives"
+         data-placement="left"
+         data-trigger="hover"
+         bs-tooltip>
         <i class="fas fa-chess-queen"></i>
       </a>
-      <a ui-sref=".positionEntities" ng-if="$ctrl.person.id">
+      <a ui-sref=".positionEntities" ng-if="$ctrl.person.id"
+         data-title="Positions"
+         data-placement="left"
+         data-trigger="hover"
+         bs-tooltip>
         <i class="fas fa-id-card"></i>
       </a>
     </div>

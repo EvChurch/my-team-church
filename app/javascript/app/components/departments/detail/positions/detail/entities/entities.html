@@ -3,14 +3,19 @@
   <span class="input-group-addon">
     <i class="fas fa-search"></i>
   </span>
-  <span class="input-group-addon" ng-click="$ctrl.departmentPositionEntities.openNewModal($ctrl.positionId)">
+  <span class="input-group-addon"
+        ng-click="$ctrl.departmentPositionEntities.openNewModal($ctrl.positionId)"
+        data-title="Add Person"
+        data-placement="left"
+        data-trigger="hover"
+        bs-tooltip>
     <i class="fas fa-plus"></i>
   </span>
 </div>
 <div class="list-group list-group-flush">
    <a class="list-group-item list-group-item-action flex-column align-items-start"
       ng-repeat="entity in $ctrl.list | filter: { person: { name: $ctrl.search } } track by entity.id"
-      ui-sref="departments.detail.position.entity({entityId: entity.id})"
+      ui-sref="departments.detail.positions.detail.entities.detail({entityId: entity.id})"
       ui-sref-active="active">
       {{entity.person.name}}
   </a>

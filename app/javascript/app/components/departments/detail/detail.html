@@ -1,25 +1,50 @@
-<div class="tree">
+<div class="tree" ng-class="{ 'terminus' : $ctrl.$state.includes('departments.detail.objectives') }">
   <div class="heading">
-    <div class="title">
-      <h1>Department</h1>
-      {{$ctrl.department.name}}
+    <div class="title" >
+      <h1>{{$ctrl.department.name}}</h1>
+      <div class="menu-toggle" ng-click="open = !open" ng-class="{ 'open': open }">
+        <div class="icon">
+          <i class="fas fa-chevron-up"></i>
+        </div>
+        <div ng-if="$ctrl.$state.includes('departments.detail.positions')">
+          Positions
+        </div>
+        <div ng-if="$ctrl.$state.includes('departments.detail.leaders')">
+          Leaders
+        </div>
+        <div ng-if="$ctrl.$state.includes('departments.detail.objectives')">
+          Objectives
+        </div>
+      </div>
     </div>
     <div class="actions">
-      <a ui-sref=".objectives">
-        <i class="fas fa-chess-queen"></i>
-      </a>
-      <a ng-click="$ctrl.departments.openEditModal($ctrl.department)">
+      <a ng-click="$ctrl.departments.openEditModal($ctrl.department)"
+         data-title="Edit Deparment"
+         data-placement="left"
+         data-trigger="hover"
+         bs-tooltip>
         <i class="far fa-edit"></i>
       </a>
     </div>
   </div>
   <div class="list">
-    <div class="list-divided">
-      <departments-detail-positions department-id="$ctrl.department.id"></departments-detail-positions>
-      <departments-detail-leaders department-id="$ctrl.department.id"></departments-detail-leaders>
+    <div class="menu fade" ng-if="open" ng-click="open = false">
+      <a class="menu-item" ui-sref=".positions">
+        <div>Positions</div>
+        <div class="icon"><i class="fas fa-id-card"></i></div>
+      </a>
+      <a class="menu-item" ui-sref=".leaders">
+        <div>Leaders</div>
+        <div class="icon"><i class="fas fa-male"></i></div>
+      </a>
+      <a class="menu-item" ui-sref=".objectives">
+        <div>Objectives</div>
+        <div class="icon"><i class="fas fa-bullseye"></i></div>
+      </a>
     </div>
+    <div ui-view="list"></div>
   </div>
-  <div class="branch" ui-view>
+  <div class="branch" ui-view="branch" ng-if="!$ctrl.$state.includes('departments.detail.objectives')">
     <div class="placeholder"></div>
   </div>
 </div>

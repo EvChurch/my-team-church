@@ -12,6 +12,17 @@
     align-items: center;
     padding: 10px 15px;
     border-bottom: 1px solid #ccc;
+    .menu-toggle {
+      cursor: pointer;
+      > .icon {
+        float: left;
+        transition: transform 0.2s ease-out;
+        margin-right: 5px;
+      }
+      &.open > .icon {
+        transform: rotate(180deg);
+      }
+    }
     > .title {
       flex-grow: 1;
       max-height: 40px;
@@ -42,6 +53,32 @@
     grid-column: 1;
     height: calc(100vh - 139px);
     overflow: auto;
+    position: relative;
+    .menu {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 100%;
+      z-index: 3;
+      background: rgba(#000, 0.5);
+      overflow: hidden;
+      opacity: 1;
+      &-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 15px;
+        border-bottom: 1px solid #ccc;
+        background: #fff;
+        > *:first-child {
+          flex-grow: 1;
+        }
+        .icon {
+          width: 16px;
+          text-align: center;
+        }
+      }
+    }
     .search {
       .form-control, .input-group-addon {
         border-radius: 0;
