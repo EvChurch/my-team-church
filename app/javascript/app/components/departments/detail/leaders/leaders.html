@@ -15,9 +15,9 @@
   </div>
   <div class="list">
     <div class="list-group list-group-flush">
-       <div class="list-group-item list-group-item-action flex-row align-items-center"
-          ng-repeat="leader in $ctrl.list track by leader.id">
-          <div style="flex-grow: 1;">{{leader.person.name}}</div>
+       <div class="list-group-item list-group-item-action d-flex flex-row align-items-center"
+            ng-repeat="leader in $ctrl.list track by leader.id">
+          <div class="mr-auto">{{leader.person.name}}</div>
           <a ng-click="$ctrl.departmentLeaders.delete($ctrl.departmentId, leader.id)">
             <i class="fas fa-times"></i>
           </a>

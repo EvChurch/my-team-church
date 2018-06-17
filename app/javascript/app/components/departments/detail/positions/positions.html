@@ -1,16 +1,18 @@
 <div class="input-group search">
   <input type="text" class="form-control" ng-model="$ctrl.search" placeholder="Filter Positions">
-  <span class="input-group-addon">
-    <i class="fas fa-search"></i>
-  </span>
-  <span class="input-group-addon"
-        ng-click="$ctrl.departmentPositions.openNewModal($ctrl.departmentId)"
-        data-title="Add Position"
-        data-trigger="hover"
-        data-placement="left"
-        bs-tooltip>
-    <i class="fas fa-plus"></i>
-  </span>
+  <div class="input-group-append">
+    <span class="input-group-text">
+      <i class="fas fa-search"></i>
+    </span>  
+    <span class="input-group-text"
+          ng-click="$ctrl.departmentPositions.openNewModal($ctrl.departmentId)"
+          data-title="Add Position"
+          data-trigger="hover"
+          data-placement="left"
+          bs-tooltip>
+      <i class="fas fa-plus"></i>
+    </span>
+  </div>
 </div>
 <div class="list-group list-group-flush">
    <a class="list-group-item list-group-item-action flex-column align-items-start"
