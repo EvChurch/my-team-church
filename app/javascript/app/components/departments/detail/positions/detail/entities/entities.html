@@ -20,6 +20,10 @@
       ui-sref="departments.detail.positions.detail.entities.detail({entityId: entity.id})"
       ui-sref-active="active">
       {{entity.person.name}}
+      <br>
+      <span class="badge badge-secondary" ng-repeat="serviceType in entity.service_types track by serviceType.id">
+        {{serviceType.name}}
+      </span>
   </a>
 </div>
 <div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">

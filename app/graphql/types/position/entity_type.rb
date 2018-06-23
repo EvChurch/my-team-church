@@ -5,4 +5,5 @@ Types::Position::EntityType = GraphQL::ObjectType.define do
   field :id, !types.ID
   field :position, Types::PositionType
   field :person, Types::PersonType
+  field :service_types, types[Types::ServiceTypeType]
 end

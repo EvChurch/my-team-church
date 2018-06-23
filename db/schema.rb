@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180428173035) do
+ActiveRecord::Schema.define(version: 2018_06_23_085119) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
-  enable_extension "pgcrypto"
 
   create_table "access_permission_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "access_permission_id"
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 20180428173035) do
     t.string "remote_source"
     t.index ["organization_id"], name: "index_demographics_on_organization_id"
     t.index ["remote_id", "remote_source"], name: "index_demographics_on_remote_id_and_remote_source", unique: true
+  end
+
+  create_table "department_leader_service_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "leader_id"
+    t.uuid "service_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["leader_id"], name: "index_department_leader_service_types_on_leader_id"
+    t.index ["service_type_id"], name: "index_department_leader_service_types_on_service_type_id"
   end
 
   create_table "department_leaders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -233,6 +242,15 @@ ActiveRecord::Schema.define(version: 20180428173035) do
     t.index ["position_id"], name: "index_position_entities_on_position_id"
   end
 
+  create_table "position_entity_service_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "entity_id"
+    t.uuid "service_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entity_id"], name: "index_position_entity_service_types_on_entity_id"
+    t.index ["service_type_id"], name: "index_position_entity_service_types_on_service_type_id"
+  end
+
   create_table "positions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "organization_id"
     t.uuid "department_id"
@@ -341,6 +359,8 @@ ActiveRecord::Schema.define(version: 20180428173035) do
   add_foreign_key "demographic_entities", "demographics"
   add_foreign_key "demographic_entities", "people"
   add_foreign_key "demographics", "organizations"
+  add_foreign_key "department_leader_service_types", "department_leaders", column: "leader_id", on_delete: :cascade
+  add_foreign_key "department_leader_service_types", "service_types", on_delete: :cascade
   add_foreign_key "department_leaders", "departments"
   add_foreign_key "department_leaders", "people"
   add_foreign_key "integrations", "organizations"
@@ -352,6 +372,8 @@ ActiveRecord::Schema.define(version: 20180428173035) do
   add_foreign_key "objective_links", "objectives", column: "parent_id"
   add_foreign_key "position_entities", "people"
   add_foreign_key "position_entities", "positions"
+  add_foreign_key "position_entity_service_types", "position_entities", column: "entity_id", on_delete: :cascade
+  add_foreign_key "position_entity_service_types", "service_types", on_delete: :cascade
   add_foreign_key "positions", "departments"
   add_foreign_key "positions", "organizations"
   add_foreign_key "service_type_entities", "people"

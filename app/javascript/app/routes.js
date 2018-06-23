@@ -158,6 +158,56 @@ export default class Routes {
         resourceType: () => 'position_entity'
       }
     }).state({
+      name: 'locations',
+      title: 'Locations',
+      url: '/locations',
+      component: 'locations',
+      parent: 'root',
+      resolve: {
+        0: /* @ngInject*/ (locations) => locations.load()
+      }
+    }).state({
+      name: 'locations.new',
+      url: '/new',
+      component: 'locationsDetail'
+    }).state({
+      name: 'locations.detail',
+      url: '/:locationId',
+      component: 'locationsDetail',
+      resolve: {
+        location: /* @ngInject*/ ($state, $stateParams, locations) => {
+          return locations.get($stateParams.locationId).catch((ex) => {
+            $state.go('locations');
+            throw ex;
+          });
+        }
+      }
+    }).state({
+      name: 'serviceTypes',
+      title: 'Service Types',
+      url: '/service_types',
+      component: 'serviceTypes',
+      parent: 'root',
+      resolve: {
+        0: /* @ngInject*/ (serviceTypes) => serviceTypes.load()
+      }
+    }).state({
+      name: 'serviceTypes.new',
+      url: '/new',
+      component: 'serviceTypesDetail'
+    }).state({
+      name: 'serviceTypes.detail',
+      url: '/:serviceTypeId',
+      component: 'serviceTypesDetail',
+      resolve: {
+        serviceType: /* @ngInject*/ ($state, $stateParams, serviceTypes) => {
+          return serviceTypes.get($stateParams.serviceTypeId).catch((ex) => {
+            $state.go('serviceTypes');
+            throw ex;
+          });
+        }
+      }
+    }).state({
       name: 'people',
       title: 'People',
       url: '/people',

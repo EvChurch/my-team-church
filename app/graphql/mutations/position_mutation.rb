@@ -24,7 +24,7 @@ module Mutations::PositionMutation
       position = organization.positions
                              .where(department_id: args[:department_id])
                              .find(args[:id])
-      position.update_attributes!(args[:position].to_h)
+      position.update!(args[:position].to_h)
       position.decorate
     }
   end

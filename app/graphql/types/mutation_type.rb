@@ -28,4 +28,10 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :createPerson, Mutations::PersonMutation::Create
   field :updatePerson, Mutations::PersonMutation::Update
   field :createUserLink, Mutations::User::LinkMutation::Create
+  field :createLocation, Mutations::LocationMutation::Create
+  field :updateLocation, Mutations::LocationMutation::Update
+  field :deleteLocation, Mutations::LocationMutation::Delete
+  field :createServiceType, Mutations::ServiceTypeMutation::Create
+  field :updateServiceType, Mutations::ServiceTypeMutation::Update
+  field :deleteServiceType, Mutations::ServiceTypeMutation::Delete
 end

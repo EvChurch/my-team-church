@@ -24,6 +24,9 @@ class Entities {
             first_name
             last_name
           }
+          service_types {
+            name
+          }
         }
       }
     `, { position_id: positionId }).then((data) => {
@@ -47,6 +50,9 @@ class Entities {
             first_name
             last_name
           }
+          service_types {
+            name
+          }
         }
       }
     `, { position_id: positionId, id: id }).then((data) => {
@@ -69,6 +75,9 @@ class Entities {
             name
             first_name
             last_name
+          }
+          service_types {
+            name
           }
         }
       }

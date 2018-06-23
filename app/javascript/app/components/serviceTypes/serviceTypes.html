@@ -1,0 +1,51 @@
+<div class="tree">
+  <div class="heading">
+    <div class="title">
+      <h1>Service Types</h1>
+    </div>
+    <div class="actions">
+      <a ui-sref="serviceTypes.new"
+         data-title="Add ServiceType"
+         data-placement="left"
+         data-trigger="hover"
+         bs-tooltip>
+        <i class="fas fa-plus"></i>
+      </a>
+    </div>
+  </div>
+  <div class="list">
+    <div class="input-group search">
+      <input type="text"
+             class="form-control"
+             placeholder="Filter ServiceTypes"
+             ng-model="$ctrl.searchString"
+             ng-change="$ctrl.load()"
+             ng-model-options="{ debounce: 1000 }">
+      <div class="input-group-append">
+        <span class="input-group-text">
+          <i class="fas fa-search"></i>
+        </span>  
+      </div>
+    </div>
+    <div class="list-group list-group-flush">
+       <a class="list-group-item list-group-item-action flex-column align-items-start"
+          ng-repeat="serviceType in $ctrl.data track by serviceType.id"
+          ui-sref="serviceTypes.detail({serviceTypeId: serviceType.id})"
+          ui-sref-active="active">
+          {{serviceType.name}}
+      </a>
+    </div>
+    <div ng-if="$ctrl.data.length == 0" class="text-center m-3 my-5">
+      <strong>No ServiceTypes</strong>
+      <p>
+        Get started by adding a serviceType.
+      </p>
+      <a class="btn btn-primary" ui-sref="serviceTypes.new">
+        Add Service Type
+      </a>
+    </div>
+  </div>
+  <div class="branch" ui-view>
+    <div class="placeholder"></div>
+  </div>
+</div>
