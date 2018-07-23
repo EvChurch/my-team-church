@@ -1,5 +1,8 @@
 departments-detail-leaders-detail {
   form {
     padding: 10px 15px;
+    .list-group-item {
+      cursor: pointer;
+    }
   }
 }
