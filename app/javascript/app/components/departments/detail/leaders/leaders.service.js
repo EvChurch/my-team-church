@@ -88,37 +88,6 @@ class Positions {
       return departmentLeader;
     });
   }
-  update(departmentId, id, departmentLeader) {
-    return this.api.mutate(gql`
-      mutation updateDepartmentLeader(
-        $department_id: ID!,
-        $department_leader: DepartmentLeaderInputType!
-      ) {
-        updateDepartmentLeader(
-          department_id: $department_id,
-          id: $id,
-          department_leader: $department_leader
-        ) {
-          id
-          person {
-            id
-            name
-          }
-          leader_service_types {
-            id
-            service_type {
-              id
-              name
-            }
-          }
-        }
-      }
-    `, { department_id: departmentId, id: id, departmentLeader: departmentLeader }).then((data) => {
-      const leader = data.updateDepartmentLeader;
-      this.$rootScope.$emit('departmentLeaderUpdate', departmentId, leader);
-      return leader;
-    });
-  }
   delete(departmentId, id) {
     return this.api.mutate(gql`
       mutation deleteDepartmentLeader(
@@ -134,6 +103,72 @@ class Positions {
       const leader = data.deleteDepartmentLeader;
       this.$rootScope.$emit('departmentLeaderDelete', departmentId, leader);
       return leader;
+    });
+  }
+  createDepartmentLeaderServiceType(departmentId, leaderId, leaderServiceType) {
+    return this.api.mutate(gql`
+      mutation createDepartmentLeaderServiceType(
+        $leader_id: ID!,
+        $leader_service_type: DepartmentLeaderServiceTypeInputType!
+      ) {
+        createDepartmentLeaderServiceType(
+          leader_id: $leader_id,
+          leader_service_type: $leader_service_type
+        ) {
+          id
+          leader {
+            id
+            person {
+              id
+              name
+            }
+            leader_service_types {
+              id
+              service_type {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+    `, { leader_id: leaderId, leader_service_type: leaderServiceType }).then((data) => {
+      const leaderServiceType = data.createDepartmentLeaderServiceType;
+      this.$rootScope.$emit('departmentLeaderUpdate', departmentId, leaderServiceType.leader);
+      return leaderServiceType;
+    });
+  }
+  deleteDepartmentLeaderServiceType(departmentId, leaderId, id) {
+    return this.api.mutate(gql`
+      mutation deleteDepartmentLeaderServiceType(
+        $leader_id: ID!,
+        $id: ID!
+      ) {
+        deleteDepartmentLeaderServiceType(
+          leader_id: $leader_id,
+          id: $id,
+        ) {
+          id
+          leader {
+            id
+            person {
+              id
+              name
+            }
+            leader_service_types {
+              id
+              service_type {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+    `, { leader_id: leaderId, id: id }).then((data) => {
+      const leaderServiceType = data.deleteDepartmentLeaderServiceType;
+      this.$rootScope.$emit('departmentLeaderUpdate', departmentId, leaderServiceType.leader);
+      return leaderServiceType;
     });
   }
   openNewModal(departmentId) {

@@ -16,18 +16,9 @@
   </div>
 </div>
 <div class="list-group list-group-flush">
-    <a class="list-group-item list-group-item-action flex-column align-items-start"
-      ng-repeat="leader in $ctrl.list | filter: { person: { name:$ctrl.search } } track by leader.id"
-      ui-sref="departments.detail.leaders.detail({leaderId: leader.id})"
-      ui-sref-active="active">
-      {{leader.person.name}}
-      <br>
-      <span class="badge badge-secondary" ng-repeat="serviceType in leader.service_types track by serviceType.id">
-        {{serviceType.name}}
-      </span>
-  </a>
+  <departments-detail-leaders-item ng-repeat="leader in $ctrl.list | filter: { person: { name:$ctrl.search } } track by leader.id" leader="leader"></departments-detail-leaders-item>
 </div>
-<div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">
+<div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0" >
   <i class="fas fa-id-card blankslate-icon"></i>
   <h5>No leaders defined yet.</h5>
   <p>It's time to add your first leader!</p>

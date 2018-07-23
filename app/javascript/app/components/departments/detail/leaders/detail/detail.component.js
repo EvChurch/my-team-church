@@ -16,6 +16,9 @@ class DetailController {
     this.watcher0 = this.$rootScope.$on('departmentLeaderDelete', (_event, departmentId, leader) => {
       if (leader.id === this.leader.id) this.$state.go('departments.detail.leaders');
     });
+    this.watcher0 = this.$rootScope.$on('departmentLeaderUpdate', (_event, departmentId, leader) => {
+      if (leader.id === this.leader.id) this.leader = leader;
+    });
 
     this.serviceTypes.load().then((data) => {
       this.serviceTypeList = data;
@@ -30,15 +33,14 @@ class DetailController {
   toggleServiceType(serviceType) {
     const leaderServiceType = this.activeServiceType(serviceType);
     if (leaderServiceType) {
-      this.departmentLeaders.update(this.$stateParams.departmentId, this.leader.id, {
-        leader_service_type: {
-          id: leaderServiceType.id,
-          _destroy: '1'
-        }
-      })
-
+      this.departmentLeaders.deleteDepartmentLeaderServiceType(
+        this.$stateParams.departmentId, this.$stateParams.leaderId, leaderServiceType.id
+      )
     } else {
-
+      this.departmentLeaders.createDepartmentLeaderServiceType(
+        this.$stateParams.departmentId, this.$stateParams.leaderId, {
+        service_type_id: serviceType.id
+      });
     }
   }
 }
