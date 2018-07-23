@@ -75,6 +75,23 @@ export default class Routes {
         departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId
       }
     }).state({
+      name: 'departments.detail.leaders.detail',
+      url: '/:leaderId',
+      views: {
+        'branch@departments.detail': {
+          component: 'departmentsDetailLeadersDetail'
+        }
+      },
+      resolve: {
+        departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId,
+        leader: /* @ngInject*/ ($state, $stateParams, departmentLeaders) => {
+          return departmentLeaders.get($stateParams.departmentId, $stateParams.leaderId).catch((ex) => {
+            $state.go('departments.detail.leaders');
+            throw ex;
+          });
+        }
+      }
+    }).state({
       name: 'departments.detail.positions',
       url: '/positions',
       views: {

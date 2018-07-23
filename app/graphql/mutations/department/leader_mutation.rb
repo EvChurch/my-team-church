@@ -15,6 +15,23 @@ module Mutations::Department::LeaderMutation
     }
   end
 
+  Update = GraphQL::Field.define do
+    description 'Update DepartmentLeader'
+    argument :department_id, !types.ID
+    argument :id, !types.ID
+    argument :department_leader, !InputTypes::Department::LeaderInputType
+    type Types::PositionType
+    resolve lambda { |organization, args, _ctx|
+      leader = organization.departments
+                           .find(args[:department_id])
+                           .leaders
+                           .where(department_id: args[:department_id])
+                           .find(args[:id])
+      leader.update!(args[:department_leader].to_h)
+      leader.decorate
+    }
+  end
+
   Delete = GraphQL::Field.define do
     description 'Delete DepartmentLeader'
     argument :id, !types.ID

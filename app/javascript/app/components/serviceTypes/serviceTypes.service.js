@@ -9,7 +9,6 @@ class ServiceTypes {
   ) {
     this.$rootScope = $rootScope;
     this.api = api;
-    this.me = {};
   }
   load() {
     return this.api.query(gql`

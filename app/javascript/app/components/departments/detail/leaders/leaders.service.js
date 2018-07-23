@@ -20,13 +20,42 @@ class Positions {
             id
             name
           }
-          service_types {
-            name
+          leader_service_types {
+            id
+            service_type {
+              id
+              name
+            }
           }
         }
       }
     `, { department_id: departmentId }).then((data) => {
       return data.departmentLeaders;
+    });
+  }
+  get(departmentId, id) {
+    return this.api.query(gql`
+      query departmentLeader($department_id: ID!, $id: ID!){
+        departmentLeader(
+          department_id: $department_id,
+          id: $id
+        ) {
+          id
+          person {
+            id
+            name
+          }
+          leader_service_types {
+            id
+            service_type {
+              id
+              name
+            }
+          }
+        }
+      }
+    `, { department_id: departmentId, id: id }).then((data) => {
+      return data.departmentLeader;
     });
   }
   create(departmentId, departmentLeader) {
@@ -44,8 +73,12 @@ class Positions {
             id
             name
           }
-          service_types {
-            name
+          leader_service_types {
+            id
+            service_type {
+              id
+              name
+            }
           }
         }
       }
@@ -53,6 +86,37 @@ class Positions {
       const departmentLeader = data.createDepartmentLeader;
       this.$rootScope.$emit('departmentLeaderCreate', departmentId, departmentLeader);
       return departmentLeader;
+    });
+  }
+  update(departmentId, id, departmentLeader) {
+    return this.api.mutate(gql`
+      mutation updateDepartmentLeader(
+        $department_id: ID!,
+        $department_leader: DepartmentLeaderInputType!
+      ) {
+        updateDepartmentLeader(
+          department_id: $department_id,
+          id: $id,
+          department_leader: $department_leader
+        ) {
+          id
+          person {
+            id
+            name
+          }
+          leader_service_types {
+            id
+            service_type {
+              id
+              name
+            }
+          }
+        }
+      }
+    `, { department_id: departmentId, id: id, departmentLeader: departmentLeader }).then((data) => {
+      const leader = data.updateDepartmentLeader;
+      this.$rootScope.$emit('departmentLeaderUpdate', departmentId, leader);
+      return leader;
     });
   }
   delete(departmentId, id) {

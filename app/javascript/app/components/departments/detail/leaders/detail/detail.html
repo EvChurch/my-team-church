@@ -1,0 +1,35 @@
+<div class="tree terminus">
+  <div class="heading">
+    <div class="title">
+      <h1>
+        <a ui-sref="people.detail({ personId: $ctrl.leader.person.id })">
+          {{$ctrl.leader.person.name}}
+        </a>
+      </h1>
+    </div>
+    <div class="actions">
+      <a ng-click="$ctrl.deparmentLeaders.delete($ctrl.departmentId, $ctrl.leader.id)"
+          data-title="Remove Leader"
+          data-placement="left"
+          data-trigger="hover"
+          bs-tooltip>
+        <i class="fas fa-times"></i>
+      </a>
+    </div>
+  </div>
+  <form ng-submit="$ctrl.save()">
+      <div class="form-group">
+        <label>Service Types</label>
+        <ul class="list-group mt-2 ng-scope" ng-if="$ctrl.serviceTypeList.length > 0">
+          <li class="list-group-item d-flex align-items-center ng-scope"
+              ng-repeat="serviceType in $ctrl.serviceTypeList track by serviceType.id"
+              ng-class="{'active': $ctrl.activeServiceType(serviceType) }"
+              ng-click="$ctrl.toggleServiceType(serviceType)">
+            {{serviceType.name}}
+          </li>
+        </ul>
+      </div>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
