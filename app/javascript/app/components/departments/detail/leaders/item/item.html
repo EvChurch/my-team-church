@@ -3,7 +3,7 @@
     ui-sref-active="active">
   {{$ctrl.leader.person.name}}
   <br>
-  <span class="badge badge-secondary mr-1" ng-repeat="leaderServiceType in $ctrl.leader.leader_service_types track by leaderServiceType.id">
-      {{leaderServiceType.service_type.name}}
+  <span class="badge badge-secondary mr-1" ng-repeat="ServiceTypeConnection in $ctrl.leader.service_type_connections track by ServiceTypeConnection.id">
+      {{ServiceTypeConnection.service_type.name}}
   </span>
 </a>

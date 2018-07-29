@@ -18,7 +18,7 @@ module Queries::ObjectiveQuery
     argument :resource_id, !types.ID
     argument :resource_type, !types.String
     argument :id, !types.ID
-    description 'List of Objectives'
+    description 'Objective'
     resolve lambda { |organization, args, _ctx|
       ResourceFinderService.find(organization, args[:resource_id], args[:resource_type], [:objectives])
                            .objectives

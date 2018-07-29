@@ -35,4 +35,6 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :location, Queries::LocationQuery::Get
   field :serviceTypes, Queries::ServiceTypeQuery::List
   field :serviceType, Queries::ServiceTypeQuery::Get
+  field :serviceTypeConnections, Queries::ServiceType::ConnectionQuery::List
+  field :serviceTypeConnection, Queries::ServiceType::ConnectionQuery::Get
 end

@@ -5,5 +5,5 @@ Types::Department::LeaderType = GraphQL::ObjectType.define do
   field :id, !types.ID
   field :department, Types::DepartmentType
   field :person, Types::PersonType
-  field :leader_service_types, types[Types::Department::Leader::ServiceTypeType]
+  field :service_type_connections, types[Types::ServiceType::ConnectionType]
 end

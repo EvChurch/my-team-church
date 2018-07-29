@@ -19,7 +19,7 @@ module Mutations::DepartmentMutation
     type Types::DepartmentType
     resolve lambda { |organization, args, _ctx|
       department = organization.departments.find(args[:id])
-      department.update_attributes!(args[:department].to_h)
+      department.update!(args[:department].to_h)
       department.decorate
     }
   end

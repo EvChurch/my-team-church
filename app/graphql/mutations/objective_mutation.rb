@@ -26,7 +26,7 @@ module Mutations::ObjectiveMutation
       objective = ResourceFinderService.find(organization, args[:resource_id], args[:resource_type])
                                        .objectives
                                        .find(args[:id])
-      objective.update_attributes!(args[:objective].to_h)
+      objective.update!(args[:objective].to_h)
       objective.decorate
     }
   end

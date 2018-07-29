@@ -1,0 +1,8 @@
+<ul class="list-group p-2 ng-scope" ng-if="$ctrl.serviceTypeList.length > 0">
+  <li class="list-group-item d-flex align-items-center ng-scope"
+      ng-repeat="serviceType in $ctrl.serviceTypeList track by serviceType.id"
+      ng-class="{'active': $ctrl.activeServiceType(serviceType) }"
+      ng-click="$ctrl.toggleServiceType(serviceType)">
+    {{serviceType.name}}
+  </li>
+</ul>

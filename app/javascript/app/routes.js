@@ -92,6 +92,30 @@ export default class Routes {
         }
       }
     }).state({
+      name: 'departments.detail.leaders.detail.objectives',
+      url: '/objectives',
+      views: {
+        'list@departments.detail.leaders.detail': {
+          component: 'objectives'
+        }
+      },
+      resolve: {
+        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.leaderId,
+        resourceType: () => 'department_leader'
+      }
+    }).state({
+      name: 'departments.detail.leaders.detail.serviceTypeConnections',
+      url: '/service_type_connections',
+      views: {
+        'list@departments.detail.leaders.detail': {
+          component: 'serviceTypeConnections'
+        }
+      },
+      resolve: {
+        resourceId: /* @ngInject*/ ($stateParams) => $stateParams.leaderId,
+        resourceType: () => 'department_leader'
+      }
+    }).state({
       name: 'departments.detail.positions',
       url: '/positions',
       views: {

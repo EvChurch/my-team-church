@@ -7,8 +7,8 @@ git_source(:github) do |repo_name|
 end
 ruby '2.4.3'
 gem 'ancestry'
-gem 'bootstrap', '~> 4.1.1'
 gem 'bootsnap', require: false
+gem 'bootstrap', '~> 4.1.1'
 gem 'devise'
 gem 'draper', '3.0.0'
 gem 'elvanto-api', github: 'ardation/api-ruby'

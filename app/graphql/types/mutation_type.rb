@@ -7,8 +7,6 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :deleteDepartment, Mutations::DepartmentMutation::Delete
   field :createDepartmentLeader, Mutations::Department::LeaderMutation::Create
   field :deleteDepartmentLeader, Mutations::Department::LeaderMutation::Delete
-  field :createDepartmentLeaderServiceType, Mutations::Department::Leader::ServiceTypeMutation::Create
-  field :deleteDepartmentLeaderServiceType, Mutations::Department::Leader::ServiceTypeMutation::Delete
   field :createObjective, Mutations::ObjectiveMutation::Create
   field :updateObjective, Mutations::ObjectiveMutation::Update
   field :deleteObjective, Mutations::ObjectiveMutation::Delete
@@ -36,4 +34,6 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :createServiceType, Mutations::ServiceTypeMutation::Create
   field :updateServiceType, Mutations::ServiceTypeMutation::Update
   field :deleteServiceType, Mutations::ServiceTypeMutation::Delete
+  field :createServiceTypeConnection, Mutations::ServiceType::ConnectionMutation::Create
+  field :deleteServiceTypeConnection, Mutations::ServiceType::ConnectionMutation::Delete
 end

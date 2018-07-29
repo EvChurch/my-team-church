@@ -11,6 +11,7 @@ class Organization < ApplicationRecord
   has_many :positions, dependent: :destroy
   has_many :position_entities, through: :positions, source: :entities
   has_many :service_types, dependent: :destroy
+  has_many :service_type_connections, through: :service_types, source: :connections
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
   has_many :user_links, class_name: 'User::Link', dependent: :destroy, inverse_of: :organization
 

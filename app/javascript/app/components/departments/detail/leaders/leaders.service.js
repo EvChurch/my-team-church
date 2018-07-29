@@ -20,7 +20,7 @@ class Positions {
             id
             name
           }
-          leader_service_types {
+          service_type_connections {
             id
             service_type {
               id
@@ -45,7 +45,7 @@ class Positions {
             id
             name
           }
-          leader_service_types {
+          service_type_connections {
             id
             service_type {
               id
@@ -73,7 +73,7 @@ class Positions {
             id
             name
           }
-          leader_service_types {
+          service_type_connections {
             id
             service_type {
               id
@@ -122,7 +122,7 @@ class Positions {
               id
               name
             }
-            leader_service_types {
+            service_type_connections {
               id
               service_type {
                 id
@@ -155,7 +155,7 @@ class Positions {
               id
               name
             }
-            leader_service_types {
+            service_type_connections {
               id
               service_type {
                 id

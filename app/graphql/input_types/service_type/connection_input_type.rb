@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-InputTypes::Department::Leader::ServiceTypeInputType = GraphQL::InputObjectType.define do
-  name 'DepartmentLeaderServiceTypeInputType'
+InputTypes::ServiceType::ConnectionInputType = GraphQL::InputObjectType.define do
+  name 'ServiceTypeConnectionInputType'
   description 'Properties for a Leader -> ServiceType relationship'
 
   argument :service_type_id, !types.ID do

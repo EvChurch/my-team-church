@@ -1,33 +1,44 @@
 <div class="tree terminus">
-  <div class="heading">
-    <div class="title">
-      <h1>
-        <a ui-sref="people.detail({ personId: $ctrl.leader.person.id })">
-          {{$ctrl.leader.person.name}}
+    <div class="heading">
+      <div class="title" >
+        <h1>
+          <a ui-sref="people.detail({ personId: $ctrl.leader.person.id })">
+            {{$ctrl.leader.person.name}}
+          </a>
+        </h1>
+        <div class="menu-toggle" ng-click="open = !open" ng-class="{ 'open': open }">
+          <div class="icon">
+            <i class="fas fa-chevron-up"></i>
+          </div>
+          <div ng-if="$ctrl.$state.includes('departments.detail.leaders.detail.serviceTypeConnections')">
+            Service Types
+          </div>
+          <div ng-if="$ctrl.$state.includes('departments.detail.leaders.detail.objectives')">
+            Objectives
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <a ng-click="$ctrl.deparmentLeaders.delete($ctrl.departmentId, $ctrl.leader.id)"
+            data-title="Remove Leader"
+            data-placement="left"
+            data-trigger="hover"
+            bs-tooltip>
+          <i class="fas fa-times"></i>
         </a>
-      </h1>
+      </div>
     </div>
-    <div class="actions">
-      <a ng-click="$ctrl.deparmentLeaders.delete($ctrl.departmentId, $ctrl.leader.id)"
-          data-title="Remove Leader"
-          data-placement="left"
-          data-trigger="hover"
-          bs-tooltip>
-        <i class="fas fa-times"></i>
-      </a>
+    <div class="list">
+      <div class="menu fade" ng-if="open" ng-click="open = false">
+        <a class="menu-item" ui-sref=".serviceTypes">
+          <div>Service Types</div>
+          <div class="icon"><i class="fas fa-dolly"></i></div>
+        </a>
+        <a class="menu-item" ui-sref=".objectives">
+          <div>Objectives</div>
+          <div class="icon"><i class="fas fa-bullseye"></i></div>
+        </a>
+      </div>
+      <div ui-view="list"></div>
     </div>
   </div>
-  <form ng-submit="$ctrl.save()">
-    <div class="form-group">
-      <label>Service Types</label>
-      <ul class="list-group mt-2 ng-scope" ng-if="$ctrl.serviceTypeList.length > 0">
-        <li class="list-group-item d-flex align-items-center ng-scope"
-            ng-repeat="serviceType in $ctrl.serviceTypeList track by serviceType.id"
-            ng-class="{'active': $ctrl.activeServiceType(serviceType) }"
-            ng-click="$ctrl.toggleServiceType(serviceType)">
-          {{serviceType.name}}
-        </li>
-      </ul>
-    </div>
-  </form>
-</div>
