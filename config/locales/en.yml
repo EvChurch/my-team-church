@@ -22,6 +22,6 @@
 en:
   page_meta:
     titles:
-      base: "%{value} • My Place"
+      base: "%{value} • My Team"
       visitors:
-        index: "My Place • A LDHR Platform for your church"
+        index: "My Team • A LDHR Platform for your church"

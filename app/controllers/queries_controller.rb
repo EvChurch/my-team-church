@@ -20,7 +20,7 @@ class QueriesController < ApplicationController
   end
 
   def result
-    MyPlaceSchema.execute(
+    MyTeamSchema.execute(
       params[:query],
       variables: variables,
       context: context,

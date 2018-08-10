@@ -1,4 +1,20 @@
 {
+  "name": "my-team-church",
+  "version": "1.0.0",
+  "description": "My Team @ Church Web UI",
+  "scripts": {
+    "start": "bin/webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tntsoftware/my-team-church.git"
+  },
+  "author": "Tataihono Nikora",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tntsoftware/my-team-church/issues"
+  },
+  "homepage": "https://myteam.church",
   "dependencies": {
     "@rails/webpacker": "3.5",
     "angular": "^1.5.0",

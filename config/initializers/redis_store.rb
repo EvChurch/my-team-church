@@ -7,4 +7,4 @@ Rails.application.config.session_store :redis_store,
                                        domain: ".#{ENV.fetch('DOMAIN_NAME')}",
                                        expires_in: 2.days,
                                        serializer: :hybrid,
-                                       key: 'my_place_session_id'
+                                       key: 'my_team_session_id'
