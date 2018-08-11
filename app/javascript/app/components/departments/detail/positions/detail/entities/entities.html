@@ -16,7 +16,12 @@
 </div>
 
 <div class="list-group list-group-flush">
-  <departments-detail-positions-detail-entities-item ng-repeat="entity in $ctrl.list | filter: { person: { name:$ctrl.search } } track by entity.id" entity="entity"></departments-detail-positions-detail-entities-item>
+  <a class="list-group-item list-group-item-action flex-column align-items-start"
+     ui-sref="departments.detail.positions.detail.entities.detail({entityId: entity.id})"
+     ui-sref-active="active"
+     ng-repeat="entity in $ctrl.list | filter: { person: { name:$ctrl.search } } track by entity.id">
+    <departments-detail-positions-detail-entities-item entity="entity"></departments-detail-positions-detail-entities-item>
+  </a>
 </div>
 <div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">
   <i class="fas fa-users blankslate-icon"></i>

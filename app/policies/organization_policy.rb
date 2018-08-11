@@ -13,7 +13,7 @@ class OrganizationPolicy < ApplicationPolicy
     end
 
     def linked_organizations
-      scope.joins(:user_links).where(user_links: { user: user }).pluck(:id)
+      scope.with_role(:member, user).pluck(:id)
     end
   end
 end

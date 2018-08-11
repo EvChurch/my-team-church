@@ -53,7 +53,9 @@ class Organizations {
         }
       }
     `, { person_id: personId }).then((data) => {
-      return data.createUserLink;
+      return this.load(true).then(() => {
+        return data.createUserLink;
+      });
     });
   }
   create(organization) {
