@@ -34,20 +34,28 @@ cp config/database.example.yml config/database.yml
 
 You'll need to configure credentials to local and external services in your .env file
 
-#### Running the App
+#### Installing Dependencies
 
-Starting the Rails Server
 ```
 bundle install
+yarn install
 rails db:setup
+```
+
+#### Running the App
+
+1. Starting the Rails Server
+```
 rails server
 ```
 
-Starting the Node Server
+2. Starting the Node Server
 ```
-yarn
 yarn start
 ```
+
+3. Navigate to [lvh.me:3000](http://lvh.me:3000)
+
 ## Deployment
 
 ### master
