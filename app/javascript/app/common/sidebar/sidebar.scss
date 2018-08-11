@@ -33,6 +33,7 @@ sidebar {
     &:hover {
       color: #fff;
       background-color: lighten(#162C52, 10%);
+      text-decoration: none;
     }
     &.active {
       background-color: #FCB051;
@@ -46,7 +47,6 @@ sidebar {
       height: 20px;
       opacity: 0;
       font-size: 0.9rem;
-      text-decoration: none;
       transition: opacity 0.2s ease-out, width 0.2s ease-out;
       text-overflow: ellipsis;
       overflow: hidden;

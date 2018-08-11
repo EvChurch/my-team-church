@@ -2,7 +2,7 @@
   <div class="heading">
     <div class="title" >
       <h1>{{$ctrl.position.name}}</h1>
-      <div class="menu-toggle" ng-click="open = !open" ng-class="{ 'open': open }">
+      <div class="menu-toggle" ng-click="$ctrl.open = !$ctrl.open" ng-class="{ 'open': $ctrl.open }">
         <div class="icon">
           <i class="fas fa-chevron-up"></i>
         </div>
@@ -25,7 +25,7 @@
     </div>
   </div>
   <div class="list">
-    <div class="menu fade" ng-if="open" >
+    <div class="menu fade" ng-if="$ctrl.open" ng-click="$ctrl.open = false">
       <a class="menu-item" ui-sref=".entities">
         <div>People</div>
         <div class="icon"><i class="fas fa-user"></i></div>

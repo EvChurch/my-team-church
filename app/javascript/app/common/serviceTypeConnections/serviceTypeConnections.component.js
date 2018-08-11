@@ -15,43 +15,35 @@ class ServiceTypeConnectionsController {
   }
   $onInit() {
     this.load();
-    this.watcher0 = this.$rootScope.$on('objectiveCreate', (_event, resourceId, resourceType) => {
-      if (resourceId === this.resourceId && resourceType === this.resourceType) this.load();
-    });
-    this.watcher1 = this.$rootScope.$on('objectiveUpdate', (_event, resourceId, resourceType) => {
-      if (resourceId === this.resourceId && resourceType === this.resourceType) this.load();
-    });
-    this.watcher2 = this.$rootScope.$on('objectiveDelete', (_event, resourceId, resourceType) => {
-      if (resourceId === this.resourceId && resourceType === this.resourceType) this.load();
-    });
-  }
-  $onDestroy() {
-    this.watcher0();
-    this.watcher1();
-    this.watcher2();
   }
   load() {
-    this.serviceTypes.load().then((data) => {
+    this.loadServiceTypes();
+    this.loadServiceTypeConnections();
+  }
+  loadServiceTypes() {
+    return this.serviceTypes.load().then((data) => {
       this.serviceTypeList = angular.copy(data);
     });
-    this.serviceTypeConnections.load(this.resourceId, this.resourceType).then((data) => {
+  }
+  loadServiceTypeConnections() {
+    return this.serviceTypeConnections.load(this.resourceId, this.resourceType).then((data) => {
       this.data = angular.copy(data);
     });
   }
-  activeServiceType(serviceType) {
+  ServiceTypeConnectionByServiceType(serviceType) {
     return find({ 'service_type': { 'id': serviceType.id } }, this.data);
   }
-  toggleServiceType(serviceType) {
-    const leaderServiceType = this.activeServiceType(serviceType);
-    if (leaderServiceType) {
+  toggleServiceTypeConnectionByServiceType(serviceType) {
+    const serviceTypeConnection = this.ServiceTypeConnectionByServiceType(serviceType);
+    if (serviceTypeConnection) {
       this.serviceTypeConnections.delete(
-        this.resourceId, this.resourceType, leaderServiceType.id
-      )
+        this.resourceId, this.resourceType, serviceTypeConnection.id
+      ).then(() => this.loadServiceTypeConnections());
     } else {
       this.serviceTypeConnections.create(
         this.resourceId, this.resourceType, {
         service_type_id: serviceType.id
-      });
+      }).then(() => this.loadServiceTypeConnections());
     }
   }
 }

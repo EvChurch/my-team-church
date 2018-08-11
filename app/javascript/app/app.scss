@@ -14,4 +14,16 @@ body {
       cursor: pointer;
       color: white !important;
     }
+    &.btn-danger {
+      cursor: pointer;
+      color: white !important;
+    }
+}
+
+.menu {
+  .menu-item {
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }

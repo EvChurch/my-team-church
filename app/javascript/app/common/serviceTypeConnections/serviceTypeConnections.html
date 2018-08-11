@@ -1,8 +1,12 @@
-<ul class="list-group p-2 ng-scope" ng-if="$ctrl.serviceTypeList.length > 0">
-  <li class="list-group-item d-flex align-items-center ng-scope"
+<div class="list-group ng-scope" ng-if="$ctrl.serviceTypeList.length > 0">
+  <div class="list-group-item d-flex align-items-center ng-scope"
       ng-repeat="serviceType in $ctrl.serviceTypeList track by serviceType.id"
-      ng-class="{'active': $ctrl.activeServiceType(serviceType) }"
-      ng-click="$ctrl.toggleServiceType(serviceType)">
-    {{serviceType.name}}
-  </li>
-</ul>
+      ng-click="$ctrl.toggleServiceTypeConnectionByServiceType(serviceType)">
+    <div class="mr-auto">
+      {{serviceType.name}}
+    </div>
+    <div ng-if="$ctrl.ServiceTypeConnectionByServiceType(serviceType)">
+      <i class="text-success fas fa-check"></i>
+    </div>
+  </div>
+</div>

@@ -1,19 +1,22 @@
-.heading {
+body.home {
+  font-family: 'Lato', sans-serif;
+  .heading {
     background-image: image-url('heading.jpg');
     background-size: cover;
     background-position: center;
     .overlay {
-        background: rgba(0, 0, 0, 0.2);
-        .container {
-            color: #fff;
-            padding: 50px 15px;
-        }
+      background: rgba(0, 0, 0, 0.2);
+      .container {
+        color: #fff;
+        padding: 50px 15px;
+      }
     }
-}
-.bg-dark {
+  }
+  .bg-dark {
     background-color: #162C52 !important;
     color: #fff;
-}
-.bg-light-gray {
+  }
+  .bg-light-gray {
     background-color: #f1f1f1;
+  }
 }

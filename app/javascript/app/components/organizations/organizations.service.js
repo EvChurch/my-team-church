@@ -84,7 +84,9 @@ class Organizations {
         }
       }
     `, { id: id, organization: organization }).then((data) => {
-      return data.updateOrganization;
+      return this.load(true).then(() => {
+        return data.updateOrganization;
+      });
     });
   }
 }

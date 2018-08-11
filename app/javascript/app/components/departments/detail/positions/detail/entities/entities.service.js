@@ -25,6 +25,7 @@ class Entities {
             last_name
           }
           service_types {
+            id
             name
           }
         }
@@ -51,6 +52,7 @@ class Entities {
             last_name
           }
           service_types {
+            id
             name
           }
         }
@@ -77,6 +79,7 @@ class Entities {
             last_name
           }
           service_types {
+            id
             name
           }
         }

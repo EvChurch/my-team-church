@@ -1,2 +1,11 @@
-departments-detail-leaders-detail {
+service-type-connections {
+  .list-group-item {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    cursor: pointer;
+    &:first-child, &:last-child {
+      border-radius: 0;
+    }
+  }
 }
