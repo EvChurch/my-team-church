@@ -1,33 +1,133 @@
-<div class="jumbotron">
-  <h1 class="display-4">
-    My Team helps you build better leaders and grow your church.
-  </h1>
-  <h1 class="display-6">
-    Try My Team for free today.
-  </h1>
-  <p class="lead mt-5">
-    <a href="<%= root_url(subdomain: 'app') %>" class="btn btn-primary btn-lg">
-      Get Started
-    </a>
-  </p>
+<% content_for :heading do %>
+<div class="heading">
+  <div class="overlay">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h1 class="display-4">
+            My Team @ Church helps you build better leaders and grow your church.
+          </h1>
+          <h1 class="display-6">
+            Try it for free today.
+          </h1>
+          <p class="lead mt-3">
+            <a href="<%= root_url(subdomain: 'app') %>" class="btn btn-primary btn-lg">
+              Get Started
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="row">
-  <div class="col-md-4">
-    <h4>Build strong &amp; clear leadership development pathways</h4>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec risus vitae sem porta malesuada in ut justo. Nulla ac purus imperdiet.
-    </p>
+<% end %>
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-4">
+      <%= image_tag 'promotion/1.svg' %>
+    </div>
+    <div class="col-md-8">
+      <h4>Build strong &amp; clear leadership development pathways</h4>
+      <p>
+        The experts tell us that 70% of leadership is generic and transferable. That means if you can build a simple course
+        to train your team members to be team leaders and your team leaders to be leaders of leaders, you can leave the other
+        30% of team training to the specific team leader. MyTeam.Church gives you a platform to build your own leadership
+        training and deliver to your church – using the positions in your current Church Managing Software.
+        You won't need to re-set up who serves where, you wont need to maintain two sets of serving positions,
+        you won't need to work out who to deliver what training to. Simply set the training required for every
+        position in your church and you are away!
+      </p>
+      <ul>
+        <li>Track team members training progress</li>
+        <li>Coach and track your team leaders growth</li>
+        <li>Identify leaders who need help</li>
+        <li>Identify leaders who can coach other leaders</li>
+      </ul>
+    </div>
   </div>
-  <div class="col-md-4">
-    <h4>Focus on great human resource management</h4>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec risus vitae sem porta malesuada in ut justo. Nulla ac purus imperdiet.
-    </p>
+</div>
+<div class="bg-light-gray">
+  <div class="container">
+    <div class="row py-5">
+      <div class="col-md-8">
+        <h4>Focus on great people development &amp; management</h4>
+        <p>
+          Imagine every team leader being able to log their positions vacant, recruit their own team members,
+          and work with each person so set clear and effective next steps in their training process.
+        </p>
+        <ul>
+          <li>Church-wide positions vacant dashboard</li>
+          <li>Simple reporting of who is being recruited to what positions by who</li>
+          <li>Log each persons serving history</li>
+          <li>Manage position commitments (ie the length of time people have committed to a position)</li>
+          <li>Reminders to have recommitment conversations with team members who are approaching the end of their term</li>
+          <li>Job description builder: build and collate all your job descriptions across your church</li>
+          <li>Set training goals for each responsibility area</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <%= image_tag 'promotion/2.svg' %>
+      </div>
+    </div>
   </div>
-  <div class="col-md-4">
-    <h4>Have a single place to document your systems &amp; processes</h4>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec risus vitae sem porta malesuada in ut justo. Nulla ac purus imperdiet.
-    </p>
+</div>
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-4">
+      <%= image_tag 'promotion/3.svg' %>
+    </div>
+    <div class="col-md-8">
+      <h4>Have a single place to document your systems &amp; processes</h4>
+      <p>
+        My Team @ Church collates all your job descriptions, training modules and provides custom built checklists for every
+        position in your church. All your team members need to do is open the app on their phone, choose which of their
+        positions they wish to serve in. Then, right there in app, they have a custom checklist their leader has created
+        for that position, detailing the process, and recording when they do each step and how long each step takes.
+      </p>
+      <ul>
+        <li>Job Descriptions</li>
+        <li>Custom Checklists for every position</li>
+        <li>In app training both on the position specific tasks and the general leadership levels required for that position</li>
+        <li>Customisable training library created by you and your team leaders, deployable in app, and via drip feed emails</li>
+        <li>Simple training builder with multiple choice and long form answers</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="bg-light-gray">
+  <div class="container">
+    <div class="row py-5">
+      <div class="col-md-8">
+        <h4>Equip your leaders to manage and train their teams</h4>
+        <p>
+          A system so simple your leaders can run, yet so powerful you can see where every person is,
+          how they are tracking in their position, what their next step goals are, and what area’s of
+          godliness and competency they are working on.
+        </p>
+        <ul>
+          <li>Auto reminders for your leaders to meet with team members</li>
+          <li>Simple customisable directions for your team leaders 1:1’s</li>
+          <li>Leadership dashboard to track how your leaders are leading</li>
+          <li>Allows you to get out of the way, and your teams to do what they do best</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <%= image_tag 'promotion/4.svg' %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-4">
+      <%= image_tag 'promotion/5.svg' %>
+    </div>
+    <div class="col-md-8">
+      <h4>Connect to your church management software</h4>
+      <p>
+        We currently support full two way integration with Elvanto and are developing integration
+        with Church Community Builder next.
+      </p>
+    </div>
   </div>
 </div>

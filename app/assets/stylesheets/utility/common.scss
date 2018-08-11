@@ -1,0 +1,19 @@
+.heading {
+    background-image: image-url('heading.jpg');
+    background-size: cover;
+    background-position: center;
+    .overlay {
+        background: rgba(0, 0, 0, 0.4);
+        .container {
+            color: #fff;
+            padding: 50px 15px;
+        }
+    }
+}
+.bg-dark {
+    background-color: #162C52 !important;
+    color: #fff;
+}
+.bg-light-gray {
+    background-color: #f1f1f1;
+}
