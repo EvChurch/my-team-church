@@ -2,7 +2,7 @@
 
 class QueriesController < ApplicationController
   protect_from_forgery with: :null_session
-  before_action :authenticate_with_http_token
+  before_action :authenticate_with_http_token!
 
   def create
     render json: result
@@ -10,13 +10,14 @@ class QueriesController < ApplicationController
 
   protected
 
-  def authenticate_with_http_token
+  def authenticate_with_http_token!
     return if current_user
     auth_header = request.headers['Authorization'].to_s
     token = auth_header.remove('Bearer ')
     return unless token
     user = User.find_by(token: token)
-    sign_in user if user
+    return sign_in(user) if user
+    head :unauthorized unless %w[createUser authenticateUser].include?(operation_name)
   end
 
   def result

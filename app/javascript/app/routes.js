@@ -422,14 +422,25 @@ export default class Routes {
       parent: 'auth'
     }).state({
       name: 'organizations',
+      title: 'Organizations',
       component: 'organizations',
-      url: '/organizations'
+      url: '/organizations',
+      resolve: {
+        0: /* @ngInject*/ ($state, user, organizations) => {
+          return user.load().catch((ex) => {
+            $state.go('signIn');
+            throw ex;
+          });
+        }
+      }
     }).state({
       name: 'organizations.create',
+      title: 'Sign Up My Organization',
       component: 'organizationsCreate',
       url: '/create'
     }).state({
       name: 'organizations.edit',
+      title: 'Edit My Organization',
       component: 'organizationsEdit',
       url: '/edit',
       resolve: {
@@ -438,6 +449,7 @@ export default class Routes {
       }
     }).state({
       name: 'organizations.integrations',
+      title: 'My Organization Integrations',
       component: 'organizationsIntegrations',
       url: '/integrations',
       resolve: {
@@ -446,6 +458,7 @@ export default class Routes {
       }
     }).state({
       name: 'organizations.connect',
+      title: 'Connect My Organization',
       component: 'organizationsConnect',
       url: '/connect'
     });
