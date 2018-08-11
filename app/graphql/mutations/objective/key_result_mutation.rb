@@ -32,7 +32,7 @@ module Mutations::Objective::KeyResultMutation
                                         .find(args[:objective_id])
                                         .key_results
                                         .find(args[:id])
-      key_result.update_attributes!(args[:key_result].to_h)
+      key_result.update!(args[:key_result].to_h)
       key_result.decorate
     }
   end

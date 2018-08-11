@@ -17,10 +17,10 @@ module Mutations::OrganizationMutation
     argument :id, !types.ID
     argument :organization, !InputTypes::OrganizationInputType
     type Types::OrganizationType
-    resolve lambda { |organization, args, ctx|
+    resolve lambda { |_organization, args, ctx|
       organization = Organization.with_role(:admin, ctx[:current_user])
                                  .find(args[:id])
-      organization.update_attributes!(args[:organization].to_h)
+      organization.update!(args[:organization].to_h)
       organization.decorate
     }
   end

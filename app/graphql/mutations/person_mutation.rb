@@ -19,7 +19,7 @@ module Mutations::PersonMutation
     type Types::PersonType
     resolve lambda { |organization, args, _ctx|
       person = organization.people.find(args[:id])
-      person.update_attributes!(args[:person].to_h)
+      person.update!(args[:person].to_h)
       person.decorate
     }
   end
