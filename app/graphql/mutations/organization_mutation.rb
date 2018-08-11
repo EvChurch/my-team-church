@@ -7,7 +7,6 @@ module Mutations::OrganizationMutation
     type Types::OrganizationType
     resolve lambda { |_organization, args, ctx|
       new_organization = Organization.create!(args[:organization].to_h)
-      ctx[:current_user].add_role :member, new_organization
       ctx[:current_user].add_role :admin, new_organization
       new_organization.decorate
     }

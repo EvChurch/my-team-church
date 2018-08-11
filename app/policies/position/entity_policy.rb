@@ -12,7 +12,7 @@ class Position::EntityPolicy < ApplicationPolicy
     end
 
     def person_ids
-      @people_ids ||= user.links.pluck(:person_id)
+      @person_ids ||= user.links.pluck(:person_id)
     end
 
     def organization_ids

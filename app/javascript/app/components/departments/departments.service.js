@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { clone, pickBy, reduce } from 'lodash/fp';
+import { clone, pickBy, reduce, filter, reject } from 'lodash/fp';
 
 class Departments {
   constructor($rootScope,
@@ -24,14 +24,16 @@ class Departments {
       }
     `).then((data) => {
       this.data = data.departments;
+      let parents = filter({ parent_id: null }, this.data);
+      let children = reject({ parent_id: null }, this.data);
       this.data = reduce((result, department) => {
-        if (!department.parent_id) {
-          department = clone(department);
-          department.children = pickBy((child) => department.id === child.parent_id, this.data);
-          result.push(department);
-        }
+        department = clone(department);
+        department.children = filter({ parent_id: department.id }, children);
+        children = reject({ parent_id: department.id }, children);
+        result.push(department);
         return result;
-      }, [], this.data);
+      }, [], parents);
+      this.data = this.data.concat(children);
       return this.data;
     });
   }
