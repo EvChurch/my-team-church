@@ -22,6 +22,10 @@ class PositionEntities {
             id
             name
           }
+          service_types {
+            id
+            name
+          }
         }
       }
     `, { person_id: personId }).then((data) => {

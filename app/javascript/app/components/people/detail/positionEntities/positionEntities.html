@@ -1,8 +1,10 @@
 <div class="input-group search">
   <input type="text" class="form-control" ng-model="$ctrl.search" placeholder="Filter Positions">
-  <span class="input-group-append">
-    <i class="fas fa-search"></i>
-  </span>
+  <div class="input-group-append">
+    <span class="input-group-text">
+      <i class="fas fa-search"></i>
+    </span>
+  </div>
 </div>
 <div class="list-group list-group-flush">
     <a class="list-group-item list-group-item-action flex-column align-items-start"
@@ -10,6 +12,10 @@
       ui-sref=".detail({positionEntityId: positionEntity.id})"
       ui-sref-active="active">
       {{positionEntity.position.name}}
+      <br>
+      <span class="badge badge-secondary mr-1" ng-repeat="serviceType in positionEntity.service_types track by serviceType.id">
+        {{serviceType.name}}
+      </span>
   </a>
 </div>
 <div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">
