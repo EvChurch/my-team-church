@@ -58,6 +58,7 @@ class ServiceTypeConnections {
           id
           service_type {
               id
+              name
           }
         }
       }
@@ -80,6 +81,10 @@ class ServiceTypeConnections {
           id: $id,
         ) {
           id
+          service_type {
+              id
+              name
+          }
         }
       }
     `, { resource_id: resourceId, resource_type: resourceType, id: id }).then((data) => {

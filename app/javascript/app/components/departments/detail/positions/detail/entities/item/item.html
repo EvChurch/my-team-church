@@ -1,0 +1,9 @@
+<a class="list-group-item list-group-item-action flex-column align-items-start"
+    ui-sref="departments.detail.positions.detail.entities.detail({entityId: $ctrl.entity.id})"
+    ui-sref-active="active">
+  {{$ctrl.entity.person.name}}
+  <br>
+  <span class="badge badge-secondary mr-1" ng-repeat="serviceType in $ctrl.entity.service_types track by serviceType.id">
+      {{serviceType.name}}
+  </span>
+</a>

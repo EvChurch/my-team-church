@@ -10,15 +10,15 @@ class ItemController {
     this.watcher0 = this.$rootScope.$on(
       'serviceTypeConnectionCreate', (_event, resourceId, resourceType, serviceTypeConnection
     ) => {
-      if (resourceId === this.leader.id && resourceType === 'department_leader') {
-        this.leader.service_types.push(serviceTypeConnection.service_type);
+      if (resourceId === this.entity.id && resourceType === 'position_entity') {
+        this.entity.service_types.push(serviceTypeConnection.service_type);
       }
     });
     this.watcher1 = this.$rootScope.$on(
       'serviceTypeConnectionDelete', (_event, resourceId, resourceType, serviceTypeConnection
     ) => {
-      if (resourceId === this.leader.id && resourceType === 'department_leader') {
-        this.leader.service_types = reject({'id': serviceTypeConnection.service_type.id}, this.leader.service_types)
+      if (resourceId === this.entity.id && resourceType === 'position_entity') {
+        this.entity.service_types = reject({'id': serviceTypeConnection.service_type.id}, this.entity.service_types)
       }
     });
   }
@@ -30,11 +30,11 @@ class ItemController {
 
 let Item = {
   bindings: {
-    leader: '<'
+    entity: '<'
   },
   template: require('./item.html'),
   controller: ItemController
 };
 
-export default angular.module('app.components.departments.detail.leaders.item.component', [
-]).component('departmentsDetailLeadersItem', Item).name;
+export default angular.module('app.components.departments.detail.positions.detail.entities.item.component', [
+]).component('departmentsDetailPositionsDetailEntitiesItem', Item).name;
