@@ -9,10 +9,10 @@ See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
-Ruby version corresponding to the version in file `.ruby-version` with Bundler
-Node version corresponding to the version in file `.nvmrc` with Yarn
-PostgreSQL version 10+
-Redis
+- Ruby version corresponding to the version in file `.ruby-version` with Bundler
+- Node version corresponding to the version in file `.nvmrc` with Yarn
+- PostgreSQL version 10+
+- Redis
 
 ### Installing
 
