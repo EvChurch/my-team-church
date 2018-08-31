@@ -10,6 +10,7 @@ class Organization < ApplicationRecord
   has_many :people, dependent: :destroy
   has_many :positions, dependent: :destroy
   has_many :position_entities, through: :positions, source: :entities
+  has_many :position_items, through: :positions, source: :items
   has_many :service_types, dependent: :destroy
   has_many :service_type_connections, through: :service_types, source: :connections
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
