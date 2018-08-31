@@ -7,7 +7,7 @@ module Queries::Position::EntityQuery
     description 'List of PositionEntities'
     before_scope
     resource lambda { |organization, args, _ctx|
-      organization.position_entities.where(position_id: args[:position_id])
+      organization.position_entities.where(position_id: args[:position_id]).includes(:service_types, :person)
     }
     resolve lambda { |entities, _args, _ctx|
       entities.decorate

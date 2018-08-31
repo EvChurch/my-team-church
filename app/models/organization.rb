@@ -14,6 +14,7 @@ class Organization < ApplicationRecord
   has_many :service_type_connections, through: :service_types, source: :connections
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
   has_many :user_links, class_name: 'User::Link', dependent: :destroy, inverse_of: :organization
+  has_many :users, through: :user_links
 
   accepts_nested_attributes_for :integrations
 
