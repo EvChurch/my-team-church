@@ -1,5 +1,8 @@
 import Routes from './routes';
-import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { setContext } from 'apollo-link-context';
+import { createHttpLink } from 'apollo-link-http';
 
 /* @ngInject*/
 export default function appConfig(
@@ -12,26 +15,18 @@ export default function appConfig(
     rewriteLinks: false
   }).hashPrefix('!');
 
-  const networkInterface = createNetworkInterface({
-    uri: $window.document.getElementById('queries_url').getAttribute('value')
+  const httpLink = createHttpLink({ uri: $window.document.getElementById('queries_url').getAttribute('value') });
+
+  const middlewareLink = setContext(() => ({
+    headers: { authorization: $window.localStorage.getItem('token') || null }
+  }));
+
+  const client = new ApolloClient({
+    link: middlewareLink.concat(httpLink),
+    cache: new InMemoryCache()
   });
 
-  networkInterface.use([{
-    applyMiddleware(req, next) {
-      if (!req.options.headers) {
-        req.options.headers = {};
-      }
-      req.options.headers['authorization']
-        = $window.localStorage.getItem('token');
-      next();
-    }
-  }]);
-
-  apolloProvider.defaultClient(
-    new ApolloClient({
-      networkInterface
-    })
-  );
+  apolloProvider.defaultClient(client);
 
   Routes.config($stateProvider);
 }

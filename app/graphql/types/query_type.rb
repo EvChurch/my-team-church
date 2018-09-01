@@ -18,6 +18,8 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :position, Queries::PositionQuery::Get
   field :positionEntities, Queries::Position::EntityQuery::List
   field :positionEntity, Queries::Position::EntityQuery::Get
+  field :positionItems, Queries::Position::ItemQuery::List
+  field :positionItem, Queries::Position::ItemQuery::Get
   connection :people, Types::PersonType.connection_type do
     argument :search_string, types.String
     description 'List of People'

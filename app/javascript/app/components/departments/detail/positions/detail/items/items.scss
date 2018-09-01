@@ -1,0 +1,39 @@
+@import 'detail/detail';
+@import 'new/new';
+
+departments-detail-positions-detail-items {
+  > .heading {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ccc;
+    height: 37px;
+    > .title {
+      flex-grow: 1;
+      max-height: 40px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      > h1 {
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0;
+      }
+    }
+  }
+  .as-sortable-item-handle {
+    background: #fff;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    line-height: 49px;
+  }
+  .as-sortable-placeholder {
+    border-bottom: 1px solid #ccc;
+  }
+  .as-sortable-drag {
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid #ccc;
+    opacity: 0.75;
+    z-index: 20000 !important;
+  }
+}

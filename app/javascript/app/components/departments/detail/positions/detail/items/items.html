@@ -1,0 +1,26 @@
+<div class="heading">
+    <div class="title">
+      <h1>Checklist</h1>
+    </div>
+  </div>
+<div class="list">
+  <div class="departments-detail-positions-detail-items"
+       data-as-sortable="$ctrl.sortableOptions"
+       data-ng-model="$ctrl.items">
+    <div class="as-sortable-item d-flex align-items-center"
+         ng-repeat="item in $ctrl.items track by item.id"
+         data-as-sortable-item>
+      <div class="col text-muted as-sortable-item-handle"
+           data-as-sortable-item-handle>
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="col flex-fill p-0">
+        <departments-detail-positions-detail-items-detail position-id="$ctrl.positionId"
+                                                          position-item="item">
+        </departments-detail-positions-detail-items-detail>
+      </div>
+    </div>
+  </div>
+  <departments-detail-positions-detail-items-new position-id= "$ctrl.positionId">
+  </departments-detail-positions-detail-items-new>
+</div>

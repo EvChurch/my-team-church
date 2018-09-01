@@ -211,6 +211,17 @@ export default class Routes {
         resourceType: () => 'position_entity'
       }
     }).state({
+      name: 'departments.detail.positions.detail.items',
+      url: '/items',
+      views: {
+        'list@departments.detail.positions.detail': {
+          component: 'departmentsDetailPositionsDetailItems'
+        }
+      },
+      resolve: {
+        positionId: /* @ngInject*/ ($stateParams) => $stateParams.positionId,
+      }
+    }).state({
       name: 'locations',
       title: 'Locations',
       url: '/locations',

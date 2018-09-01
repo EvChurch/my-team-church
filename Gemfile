@@ -6,13 +6,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 ruby '2.4.3'
+gem 'acts_as_list'
 gem 'ancestry'
 gem 'bootsnap', require: false
 gem 'bootstrap', '~> 4.1.1'
 gem 'devise'
 gem 'draper', '3.0.0'
 gem 'elvanto-api', github: 'ardation/api-ruby'
-gem 'font-awesome-sass', '~> 4.7.0'
+gem 'font-awesome-sass', '~> 5.2.0'
 gem 'graphql'
 gem 'graphql-pundit'
 gem 'jbuilder', '~> 2.5'

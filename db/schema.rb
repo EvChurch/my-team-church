@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_23_030201) do
+ActiveRecord::Schema.define(version: 2018_08_31_220303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -233,6 +233,17 @@ ActiveRecord::Schema.define(version: 2018_07_23_030201) do
     t.index ["position_id"], name: "index_position_entities_on_position_id"
   end
 
+  create_table "position_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ancestry"
+    t.uuid "position_id"
+    t.integer "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ancestry"], name: "index_position_items_on_ancestry"
+    t.index ["position_id"], name: "index_position_items_on_position_id"
+  end
+
   create_table "positions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "organization_id"
     t.uuid "department_id"
@@ -362,6 +373,7 @@ ActiveRecord::Schema.define(version: 2018_07_23_030201) do
   add_foreign_key "objective_links", "objectives", column: "parent_id"
   add_foreign_key "position_entities", "people"
   add_foreign_key "position_entities", "positions"
+  add_foreign_key "position_items", "positions", on_delete: :cascade
   add_foreign_key "positions", "departments"
   add_foreign_key "positions", "organizations"
   add_foreign_key "service_type_connections", "service_types", on_delete: :cascade

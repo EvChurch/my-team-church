@@ -1,6 +1,5 @@
 import gql from 'graphql-tag';
-import { pick, reduce } from 'lodash/fp';
-import { resultKeyNameFromField } from 'apollo-client/data/storeUtils';
+import { pick } from 'lodash/fp';
 
 class Locations {
   constructor(

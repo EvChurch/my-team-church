@@ -98,7 +98,7 @@ class Entities {
       ) {
         deletePositionEntity(
           position_id: $position_id,
-          id: $id,
+          id: $id
         ) {
           id
         }

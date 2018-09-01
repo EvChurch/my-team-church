@@ -1,0 +1,33 @@
+departments-detail-positions-detail-items-new {
+  .new {
+    height: 49px;
+    border-bottom: 1px solid #ccc;
+    transition: 0.2s all ease-out;
+    padding: 6px 15px;
+    &:hover {
+      background-color: #F4F9FD;
+    }
+    &.focus {
+      background-color: rgb(227, 242, 253);
+    }
+  }
+  .input-group-text {
+    color: #2196f3;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  input.form-control {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    &:focus {
+      background: transparent;
+      outline-color: transparent;
+      outline-style: none;
+      box-shadow: none;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-<div class="tree" ng-class="{ 'terminus' : $ctrl.$state.is('departments.detail.positions.detail.objectives') }">
+<div class="tree" ng-class="{ 'terminus' : $ctrl.$state.is('departments.detail.positions.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.items') }">
   <div class="heading">
     <div class="title" >
       <h1>{{$ctrl.position.name}}</h1>
@@ -11,6 +11,9 @@
         </div>
         <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.objectives')">
           Objectives
+        </div>
+        <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.items')">
+          Checklist
         </div>
       </div>
     </div>
@@ -34,10 +37,14 @@
         <div>Objectives</div>
         <div class="icon"><i class="fas fa-bullseye"></i></div>
       </a>
+      <a class="menu-item" ui-sref=".items">
+        <div>Checklist</div>
+        <div class="icon"><i class="fas fa-bullseye"></i></div>
+      </a>
     </div>
     <div ui-view="list"></div>
   </div>
-  <div class="branch" ui-view="branch" ng-if="!$ctrl.$state.is('departments.detail.positions.detail.objectives')">
+  <div class="branch" ui-view="branch" ng-if="!$ctrl.$state.is('departments.detail.positions.detail.objectives') && !$ctrl.$state.is('departments.detail.positions.detail.items')">
     <div class="placeholder"></div>
   </div>
 </div>
