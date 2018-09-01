@@ -9,11 +9,13 @@ class DetailController {
     this.complete = false;
   }
   save() {
-    return this.departmentPositionItems.update(
-      this.positionId, this.positionItem.id, { name: this.positionItem.name }
-    ).then((positionItem) => {
-      this.positionItem = positionItem;
-    });
+    if (this.positionItem.name !== '') {
+      return this.departmentPositionItems.update(
+        this.positionId, this.positionItem.id, { name: this.positionItem.name }
+      ).then((positionItem) => {
+        this.positionItem = positionItem;
+      });
+    }
   }
   delete() {
     return this.departmentPositionItems.delete(this.positionId, this.positionItem.id);

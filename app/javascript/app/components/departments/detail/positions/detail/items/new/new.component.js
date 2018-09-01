@@ -11,9 +11,11 @@ class NewController {
     };
   }
   save() {
-    return this.departmentPositionItems.create(this.positionId, this.item).then(() => {
-      this.item.name = '';
-    });
+    if (this.item.name !== '') {
+      return this.departmentPositionItems.create(this.positionId, this.item).then(() => {
+        this.item.name = '';
+      });
+    }
   }
 }
 
