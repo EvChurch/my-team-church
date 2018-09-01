@@ -1,0 +1,21 @@
+<div class="d-flex align-items-center" ng-class="{ 'complete': $ctrl.complete }">
+  <div class="col" ng-click="$ctrl.complete = !$ctrl.complete">
+    <div ng-if="!$ctrl.complete">
+      <i class="far fa-square"></i>
+    </div>
+    <div ng-if="$ctrl.complete">
+      <i class="far fa-check-square"></i>
+    </div>
+  </div>
+  <div class="col flex-fill pl-0">
+    <input class="form-control pl-0"
+           ng-model="$ctrl.positionItem.name"
+           placeholder="item name"
+           ng-model-options="{ debounce: 500 }"
+           ng-change="$ctrl.save()"
+           required>
+  </div>
+  <div class="col" ng-click="$ctrl.delete()">
+    <i class="fas fa-trash"></i>
+  </div>
+</div>

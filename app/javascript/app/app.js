@@ -10,6 +10,7 @@ import appRun from './app.run';
 import 'countries-and-timezones';
 import 'angular-strap';
 import 'angular-toastr';
+import 'ng-sortable';
 
 angular.module('app', [
   AngularApollo,
@@ -18,7 +19,8 @@ angular.module('app', [
   Common,
   Components,
   'mgcrea.ngStrap',
-  'toastr'
+  'toastr',
+  'as.sortable'
 ])
   .config(appConfig)
   .run(appRun)

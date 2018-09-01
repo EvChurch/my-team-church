@@ -18,6 +18,9 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :deletePosition, Mutations::PositionMutation::Delete
   field :createPositionEntity, Mutations::Position::EntityMutation::Create
   field :deletePositionEntity, Mutations::Position::EntityMutation::Delete
+  field :createPositionItem, Mutations::Position::ItemMutation::Create
+  field :updatePositionItem, Mutations::Position::ItemMutation::Update
+  field :deletePositionItem, Mutations::Position::ItemMutation::Delete
   field :deletePersonPositionEntity, Mutations::Position::EntityMutation::DeleteByPerson
   field :authenticateUser, Mutations::UserMutation::Authenticate
   field :createUser, Mutations::UserMutation::Create

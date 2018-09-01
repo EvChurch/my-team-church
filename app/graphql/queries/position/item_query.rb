@@ -7,7 +7,7 @@ module Queries::Position::ItemQuery
     description 'List of PositionItems'
     before_scope
     resource lambda { |organization, args, _ctx|
-      organization.position_items.where(position_id: args[:position_id])
+      organization.position_items.where(position_id: args[:position_id]).order(order: :asc)
     }
     resolve ->(items, _args, _ctx) { items.decorate }
   end

@@ -237,6 +237,7 @@ ActiveRecord::Schema.define(version: 2018_08_31_220303) do
     t.string "name", null: false
     t.string "ancestry"
     t.uuid "position_id"
+    t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ancestry"], name: "index_position_items_on_ancestry"

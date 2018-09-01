@@ -11,4 +11,8 @@ InputTypes::Position::ItemInputType = GraphQL::InputObjectType.define do
   argument :parent_id, types.ID do
     description 'ID of the parent item.'
   end
+
+  argument :order, types.Float do
+    description 'position in the checklist the item should appear.'
+  end
 end

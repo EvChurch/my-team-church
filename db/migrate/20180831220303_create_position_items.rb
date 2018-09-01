@@ -4,7 +4,7 @@ class CreatePositionItems < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.string :ancestry
       t.belongs_to :position, foreign_key: { on_delete: :cascade, to_table: :positions }, type: :uuid
-
+      t.integer :order
       t.timestamps
     end
     add_index :position_items, :ancestry
