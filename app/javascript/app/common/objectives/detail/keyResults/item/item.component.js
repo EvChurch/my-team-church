@@ -16,6 +16,8 @@ class ItemController {
         start_value: changesObject.keyResult.currentValue.start_value,
         target_value: changesObject.keyResult.currentValue.target_value,
         current_value: changesObject.keyResult.currentValue.current_value,
+        start_at: changesObject.keyResult.currentValue.start_at,
+        end_at: changesObject.keyResult.currentValue.end_at,
         weight: changesObject.keyResult.currentValue.weight
       };
     }

@@ -67,4 +67,16 @@
     <input ng-model="$ctrl.keyResult.weight" type="number" class="form-control" required>
     <small class="text-muted">Weight is used to increase or decrease importance of single Key Result when calculating Objective completion %.</small>
   </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col">
+        <label>Start Date</label>
+        <input ng-model="$ctrl.keyResult.start_at" type="date" class="form-control">
+      </div>
+      <div class="col">
+        <label>End Date</label>
+        <input ng-model="$ctrl.keyResult.end_at" type="date" class="form-control">
+      </div>
+    </div>
+  </div>
 </modal>

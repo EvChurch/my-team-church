@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+import { reduce } from 'lodash/fp';
 import gql from 'graphql-tag';
 
 class KeyResults {
@@ -28,6 +30,8 @@ class KeyResults {
           target_value
           current_value
           weight
+          start_at
+          end_at
         }
       }
     `, {
@@ -35,7 +39,10 @@ class KeyResults {
       resource_type: resourceType,
       objective_id: objectiveId
     }).then((data) => {
-      this.data = data.objectiveKeyResults;
+      this.data = reduce((result, keyResult) => {
+        result.push(this.formatKeyResult(keyResult));
+        return result;
+      }, [], JSON.parse(JSON.stringify(data.objectiveKeyResults)));
       return this.data;
     });
   }
@@ -60,6 +67,8 @@ class KeyResults {
           target_value
           current_value
           weight
+          start_at
+          end_at
         }
       }
     `, {
@@ -68,7 +77,7 @@ class KeyResults {
       objective_id: objectiveId,
       id: id
     }).then((data) => {
-      return data.objectiveKeyResult;
+      return this.formatKeyResult(data.objectiveKeyResult);
     });
   }
   create(resourceId, resourceType, objectiveId, keyResult) {
@@ -92,6 +101,8 @@ class KeyResults {
           target_value
           current_value
           weight
+          start_at
+          end_at
         }
       }
     `, {
@@ -100,7 +111,7 @@ class KeyResults {
       objective_id: objectiveId,
       key_result: keyResult
     }).then((data) => {
-      const keyResult = data.createObjectiveKeyResult;
+      const keyResult = this.formatKeyResult(data.createObjectiveKeyResult);
       this.$rootScope.$emit('keyResultCreate', objectiveId, keyResult);
       return keyResult;
     });
@@ -128,6 +139,8 @@ class KeyResults {
           target_value
           current_value
           weight
+          start_at
+          end_at
         }
       }
     `, {
@@ -137,7 +150,7 @@ class KeyResults {
       id: id,
       key_result: keyResult
     }).then((data) => {
-      const keyResult = data.updateObjectiveKeyResult;
+      const keyResult = this.formatKeyResult(data.updateObjectiveKeyResult);
       this.$rootScope.$emit('keyResultUpdate', objectiveId, keyResult);
       return keyResult;
     });
@@ -182,6 +195,12 @@ class KeyResults {
         keyResult: keyResult
       }
     });
+  }
+  formatKeyResult(keyResult) {
+    keyResult = JSON.parse(JSON.stringify(keyResult));
+    keyResult.start_at = keyResult.start_at ? new Date(moment(keyResult.start_at).format('l LT')) : null;
+    keyResult.end_at = keyResult.end_at ? new Date(moment(keyResult.end_at).format('l LT')) : null;
+    return keyResult;
   }
 }
 

@@ -27,4 +27,12 @@ InputTypes::Objective::KeyResultInputType = GraphQL::InputObjectType.define do
   argument :weight, !types.Float do
     description 'Weight is used to increase or decrease importance of single Key Result.'
   end
+
+  argument :start_at, Types::DateTimeType do
+    description 'Start Timestamp where activity to progress toward key result should begin.'
+  end
+
+  argument :end_at, Types::DateTimeType do
+    description 'End Timestamp where key result should be achieved.'
+  end
 end

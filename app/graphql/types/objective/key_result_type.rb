@@ -9,6 +9,7 @@ Types::Objective::KeyResultType = GraphQL::ObjectType.define do
   field :target_value, !types.Float
   field :current_value, !types.Float
   field :weight, !types.Float
-
+  field :start_at, Types::DateTimeType
+  field :end_at, Types::DateTimeType
   field :objective, Types::ObjectiveType
 end
