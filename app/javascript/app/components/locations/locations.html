@@ -1,4 +1,4 @@
-<div class="tree">
+<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('locations') }">
   <div class="heading">
     <div class="title">
       <h1>Locations</h1>
@@ -24,7 +24,7 @@
       <div class="input-group-append">
         <span class="input-group-text">
           <i class="fas fa-search"></i>
-        </span>  
+        </span>
       </div>
     </div>
     <div class="list-group list-group-flush">

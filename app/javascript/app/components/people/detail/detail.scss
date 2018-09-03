@@ -10,9 +10,15 @@ people-detail {
     > .heading {
       > img {
         height: 40px;
+        width: 40px;
         margin-right: 10px;
         border-radius: 100%;
       }
+    }
+  }
+  @media (max-width: 767px) {
+    > .tree.edit {
+      grid-template-columns: 1fr;
     }
   }
 }

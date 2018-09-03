@@ -19,4 +19,16 @@ auth {
   .footer {
     color: #fff;
   }
+  @media (max-width: 767px) {
+    background-color: #e2e2e2;
+    justify-content: flex-start;
+    > .view {
+      padding: 30px 20px;
+      width: 100%;
+      min-width: 0;
+    }
+    > .footer {
+      color: #323232;
+    }
+  }
 }

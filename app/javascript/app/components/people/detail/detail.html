@@ -1,5 +1,6 @@
-<div class="tree" ng-class="{ 'edit': $ctrl.$state.is('people.detail') || $ctrl.$state.is('me'), 'terminus': $ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives') }">
+<div class="tree" ng-class="{ 'visible-on-mobile': $ctrl.$state.is('people.detail') || $ctrl.$state.is('me') || $ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives') || $ctrl.$state.is('people.detail.positionEntities') || $ctrl.$state.is('me.positionEntities'), 'edit': $ctrl.$state.is('people.detail') || $ctrl.$state.is('me'), 'terminus': $ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives') }">
   <div class="heading">
+    <a class="back" ui-sref="people" ng-if="$ctrl.$state.includes('people')"><i class="fas fa-chevron-left"></i></a>
     <img class="avatar" ng-src="{{$ctrl.person.picture}}">
     <div class="title">
       <h1 ng-if="$ctrl.$state.includes('people')">{{$ctrl.person.first_name}} {{$ctrl.person.last_name}}</h1>

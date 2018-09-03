@@ -1,6 +1,7 @@
-<div class="tree terminus">
+<div class="tree terminus visible-on-mobile">
     <div class="heading">
-      <div class="title" >
+      <a class="back" ui-sref="departments.detail.leaders"><i class="fas fa-chevron-left"></i></a>
+      <div class="title">
         <h1>
           <a ui-sref="people.detail({ personId: $ctrl.leader.person.id })">
             {{$ctrl.leader.person.name}}

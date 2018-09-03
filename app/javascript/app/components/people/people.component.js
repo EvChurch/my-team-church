@@ -3,9 +3,11 @@ import { concat } from 'lodash/fp';
 class PeopleController {
   constructor(
     $rootScope,
+    $state,
     people
   ) {
     this.$rootScope = $rootScope;
+    this.$state = $state;
     this.people = people;
 
     this.data = [];

@@ -4,4 +4,9 @@ navbar {
     background-color: #fff;
     border-bottom: 5px solid #C3CDD7;
   }
+  @media (max-width: 767px) {
+    .navbar-brand {
+      margin-left: 50px;
+    }
+  }
 }

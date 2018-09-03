@@ -1,6 +1,7 @@
-<div class="tree" ng-class="{ 'terminus' : $ctrl.$state.is('departments.detail.objectives') }">
+<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.positions') || $ctrl.$state.is('departments.detail.leaders') || $ctrl.$state.is('departments.detail.objectives'), 'terminus' : $ctrl.$state.is('departments.detail.objectives') }">
   <div class="heading">
-    <div class="title" >
+    <a class="back" ui-sref="departments"><i class="fas fa-chevron-left"></i></a>
+    <div class="title">
       <h1>{{$ctrl.department.name}}</h1>
       <div class="menu-toggle" ng-click="$ctrl.open = !$ctrl.open" ng-class="{ 'open': $ctrl.open }">
         <div class="icon">

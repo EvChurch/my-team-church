@@ -1,11 +1,10 @@
-import { concat } from 'lodash/fp';
-
 class ServiceTypesController {
   constructor(
-    $rootScope,
+    $rootScope, $state,
     serviceTypes
   ) {
     this.$rootScope = $rootScope;
+    this.$state = $state;
     this.serviceTypes = serviceTypes;
 
     this.data = [];

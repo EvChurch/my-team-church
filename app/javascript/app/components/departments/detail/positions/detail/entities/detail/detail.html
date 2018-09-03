@@ -1,5 +1,6 @@
-<div class="tree terminus">
+<div class="tree terminus" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.positions.detail.entities.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.entities.detail.serviceTypeConnections')}">
   <div class="heading">
+    <a class="back" ui-sref="departments.detail.positions.detail.entities"><i class="fas fa-chevron-left"></i></a>
     <div class="title">
       <h1>
         <a ui-sref="people.detail.positionEntities.detail({personId: $ctrl.entity.person.id, positionEntityId: $ctrl.entity.id})">

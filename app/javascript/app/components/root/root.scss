@@ -20,4 +20,19 @@ root {
       }
     }
   }
+  @media (max-width: 767px) {
+    .base {
+      margin-left: 0;
+      .pad {
+        background-color: #fff;
+        left: 0;
+        &-box {
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
+        }
+      }
+    }
+  }
 }

@@ -1,5 +1,7 @@
-<div class="tree terminus">
+<div class="tree terminus visible-on-mobile">
   <div class="heading">
+    <a class="back" ui-sref="people.detail.positionEntities" ng-if="$ctrl.$state.includes('people')"><i class="fas fa-chevron-left"></i></a>
+    <a class="back" ui-sref="me.positionEntities" ng-if="$ctrl.$state.includes('me')"><i class="fas fa-chevron-left"></i></a>
     <div class="title">
       <h1>Position</h1>
       <a ui-sref="departments.detail.position.entity({departmentId: $ctrl.positionEntity.position.department.id, positionId: $ctrl.positionEntity.position.id, entityId: $ctrl.positionEntity.id})">

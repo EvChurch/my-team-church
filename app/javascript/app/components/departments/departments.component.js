@@ -1,9 +1,11 @@
 class DepartmentsController {
   constructor(
     $rootScope,
+    $state,
     departments
   ) {
     this.$rootScope = $rootScope;
+    this.$state = $state;
     this.departments = departments;
   }
   $onInit() {

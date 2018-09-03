@@ -2,10 +2,11 @@ import { concat } from 'lodash/fp';
 
 class LocationsController {
   constructor(
-    $rootScope,
+    $rootScope, $state,
     locations
   ) {
     this.$rootScope = $rootScope;
+    this.$state = $state;
     this.locations = locations;
 
     this.data = [];
