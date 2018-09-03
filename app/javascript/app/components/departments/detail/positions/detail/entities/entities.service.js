@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+import { reduce } from 'lodash/fp';
 import gql from 'graphql-tag';
 
 class Entities {
@@ -18,11 +20,15 @@ class Entities {
           position_id: $position_id
         ) {
           id
+          start_at
+          end_at
+          trial
           person {
             id
             name
             first_name
             last_name
+            picture
           }
           service_types {
             id
@@ -31,7 +37,11 @@ class Entities {
         }
       }
     `, { position_id: positionId }).then((data) => {
-      return data.positionEntities;
+      this.data = reduce((result, positionEntity) => {
+        result.push(this.format(positionEntity));
+        return result;
+      }, [], JSON.parse(JSON.stringify(data.positionEntities)));
+      return this.data;
     });
   }
   get(positionId, id) {
@@ -45,11 +55,15 @@ class Entities {
           id: $id
         ) {
           id
+          start_at
+          end_at
+          trial
           person {
             id
             name
             first_name
             last_name
+            picture
           }
           service_types {
             id
@@ -58,7 +72,7 @@ class Entities {
         }
       }
     `, { position_id: positionId, id: id }).then((data) => {
-      return data.positionEntity;
+      return this.format(data.positionEntity);
     });
   }
   create(positionId, positionEntity) {
@@ -72,11 +86,15 @@ class Entities {
           position_entity: $position_entity
         ) {
           id
+          start_at
+          end_at
+          trial
           person {
             id
             name
             first_name
             last_name
+            picture
           }
           service_types {
             id
@@ -85,8 +103,43 @@ class Entities {
         }
       }
     `, { position_id: positionId, position_entity: positionEntity }).then((data) => {
-      const positionEntity = data.createPositionEntity;
+      const positionEntity = this.format(data.createPositionEntity);
       this.$rootScope.$emit('departmentPositionEntityCreate', positionId, positionEntity);
+      return positionEntity;
+    });
+  }
+  update(positionId, id, positionEntity) {
+    return this.api.mutate(gql`
+      mutation updatePositionEntity(
+        $position_id: ID!,
+        $id: ID!,
+        $position_entity: PositionEntityInputType!
+      ) {
+        updatePositionEntity(
+          position_id: $position_id,
+          id: $id,
+          position_entity: $position_entity
+        ) {
+          id
+          start_at
+          end_at
+          trial
+          person {
+            id
+            name
+            first_name
+            last_name
+            picture
+          }
+          service_types {
+            id
+            name
+          }
+        }
+      }
+    `, { position_id: positionId, id: id, position_entity: positionEntity }).then((data) => {
+      const positionEntity = this.format(data.updatePositionEntity);
+      this.$rootScope.$emit('departmentPositionEntityUpdate', positionId, positionEntity);
       return positionEntity;
     });
   }
@@ -117,6 +170,23 @@ class Entities {
         positionId: positionId
       }
     });
+  }
+  openEditModal(positionId, id, positionEntity) {
+    return this.modal.open({
+      template: require('./edit/edit.html'),
+      controller: 'departmentPositionEntitiesEditModalController',
+      locals: {
+        positionId: positionId,
+        id: id,
+        positionEntity
+      }
+    });
+  }
+  format(positionEntity) {
+    positionEntity = JSON.parse(JSON.stringify(positionEntity));
+    positionEntity.start_at = positionEntity.start_at ? new Date(moment(positionEntity.start_at).format('l LT')) : null;
+    positionEntity.end_at = positionEntity.end_at ? new Date(moment(positionEntity.end_at).format('l LT')) : null;
+    return positionEntity;
   }
 }
 

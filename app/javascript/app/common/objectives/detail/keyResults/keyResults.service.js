@@ -40,7 +40,7 @@ class KeyResults {
       objective_id: objectiveId
     }).then((data) => {
       this.data = reduce((result, keyResult) => {
-        result.push(this.formatKeyResult(keyResult));
+        result.push(this.format(keyResult));
         return result;
       }, [], JSON.parse(JSON.stringify(data.objectiveKeyResults)));
       return this.data;
@@ -77,7 +77,7 @@ class KeyResults {
       objective_id: objectiveId,
       id: id
     }).then((data) => {
-      return this.formatKeyResult(data.objectiveKeyResult);
+      return this.format(data.objectiveKeyResult);
     });
   }
   create(resourceId, resourceType, objectiveId, keyResult) {
@@ -111,7 +111,7 @@ class KeyResults {
       objective_id: objectiveId,
       key_result: keyResult
     }).then((data) => {
-      const keyResult = this.formatKeyResult(data.createObjectiveKeyResult);
+      const keyResult = this.format(data.createObjectiveKeyResult);
       this.$rootScope.$emit('keyResultCreate', objectiveId, keyResult);
       return keyResult;
     });
@@ -150,7 +150,7 @@ class KeyResults {
       id: id,
       key_result: keyResult
     }).then((data) => {
-      const keyResult = this.formatKeyResult(data.updateObjectiveKeyResult);
+      const keyResult = this.format(data.updateObjectiveKeyResult);
       this.$rootScope.$emit('keyResultUpdate', objectiveId, keyResult);
       return keyResult;
     });
@@ -196,7 +196,7 @@ class KeyResults {
       }
     });
   }
-  formatKeyResult(keyResult) {
+  format(keyResult) {
     keyResult = JSON.parse(JSON.stringify(keyResult));
     keyResult.start_at = keyResult.start_at ? new Date(moment(keyResult.start_at).format('l LT')) : null;
     keyResult.end_at = keyResult.end_at ? new Date(moment(keyResult.end_at).format('l LT')) : null;

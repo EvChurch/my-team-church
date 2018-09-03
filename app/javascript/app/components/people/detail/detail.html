@@ -1,6 +1,6 @@
 <div class="tree" ng-class="{ 'edit': $ctrl.$state.is('people.detail') || $ctrl.$state.is('me'), 'terminus': $ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives') }">
   <div class="heading">
-    <img ng-src="{{$ctrl.person.picture}}">
+    <img class="avatar" ng-src="{{$ctrl.person.picture}}">
     <div class="title">
       <h1 ng-if="$ctrl.$state.includes('people')">{{$ctrl.person.first_name}} {{$ctrl.person.last_name}}</h1>
       <h1 ng-if="$ctrl.$state.includes('me')">My Profile</h1>

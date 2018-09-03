@@ -20,7 +20,7 @@
       ng-repeat="edge in $ctrl.data track by edge.cursor"
       ng-class="{'active': $ctrl.serviceType.id === edge.node.id }"
       ng-click="$ctrl.setServiceType(edge.node)">
-    <img class="mr-3"
+    <img class="avatar mr-3"
          ng-src="{{edge.node.picture}}">
     <div>
       {{edge.node.first_name}}

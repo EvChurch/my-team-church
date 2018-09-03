@@ -1,26 +1,25 @@
-<ul class="list-group mb-2"
-    ng-if="$ctrl.person">
-  <li class="list-group-item d-flex align-items-center">
-      <div class="col pl-0">
-        {{$ctrl.person.first_name}}
-        {{$ctrl.person.last_name}}
-      </div>
-      <a ng-click="$ctrl.setPerson()">
-        <i class="fas fa-times"></i>
-      </a>
-  </li>
-</ul>
 <input class="form-control"
        ng-model="$ctrl.searchString"
        ng-change="$ctrl.search()"
        ng-model-options="{ debounce: 1000 }">
-<ul class="list-group mt-2"
-    ng-if="$ctrl.data.length > 0">
+<ul class="list-group mt-2">
+  <li class="list-group-item d-flex align-items-center active" ng-if="$ctrl.person">
+    <img class="avatar mr-3"
+      ng-src="{{$ctrl.person.picture}}">
+    <div>
+      {{$ctrl.person.first_name}}
+      {{$ctrl.person.last_name}}
+      <div ng-if="$ctrl.person.email">{{$ctrl.person.email}}</div>
+    </div>
+    <a ng-click="$ctrl.setPerson()">
+      <i class="fas fa-times"></i>
+    </a>
+  </li>
   <li class="list-group-item d-flex align-items-center"
       ng-repeat="edge in $ctrl.data track by edge.cursor"
-      ng-class="{'active': $ctrl.person.id === edge.node.id }"
-      ng-click="$ctrl.setPerson(edge.node)">
-    <img class="mr-3"
+      ng-click="$ctrl.setPerson(edge.node)"
+      ng-if="$ctrl.person.id !== edge.node.id">
+    <img class="avatar mr-3"
          ng-src="{{edge.node.picture}}">
     <div>
       {{edge.node.first_name}}

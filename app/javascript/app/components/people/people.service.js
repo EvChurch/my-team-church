@@ -37,7 +37,7 @@ class People {
         }
       }
     `, { search_string: searchString, cursor: cursor }).then((data) => {
-      let result = reduce(function(result, edge) {
+      let result = reduce((result, edge) => {
         result.push(edge);
         return result;
       }, [], data.people.edges);

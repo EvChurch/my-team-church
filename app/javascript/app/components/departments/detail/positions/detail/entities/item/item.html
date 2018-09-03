@@ -1,6 +1,27 @@
-
-{{$ctrl.entity.person.name}}
-<br>
-<span class="badge badge-secondary mr-1" ng-repeat="serviceType in $ctrl.entity.service_types track by serviceType.id">
-    {{serviceType.name}}
-</span>
+<div class="d-flex align-items-center">
+  <img class="avatar mr-3" ng-src="{{$ctrl.entity.person.picture}}">
+  <div class="flex-fill">
+    {{$ctrl.entity.person.name}}
+    <div ng-if="$ctrl.entity.start_at && !$ctrl.entity.end_at">
+      <small>Start: {{$ctrl.entity.start_at | date}}</small>
+    </div>
+    <div ng-if="$ctrl.entity.end_at && !$ctrl.entity.start_at">
+      <small>End: {{$ctrl.entity.end_at | date}}</small>
+    </div>
+    <div ng-if="$ctrl.entity.end_at && $ctrl.entity.start_at">
+      <small>{{$ctrl.entity.start_at | date}} - {{$ctrl.entity.end_at | date}}</small>
+    </div>
+    <div>
+      <span class="badge badge-secondary mr-1" ng-repeat="serviceType in $ctrl.entity.service_types track by serviceType.id">
+        {{serviceType.name}}
+      </span>
+    </div>
+  </div>
+  <div ng-if="$ctrl.entity.trial"
+       data-title="Trial"
+       data-placement="left"
+       data-trigger="hover"
+       bs-tooltip>
+    <i class="fas fa-business-time"></i>
+  </div>
+</div>
