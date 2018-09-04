@@ -7,7 +7,7 @@
       <i class="far fa-check-square"></i>
     </div>
   </div>
-  <div class="col flex-fill pl-0">
+  <div class="col flex-fill pl-0" ng-if="!$ctrl.readOnly">
     <input class="form-control pl-0"
            ng-model="$ctrl.positionItem.name"
            placeholder="Item name"
@@ -15,7 +15,10 @@
            ng-change="$ctrl.save()"
            required>
   </div>
-  <div class="col" ng-click="$ctrl.delete()">
+  <div class="col flex-fill pl-0" ng-if="$ctrl.readOnly" ng-click="$ctrl.complete = !$ctrl.complete">
+    {{$ctrl.positionItem.name}}
+  </div>
+  <div class="col" ng-click="$ctrl.delete()" ng-if="!$ctrl.readOnly">
     <i class="fas fa-trash"></i>
   </div>
 </div>

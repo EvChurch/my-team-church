@@ -45,7 +45,8 @@ class ItemsController {
 
 let Items = {
   bindings: {
-    positionId: '<'
+    positionId: '<',
+    readOnly: '<'
   },
   template: require('./items.html'),
   controller: ItemsController

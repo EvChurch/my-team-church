@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+import { reduce } from 'lodash/fp';
 import gql from 'graphql-tag';
 
 class PositionEntities {
@@ -18,6 +20,9 @@ class PositionEntities {
           person_id: $person_id
         ) {
           id
+          start_at
+          end_at
+          trial
           position {
             id
             name
@@ -29,7 +34,11 @@ class PositionEntities {
         }
       }
     `, { person_id: personId }).then((data) => {
-      return data.personPositionEntities;
+      let personPositionEntities = reduce((result, positionEntity) => {
+        result.push(this.format(positionEntity));
+        return result;
+      }, [], JSON.parse(JSON.stringify(data.personPositionEntities)));
+      return personPositionEntities;
     });
   }
   get(personId, id) {
@@ -43,6 +52,9 @@ class PositionEntities {
           id: $id
         ) {
           id
+          start_at
+          end_at
+          trial
           position {
             id
             name
@@ -54,7 +66,7 @@ class PositionEntities {
         }
       }
     `, { person_id: personId, id: id }).then((data) => {
-      return data.personPositionEntity;
+      return this.format(data.personPositionEntity);
     });
   }
   delete(personId, id) {
@@ -75,6 +87,14 @@ class PositionEntities {
       this.$rootScope.$emit('personPositionEntityDelete', personId, deletePersonPositionEntity);
       return deletePersonPositionEntity;
     });
+  }
+  format(personPositionEntity) {
+    personPositionEntity = JSON.parse(JSON.stringify(personPositionEntity));
+    personPositionEntity.start_at =
+      personPositionEntity.start_at ? new Date(moment(personPositionEntity.start_at).format('l LT')) : null;
+    personPositionEntity.end_at =
+      personPositionEntity.end_at ? new Date(moment(personPositionEntity.end_at).format('l LT')) : null;
+    return personPositionEntity;
   }
 }
 

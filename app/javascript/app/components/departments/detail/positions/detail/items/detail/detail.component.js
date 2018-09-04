@@ -25,7 +25,8 @@ class DetailController {
 let Detail = {
   bindings: {
     positionId: '<',
-    positionItem: '<'
+    positionItem: '<',
+    readOnly: '<'
   },
   template: require('./detail.html'),
   controller: DetailController
