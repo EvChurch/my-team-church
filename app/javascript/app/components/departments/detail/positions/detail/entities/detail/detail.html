@@ -11,9 +11,6 @@
         <div class="icon">
           <i class="fas fa-chevron-up"></i>
         </div>
-        <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.entities.detail.serviceTypeConnections')">
-          Service Types
-        </div>
         <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.entities.detail.objectives')">
           Objectives
         </div>
@@ -41,10 +38,6 @@
       <a class="menu-item" ui-sref=".objectives">
         <div>Objectives</div>
         <div class="icon"><i class="fas fa-bullseye"></i></div>
-      </a>
-      <a class="menu-item" ui-sref=".serviceTypeConnections">
-        <div>Service Types</div>
-        <div class="icon"><i class="fas fa-dolly"></i></div>
       </a>
     </div>
     <div ui-view="list"></div>

@@ -22,11 +22,6 @@
       <div ng-if="positionEntity.end_at && positionEntity.start_at">
         <small>{{positionEntity.start_at | date}} - {{positionEntity.end_at | date}}</small>
       </div>
-      <div>
-        <span class="badge badge-secondary mr-1" ng-repeat="serviceType in positionEntity.service_types track by serviceType.id">
-          {{serviceType.name}}
-        </span>
-      </div>
     </div>
     <div ng-if="positionEntity.trial"
         data-title="Trial"

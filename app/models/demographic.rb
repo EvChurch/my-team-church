@@ -6,7 +6,7 @@ class Demographic < ApplicationRecord
            class_name: 'Demographic::Entity',
            dependent: :destroy,
            inverse_of: :demographic
-  has_many :resources, through: :entities
+  has_many :resources, through: :entities, source: :person
   validates :name, presence: true
   default_scope -> { order(:name) }
 end
