@@ -2,10 +2,12 @@ import { find } from 'lodash/fp';
 
 class DetailController {
   constructor(
-    $rootScope, $state
+    $rootScope, $state,
+    departmentLeaders
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
+    this.departmentLeaders = departmentLeaders;
   }
   $onInit() {
     this.watcher0 = this.$rootScope.$on('departmentLeaderDelete', (_event, departmentId, leader) => {

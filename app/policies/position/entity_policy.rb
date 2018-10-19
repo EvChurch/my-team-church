@@ -9,7 +9,7 @@ class Position::EntityPolicy < ApplicationPolicy
     end
 
     def entity_ids_by_leader_ids
-      scope.joins(:position).where('positions.department_id', department_ids).ids
+      scope.joins(:position).where('positions.department_id', department_and_children_ids).ids
     end
 
     def entity_ids_by_person_ids

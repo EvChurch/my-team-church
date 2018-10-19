@@ -16,7 +16,11 @@ class DepartmentPolicy < ApplicationPolicy
     def department_ids
       return @department_ids if @department_ids
       @department_ids = user.links.joins(person: :department_leaders).pluck('department_leaders.department_id')
-      @department_ids = @department_ids.map { |id| Department.subtree_of(id).pluck(:id) }.flatten
+    end
+
+    def department_and_children_ids
+      return @department_and_children_ids if @department_and_children_ids
+      @department_and_children_ids = @department_ids.map { |id| Department.subtree_of(id).pluck(:id) }.flatten
     end
 
     def organizational_admin?

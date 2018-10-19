@@ -5,8 +5,8 @@ module Queries::DepartmentQuery
     type !types[Types::DepartmentType]
     description 'List of Departments'
     before_scope
-    resource lambda { |organization, _args, _ctx|
-      organization.departments
+    resource lambda { |organization, _args, ctx|
+      organization.departments.with_leader(ctx[:current_user])
     }
     resolve lambda { |departments, _args, _ctx|
       departments.decorate

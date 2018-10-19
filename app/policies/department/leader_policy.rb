@@ -5,7 +5,7 @@ class Department::LeaderPolicy < ApplicationPolicy
     protected
 
     def secure_scope
-      scope.where(department_id: department_ids)
+      scope.where(department_id: department_and_children_ids)
     end
 
     def organization_ids

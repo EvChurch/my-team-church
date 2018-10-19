@@ -17,29 +17,50 @@ class Departments {
     return this.api.query(gql`
       query {
         departments {
-          id
-          name
-          parent_id
+          ...DepartmentFields
+          ...ChildrenRecursive
         }
+      }
+
+      fragment ChildrenRecursive on Department {
+        children {
+          ...DepartmentFields
+          children {
+            ...DepartmentFields
+            children {
+              ...DepartmentFields
+              children {
+                ...DepartmentFields
+                children {
+                  ...DepartmentFields
+                  children {
+                    ...DepartmentFields
+                    children {
+                      ...DepartmentFields
+                      children {
+                        ...DepartmentFields
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      fragment DepartmentFields on Department {
+        id
+        name
       }
     `).then((data) => {
       this.data = data.departments;
-      let parents = filter({ parent_id: null }, this.data);
-      let children = reject({ parent_id: null }, this.data);
-      this.data = reduce((result, department) => {
-        department = clone(department);
-        department.children = filter({ parent_id: department.id }, children);
-        children = reject({ parent_id: department.id }, children);
-        result.push(department);
-        return result;
-      }, [], parents);
-      this.data = this.data.concat(children);
       return this.data;
     });
   }
   get(id) {
     return this.api.query(gql`
-      query department($id: ID!){
+      query department($id: ID!) {
         department(id: $id) {
           id
           name
@@ -103,10 +124,13 @@ class Departments {
       return department;
     });
   }
-  openNewModal() {
+  openNewModal(parent) {
     return this.modal.open({
       template: require('./new/new.html'),
-      controller: 'departmentsNewModalController'
+      controller: 'departmentsNewModalController',
+      locals: {
+        parent: parent || { id: null }
+      }
     });
   }
   openEditModal(department) {
