@@ -5,6 +5,7 @@ class Department < ApplicationRecord
   belongs_to :organization
   has_many :positions, dependent: :destroy, inverse_of: :department
   has_many :leaders, dependent: :destroy, inverse_of: :department
+  has_many :entities, through: :positions
   has_many :people, -> { uniq }, through: :positions
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
   validates :name, presence: true
@@ -16,4 +17,12 @@ class Department < ApplicationRecord
     department_ids = user.links.joins(person: :department_leaders).pluck('department_leaders.department_id')
     where(id: department_ids)
   end)
+
+  def people_needed
+    positions.sum(:people_needed)
+  end
+
+  def people_active
+    entities.active.count
+  end
 end
