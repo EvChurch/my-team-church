@@ -5,6 +5,8 @@ Types::PositionType = GraphQL::ObjectType.define do
   field :id, !types.ID
   field :name, !types.String
   field :description, types.String
+  field :people_needed, types.Int
+  field :people_active, types.Int
   field :objectives, types[Types::ObjectiveType]
   field :department, !Types::DepartmentType
   field :position_entities, types[Types::Position::EntityType]

@@ -17,6 +17,8 @@ class Positions {
         ) {
           id
           name
+          people_needed
+          people_active
         }
       }
     `, { department_id: departmentId }).then((data) => {
@@ -33,6 +35,8 @@ class Positions {
           id
           name
           description
+          people_needed
+          people_active
         }
       }
     `, { department_id: departmentId, id: id }).then((data) => {
@@ -51,6 +55,8 @@ class Positions {
         ) {
           id
           name
+          description
+          people_needed
         }
       }
     `, { department_id: departmentId, position: position }).then((data) => {
@@ -74,6 +80,7 @@ class Positions {
           id
           name
           description
+          people_needed
         }
       }
     `, { department_id: departmentId, id: id, position: position }).then((data) => {

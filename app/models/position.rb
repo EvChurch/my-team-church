@@ -25,4 +25,8 @@ class Position < ApplicationRecord
       <div><strong>REPORTING STRUCTURE</strong></div><ol><li></li></ol>
     HTML
   end
+
+  def people_active
+    entities.active.count
+  end
 end

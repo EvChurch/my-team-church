@@ -15,11 +15,21 @@
   </div>
 </div>
 <div class="list-group list-group-flush">
-   <a class="list-group-item list-group-item-action flex-column align-items-start"
+  <a class="list-group-item list-group-item-action d-flex align-items-center"
       ng-repeat="position in $ctrl.list | filter: { name:$ctrl.search } track by position.id"
       ui-sref="departments.detail.positions.detail({positionId: position.id})"
       ui-sref-active="active">
+    <div class="flex-fill">
       {{position.name}}
+    </div>
+    <div>
+      <span class="badge badge-secondary"
+            ng-class="{ 'badge-warning' : position.people_needed > position.people_active, 'badge-success' : position.people_needed < position.people_active }"
+            data-title="active / needed"
+            data-placement="left"
+            data-trigger="hover"
+            bs-tooltip>{{position.people_active}} / {{position.people_needed}}</span>
+    </div>
   </a>
 </div>
 <div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">

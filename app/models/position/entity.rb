@@ -11,6 +11,12 @@ class Position::Entity < ApplicationRecord
            class_name: 'ServiceType::Connection'
   has_many :service_types, through: :service_type_connections
   after_create :guess_service_type
+  scope :active, lambda {
+    where(start_at: nil, end_at: nil)
+      .or(where('start_at <= :now AND end_at IS NULL', now: Time.current))
+      .or(where('start_at IS NULL AND end_at >= :now', now: Time.current))
+      .or(where('start_at <= :now AND end_at >= :now', now: Time.current))
+  }
 
   protected
 

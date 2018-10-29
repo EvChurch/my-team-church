@@ -12,6 +12,10 @@ InputTypes::PositionInputType = GraphQL::InputObjectType.define do
     description 'Description of the position.'
   end
 
+  argument :people_needed, types.Int do
+    description 'Number of people needed to actively serve in the position.'
+  end
+
   argument :department_id, types.ID do
     description 'ID of the parent Department.'
   end

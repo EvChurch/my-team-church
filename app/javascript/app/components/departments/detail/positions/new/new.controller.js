@@ -7,7 +7,7 @@ class NewModalController {
     this.$scope = $scope;
     this.departmentPositions = departmentPositions;
     this.departmentId = departmentId;
-    this.position = { name: '', description: '' };
+    this.position = { name: '', people_needed: 0 };
   }
   save() {
     return this.departmentPositions.create(this.departmentId, this.position).then(() => {
