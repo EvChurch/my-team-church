@@ -9,8 +9,7 @@ class EditModalController {
     this.departmentId = departmentId;
     this.id = position.id;
     this.position = {
-      name: position.name,
-      description: position.description
+      name: position.name
     };
   }
   save() {

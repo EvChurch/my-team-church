@@ -11,6 +11,7 @@ import 'countries-and-timezones';
 import 'angular-strap';
 import 'angular-toastr';
 import 'ng-sortable';
+import 'angular-trix';
 
 angular.module('app', [
   AngularApollo,
@@ -20,7 +21,8 @@ angular.module('app', [
   Components,
   'mgcrea.ngStrap',
   'toastr',
-  'as.sortable'
+  'as.sortable',
+  'angularTrix'
 ])
   .config(appConfig)
   .run(appRun)

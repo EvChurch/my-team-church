@@ -1,4 +1,4 @@
-class DetailController {
+  class DetailController {
   constructor(
     $rootScope, $state,
     departmentPositions, departmentPositionEntities, objectives

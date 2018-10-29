@@ -1,4 +1,4 @@
-<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.positions.detail.entities') || $ctrl.$state.is('departments.detail.positions.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.items'), 'terminus' : $ctrl.$state.is('departments.detail.positions.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.items') }">
+<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.positions.detail.entities') || $ctrl.$state.is('departments.detail.positions.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.items'), 'terminus' : $ctrl.$state.is('departments.detail.positions.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.items') || $ctrl.$state.is('departments.detail.positions.detail.jobDescription') }">
   <div class="heading">
     <a class="back" ui-sref="departments.detail.positions"><i class="fas fa-chevron-left"></i></a>
     <div class="title" >
@@ -15,6 +15,9 @@
         </div>
         <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.items')">
           Checklist
+        </div>
+        <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.jobDescription')">
+          Job Description
         </div>
       </div>
     </div>
@@ -42,10 +45,14 @@
         <div>Checklist</div>
         <div class="icon"><i class="fas fa-list"></i></div>
       </a>
+      <a class="menu-item" ui-sref=".jobDescription">
+        <div>Job Description</div>
+        <div class="icon"><i class="fas fa-pencil-ruler"></i></div>
+      </a>
     </div>
     <div ui-view="list"></div>
   </div>
-  <div class="branch" ui-view="branch" ng-if="!$ctrl.$state.is('departments.detail.positions.detail.objectives') && !$ctrl.$state.is('departments.detail.positions.detail.items')">
+  <div class="branch" ui-view="branch" ng-if="!$ctrl.$state.is('departments.detail.positions.detail.objectives') && !$ctrl.$state.is('departments.detail.positions.detail.items') && !$ctrl.$state.is('departments.detail.positions.detail.jobDescription')">
     <div class="placeholder"></div>
   </div>
 </div>

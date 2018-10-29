@@ -17,7 +17,6 @@ class Positions {
         ) {
           id
           name
-          description
         }
       }
     `, { department_id: departmentId }).then((data) => {
@@ -52,7 +51,6 @@ class Positions {
         ) {
           id
           name
-          description
         }
       }
     `, { department_id: departmentId, position: position }).then((data) => {

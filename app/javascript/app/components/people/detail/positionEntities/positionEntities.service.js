@@ -58,6 +58,7 @@ class PositionEntities {
           position {
             id
             name
+            description
             department {
               id
               name

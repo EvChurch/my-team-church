@@ -222,6 +222,23 @@ export default class Routes {
         positionId: /* @ngInject*/ ($stateParams) => $stateParams.positionId
       }
     }).state({
+      name: 'departments.detail.positions.detail.jobDescription',
+      url: '/job_description',
+      views: {
+        'list@departments.detail.positions.detail': {
+          component: 'departmentsDetailPositionsDetailJobDescription'
+        }
+      },
+      resolve: {
+        departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId,
+        position: /* @ngInject*/ ($state, $stateParams, departmentPositions) => {
+          return departmentPositions.get($stateParams.departmentId, $stateParams.positionId).catch((ex) => {
+            $state.go('departments.detail.positions');
+            throw ex;
+          });
+        }
+      }
+    }).state({
       name: 'locations',
       title: 'Locations',
       url: '/locations',
@@ -368,7 +385,7 @@ export default class Routes {
         }
       },
       resolve: {
-        positionEntity: /* @ngInject*/ ($state, $stateParams, people, personPositionEntities) => {
+        positionEntity: /* @ngInject*/ ($state, $stateParams, personPositionEntities) => {
           return personPositionEntities.get(
             $stateParams.personId, $stateParams.positionEntityId
           ).catch((ex) => {
@@ -377,6 +394,26 @@ export default class Routes {
           });
         },
         positionId: /* @ngInject*/ (positionEntity) => positionEntity.position.id,
+        readOnly: () => true
+      }
+    }).state({
+      name: 'people.detail.positionEntities.detail.jobDescription',
+      url: '/job_description',
+      views: {
+        'list@people.detail.positionEntities.detail': {
+          component: 'departmentsDetailPositionsDetailJobDescription'
+        }
+      },
+      resolve: {
+        positionEntity: /* @ngInject*/ ($state, $stateParams, personPositionEntities) => {
+          return personPositionEntities.get(
+            $stateParams.personId, $stateParams.positionEntityId
+          ).catch((ex) => {
+            $state.go('person.detail.positionEntities');
+            throw ex;
+          });
+        },
+        position: /* @ngInject*/ (positionEntity) => positionEntity.position,
         readOnly: () => true
       }
     }).state({
@@ -473,6 +510,26 @@ export default class Routes {
           });
         },
         positionId: /* @ngInject*/ (positionEntity) => positionEntity.position.id,
+        readOnly: () => true
+      }
+    }).state({
+      name: 'me.positionEntities.detail.jobDescription',
+      url: '/job_description',
+      views: {
+        'list@me.positionEntities.detail': {
+          component: 'departmentsDetailPositionsDetailJobDescription'
+        }
+      },
+      resolve: {
+        positionEntity: /* @ngInject*/ ($state, $stateParams, people, personPositionEntities) => {
+          return personPositionEntities.get(
+            people.me.id, $stateParams.positionEntityId
+          ).catch((ex) => {
+            $state.go('me.positionEntities');
+            throw ex;
+          });
+        },
+        position: /* @ngInject*/ (positionEntity) => positionEntity.position,
         readOnly: () => true
       }
     }).state({

@@ -1,0 +1,31 @@
+departments-detail-positions-detail-job-description {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  trix-toolbar {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 15px 0;
+  }
+  trix-editor {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 50px;
+    left: 0;
+    border: 0;
+    padding: 10px 15px;
+    overflow: auto;
+  }
+  .read-only {
+    pointer-events: none;
+    trix-toolbar {
+      display: none;
+    }
+    trix-editor {
+      top: 0;
+    }
+  }
+}
