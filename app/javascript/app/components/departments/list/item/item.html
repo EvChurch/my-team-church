@@ -14,12 +14,12 @@
       {{$ctrl.item.name}}
     </div>
     <div>
-      <span class="badge badge-secondary"
-            ng-class="{ 'badge-warning' : $ctrl.item.people_needed > $ctrl.item.people_active, 'badge-success' : $ctrl.item.people_needed < $ctrl.item.people_active }"
-            data-title="active / needed"
+      <span class="badge badge-warning"
+            ng-if="$ctrl.item.positions_needing_people > 0"
+            data-title="positions in need"
             data-placement="left"
             data-trigger="hover"
-            bs-tooltip>{{$ctrl.item.people_active}} / {{$ctrl.item.people_needed}}</span>
+            bs-tooltip>{{$ctrl.item.positions_needing_people}}</span>
     </div>
 </a>
 <departments-list

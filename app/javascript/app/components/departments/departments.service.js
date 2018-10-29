@@ -52,8 +52,7 @@ class Departments {
       fragment DepartmentFields on Department {
         id
         name
-        people_active
-        people_needed
+        positions_needing_people
       }
     `).then((data) => {
       this.data = data.departments;

@@ -18,11 +18,18 @@ class Department < ApplicationRecord
     where(id: department_ids)
   end)
 
-  def people_needed
-    positions.sum(:people_needed)
+  def people_needed_grouped_by_position_id
+    positions.group(:id).sum(:people_needed)
   end
 
-  def people_active
-    entities.active.count
+  def people_active_grouped_by_position_id
+    entities.active.group(:position_id).reorder(nil).count
+  end
+
+  def positions_needing_people
+    people_active = people_active_grouped_by_position_id
+    people_needed_grouped_by_position_id.select do |key, value|
+      value > people_active[key]
+    end.length
   end
 end

@@ -23,12 +23,12 @@
       {{position.name}}
     </div>
     <div>
-      <span class="badge badge-secondary"
-            ng-class="{ 'badge-warning' : position.people_needed > position.people_active, 'badge-success' : position.people_needed < position.people_active }"
-            data-title="active / needed"
+      <span class="badge badge-warning"
+            ng-if="position.people_needed - position.people_active > 0"
+            data-title="people needed"
             data-placement="left"
             data-trigger="hover"
-            bs-tooltip>{{position.people_active}} / {{position.people_needed}}</span>
+            bs-tooltip>{{position.people_needed - position.people_active}}</span>
     </div>
   </a>
 </div>
