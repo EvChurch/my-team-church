@@ -44,12 +44,12 @@
     </div>
     <div ui-view="list">
       <form ng-submit="$ctrl.save()">
-        <div class="row">
-          <div class="form-group col">
+        <div class="form-group row">
+          <div class="col-12 col-sm-6 mb-3 mb-sm-0 pr-sm-0">
             <label>First Name</label>
             <input class="form-control" ng-model="$ctrl.person.first_name">
           </div>
-          <div class="form-group col">
+          <div class="col-12 col-sm-6">
             <label>Last Name</label>
             <input class="form-control" ng-model="$ctrl.person.last_name">
           </div>
