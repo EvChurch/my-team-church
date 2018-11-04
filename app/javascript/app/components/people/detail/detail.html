@@ -76,6 +76,15 @@
         <div class="text-right">
           <button type="submit" class="btn btn-primary">Save</button>
       </form>
+      <div class="list-group list-group-flush user-list mt-3">
+        <div class="list-group-item">
+          <strong>Users</strong>
+        </div>
+        <div class="list-group-item" ng-repeat="user in $ctrl.person.users track by user.id">
+          <div>{{user.first_name}} {{user.last_name}}</div>
+          <div class="text-muted">{{user.email}}</div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="branch" ui-view="branch" ng-if="!($ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives'))">

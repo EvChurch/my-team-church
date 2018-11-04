@@ -81,6 +81,12 @@ class People {
           mobile
           phone
           gender
+          users {
+            id
+            first_name
+            last_name
+            email
+          }
         }
       }
     `).then((data) => {

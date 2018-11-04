@@ -5,6 +5,12 @@ people-detail {
       grid-template-columns: 500px auto;
       > .list  {
         padding: 10px 15px;
+        .user-list {
+          margin: 0 -15px;
+          > .list-group-item:first-child {
+            border-top: 1px solid rgba(0, 0, 0, .125);
+          }
+        }
       }
     }
     > .heading {
