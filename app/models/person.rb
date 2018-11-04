@@ -38,6 +38,8 @@ class Person < ApplicationRecord
            class_name: 'User::Link',
            dependent: :destroy,
            inverse_of: :person
+  has_many :users,
+           through: :user_links
   has_many :department_leaders,
            class_name: 'Department::Leader',
            dependent: :destroy,

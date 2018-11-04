@@ -1,14 +1,19 @@
 class ConnectController {
   constructor(
-    $state,
+    $state, $stateParams,
     organizations
   ) {
     this.$state = $state;
+    this.$stateParams = $stateParams;
     this.organizations = organizations;
+    if ($stateParams.access_code) {
+      this.accessCode = $stateParams.access_code;
+      this.submit();
+    }
   }
   submit() {
     this.loading = true;
-    this.organizations.connect(this.personId).then(() => {
+    this.organizations.connect(this.accessCode).then(() => {
       this.loading = false;
       this.$state.go('me');
     });

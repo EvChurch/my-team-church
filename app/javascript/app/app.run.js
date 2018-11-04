@@ -1,6 +1,6 @@
 /* @ngInject*/
 export default function appRun(
-  $rootScope, $transitions, $window, user, organizations
+  $location, $rootScope, $transitions, $window, user, organizations
 ) {
   $transitions.onStart({
     to: (state) => state.name !== 'signIn' && state.name !== 'organizations'
@@ -14,6 +14,9 @@ export default function appRun(
         trans.router.stateService.target('organizations');
       });
     }).catch(() => {
+      if (!$window.localStorage.getItem('redirect')) {
+        $window.localStorage.setItem('redirect', $location.absUrl());
+      }
       trans.router.stateService.target('signIn');
     });
   });

@@ -1,9 +1,11 @@
 class SignInController {
   constructor(
-    $state, toastr,
+    $location, $state, $window, toastr,
     user
   ) {
+    this.$location = $location;
     this.$state = $state;
+    this.$window = $window;
     this.user = user;
     this.email = '';
     this.password = '';
@@ -13,8 +15,14 @@ class SignInController {
   submit() {
     this.loading = true;
     this.user.signIn({ email: this.email, password: this.password }).then(() => {
+      let redirect = this.$window.localStorage.getItem('redirect');
       this.loading = false;
-      this.$state.go('home');
+      if (redirect) {
+        this.$window.localStorage.removeItem('redirect');
+        this.$window.location.href = redirect;
+      } else {
+        this.$state.go('home');
+      }
     }).catch(() => {
       this.toastr.error('Incorrect Credentials', 'Error');
       this.loading = false;

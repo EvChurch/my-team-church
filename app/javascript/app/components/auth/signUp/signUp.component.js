@@ -1,6 +1,8 @@
 class SignUpController {
-  constructor($state, user) {
+  constructor($location, $state, $window, user) {
+    this.$location = $location;
     this.$state = $state;
+    this.$window = $window;
     this.user = user;
     this.email = '';
     this.password = '';
@@ -13,8 +15,14 @@ class SignUpController {
       first_name: this.first_name,
       last_name: this.last_name
     }).then(() => {
+      let redirect = this.$window.localStorage.getItem('redirect');
       this.loading = false;
-      this.$state.go('home');
+      if (redirect) {
+        this.$window.localStorage.removeItem('redirect');
+        this.$window.location.href = redirect;
+      } else {
+        this.$state.go('home');
+      }
     });
   }
 }

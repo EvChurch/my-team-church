@@ -7,7 +7,7 @@ module Mutations::User::LinkMutation
     type Types::User::LinkType
     resolve lambda { |_organization, args, ctx|
       ctx[:current_user].links
-                        .create!(person_id: args[:person_id])
+                        .first_or_create!(person_id: args[:person_id])
                         .decorate
     }
   end

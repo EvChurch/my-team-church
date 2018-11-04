@@ -588,7 +588,7 @@ export default class Routes {
       name: 'organizations.connect',
       title: 'Connect My Organization',
       component: 'organizationsConnect',
-      url: '/connect'
+      url: '/connect?access_code'
     });
   }
 }
