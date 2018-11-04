@@ -84,6 +84,17 @@
           <div>{{user.first_name}} {{user.last_name}}</div>
           <div class="text-muted">{{user.email}}</div>
         </div>
+        <div class="list-group-item">
+          <div>Invite User by Link</div>
+          <div class="input-group mt-2">
+            <input class="form-control" id="user-link" value="{{$ctrl.$location.protocol()}}://{{$ctrl.$location.host()}}/organizations/connect?access_code={{$ctrl.person.id}}" readonly>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" ngclipboard data-clipboard-target="#user-link">
+                <i class="far fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
