@@ -16,14 +16,13 @@
 </div>
 <div class="list-group list-group-flush">
   <div class="list-group-item" ng-if="$ctrl.loading" ng-repeat="n in [4, 6, 10, 8]">
-    <div class="row">
-      <div class="col-4">
-        <div class="ph-avatar mb-0"></div>
-      </div>
-      <div class="col-8">
-        <div class="ph-row mt-3 mb-0">
+    <div class="d-flex align-items-center">
+      <div class="ph-avatar mr-3 mb-0"></div>
+      <div class="flex-fill">
+        <div class="ph-row my-0">
           <div class="ph-col-{{n}}"></div>
-          <div class="ph-col-12"></div>
+          <div class="ph-col-{{12 - n}} empty"></div>
+          <div class="ph-col-6 mb-0"></div>
         </div>
       </div>
     </div>
