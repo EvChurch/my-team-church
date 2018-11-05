@@ -23,7 +23,12 @@ export default class Routes {
       title: 'Home',
       url: '/',
       component: 'home',
-      parent: 'root'
+      parent: 'root',
+      resolve: {
+        0: /* @ngInject*/ ($state) => {
+          $state.go('me.positionEntities');
+        }
+      }
     }).state({
       name: 'user',
       title: 'User',

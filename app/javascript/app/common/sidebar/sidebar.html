@@ -1,7 +1,7 @@
 <div class="sidebar" ng-class="{ 'visible-on-mobile': $ctrl.visibleOnMobile }">
-  <a ui-sref="home" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false">
+  <a ui-sref="me.positionEntities" ng-class="{'active': $ctrl.$state.includes('me')}" ng-click="$ctrl.visibleOnMobile = false">
     <div class="icon"><i class="fas fa-home"></i></div>
-    <div class="label">Home</div>
+    <div class="label">My Profile</div>
   </a>
   <a ui-sref="departments" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false" ng-if="$ctrl.organizations.primary.admin || $ctrl.organizations.primary.leader">
     <div class="icon"><i class="far fa-building"></i></div>
@@ -18,10 +18,6 @@
   <a ui-sref="serviceTypes" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false" ng-if="$ctrl.organizations.primary.admin">
     <div class="icon"><i class="fas fa-dolly"></i></div>
     <div class="label">Service Types</div>
-  </a>
-  <a ui-sref="me.positionEntities" ng-class="{'active': $ctrl.$state.includes('me')}" ng-click="$ctrl.visibleOnMobile = false">
-    <div class="icon"><i class="fas fa-id-badge"></i></div>
-    <div class="label">My Profile</div>
   </a>
   <a ng-click="$ctrl.signOut()">
     <div class="icon"><i class="fas fa-sign-out-alt"></i></div>
