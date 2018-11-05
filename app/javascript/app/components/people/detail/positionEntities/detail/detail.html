@@ -19,6 +19,9 @@
         <div ng-if="$ctrl.$state.includes('people.detail.positionEntities.detail.jobDescription') || $ctrl.$state.includes('me.positionEntities.detail.jobDescription')">
           Job Description
         </div>
+        <div ng-if="$ctrl.$state.includes('people.detail.positionEntities.detail.training') || $ctrl.$state.includes('me.positionEntities.detail.training')">
+          Training
+        </div>
       </div>
     </div>
     <div class="actions">
@@ -40,6 +43,10 @@
       <a class="menu-item" ui-sref=".jobDescription">
         <div>Job Description</div>
         <div class="icon"><i class="fas fa-pencil-ruler"></i></div>
+      </a>
+      <a class="menu-item" ui-sref=".training">
+        <div>Training</div>
+        <div class="icon"><i class="fas fa-graduation-cap"></i></div>
       </a>
     </div>
     <div ui-view="list"></div>

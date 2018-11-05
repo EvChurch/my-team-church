@@ -1,4 +1,4 @@
-<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.positions.detail.entities') || $ctrl.$state.is('departments.detail.positions.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.items'), 'terminus' : $ctrl.$state.is('departments.detail.positions.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.items') || $ctrl.$state.is('departments.detail.positions.detail.jobDescription') }">
+<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.positions.detail.entities') || $ctrl.$state.is('departments.detail.positions.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.items'), 'terminus' : $ctrl.$state.is('departments.detail.positions.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.items') || $ctrl.$state.is('departments.detail.positions.detail.jobDescription') || $ctrl.$state.is('departments.detail.positions.detail.training') }">
   <div class="heading">
     <a class="back" ui-sref="departments.detail.positions"><i class="fas fa-chevron-left"></i></a>
     <div class="title" >
@@ -18,6 +18,9 @@
         </div>
         <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.jobDescription')">
           Job Description
+        </div>
+        <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.training')">
+          Training
         </div>
       </div>
     </div>
@@ -49,10 +52,14 @@
         <div>Job Description</div>
         <div class="icon"><i class="fas fa-pencil-ruler"></i></div>
       </a>
+      <a class="menu-item" ui-sref=".training">
+        <div>Training</div>
+        <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+      </a>
     </div>
     <div ui-view="list"></div>
   </div>
-  <div class="branch" ui-view="branch" ng-if="!$ctrl.$state.is('departments.detail.positions.detail.objectives') && !$ctrl.$state.is('departments.detail.positions.detail.items') && !$ctrl.$state.is('departments.detail.positions.detail.jobDescription')">
+  <div class="branch" ui-view="branch" ng-if="!$ctrl.$state.is('departments.detail.positions.detail.objectives') && !$ctrl.$state.is('departments.detail.positions.detail.items') && !$ctrl.$state.is('departments.detail.positions.detail.jobDescription') && !$ctrl.$state.is('departments.detail.positions.detail.training')">
     <div class="placeholder"></div>
   </div>
 </div>

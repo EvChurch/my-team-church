@@ -35,6 +35,7 @@ class Positions {
           id
           name
           description
+          training_description
           people_needed
           people_active
         }
@@ -56,6 +57,7 @@ class Positions {
           id
           name
           description
+          training_description
           people_needed
         }
       }
@@ -80,6 +82,7 @@ class Positions {
           id
           name
           description
+          training_description
           people_needed
         }
       }

@@ -1,0 +1,3 @@
+<div ng-class="{ 'read-only' : $ctrl.readOnly }">
+  <trix-editor angular-trix ng-model="$ctrl.position.training_description" ng-model-options="{ debounce: 1000 }" ng-change="$ctrl.save()"></trix-editor>
+</div>

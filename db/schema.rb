@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_021922) do
+ActiveRecord::Schema.define(version: 2018_11_05_022101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -259,6 +259,7 @@ ActiveRecord::Schema.define(version: 2018_10_29_021922) do
     t.string "remote_source"
     t.text "description"
     t.integer "people_needed", default: 0
+    t.text "training_description"
     t.index ["department_id"], name: "index_positions_on_department_id"
     t.index ["organization_id"], name: "index_positions_on_organization_id"
     t.index ["remote_id", "remote_source"], name: "index_positions_on_remote_id_and_remote_source", unique: true

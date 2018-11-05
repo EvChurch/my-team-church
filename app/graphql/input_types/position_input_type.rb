@@ -9,7 +9,11 @@ InputTypes::PositionInputType = GraphQL::InputObjectType.define do
   end
 
   argument :description, types.String do
-    description 'Description of the position.'
+    description 'Job Description of the position.'
+  end
+
+  argument :training_description, types.String do
+    description 'Training required for the position.'
   end
 
   argument :people_needed, types.Int do

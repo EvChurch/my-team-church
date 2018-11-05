@@ -26,6 +26,10 @@ class Position < ApplicationRecord
     HTML
   end
 
+  def training_description=(unsafe_training_description)
+    super sanitize(unsafe_training_description)
+  end
+
   def people_active
     entities.active.count
   end
