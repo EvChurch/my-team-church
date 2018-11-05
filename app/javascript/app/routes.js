@@ -40,22 +40,11 @@ export default class Routes {
       title: 'Departments',
       url: '/departments',
       component: 'departments',
-      parent: 'root',
-      resolve: {
-        0: /* @ngInject*/ (departments) => departments.load()
-      }
+      parent: 'root'
     }).state({
       name: 'departments.detail',
       url: '/:departmentId',
-      component: 'departmentsDetail',
-      resolve: {
-        department: /* @ngInject*/ ($state, $stateParams, departments) => {
-          return departments.get($stateParams.departmentId).catch((ex) => {
-            $state.go('departments');
-            throw ex;
-          });
-        }
-      }
+      component: 'departmentsDetail'
     }).state({
       name: 'departments.detail.objectives',
       url: '/objectives',
@@ -140,13 +129,7 @@ export default class Routes {
         }
       },
       resolve: {
-        departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId,
-        position: /* @ngInject*/ ($state, $stateParams, departmentPositions) => {
-          return departmentPositions.get($stateParams.departmentId, $stateParams.positionId).catch((ex) => {
-            $state.go('departments.detail.positions');
-            throw ex;
-          });
-        }
+        departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId
       }
     }).state({
       name: 'departments.detail.positions.detail.objectives',
@@ -181,15 +164,7 @@ export default class Routes {
       },
       resolve: {
         positionId: /* @ngInject*/ ($stateParams) => $stateParams.positionId,
-        entityId: /* @ngInject*/ ($stateParams) => $stateParams.entityId,
-        entity: /* @ngInject*/ ($state, $stateParams, departmentPositionEntities) => {
-          return departmentPositionEntities.get(
-            $stateParams.positionId, $stateParams.entityId
-          ).catch((ex) => {
-            $state.go('departments.detail.positions.detail.entities');
-            throw ex;
-          });
-        }
+        entityId: /* @ngInject*/ ($stateParams) => $stateParams.entityId
       }
     }).state({
       name: 'departments.detail.positions.detail.entities.detail.objectives',
@@ -440,7 +415,7 @@ export default class Routes {
       }
     }).state({
       name: 'people.detail.positionEntities.detail.training',
-      url: '/job_description',
+      url: '/training',
       views: {
         'list@people.detail.positionEntities.detail': {
           component: 'departmentsDetailPositionsDetailTraining'
@@ -576,7 +551,7 @@ export default class Routes {
       }
     }).state({
       name: 'me.positionEntities.detail.training',
-      url: '/job_description',
+      url: '/training',
       views: {
         'list@me.positionEntities.detail': {
           component: 'departmentsDetailPositionsDetailTraining'

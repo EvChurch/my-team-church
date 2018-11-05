@@ -20,7 +20,9 @@ class LeadersController {
     this.watcher1();
   }
   load() {
+    this.loading = true;
     this.departmentLeaders.load(this.departmentId).then((data) => {
+      this.loading = false;
       this.list = angular.copy(data);
     });
   }

@@ -1,15 +1,24 @@
 class DetailController {
   constructor(
-    $rootScope, $state,
+    $rootScope, $state, $stateParams,
     departments, departmentPositions, objectives
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
+    this.$stateParams = $stateParams;
     this.departments = departments;
     this.departmentPositions = departmentPositions;
     this.objectives = objectives;
   }
   $onInit() {
+    this.loading = true;
+    this.departments.get(this.$stateParams.departmentId).then((department) => {
+      this.department = department;
+      this.loading = false;
+    }).catch((ex) => {
+      this.$state.go('departments');
+      throw ex;
+    });
     this.$state.go('.positions');
     this.watcher0 = this.$rootScope.$on('departmentDelete', (_event, department) => {
       if (department.id === this.department.id) this.$state.go('^');

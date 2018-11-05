@@ -9,6 +9,10 @@ class DepartmentsController {
     this.departments = departments;
   }
   $onInit() {
+    this.loading = true;
+    this.departments.load().then(() => {
+      this.loading = false;
+    })
     this.watcher0 = this.$rootScope.$on('departmentCreate', () => this.departments.load(true));
     this.watcher1 = this.$rootScope.$on('departmentUpdate', () => this.departments.load(true));
     this.watcher2 = this.$rootScope.$on('departmentDelete', () => this.departments.load(true));

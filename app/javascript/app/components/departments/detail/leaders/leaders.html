@@ -16,6 +16,11 @@
   </div>
 </div>
 <div class="list-group list-group-flush">
+    <div class="list-group-item ph-col-12" ng-if="$ctrl.loading" ng-repeat="n in [8, 4, 6, 10]">
+      <div class="ph-row mb-0">
+        <div class="ph-col-{{n}} my-2"></div>
+      </div>
+    </div>
   <a class="list-group-item list-group-item-action flex-column align-items-start"
      ui-sref="departments.detail.leaders.detail({leaderId: leader.id})"
      ui-sref-active="active"
@@ -23,7 +28,7 @@
     <departments-detail-leaders-item leader="leader"></departments-detail-leaders-item>
   </a>
 </div>
-<div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0" >
+<div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.list.length == 0" >
   <i class="fas fa-id-card blankslate-icon"></i>
   <h5>No leaders defined yet.</h5>
   <p>It's time to add your first leader!</p>

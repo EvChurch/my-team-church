@@ -22,8 +22,15 @@
         </span>
       </div>
     </div>
+    <div class="list-group list-group-flush" ng-if="$ctrl.loading">
+      <div class="list-group-item ph-col-12" ng-repeat="n in [2, 8, 6, 4]">
+        <div class="ph-row mb-0">
+          <div class="ph-col-{{n}} my-2"></div>
+        </div>
+      </div>
+    </div>
     <departments-list level="0" list="$ctrl.departments.data"></departments-list>
-    <div ng-if="$ctrl.departments.data.length == 0" class="text-center m-3 my-5">
+    <div ng-if="!$ctrl.loading && $ctrl.departments.data.length == 0" class="text-center m-3 my-5">
       <strong>No Departments</strong>
       <p>
         Get started by creating a department.

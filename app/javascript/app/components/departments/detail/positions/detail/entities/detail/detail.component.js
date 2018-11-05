@@ -1,14 +1,25 @@
 class DetailController {
   constructor(
-    $rootScope, $state,
+    $rootScope, $state, $stateParams,
     departmentPositionEntities, objectives
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
+    this.$stateParams = $stateParams;
     this.departmentPositionEntities = departmentPositionEntities;
     this.objectives = objectives;
   }
   $onInit() {
+    this.loading = true;
+    this.departmentPositionEntities.get(
+      this.$stateParams.positionId, this.$stateParams.entityId
+    ).then((entity) => {
+      this.entity = entity;
+      this.loading = false;
+    }).catch((ex) => {
+      this.$state.go('departments.detail.positions.detail.entities');
+      throw ex;
+    });
     this.$state.go('.objectives');
     this.watcher0 = this.$rootScope.$on('departmentPositionEntityDelete', (_event, positionId, entity) => {
       if (entity.id === this.entity.id) this.$state.go('departments.detail.position');
@@ -21,8 +32,7 @@ class DetailController {
 
 let Detail = {
   bindings: {
-    positionId: '<',
-    entity: '<'
+    positionId: '<'
   },
   template: require('./detail.html'),
   controller: DetailController

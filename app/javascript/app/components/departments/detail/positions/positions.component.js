@@ -24,7 +24,9 @@ class PositionsController {
     this.watcher2();
   }
   load() {
+    this.loading = true;
     this.departmentPositions.load(this.departmentId).then((data) => {
+      this.loading = false;
       this.list = angular.copy(data);
     });
   }

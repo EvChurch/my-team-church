@@ -25,7 +25,9 @@ class EntitiesController {
     this.watcher2();
   }
   load() {
+    this.loading = true;
     this.departmentPositionEntities.load(this.positionId).then((data) => {
+      this.loading = false;
       this.list = angular.copy(data);
     });
   }

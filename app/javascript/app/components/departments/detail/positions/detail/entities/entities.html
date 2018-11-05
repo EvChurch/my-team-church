@@ -14,8 +14,20 @@
     </span>
   </div>
 </div>
-
 <div class="list-group list-group-flush">
+  <div class="list-group-item" ng-if="$ctrl.loading" ng-repeat="n in [4, 6, 10, 8]">
+    <div class="row">
+      <div class="col-4">
+        <div class="ph-avatar mb-0"></div>
+      </div>
+      <div class="col-8">
+        <div class="ph-row mt-3 mb-0">
+          <div class="ph-col-{{n}}"></div>
+          <div class="ph-col-12"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <a class="list-group-item list-group-item-action flex-column align-items-start"
      ui-sref="departments.detail.positions.detail.entities.detail({entityId: entity.id})"
      ui-sref-active="active"
@@ -23,7 +35,7 @@
     <departments-detail-positions-detail-entities-item entity="entity"></departments-detail-positions-detail-entities-item>
   </a>
 </div>
-<div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">
+<div class="text-center m-3 my-5" ng-if="$ctrl.loading && $ctrl.list.length == 0">
   <i class="fas fa-users blankslate-icon"></i>
   <h5>No people assigned yet.</h5>
   <p>It's time to assign the first person!</p>
