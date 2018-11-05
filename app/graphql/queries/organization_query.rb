@@ -7,7 +7,7 @@ module Queries::OrganizationQuery
     resolve lambda { |_organization, _args, ctx|
       OrganizationPolicy::Scope.new(ctx[:current_user], Organization)
                                .resolve
-                               .decorate
+                               .decorate(context: { user: ctx[:current_user] })
     }
   end
 
@@ -18,7 +18,7 @@ module Queries::OrganizationQuery
     resolve lambda { |_organization, args, ctx|
       Organization.with_role(:member, ctx[:current_user])
                   .find(args[:id])
-                  .decorate
+                  .decorate(context: { user: ctx[:current_user] })
     }
   end
 end

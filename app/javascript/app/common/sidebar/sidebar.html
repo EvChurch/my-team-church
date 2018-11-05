@@ -3,19 +3,19 @@
     <div class="icon"><i class="fas fa-home"></i></div>
     <div class="label">Home</div>
   </a>
-  <a ui-sref="departments" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false">
+  <a ui-sref="departments" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false" ng-if="$ctrl.organizations.primary.admin || $ctrl.organizations.primary.leader">
     <div class="icon"><i class="far fa-building"></i></div>
     <div class="label">Departments</div>
   </a>
-  <a ui-sref="people" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false">
+  <a ui-sref="people" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false" ng-if="$ctrl.organizations.primary.admin">
     <div class="icon"><i class="fas fa-users"></i></div>
     <div class="label">People</div>
   </a>
-  <a ui-sref="locations" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false">
+  <a ui-sref="locations" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false" ng-if="$ctrl.organizations.primary.admin">
     <div class="icon"><i class="fas fa-map-marker"></i></div>
     <div class="label">Locations</div>
   </a>
-  <a ui-sref="serviceTypes" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false">
+  <a ui-sref="serviceTypes" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false" ng-if="$ctrl.organizations.primary.admin">
     <div class="icon"><i class="fas fa-dolly"></i></div>
     <div class="label">Service Types</div>
   </a>

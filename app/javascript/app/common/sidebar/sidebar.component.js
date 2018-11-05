@@ -1,10 +1,11 @@
 class SidebarController {
   constructor(
     $state, toastr,
-    user
+    organizations, user
   ) {
     this.$state = $state;
     this.toastr = toastr;
+    this.organizations = organizations;
     this.user = user;
   }
   signOut() {
