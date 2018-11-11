@@ -7,6 +7,15 @@
   </div>
 </div>
 <div class="list-group list-group-flush">
+  <div class="list-group-item" ng-if="$ctrl.loading" ng-repeat="n in [2, 8, 4, 6]">
+    <div class="ph-item">
+      <div class="ph-col-12 p-0">
+        <div class="ph-row mb-0">
+          <div class="ph-col-{{n}} my-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <a class="list-group-item list-group-item-action d-flex align-items-center"
     ng-repeat="positionEntity in $ctrl.list | filter: { position: { name: $ctrl.search } } track by positionEntity.id"
     ui-sref=".detail({positionEntityId: positionEntity.id})"
@@ -32,7 +41,7 @@
     </div>
   </a>
 </div>
-<div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">
+<div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.list.length == 0">
   <i class="fas fa-id-card blankslate-icon"></i>
   <h5>No positions assigned yet.</h5>
 </div>

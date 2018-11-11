@@ -59,6 +59,7 @@ class PositionEntities {
             id
             name
             description
+            training_description
             department {
               id
               name

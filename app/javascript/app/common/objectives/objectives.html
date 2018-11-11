@@ -13,12 +13,19 @@
   </div>
 </div>
 <div class="list">
-    <objectives-detail resource-id= "$ctrl.resourceId"
-                      resource-type= "$ctrl.resourceType"
-                      objective= "objective"
-                      ng-repeat="objective in $ctrl.list track by objective.id">
+  <div class="list-group list-group-flush ph-item" ng-if="$ctrl.loading">
+    <div class="list-group-item ph-col-12" ng-repeat="n in [2, 8, 4, 6]">
+      <div class="ph-row mb-0">
+        <div class="ph-col-{{n}} my-2"></div>
+      </div>
+    </div>
+  </div>
+  <objectives-detail resource-id= "$ctrl.resourceId"
+                    resource-type= "$ctrl.resourceType"
+                    objective= "objective"
+                    ng-repeat="objective in $ctrl.list track by objective.id">
   </objectives-detail>
-  <div class="text-center m-3 my-5" ng-if="$ctrl.list.length == 0">
+  <div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.list.length == 0">
     <i class="fas fa-bullseye blankslate-icon"></i>
     <h5>No objectives defined yet.</h5>
     <p>It's time to define your first objective!</p>

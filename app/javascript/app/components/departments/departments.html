@@ -23,9 +23,13 @@
       </div>
     </div>
     <div class="list-group list-group-flush" ng-if="$ctrl.loading">
-      <div class="list-group-item ph-col-12" ng-repeat="n in [2, 8, 6, 4]">
-        <div class="ph-row mb-0">
-          <div class="ph-col-{{n}} my-2"></div>
+      <div class="list-group-item" ng-repeat="n in [2, 8, 6, 4]">
+        <div class="ph-item">
+          <div class="ph-col-12 p-0">
+            <div class="ph-row mb-0">
+              <div class="ph-col-{{n}} mb-0 my-2"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

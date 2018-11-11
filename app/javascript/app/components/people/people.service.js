@@ -3,12 +3,13 @@ import { pick, reduce } from 'lodash/fp';
 
 class People {
   constructor(
-    $rootScope,
+    $q, $rootScope,
     api
   ) {
+    this.$q = $q;
     this.$rootScope = $rootScope;
     this.api = api;
-    this.me = {};
+    this.me = null;
   }
   load(searchString, cursor = 'opaqueCursor') {
     return this.api.query(gql`
@@ -70,6 +71,9 @@ class People {
     });
   }
   getMe() {
+    if(this.me !== null) {
+      return this.$q.resolve(this.me);
+    }
     return this.api.query(gql`
       query me {
         me {

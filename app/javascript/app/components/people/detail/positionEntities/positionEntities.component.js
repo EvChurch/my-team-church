@@ -17,7 +17,9 @@ class PositionEntitiesController {
     this.watcher0();
   }
   load() {
+    this.loading = true;
     this.personPositionEntities.load(this.personId).then((data) => {
+      this.loading = false;
       this.list = angular.copy(data);
     });
   }
@@ -25,8 +27,7 @@ class PositionEntitiesController {
 
 let PositionEntities = {
   bindings: {
-    personId: '<',
-    list: '<'
+    personId: '<'
   },
   template: require('./positionEntities.html'),
   controller: PositionEntitiesController

@@ -2,17 +2,27 @@
     <div class="heading">
       <a class="back" ui-sref="departments.detail.leaders"><i class="fas fa-chevron-left"></i></a>
       <div class="title">
-        <h1>
-          <a ui-sref="people.detail({ personId: $ctrl.leader.person.id })">
-            {{$ctrl.leader.person.name}}
-          </a>
-        </h1>
-        <div class="menu-toggle" ng-click="$ctrl.open = !$ctrl.open" ng-class="{ 'open': $ctrl.open }">
-          <div class="icon">
-            <i class="fas fa-chevron-down"></i>
+        <div class="ph-item" ng-if="$ctrl.loading">
+          <div class="ph-col-12 p-0">
+            <div class="ph-row mb-0">
+              <div class="ph-col-12"></div>
+              <div class="ph-col-8 mb-0"></div>
+            </div>
           </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.leaders.detail.objectives')">
-            Objectives
+        </div>
+        <div ng-if="!$ctrl.loading">
+          <h1>
+            <a ui-sref="people.detail({ personId: $ctrl.leader.person.id })">
+              {{$ctrl.leader.person.name}}
+            </a>
+          </h1>
+          <div class="menu-toggle" ng-click="$ctrl.open = !$ctrl.open" ng-class="{ 'open': $ctrl.open }">
+            <div class="icon">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div ng-if="$ctrl.$state.includes('departments.detail.leaders.detail.objectives')">
+              Objectives
+            </div>
           </div>
         </div>
       </div>

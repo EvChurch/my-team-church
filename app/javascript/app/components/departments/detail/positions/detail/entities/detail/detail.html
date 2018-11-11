@@ -2,11 +2,12 @@
   <div class="heading">
     <a class="back" ui-sref="departments.detail.positions.detail.entities"><i class="fas fa-chevron-left"></i></a>
     <div class="title">
-      <div class="ph-col-12" ng-if="$ctrl.loading">
-        <div class="ph-row mb-0">
-          <div class="ph-col-8"></div>
-          <div class="ph-col-4 empty"></div>
-          <div class="ph-col-4 mb-0"></div>
+      <div class="ph-item" ng-if="$ctrl.loading">
+        <div class="ph-col-12 p-0">
+          <div class="ph-row mb-0">
+            <div class="ph-col-10"></div>
+            <div class="ph-col-8 mb-0"></div>
+          </div>
         </div>
       </div>
       <div ng-if="!$ctrl.loading">

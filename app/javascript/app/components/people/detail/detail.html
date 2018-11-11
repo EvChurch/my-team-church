@@ -3,9 +3,18 @@
     <a class="back" ui-sref="people" ng-if="$ctrl.$state.includes('people')"><i class="fas fa-chevron-left"></i></a>
     <img class="avatar" ng-src="{{$ctrl.person.picture}}">
     <div class="title">
-      <h1 ng-if="$ctrl.$state.includes('people')">{{$ctrl.person.first_name}} {{$ctrl.person.last_name}}</h1>
-      <h1 ng-if="$ctrl.$state.includes('me')">My Profile</h1>
-      <div class="menu-toggle" ng-click="$ctrl.open = !$ctrl.open" ng-class="{ 'open': $ctrl.open }">
+      <div class="ph-item" ng-if="$ctrl.loading">
+        <div class="ph-col-12 p-0">
+          <div class="ph-row mb-0">
+            <div class="ph-col-10"></div>
+            <div class="ph-col-8 mb-0"></div>
+          </div>
+        </div>
+      </div>
+      <div ng-if="!$ctrl.loading">
+        <h1 ng-if="$ctrl.$state.includes('people')">{{$ctrl.person.first_name}} {{$ctrl.person.last_name}}</h1>
+        <h1 ng-if="$ctrl.$state.includes('me')">My Profile</h1>
+        <div class="menu-toggle" ng-click="$ctrl.open = !$ctrl.open" ng-class="{ 'open': $ctrl.open }">
           <div class="icon">
             <i class="fas fa-chevron-down"></i>
           </div>
@@ -19,6 +28,7 @@
             Objectives
           </div>
         </div>
+      </div>
     </div>
     <div class="actions">
     </div>

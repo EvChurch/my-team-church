@@ -1,14 +1,23 @@
 class DetailController {
   constructor(
-    $location, $state, $rootScope,
+    $location, $state, $stateParams, $rootScope,
     people
   ) {
     this.$location = $location;
     this.$state = $state;
+    this.$stateParams = $stateParams;
     this.$rootScope = $rootScope;
     this.people = people;
   }
   $onInit() {
+    this.loading = true;
+    (this.$stateParams.personId ? this.people.get(this.$stateParams.personId) : this.people.getMe()).then((person) => {
+      this.loading = false;
+      this.person = person;
+    }).catch((ex) => {
+      this.$state.go('people');
+      throw ex;
+    });
     this.watcher0 = this.$rootScope.$on('personUpdate', (_event, person) => {
       if (person.id === this.person.id) { this.person = person; }
     });
@@ -28,9 +37,6 @@ class DetailController {
 }
 
 let Detail = {
-  bindings: {
-    person: '<'
-  },
   template: require('./detail.html'),
   controller: DetailController
 };

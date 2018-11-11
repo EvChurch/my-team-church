@@ -24,7 +24,9 @@ class ObjectivesController {
     this.watcher2();
   }
   load() {
+    this.loading = true;
     this.objectives.load(this.resourceId, this.resourceType).then((data) => {
+      this.loading = false;
       this.list = angular.copy(data);
     });
   }

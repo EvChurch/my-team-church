@@ -23,14 +23,15 @@ class PeopleController {
     });
   }
   load() {
+    this.loading = true;
     this.people.load(this.searchString).then((data) => {
+      this.loading = false;
       this.data = data;
     });
   }
 }
 
 let People = {
-  bindings: {},
   template: require('./people.html'),
   controller: PeopleController
 };

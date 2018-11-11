@@ -30,6 +30,9 @@
       flex-grow: 1;
       max-height: 40px;
       overflow: hidden;
+      .ph-col-12 {
+        max-width: 180px;
+      }
       h1 {
         font-size: 16px;
         font-weight: bold;

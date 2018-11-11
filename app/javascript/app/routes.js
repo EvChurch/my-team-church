@@ -77,13 +77,7 @@ export default class Routes {
         }
       },
       resolve: {
-        departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId,
-        leader: /* @ngInject*/ ($state, $stateParams, departmentLeaders) => {
-          return departmentLeaders.get($stateParams.departmentId, $stateParams.leaderId).catch((ex) => {
-            $state.go('departments.detail.leaders');
-            throw ex;
-          });
-        }
+        departmentId: /* @ngInject*/ ($stateParams) => $stateParams.departmentId
       }
     }).state({
       name: 'departments.detail.leaders.detail.objectives',
@@ -301,15 +295,7 @@ export default class Routes {
     }).state({
       name: 'people.detail',
       url: '/:personId',
-      component: 'peopleDetail',
-      resolve: {
-        person: /* @ngInject*/ ($state, $stateParams, people) => {
-          return people.get($stateParams.personId).catch((ex) => {
-            $state.go('people');
-            throw ex;
-          });
-        }
-      }
+      component: 'peopleDetail'
     }).state({
       name: 'people.detail.objectives',
       url: '/objectives',
@@ -437,15 +423,7 @@ export default class Routes {
       name: 'me',
       url: '/me',
       component: 'peopleDetail',
-      parent: 'root',
-      resolve: {
-        person: /* @ngInject*/ ($state, $stateParams, people) => {
-          return people.getMe().catch((ex) => {
-            $state.go('organizations.connect');
-            throw ex;
-          });
-        }
-      }
+      parent: 'root'
     }).state({
       name: 'me.objectives',
       url: '/objectives',
@@ -455,7 +433,7 @@ export default class Routes {
         }
       },
       resolve: {
-        resourceId: /* @ngInject*/ (people) => people.me.id,
+        resourceId: /* @ngInject*/ (people) => people.getMe().then((me) => me.id),
         resourceType: () => 'person'
       }
     }).state({
@@ -467,15 +445,7 @@ export default class Routes {
         }
       },
       resolve: {
-        personId: /* @ngInject*/ (people) => people.me.id,
-        list: /* @ngInject*/ ($state, people, personPositionEntities) => {
-          return personPositionEntities.load(
-            people.me.id
-          ).catch((ex) => {
-            $state.go('people.detail');
-            throw ex;
-          });
-        }
+        personId: /* @ngInject*/ (people) => people.getMe().then((me) => me.id)
       }
     }).state({
       name: 'me.positionEntities.detail',
