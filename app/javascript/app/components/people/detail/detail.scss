@@ -14,11 +14,18 @@ people-detail {
       }
     }
     > .heading {
-      > img {
-        height: 40px;
-        width: 40px;
-        margin-right: 10px;
-        border-radius: 100%;
+      .title {
+        > .loaded {
+          display: grid;
+          grid-template-columns: 40px auto;
+          grid-column-gap: 10px;
+          > img {
+            height: 40px;
+            width: 40px;
+            border-radius: 100%;
+            grid-row: 1 / span 2;
+          }
+        }
       }
     }
   }
