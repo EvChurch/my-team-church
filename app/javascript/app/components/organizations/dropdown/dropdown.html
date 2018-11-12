@@ -3,7 +3,7 @@
     {{$ctrl.organizations.primary.name}}
   </a>
   <div class="dropdown-menu dropdown-menu-right" ng-class="{ 'show' : $ctrl.show }">
-    <a class="dropdown-item" ng-repeat="organization in $ctrl.organizations.data track by organization.id">
+    <a class="dropdown-item" ng-click="$ctrl.organizations.swap(organization.id)" ng-repeat="organization in $ctrl.organizations.data track by organization.id">
       <i class="fas fa-star text-warning" ng-if="organization.id === $ctrl.organizations.primary.id"></i>
       {{organization.name}}
     </a>

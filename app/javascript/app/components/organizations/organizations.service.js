@@ -1,8 +1,17 @@
+import { find, get } from 'lodash/fp';
 import gql from 'graphql-tag';
 
 class Organizations {
-  constructor(api) {
+  constructor(
+    $window,
+    api
+  ) {
+    this.$window = $window;
     this.api = api;
+  }
+  swap(primaryId) {
+    this.$window.localStorage.setItem('primaryId', primaryId);
+    this.$window.location.reload();
   }
   load(reset = false) {
     if (this.data && !reset) {
@@ -20,7 +29,13 @@ class Organizations {
         }
       `).then((data) => {
       this.data = data.organizations;
-      this.primary = this.data.length > 0 ? this.data[0] : null;
+      const primaryId = this.$window.localStorage.getItem('primaryId');
+      if(primaryId) {
+        this.primary = find({ id: primaryId }, this.data) || get('[0]', this.data);
+      } else {
+        this.primary = get('[0]', this.data);
+      }
+      this.$window.localStorage.setItem('primaryId', get('id', this.primary));
       this.api.organization_id = this.primary ? this.primary.id : null;
       return this.data;
     });

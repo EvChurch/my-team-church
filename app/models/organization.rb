@@ -21,4 +21,10 @@ class Organization < ApplicationRecord
 
   resourcify
   validates :name, :address_1, :city, :state, :zip, :country, :time_zone, presence: true
+
+  def add_first_admin(user)
+    user.add_role :admin, self
+    person = people.create(first_name: user.first_name, last_name: user.last_name, email: user.email)
+    person.users << user
+  end
 end
