@@ -4,7 +4,7 @@
 
 require 'elvanto'
 
-class Integration::Elvanto::SyncJob < ApplicationJob
+class Integration::Elvanto::PullJob < ApplicationJob
   queue_as :default
 
   ADDITIONAL_FIELDS =
@@ -21,31 +21,31 @@ class Integration::Elvanto::SyncJob < ApplicationJob
     @integration = integration
     @organization = integration.organization
     ElvantoAPI.configure(api_key: @integration.api_key)
-    sync_models
-    sync_positions
-    sync_people
+    pull_models
+    pull_positions
+    pull_people
   end
 
   protected
 
-  def sync_models
+  def pull_models
     ELVANTO_MODELS_TO_SYNC.each { |elvanto_model_name| create_objects(elvanto_model_name) }
   end
 
   def people
     return @people if @people
-    request = fetch_people
+    request = pull_people_from_api
     people = request['people']['person']
     return people unless request['people']['total'] > 1000
     pages = (request['people']['total'] + 500).round(-3) / 1000
     (2..pages).each do |page|
-      request = fetch_people(page)
+      request = pull_people_from_api(page)
       people += request['people']['person']
     end
     @people = people
   end
 
-  def fetch_people(page = 1)
+  def pull_people_from_api(page = 1)
     ElvantoAPI.call('people/getAll', page_size: 1000, page: page, fields: ADDITIONAL_FIELDS)
   end
 
@@ -66,7 +66,7 @@ class Integration::Elvanto::SyncJob < ApplicationJob
     end
   end
 
-  def sync_positions
+  def pull_positions
     collection = {}
     people.each do |person|
       departments = person['departments'] == [] ? [] : person['departments']['department']
@@ -115,7 +115,7 @@ class Integration::Elvanto::SyncJob < ApplicationJob
     end
   end
 
-  def sync_people
+  def pull_people
     people.each do |attributes|
       person = @organization.people.find_or_initialize_by(remote_id: attributes['id'], remote_source: 'Elvanto')
       attributes['family'] = attributes['family'] == [] ? {} : attributes['family']

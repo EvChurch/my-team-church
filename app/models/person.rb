@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Person < ApplicationRecord
+  include Pushable
+
   belongs_to :organization
   has_many :access_permission_entities,
            class_name: 'AccessPermission::Entity',

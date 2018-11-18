@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Department < ApplicationRecord
+  include Pushable
+
   has_ancestry
   belongs_to :organization
   has_many :positions, dependent: :destroy, inverse_of: :department
@@ -29,7 +31,7 @@ class Department < ApplicationRecord
   def positions_needing_people
     people_active = people_active_grouped_by_position_id
     people_needed_grouped_by_position_id.select do |key, value|
-      value > people_active[key]
+      value > (people_active[key] || 0)
     end.length
   end
 end

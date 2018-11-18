@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_05_022101) do
+ActiveRecord::Schema.define(version: 2018_11_18_200332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -84,9 +84,14 @@ ActiveRecord::Schema.define(version: 2018_11_05_022101) do
     t.uuid "organization_id"
     t.string "client_id"
     t.string "client_secret"
-    t.string "api_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "encrypted_password"
+    t.string "encrypted_password_iv"
+    t.string "encrypted_api_key"
+    t.string "encrypted_api_key_iv"
+    t.string "domain"
     t.index ["organization_id", "type"], name: "index_integrations_on_organization_id_and_type", unique: true
     t.index ["organization_id"], name: "index_integrations_on_organization_id"
   end

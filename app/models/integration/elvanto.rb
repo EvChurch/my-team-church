@@ -3,18 +3,58 @@
 require 'elvanto'
 
 class Integration::Elvanto < Integration
-  validates :client_id, :client_secret, :api_key, presence: true
+  validates :api_key, :username, :password, :domain, presence: true
+  validate :validate_domain
   validate :validate_api_key
-  validate :validate_client_credentials
+  validate :validate_username_and_password
 
-  def validate_api_key
-    ElvantoAPI.configure(api_key: api_key)
-    ElvantoAPI.call('people/getAll')
-  rescue ElvantoAPI::Unauthorized
-    errors.add(:api_key, 'Invalid API Key')
+  def active
+    api_key_valid? && username_and_password_valid?
   end
 
-  def validate_client_credentials
-    # ElvantoAPI.authorize_url(client_id, redirect_uri, scope, state)
+  protected
+
+  def domain_valid?
+    HTTParty.get "https://#{domain}/login/"
+    true
+  rescue SocketError
+    false
+  end
+
+  def api_key_valid?
+    ElvantoAPI.configure(api_key: api_key)
+    response = ElvantoAPI.call('people/getAll')
+    true
+  rescue ElvantoAPI::Unauthorized
+    false
+  end
+
+  def username_and_password_valid?
+    Integration::Elvanto::AuthenticateService.get_authentication_cookies(self)
+    true
+  rescue Integration::Elvanto::AuthenticateService::Unauthorized
+    false
+  end
+
+  def validate_domain
+    return if domain_valid?
+
+    errors.add(:domain, 'Invalid Domain')
+  end
+
+  def validate_api_key
+    return if api_key_valid?
+
+    errors.add(:api_key, 'Invalid API Key')
+    false
+  end
+
+  def validate_username_and_password
+    return unless domain_valid?
+    return if username_and_password_valid?
+
+    errors.add(:username, 'Invalid Username or Password')
+    errors.add(:password, 'Invalid Username or Password')
+    false
   end
 end

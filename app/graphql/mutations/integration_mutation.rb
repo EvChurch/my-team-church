@@ -7,7 +7,7 @@ module Mutations::IntegrationMutation
     type Types::IntegrationType
     resolve lambda { |organization, args, _ctx|
       integration = organization.integrations.find_or_initialize_by(type: args[:integration][:type])
-      integration.update(args[:integration].to_h)
+      integration.update!(args[:integration].to_h)
       integration.decorate
     }
   end

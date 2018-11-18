@@ -34,7 +34,7 @@
     <departments-detail-positions-detail-entities-item entity="entity"></departments-detail-positions-detail-entities-item>
   </a>
 </div>
-<div class="text-center m-3 my-5" ng-if="$ctrl.loading && $ctrl.list.length == 0">
+<div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.list.length == 0">
   <i class="fas fa-users blankslate-icon"></i>
   <h5>No people assigned yet.</h5>
   <p>It's time to assign the first person!</p>

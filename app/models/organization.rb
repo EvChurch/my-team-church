@@ -27,4 +27,8 @@ class Organization < ApplicationRecord
     person = people.create(first_name: user.first_name, last_name: user.last_name, email: user.email)
     person.users << user
   end
+
+  def run_integration_push_job(model, action)
+    integrations.each { |i| i.run_integration_push_job(model, action) }
+  end
 end
