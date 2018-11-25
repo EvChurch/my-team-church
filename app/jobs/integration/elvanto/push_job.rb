@@ -8,6 +8,6 @@ class Integration::Elvanto::PushJob < ApplicationJob
     @integration = integration
     @model = model
     @action = action
-    '#Integration::Elvanto::{model.class}PushService'.constantize.push(@integration, @model, @action)
+    "Integration::Elvanto::Push::#{model.class}Service".constantize.push(@integration, @model, @action)
   end
 end

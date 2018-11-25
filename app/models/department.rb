@@ -16,6 +16,7 @@ class Department < ApplicationRecord
     organization_ids = pluck(:organization_id).uniq
     admin = Organization.where(id: organization_ids).with_role(:admin, user).count == organization_ids.length
     return roots if admin
+
     department_ids = user.links.joins(person: :department_leaders).pluck('department_leaders.department_id')
     where(id: department_ids)
   end)

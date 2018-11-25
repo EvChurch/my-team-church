@@ -8,6 +8,7 @@ class Integration < ApplicationRecord
   belongs_to :organization, inverse_of: :integrations
   after_commit :run_integration_pull_job, on: :create
   validates :type, inclusion: { in: Integration::TYPES }
+  scope :pushable, -> { where(pushable: true) }
 
   def run_integration_push_job(model, action)
     "#{self.class.name}::PushJob".constantize.perform_later(self, model, action)

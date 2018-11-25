@@ -29,6 +29,8 @@ class Organization < ApplicationRecord
   end
 
   def run_integration_push_job(model, action)
-    integrations.each { |i| i.run_integration_push_job(model, action) }
+    integrations.pushable.each do |integration|
+      integration.run_integration_push_job(model, action)
+    end
   end
 end

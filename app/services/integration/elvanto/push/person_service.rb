@@ -2,7 +2,7 @@
 
 require 'elvanto'
 
-class Integration::Elvanto::PersonPushService
+class Integration::Elvanto::Push::PersonService
   attr_accessor :integration, :person, :action
 
   def self.push(integration, person, action)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Integration::Elvanto::AuthenticateService
   class Unauthorized < StandardError; end
 
@@ -23,6 +25,6 @@ class Integration::Elvanto::AuthenticateService
     cookies = HTTParty::CookieHash.new
     raise Unauthorized if response.get_fields('Set-Cookie').nil?
     response.get_fields('Set-Cookie').each { |c| cookies.add_cookies(c) }
-    cookies
+    cookies.to_cookie_string
   end
 end
