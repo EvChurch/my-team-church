@@ -41,7 +41,11 @@ class Positions {
         }
       }
     `, { department_id: departmentId, id: id }).then((data) => {
-      return data.position;
+      if (data.position) {
+        return data.position;
+      } else {
+        throw 'Not Found';
+      }
     });
   }
   create(departmentId, position) {

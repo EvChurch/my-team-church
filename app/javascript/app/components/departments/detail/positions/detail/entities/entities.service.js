@@ -72,7 +72,11 @@ class Entities {
         }
       }
     `, { position_id: positionId, id: id }).then((data) => {
-      return this.format(data.positionEntity);
+      if (data.positionEntity) {
+        return this.format(data.positionEntity);
+      } else {
+        throw 'Not Found';
+      }
     });
   }
   create(positionId, positionEntity) {

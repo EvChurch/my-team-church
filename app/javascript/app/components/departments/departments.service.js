@@ -70,7 +70,11 @@ class Departments {
         }
       }
     `, { id: id }).then((data) => {
-      return data.department;
+      if (data.department) {
+        return data.department;
+      } else {
+        throw 'Not Found';
+      }
     });
   }
   create(department) {
