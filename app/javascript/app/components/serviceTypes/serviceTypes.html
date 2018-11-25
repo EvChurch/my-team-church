@@ -34,17 +34,7 @@
           ui-sref-active="active">
           {{serviceType.name}}
       </a>
-    </div>
-    <div class="list-group list-group-flush" ng-if="$ctrl.loading && $ctrl.list.length == 0">
-      <div class="list-group-item" ng-repeat="n in [4, 2, 6, 8]">
-        <div class="ph-item">
-          <div class="ph-col-12 p-0">
-            <div class="ph-row mb-0">
-              <div class="ph-col-{{n}} mb-0 my-2"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <loading-list ng-if="$ctrl.loading && $ctrl.list.length == 0"></loading-list>
     </div>
     <div ng-if="!$ctrl.loading && $ctrl.list.length == 0" class="text-center m-3 my-5">
       <strong>No Service Types</strong>

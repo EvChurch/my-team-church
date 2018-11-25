@@ -5,6 +5,8 @@ class ObjectivesController {
   ) {
     this.$rootScope = $rootScope;
     this.objectives = objectives;
+
+    this.list = [];
   }
   $onInit() {
     this.load();

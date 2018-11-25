@@ -13,12 +13,8 @@
   </div>
 </div>
 <div class="list">
-  <div class="list-group list-group-flush ph-item" ng-if="$ctrl.loading">
-    <div class="list-group-item ph-col-12" ng-repeat="n in [2, 8, 4, 6]">
-      <div class="ph-row mb-0">
-        <div class="ph-col-{{n}} my-2"></div>
-      </div>
-    </div>
+  <div class="list-group list-group-flush">
+    <loading-list ng-if="$ctrl.loading && $ctrl.list.length == 0"></loading-list>
   </div>
   <objectives-detail resource-id= "$ctrl.resourceId"
                     resource-type= "$ctrl.resourceType"

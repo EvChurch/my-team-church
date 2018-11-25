@@ -5,6 +5,8 @@ class LeadersController {
   ) {
     this.$rootScope = $rootScope;
     this.departmentLeaders = departmentLeaders;
+
+    this.list = [];
   }
   $onInit() {
     this.load();
