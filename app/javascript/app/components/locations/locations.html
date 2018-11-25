@@ -35,7 +35,18 @@
           {{location.name}}
       </a>
     </div>
-    <div ng-if="$ctrl.data.length == 0" class="text-center m-3 my-5">
+    <div class="list-group list-group-flush" ng-if="$ctrl.loading">
+      <div class="list-group-item" ng-repeat="n in [4, 8, 2, 6]">
+        <div class="ph-item">
+          <div class="ph-col-12 p-0">
+            <div class="ph-row mb-0">
+              <div class="ph-col-{{n}} mb-0 my-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-if="!$ctrl.loading && $ctrl.data.length == 0" class="text-center m-3 my-5">
       <strong>No Locations</strong>
       <p>
         Get started by adding a location.

@@ -25,7 +25,9 @@ class LocationsController {
     this.watcher2();
   }
   load() {
+    this.loading = true;
     this.locations.load().then((data) => {
+      this.loading = false;
       this.data = data;
     });
   }

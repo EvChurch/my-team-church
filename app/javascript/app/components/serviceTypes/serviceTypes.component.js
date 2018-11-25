@@ -23,7 +23,9 @@ class ServiceTypesController {
     this.watcher2();
   }
   load() {
+    this.loading = true;
     this.serviceTypes.load().then((data) => {
+      this.loading = false;
       this.data = data;
     });
   }
