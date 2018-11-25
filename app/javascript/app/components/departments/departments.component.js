@@ -7,20 +7,25 @@ class DepartmentsController {
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.departments = departments;
+    this.list = [];
   }
   $onInit() {
-    this.loading = true;
-    this.departments.load().then(() => {
-      this.loading = false;
-    })
-    this.watcher0 = this.$rootScope.$on('departmentCreate', () => this.departments.load(true));
-    this.watcher1 = this.$rootScope.$on('departmentUpdate', () => this.departments.load(true));
-    this.watcher2 = this.$rootScope.$on('departmentDelete', () => this.departments.load(true));
+    this.watcher0 = this.$rootScope.$on('departmentCreate', () => this.load());
+    this.watcher1 = this.$rootScope.$on('departmentUpdate', () => this.load());
+    this.watcher2 = this.$rootScope.$on('departmentDelete', () => this.load());
+    this.load();
   }
   $onDestroy() {
     this.watcher0();
     this.watcher1();
     this.watcher2();
+  }
+  load() {
+    this.loading = true;
+    this.departments.load().then((departments) => {
+      this.loading = false;
+      this.list = angular.copy(departments);
+    })
   }
 }
 

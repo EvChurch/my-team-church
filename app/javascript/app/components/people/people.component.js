@@ -10,23 +10,25 @@ class PeopleController {
     this.$state = $state;
     this.people = people;
 
-    this.data = [];
+    this.list = [];
     this.searchString = '';
   }
   $onInit() {
     this.load();
   }
-  loadMore() {
-    this.people.load(this.searchString, this.data[this.data.length - 1].cursor).then((data) => {
-      this.data = concat(this.data, data);
-      this.data.hasNextPage = data.hasNextPage;
-    });
-  }
   load() {
     this.loading = true;
-    this.people.load(this.searchString).then((data) => {
+    this.people.load(this.searchString).then((people) => {
       this.loading = false;
-      this.data = data;
+      this.list = angular.copy(people);
+    });
+  }
+  loadMore() {
+    this.loading = true;
+    this.people.load(this.searchString, this.list[this.list.length - 1].cursor).then((people) => {
+      this.loading = false;
+      this.list = concat(this.list, angular.copy(people));
+      this.list.hasNextPage = list.hasNextPage;
     });
   }
 }

@@ -6,6 +6,8 @@ class PositionEntitiesController {
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.personPositionEntities = personPositionEntities;
+
+    this.list = [];
   }
   $onInit() {
     this.load();
@@ -18,9 +20,9 @@ class PositionEntitiesController {
   }
   load() {
     this.loading = true;
-    this.personPositionEntities.load(this.personId).then((data) => {
+    this.personPositionEntities.load(this.personId).then((personPositionEntities) => {
       this.loading = false;
-      this.list = angular.copy(data);
+      this.list = angular.copy(personPositionEntities);
     });
   }
 }

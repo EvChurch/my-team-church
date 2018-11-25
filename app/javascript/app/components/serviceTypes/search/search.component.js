@@ -8,22 +8,26 @@ class SearchController {
     this.serviceTypes = serviceTypes;
 
     this.searchString = '';
-    this.data = [];
+    this.list = [];
     this.serviceType = null;
   }
   search() {
     if (this.searchString === '') {
-      this.data = [];
+      this.list = [];
     } else {
-      this.serviceTypes.load(this.searchString).then((data) => {
-        this.data = data;
+      this.loading = true;
+      this.serviceTypes.load(this.searchString).then((serviceTypes) => {
+        this.loading = false;
+        this.list = serviceTypes;
       });
     }
   }
   loadMore() {
-    this.serviceTypes.load(this.searchString, this.data[this.data.length - 1].cursor).then((data) => {
-      this.data = concat(this.data, data);
-      this.data.hasNextPage = data.hasNextPage;
+    this.loading = true;
+    this.serviceTypes.load(this.searchString, this.list[this.list.length - 1].cursor).then((serviceTypes) => {
+      this.loading = false;
+      this.list = concat(this.list, angular.copy(serviceTypes));
+      this.list.hasNextPage = serviceTypes.hasNextPage;
     });
   }
   setServiceType(serviceType = null) {

@@ -25,9 +25,9 @@ class ObjectivesController {
   }
   load() {
     this.loading = true;
-    this.objectives.load(this.resourceId, this.resourceType).then((data) => {
+    this.objectives.load(this.resourceId, this.resourceType).then((objectives) => {
       this.loading = false;
-      this.list = angular.copy(data);
+      this.list = angular.copy(objectives);
     });
   }
 }

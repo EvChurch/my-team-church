@@ -9,7 +9,7 @@ class LocationsController {
     this.$state = $state;
     this.locations = locations;
 
-    this.data = [];
+    this.list = [];
     this.searchString = '';
   }
   $onInit() {
@@ -26,9 +26,9 @@ class LocationsController {
   }
   load() {
     this.loading = true;
-    this.locations.load().then((data) => {
+    this.locations.load().then((locations) => {
       this.loading = false;
-      this.data = data;
+      this.list = angular.copy(locations);
     });
   }
 }

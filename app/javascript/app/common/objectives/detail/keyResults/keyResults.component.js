@@ -25,8 +25,10 @@ class KeyResultsController {
     this.watcher2();
   }
   load() {
-    this.keyResults.load(this.resourceId, this.resourceType, this.objective.id).then((data) => {
-      this.list = data;
+    this.loading = true;
+    this.keyResults.load(this.resourceId, this.resourceType, this.objective.id).then((keyResults) => {
+      this.loading = false;
+      this.list = angular.copy(keyResults);
     });
   }
 }

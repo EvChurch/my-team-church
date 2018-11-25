@@ -15,7 +15,7 @@
   </div>
 </div>
 <div class="list-group list-group-flush">
-  <div class="list-group-item" ng-if="$ctrl.loading" ng-repeat="n in [4, 12, 10, 8]">
+  <div class="list-group-item" ng-if="$ctrl.loading && $ctrl.list.length == 0" ng-repeat="n in [4, 12, 10, 8]">
     <div class="d-flex align-items-center">
       <div class="ph-avatar mr-3 mb-0"></div>
       <div class="flex-fill">

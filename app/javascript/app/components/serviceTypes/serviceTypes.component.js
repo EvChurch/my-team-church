@@ -7,7 +7,7 @@ class ServiceTypesController {
     this.$state = $state;
     this.serviceTypes = serviceTypes;
 
-    this.data = [];
+    this.list = [];
     this.searchString = '';
   }
   $onInit() {
@@ -24,9 +24,9 @@ class ServiceTypesController {
   }
   load() {
     this.loading = true;
-    this.serviceTypes.load().then((data) => {
+    this.serviceTypes.load().then((serviceTypes) => {
       this.loading = false;
-      this.data = data;
+      this.list = angular.copy(serviceTypes);
     });
   }
 }

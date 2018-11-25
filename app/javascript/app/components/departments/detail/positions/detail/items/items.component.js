@@ -37,8 +37,10 @@ class ItemsController {
     this.watcher2();
   }
   load() {
-    this.departmentPositionItems.load(this.positionId).then((data) => {
-      this.items = angular.copy(data);
+    this.loading = true;
+    this.departmentPositionItems.load(this.positionId).then((departmentPositionItems) => {
+      this.loading = false;
+      this.items = angular.copy(departmentPositionItems);
     });
   }
 }

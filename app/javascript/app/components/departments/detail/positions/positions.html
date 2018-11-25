@@ -15,7 +15,7 @@
   </div>
 </div>
 <div class="list-group list-group-flush">
-  <div class="list-group-item" ng-if="$ctrl.loading" ng-repeat="n in [2, 8, 4, 6]">
+  <div class="list-group-item" ng-if="$ctrl.loading && $ctrl.list.length == 0" ng-repeat="n in [2, 8, 4, 6]">
     <div class="ph-item">
       <div class="ph-col-12 p-0">
         <div class="ph-row mb-0">

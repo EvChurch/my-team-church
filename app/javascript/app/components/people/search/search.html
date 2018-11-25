@@ -16,7 +16,7 @@
     </a>
   </li>
   <li class="list-group-item d-flex align-items-center"
-      ng-repeat="edge in $ctrl.data track by edge.cursor"
+      ng-repeat="edge in $ctrl.list track by edge.cursor"
       ng-click="$ctrl.setPerson(edge.node)"
       ng-if="$ctrl.person.id !== edge.node.id">
     <img class="avatar mr-3"
@@ -28,7 +28,7 @@
     </div>
   </li>
   <li class="list-group-item d-flex justify-content-center"
-      ng-if="$ctrl.data.hasNextPage"
+      ng-if="$ctrl.list.hasNextPage"
       ng-click="$ctrl.loadMore()">
     Load more people
   </li>

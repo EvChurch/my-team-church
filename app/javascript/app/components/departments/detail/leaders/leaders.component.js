@@ -21,9 +21,9 @@ class LeadersController {
   }
   load() {
     this.loading = true;
-    this.departmentLeaders.load(this.departmentId).then((data) => {
+    this.departmentLeaders.load(this.departmentId).then((departmentLeaders) => {
       this.loading = false;
-      this.list = angular.copy(data);
+      this.list = angular.copy(departmentLeaders);
     });
   }
 }

@@ -8,22 +8,26 @@ class SearchController {
     this.locations = locations;
 
     this.searchString = '';
-    this.data = [];
+    this.list = [];
     this.location = null;
   }
   search() {
     if (this.searchString === '') {
-      this.data = [];
+      this.list = [];
     } else {
-      this.locations.load(this.searchString).then((data) => {
-        this.data = data;
+      this.loading = true;
+      this.locations.load(this.searchString).then((locations) => {
+        this.loading = false;
+        this.list = locations;
       });
     }
   }
   loadMore() {
-    this.locations.load(this.searchString, this.data[this.data.length - 1].cursor).then((data) => {
-      this.data = concat(this.data, data);
-      this.data.hasNextPage = data.hasNextPage;
+    this.loading = true;
+    this.locations.load(this.searchString, this.list[this.list.length - 1].cursor).then((locations) => {
+      this.loading = false;
+      this.list = concat(this.list, angular.copy(locations));
+      this.list.hasNextPage = locations.hasNextPage;
     });
   }
   setLocation(location = null) {

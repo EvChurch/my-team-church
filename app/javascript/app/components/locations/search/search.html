@@ -15,9 +15,9 @@
        ng-change="$ctrl.search()"
        ng-model-options="{ debounce: 1000 }">
 <ul class="list-group mt-2"
-    ng-if="$ctrl.data.length > 0">
+    ng-if="$ctrl.list.length > 0">
   <li class="list-group-item d-flex align-items-center"
-      ng-repeat="edge in $ctrl.data track by edge.cursor"
+      ng-repeat="edge in $ctrl.list track by edge.cursor"
       ng-class="{'active': $ctrl.location.id === edge.node.id }"
       ng-click="$ctrl.setLocation(edge.node)">
     <img class="mr-3 avatar"
@@ -29,7 +29,7 @@
     </div>
   </li>
   <li class="list-group-item d-flex justify-content-center"
-      ng-if="$ctrl.data.hasNextPage"
+      ng-if="$ctrl.list.hasNextPage"
       ng-click="$ctrl.loadMore()">
     Load more locations
   </li>

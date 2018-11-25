@@ -8,22 +8,26 @@ class SearchController {
     this.people = people;
 
     this.searchString = '';
-    this.data = [];
+    this.list = [];
     this.person = null;
   }
   search() {
     if (this.searchString === '') {
-      this.data = [];
+      this.list = [];
     } else {
-      this.people.load(this.searchString).then((data) => {
-        this.data = data;
+      this.loading = true;
+      this.people.load(this.searchString).then((people) => {
+        this.loading = false;
+        this.list = angular.copy(people);
       });
     }
   }
   loadMore() {
-    this.people.load(this.searchString, this.data[this.data.length - 1].cursor).then((data) => {
-      this.data = concat(this.data, data);
-      this.data.hasNextPage = data.hasNextPage;
+    this.loading = true;
+    this.people.load(this.searchString, this.list[this.list.length - 1].cursor).then((people) => {
+      this.loading = false;
+      this.list = concat(this.list, angular.copy(people));
+      this.list.hasNextPage = people.hasNextPage;
     });
   }
   setPerson(person = null) {

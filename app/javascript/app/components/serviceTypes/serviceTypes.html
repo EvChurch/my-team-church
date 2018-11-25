@@ -29,13 +29,13 @@
     </div>
     <div class="list-group list-group-flush">
        <a class="list-group-item list-group-item-action flex-column align-items-start"
-          ng-repeat="serviceType in $ctrl.data track by serviceType.id"
+          ng-repeat="serviceType in $ctrl.list track by serviceType.id"
           ui-sref="serviceTypes.detail({serviceTypeId: serviceType.id})"
           ui-sref-active="active">
           {{serviceType.name}}
       </a>
     </div>
-    <div class="list-group list-group-flush" ng-if="$ctrl.loading">
+    <div class="list-group list-group-flush" ng-if="$ctrl.loading && $ctrl.list.length == 0">
       <div class="list-group-item" ng-repeat="n in [4, 2, 6, 8]">
         <div class="ph-item">
           <div class="ph-col-12 p-0">
@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <div ng-if="!$ctrl.loading && $ctrl.data.length == 0" class="text-center m-3 my-5">
+    <div ng-if="!$ctrl.loading && $ctrl.list.length == 0" class="text-center m-3 my-5">
       <strong>No Service Types</strong>
       <p>
         Get started by adding a Service Type.

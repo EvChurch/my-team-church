@@ -9,11 +9,7 @@ class Departments {
     this.api = api;
     this.modal = modal;
   }
-  load(reset = false) {
-    if (this.data && !reset) {
-      return Promise.resolve(this.data);
-    }
-
+  load() {
     return this.api.query(gql`
       query {
         departments {
@@ -55,8 +51,8 @@ class Departments {
         positions_needing_people
       }
     `).then((data) => {
-      this.data = data.departments;
-      return this.data;
+      this.data = data;
+      return this.data.departments;
     });
   }
   get(id) {

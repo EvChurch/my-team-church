@@ -5,6 +5,7 @@ class PositionsController {
   ) {
     this.$rootScope = $rootScope;
     this.departmentPositions = departmentPositions;
+    this.list = [];
   }
   $onInit() {
     this.load();
@@ -25,9 +26,9 @@ class PositionsController {
   }
   load() {
     this.loading = true;
-    this.departmentPositions.load(this.departmentId).then((data) => {
+    this.departmentPositions.load(this.departmentId).then((departmentPositions) => {
       this.loading = false;
-      this.list = angular.copy(data);
+      this.list = angular.copy(departmentPositions);
     });
   }
 }
