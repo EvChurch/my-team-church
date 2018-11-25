@@ -68,7 +68,11 @@ class PositionEntities {
         }
       }
     `, { person_id: personId, id: id }).then((data) => {
-      return this.format(data.personPositionEntity);
+      if (data.personPositionEntity) {
+        return this.format(data.personPositionEntity);
+      } else {
+        throw 'Not Found';
+      }
     });
   }
   delete(personId, id) {

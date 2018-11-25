@@ -59,7 +59,11 @@ class Organizations {
         }
       }
     `, { id: id }).then((data) => {
-      return data.organization;
+      if (data.organization) {
+        return data.organization;
+      } else {
+        throw 'Not Found';
+      }
     });
   }
   connect(personId) {

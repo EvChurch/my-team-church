@@ -41,7 +41,11 @@ class Objectives {
         }
       }
     `, { resource_id: resourceId, resource_type: resourceType, id: id }).then((data) => {
-      return data.objective;
+      if (data.objective) {
+        return data.objective;
+      } else {
+        throw 'Not Found';
+      }
     });
   }
   create(resourceId, resourceType, objective) {

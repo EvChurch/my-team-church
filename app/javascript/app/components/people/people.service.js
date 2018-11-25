@@ -67,7 +67,11 @@ class People {
         }
       }
     `, { id: id }).then((data) => {
-      return angular.copy(data.person);
+      if (data.person) {
+        return data.person;
+      } else {
+        throw 'Not Found';
+      }
     });
   }
   getMe() {

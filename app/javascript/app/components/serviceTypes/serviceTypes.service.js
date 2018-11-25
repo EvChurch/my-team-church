@@ -30,7 +30,11 @@ class ServiceTypes {
         }
       }
     `, { id: id }).then((data) => {
-      return angular.copy(data.serviceType);
+      if (data.serviceType) {
+        return data.serviceType;
+      } else {
+        throw 'Not Found';
+      }
     });
   }
   create(serviceType) {

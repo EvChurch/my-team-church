@@ -30,7 +30,11 @@ class Locations {
         }
       }
     `, { id: id }).then((data) => {
-      return angular.copy(data.location);
+      if (data.location) {
+        return data.location;
+      } else {
+        throw 'Not Found';
+      }
     });
   }
   create(location) {

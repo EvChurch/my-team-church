@@ -34,7 +34,11 @@ class Items {
         }
       }
     `, { position_id: positionId, id: id }).then((data) => {
-      return data.positionItem;
+      if (data.positionItem) {
+        return data.positionItem;
+      } else {
+        throw 'Not Found';
+      }
     });
   }
   create(positionId, positionItem) {
