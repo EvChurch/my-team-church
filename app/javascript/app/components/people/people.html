@@ -42,9 +42,10 @@
       <loading-list ng-if="$ctrl.loading && $ctrl.list.length == 0"></loading-list>
     </div>
     <div ng-if="!$ctrl.loading && $ctrl.list.length == 0" class="text-center m-3 my-5">
-      <strong>No People</strong>
+      <i class="fas fa-users blankslate-icon"></i>
+      <h5>No People</h5>
       <p>
-        Get started by adding a person.
+        Get started by adding a person
       </p>
       <a class="btn btn-primary" ui-sref="people.new">
         Add Person

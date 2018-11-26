@@ -24,7 +24,11 @@
   <div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.list.length == 0">
     <i class="fas fa-bullseye blankslate-icon"></i>
     <h5>No Objectives</h5>
-    <p>It's time to define your first objective!</p>
-    <a ng-click="$ctrl.objectives.openNewModal($ctrl.resourceId, $ctrl.resourceType)" class="btn btn-primary">Add Objective</a>
+    <p>
+      Get started by adding an objective
+    </p>
+    <a ng-click="$ctrl.objectives.openNewModal($ctrl.resourceId, $ctrl.resourceType)" class="btn btn-primary">
+      Add Objective
+    </a>
   </div>
 </div>

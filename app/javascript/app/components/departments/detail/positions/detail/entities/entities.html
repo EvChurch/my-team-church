@@ -35,8 +35,12 @@
   </a>
 </div>
 <div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.list.length == 0">
-  <i class="fas fa-users blankslate-icon"></i>
+  <i class="fas fa-user blankslate-icon"></i>
   <h5>No Assigned People</h5>
-  <p>It's time to assign the first person!</p>
-  <a ng-click="$ctrl.departmentPositionEntities.openNewModal($ctrl.positionId)" class="btn btn-primary">Add Person</a>
+  <p>
+    Get started by assigning a person
+  </p>
+  <a ng-click="$ctrl.departmentPositionEntities.openNewModal($ctrl.positionId)" class="btn btn-primary">
+    Assign a Person
+  </a>
 </div>
