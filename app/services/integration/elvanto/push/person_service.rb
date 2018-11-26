@@ -13,12 +13,12 @@ class Integration::Elvanto::Push::PersonService
     @integration = integration
     @person = person
     @action = action
-    ElvantoAPI.configure(api_key: @integration.api_key)
+    ElvantoAPI.configure(api_key: integration.api_key)
   end
 
   def create
     response = ElvantoAPI.post('people/create', elvanto_person_object)
-    person.update(remote_id: response.body.dig('person', 'id'), remote_source: 'Elvanto')
+    person.update(remote_id: response.body.dig('person', 'id'), remote_source: 'Elvanto', pushable: false)
   end
 
   def update

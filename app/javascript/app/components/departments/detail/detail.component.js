@@ -20,12 +20,16 @@ class DetailController {
       throw ex;
     });
     this.$state.go('.positions');
-    this.watcher0 = this.$rootScope.$on('departmentDelete', (_event, department) => {
+    this.watcher0 = this.$rootScope.$on('departmentUpdate', (_event, department) => {
+      if (department.id === this.department.id) this.department = department;
+    });
+    this.watcher1 = this.$rootScope.$on('departmentDelete', (_event, department) => {
       if (department.id === this.department.id) this.$state.go('^');
     });
   }
   $onDestroy() {
     this.watcher0();
+    this.watcher1();
   }
 }
 

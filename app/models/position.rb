@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Position < ApplicationRecord
+  include Pushable
   include ActionView::Helpers
 
   belongs_to :organization, required: true

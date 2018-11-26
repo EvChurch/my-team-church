@@ -12,13 +12,17 @@ class Integration::Elvanto::Pull::DepartmentService < Integration::Elvanto::Pull
     local_department.name = department['title'] || department['name']
     local_department.parent = parent
     local_department.save!
+    import_associations(department)
+    local_department
+  end
+
+  def import_associations(department)
     department['sub_departments']&.each do |sub_department|
       import_record(sub_department, parent: local_department)
     end
     department['positions'].each do |position|
       import_position(position, parent: local_department)
     end
-    local_department
   end
 
   def import_position(position, parent:)

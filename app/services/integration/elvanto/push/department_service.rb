@@ -3,8 +3,8 @@
 class Integration::Elvanto::Push::DepartmentService
   attr_accessor :integration, :department, :action
 
-  def self.push(integration, person, action)
-    new(integration, person, action).send(action)
+  def self.push(integration, department, action)
+    new(integration, department.root, action).send(action)
   end
 
   def initialize(integration, department, action)
@@ -14,13 +14,14 @@ class Integration::Elvanto::Push::DepartmentService
   end
 
   def create
-    return unless department.positions.exists?
+    return unless Position.where(department_id: department.subtree.ids).exists?
 
     response = post_department_to_elvanto
-    department.update(remote_id: response['id'], remote_source: 'elvanto')
-    department.positions.each_with_index do |position, index|
-      position.update(remote_id: response['positions'][index]['id'], remote_source: 'elvanto')
-    end
+
+    department.update(remote_id: response['id'], remote_source: 'elvanto', pushable: false)
+    # department.positions.each_with_index do |position, index|
+    #   position.update(remote_id: response['positions'][index]['id'], remote_source: 'elvanto', pushable: false)
+    # end
   end
 
   def update
@@ -39,8 +40,7 @@ class Integration::Elvanto::Push::DepartmentService
       status: '',
       notification: true,
       non_conflicts: [],
-      sub_departments: [],
-      positions: positions
+      sub_departments: sub_departments
     )
   end
 
@@ -64,8 +64,23 @@ class Integration::Elvanto::Push::DepartmentService
     )['view']['csrf_token']
   end
 
-  def positions
-    department.positions.map do |position|
+  def sub_departments
+    department.descendants.map do |sub_department|
+      return nil unless sub_department.positions.exists?
+      {
+        id: sub_department.remote_id || 'add',
+        name: sub_department.name,
+        self_assign: false,
+        leadership_position: false,
+        reports_to: [],
+        non_conflicts: [],
+        positions: positions(sub_department)
+      }
+    end.compact
+  end
+
+  def positions(sub_department)
+    sub_department.positions.map do |position|
       {
         id: position.remote_id || 'add',
         name: position.name,

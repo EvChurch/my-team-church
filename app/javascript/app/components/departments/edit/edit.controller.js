@@ -14,13 +14,11 @@ class DepartmentsEditModalController {
   }
   save() {
     return this.departments.update(this.id, this.department).then((department) => {
-      this.$state.go('departments.detail', { id: department.id });
       this.$scope.$hide();
     });
   }
   delete() {
     return this.departments.delete(this.id).then(() => {
-      this.$state.go('departments');
       this.$scope.$hide();
     });
   }
