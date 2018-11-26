@@ -1,0 +1,6 @@
+<div class="avatar" ng-class="{ 'image' : $ctrl.source, 'icon' : !$ctrl.source }">
+  <div style="background-image: url({{$ctrl.source}})" ng-if="$ctrl.source"></div>
+  <div ng-if="!$ctrl.source">
+    <i class="fas fa-user"></i>
+  </div>
+</div>

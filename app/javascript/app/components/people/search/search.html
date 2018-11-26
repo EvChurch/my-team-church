@@ -4,8 +4,7 @@
        ng-model-options="{ debounce: 1000 }">
 <ul class="list-group mt-2">
   <li class="list-group-item d-flex align-items-center active" ng-if="$ctrl.person">
-    <img class="avatar mr-3"
-      ng-src="{{$ctrl.person.picture}}">
+    <avatar class="mr-3" source="$ctrl.person.picture"></avatar>
     <div>
       {{$ctrl.person.first_name}}
       {{$ctrl.person.last_name}}
@@ -19,8 +18,7 @@
       ng-repeat="edge in $ctrl.list track by edge.cursor"
       ng-click="$ctrl.setPerson(edge.node)"
       ng-if="$ctrl.person.id !== edge.node.id">
-    <img class="avatar mr-3"
-         ng-src="{{edge.node.picture}}">
+    <avatar class="mr-3" source="edge.node.picture"></avatar>
     <div>
       {{edge.node.first_name}}
       {{edge.node.last_name}}

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Integration::Elvanto::SyncJob < ApplicationJob
+class Integration::Elvanto::PullJob < ApplicationJob
   queue_as :default
 
   CLASSES_TO_PULL = %w[

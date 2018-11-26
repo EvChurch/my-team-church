@@ -1,4 +1,4 @@
-<div class="tree" ng-class="{ 'visible-on-mobile': $ctrl.$state.is('people.detail') || $ctrl.$state.is('me') || $ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives') || $ctrl.$state.is('people.detail.positionEntities') || $ctrl.$state.is('me.positionEntities'), 'edit': $ctrl.$state.is('people.detail') || $ctrl.$state.is('me'), 'terminus': $ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives') }">
+<div class="tree" ng-class="{ 'visible-on-mobile': $ctrl.$state.is('people.detail') || $ctrl.$state.is('me') || $ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives') || $ctrl.$state.is('people.detail.positionEntities') || $ctrl.$state.is('me.positionEntities'), 'edit': $ctrl.$state.is('people.detail') || $ctrl.$state.is('people.new') || $ctrl.$state.is('me'), 'terminus': $ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives') }">
   <div class="heading">
     <a class="back" ui-sref="people" ng-if="$ctrl.$state.includes('people')"><i class="fas fa-chevron-left"></i></a>
     <div class="title">
@@ -11,7 +11,7 @@
         </div>
       </div>
       <div ng-if="!$ctrl.loading" class="loaded">
-        <img class="avatar" ng-src="{{$ctrl.person.picture}}">
+        <avatar source="$ctrl.person.picture"></avatar>
         <h1 ng-if="$ctrl.$state.includes('people')">{{$ctrl.person.first_name}} {{$ctrl.person.last_name}}</h1>
         <h1 ng-if="$ctrl.$state.includes('me')">My Profile</h1>
         <div class="menu-toggle" ng-click="$ctrl.open = !$ctrl.open" ng-class="{ 'open': $ctrl.open }">

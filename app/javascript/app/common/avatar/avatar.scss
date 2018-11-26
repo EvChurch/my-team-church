@@ -1,0 +1,22 @@
+avatar {
+  .avatar {
+    background: #162C52;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    &.image {
+      align-items: stretch;
+      > div {
+        flex-grow: 1;
+        background-size: cover;
+        border-radius: 100%;
+      }
+    }
+    &.icon {
+      align-items: center;
+    }
+  }
+}

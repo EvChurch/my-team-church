@@ -1,5 +1,5 @@
 <div class="d-flex align-items-center">
-  <img class="avatar mr-3" ng-src="{{$ctrl.entity.person.picture}}">
+  <avatar class="mr-3" source="$ctrl.entity.person.picture"></avatar>
   <div class="flex-fill">
     {{$ctrl.entity.person.name}}
     <div ng-if="$ctrl.entity.start_at && !$ctrl.entity.end_at">

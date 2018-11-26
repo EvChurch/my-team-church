@@ -3,8 +3,7 @@
     <label>Person</label>
     <ul class="list-group mt-2">
       <li class="list-group-item d-flex align-items-center">
-        <img class="mr-3 avatar"
-          ng-src="{{$ctrl.positionEntity.person.picture}}">
+        <avatar class="mr-3" source="$ctrl.positionEntity.person.picture"></avatar>
         <div>
           {{$ctrl.positionEntity.person.first_name}}
           {{$ctrl.positionEntity.person.last_name}}
