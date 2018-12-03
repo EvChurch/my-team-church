@@ -23,7 +23,7 @@ class Integration::Elvanto < Integration
 
   def api_key_valid?
     ElvantoAPI.configure(api_key: api_key)
-    response = ElvantoAPI.call('people/getAll')
+    ElvantoAPI.call('people/getAll')
     true
   rescue ElvantoAPI::Unauthorized
     false

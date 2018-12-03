@@ -18,7 +18,7 @@ module Mutations::PersonMutation
     argument :person, !InputTypes::PersonInputType
     type Types::PersonType
     resolve lambda { |organization, args, _ctx|
-      person = organization.people.find(args[:id])
+      person = organization.people.kept.find(args[:id])
       person.update!(args[:person].to_h)
       person.decorate
     }

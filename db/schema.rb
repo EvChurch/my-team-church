@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_18_233420) do
+ActiveRecord::Schema.define(version: 2018_12_03_031507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -74,7 +74,9 @@ ActiveRecord::Schema.define(version: 2018_11_18_233420) do
     t.string "remote_source"
     t.string "ancestry"
     t.text "description"
+    t.datetime "discarded_at"
     t.index ["ancestry"], name: "index_departments_on_ancestry"
+    t.index ["discarded_at"], name: "index_departments_on_discarded_at"
     t.index ["organization_id"], name: "index_departments_on_organization_id"
     t.index ["remote_id", "remote_source"], name: "index_departments_on_remote_id_and_remote_source", unique: true
   end
@@ -93,6 +95,9 @@ ActiveRecord::Schema.define(version: 2018_11_18_233420) do
     t.string "encrypted_api_key_iv"
     t.string "domain"
     t.boolean "pushable", default: false
+    t.string "encrypted_api_refresh_key"
+    t.string "encrypted_api_refresh_key_iv"
+    t.datetime "expires_at"
     t.index ["organization_id", "type"], name: "index_integrations_on_organization_id_and_type", unique: true
     t.index ["organization_id"], name: "index_integrations_on_organization_id"
   end
@@ -229,6 +234,8 @@ ActiveRecord::Schema.define(version: 2018_11_18_233420) do
     t.datetime "updated_at", null: false
     t.string "remote_id"
     t.string "remote_source"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_people_on_discarded_at"
     t.index ["organization_id"], name: "index_people_on_organization_id"
     t.index ["remote_id", "remote_source"], name: "index_people_on_remote_id_and_remote_source", unique: true
   end
@@ -266,7 +273,9 @@ ActiveRecord::Schema.define(version: 2018_11_18_233420) do
     t.text "description"
     t.integer "people_needed", default: 0
     t.text "training_description"
+    t.datetime "discarded_at"
     t.index ["department_id"], name: "index_positions_on_department_id"
+    t.index ["discarded_at"], name: "index_positions_on_discarded_at"
     t.index ["organization_id"], name: "index_positions_on_organization_id"
     t.index ["remote_id", "remote_source"], name: "index_positions_on_remote_id_and_remote_source", unique: true
   end

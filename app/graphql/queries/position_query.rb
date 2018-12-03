@@ -7,7 +7,7 @@ module Queries::PositionQuery
     description 'List of Positions'
     before_scope
     resource lambda { |organization, args, _ctx|
-      organization.positions.where(department_id: args[:department_id])
+      organization.positions.kept.where(department_id: args[:department_id])
     }
     resolve ->(positions, _args, _ctx) { positions.decorate }
   end
@@ -19,7 +19,7 @@ module Queries::PositionQuery
     description 'Get Position by ID'
     authorize :show
     resource lambda { |organization, args, _ctx|
-      organization.positions.find(args[:id])
+      organization.positions.kept.find(args[:id])
     }
     resolve ->(position, _args, _ctx) { position.decorate }
   end

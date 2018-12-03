@@ -22,6 +22,7 @@ module Mutations::PositionMutation
     type Types::PositionType
     resolve lambda { |organization, args, _ctx|
       position = organization.positions
+                             .kept
                              .where(department_id: args[:department_id])
                              .find(args[:id])
       position.update!(args[:position].to_h)
@@ -37,8 +38,9 @@ module Mutations::PositionMutation
     resolve lambda { |organization, args, _ctx|
       organization.positions
                   .where(department_id: args[:department_id])
+                  .kept
                   .find(args[:id])
-                  .destroy
+                  .discard
     }
   end
 end

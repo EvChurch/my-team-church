@@ -6,9 +6,11 @@ module Pushable
   attr_accessor :pushable
 
   included do
+    include Discard::Model
+
     after_commit :push_create_to_integrations, on: :create
     after_commit :push_update_to_integrations, on: :update
-    after_commit :push_destroy_to_integrations, on: :destroy
+    after_discard :push_discard_to_integrations
   end
 
   def pushable?
@@ -25,7 +27,7 @@ module Pushable
     organization.run_integration_push_job(self, 'update') if pushable?
   end
 
-  def push_destroy_to_integrations
-    organization.run_integration_push_job(self, 'destroy') if pushable?
+  def push_discard_to_integrations
+    organization.run_integration_push_job(self, 'discard') if pushable?
   end
 end

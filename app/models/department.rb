@@ -35,4 +35,8 @@ class Department < ApplicationRecord
       value > (people_active[key] || 0)
     end.length
   end
+
+  def children
+    super.kept
+  end
 end

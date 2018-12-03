@@ -7,6 +7,7 @@ module Queries::PersonQuery
     description 'Find a Person by ID'
     resolve lambda { |organization, args, _ctx|
       organization.people
+                  .kept
                   .find(args[:id])
                   .decorate
     }

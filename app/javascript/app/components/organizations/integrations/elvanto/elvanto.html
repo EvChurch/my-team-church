@@ -1,0 +1,51 @@
+<h2>Connect Elvanto</h2>
+<div class="alert alert-warning">
+  You must be an adminstrator access on an Elvanto Account for the organization you wish to connect.
+</div>
+<form name="Form" ng-submit="$ctrl.submit()" class="mb-3">
+  <div class="form-group">
+    <label>
+      Domain
+      <span class="text-danger">*</span>
+    </label>
+    <input class="form-control" name="domain" ng-model="$ctrl.form.domain"  placeholder="church.elvanto.com.au" ng-class="{ 'is-invalid' : $ctrl.errors.domain }" required>
+    <div class="invalid-feedback" ng-if="$ctrl.errors.domain">{{$ctrl.errors.domain}}</div>
+  </div>
+  <p>
+    To find your API Key go to <span class="text-info">https://[your-domain].elvanto.com.au/admin/settings/integrations/</span>
+    and click the Get API Key button on the top right of the page. Your API Key will then be visible
+    on a modal popup. Copy that Key and paste it below.
+  </p>
+  <div class="form-group">
+    <label>
+      API Key
+      <span class="text-danger">*</span>
+    </label>
+    <input class="form-control" name="api_key" ng-model="$ctrl.form.api_key" ng-class="{ 'is-invalid' : $ctrl.errors.api_key }" required>
+    <div class="invalid-feedback" ng-if="$ctrl.errors.api_key">{{$ctrl.errors.api_key}}</div>
+  </div>
+  <p>
+    You need to create an admin user in Elvanto specially for My Team @ Church to access your organization. This is used
+    to keep your Departments and Positions in sync. Once you've created this user put the credentials in below.
+  </p>
+  <div class="form-group">
+    <label>
+      Username
+      <span class="text-danger">*</span>
+    </label>
+    <input class="form-control" name="username" ng-model="$ctrl.form.username" ng-class="{ 'is-invalid' : $ctrl.errors.username }" required>
+    <div class="invalid-feedback" ng-if="$ctrl.errors.username">{{$ctrl.errors.username}}</div>
+  </div>
+  <div class="form-group">
+    <label>
+      Password
+      <span class="text-danger">*</span>
+    </label>
+    <input class="form-control" type="password" name="password" ng-model="$ctrl.form.password" ng-class="{ 'is-invalid' : $ctrl.errors.password }" required>
+    <div class="invalid-feedback" ng-if="$ctrl.errors.password">{{$ctrl.errors.password}}</div>
+  </div>
+  <div class="text-right">
+    <a ui-sref="home" class="btn btn-link">Cancel</a>
+    <input type="submit" class="btn btn-primary" value="Save" ng-disabled="Form.$invalid || $ctrl.saving">
+  </div>
+</form>

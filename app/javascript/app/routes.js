@@ -568,6 +568,16 @@ export default class Routes {
         organization: /* @ngInject*/ (api, organizations) => organizations.get(api.organization_id)
       }
     }).state({
+      name: 'organizations.integrations.elvanto',
+      title: 'Elvanto Integration',
+      component: 'organizationsIntegrationsElvanto',
+      url: '/elvanto',
+    }).state({
+      name: 'organizations.integrations.fluro',
+      title: 'Fluro Integration',
+      component: 'organizationsIntegrationsFluro',
+      url: '/fluro',
+    }).state({
       name: 'organizations.connect',
       title: 'Connect My Organization',
       component: 'organizationsConnect',
