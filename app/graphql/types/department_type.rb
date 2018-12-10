@@ -9,6 +9,6 @@ Types::DepartmentType = GraphQL::ObjectType.define do
   field :parent_id, types.ID
   field :positions_needing_people, types.Int
   field :children, types[Types::DepartmentType]
-  field :positions, types[Types::PositionType]
+  field :teams, types[Types::TeamsType]
   field :objectives, types[Types::ObjectiveType]
 end

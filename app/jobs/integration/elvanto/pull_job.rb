@@ -5,9 +5,6 @@ class Integration::Elvanto::PullJob < ApplicationJob
 
   CLASSES_TO_PULL = %w[
     Integration::Elvanto::Pull::DepartmentService
-    Integration::Elvanto::Pull::LocationService
-    Integration::Elvanto::Pull::DemographicService
-    Integration::Elvanto::Pull::AccessPermissionService
     Integration::Elvanto::Pull::PersonService
   ].freeze
 

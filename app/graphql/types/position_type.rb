@@ -9,6 +9,6 @@ Types::PositionType = GraphQL::ObjectType.define do
   field :people_needed, types.Int
   field :people_active, types.Int
   field :objectives, types[Types::ObjectiveType]
-  field :department, !Types::DepartmentType
+  field :team, !Types::TeamType
   field :position_entities, types[Types::Position::EntityType]
 end

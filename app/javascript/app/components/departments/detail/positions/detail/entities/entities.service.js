@@ -30,10 +30,6 @@ class Entities {
             last_name
             picture
           }
-          service_types {
-            id
-            name
-          }
         }
       }
     `, { position_id: positionId }).then((data) => {
@@ -64,10 +60,6 @@ class Entities {
             first_name
             last_name
             picture
-          }
-          service_types {
-            id
-            name
           }
         }
       }
@@ -100,10 +92,6 @@ class Entities {
             last_name
             picture
           }
-          service_types {
-            id
-            name
-          }
         }
       }
     `, { position_id: positionId, position_entity: positionEntity }).then((data) => {
@@ -134,10 +122,6 @@ class Entities {
             first_name
             last_name
             picture
-          }
-          service_types {
-            id
-            name
           }
         }
       }

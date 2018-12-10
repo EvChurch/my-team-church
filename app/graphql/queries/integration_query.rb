@@ -12,7 +12,7 @@ module Queries::IntegrationQuery
   end
 
   Get = GraphQL::Field.define do
-    type Types::ServiceTypeType
+    type Types::IntegrationType
     argument :id, !types.ID
     description 'Get Integrations by ID'
     authorize :show

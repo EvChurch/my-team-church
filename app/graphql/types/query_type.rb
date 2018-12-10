@@ -33,12 +33,6 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :me, Queries::PersonQuery::Me
   field :personPositionEntities, Queries::Person::PositionEntityQuery::List
   field :personPositionEntity, Queries::Person::PositionEntityQuery::Get
-  field :locations, Queries::LocationQuery::List
-  field :location, Queries::LocationQuery::Get
   field :integrations, Queries::IntegrationQuery::List
   field :integration, Queries::IntegrationQuery::Get
-  field :serviceTypes, Queries::ServiceTypeQuery::List
-  field :serviceType, Queries::ServiceTypeQuery::Get
-  field :serviceTypeConnections, Queries::ServiceType::ConnectionQuery::List
-  field :serviceTypeConnection, Queries::ServiceType::ConnectionQuery::Get
 end

@@ -5,6 +5,7 @@ class Integration::Fluro::PullJob < ApplicationJob
 
   CLASSES_TO_PULL = %w[
     Integration::Fluro::Pull::DepartmentService
+    Integration::Elvanto::Pull::PersonService
   ].freeze
 
   def perform(integration)
@@ -12,8 +13,3 @@ class Integration::Fluro::PullJob < ApplicationJob
     integration.update(pushable: true)
   end
 end
-
-# Integration::Elvanto::Pull::LocationService
-# Integration::Elvanto::Pull::DemographicService
-# Integration::Elvanto::Pull::AccessPermissionService
-# Integration::Elvanto::Pull::PersonService

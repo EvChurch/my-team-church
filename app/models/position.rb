@@ -5,7 +5,7 @@ class Position < ApplicationRecord
   include ActionView::Helpers
 
   belongs_to :organization, required: true
-  belongs_to :department
+  belongs_to :team, required: true
   has_many :entities, class_name: 'Position::Entity', dependent: :destroy, inverse_of: :position
   has_many :people, through: :entities
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource

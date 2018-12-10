@@ -7,7 +7,7 @@ class Integration::Elvanto::Pull::PersonService < Integration::Elvanto::Pull::Ba
     %w[gender birthday anniversary school_grade marital_status development_child special_needs_child
        security_code receipt_name giving_number mailing_address mailing_address2 mailing_city mailing_state
        mailing_postcode mailing_country home_address home_address2 home_city home_state home_postcode
-       home_country access_permissions departments service_types demographics locations family reports_to].freeze
+       home_country departments family reports_to].freeze
 
 
   def pull

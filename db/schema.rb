@@ -10,50 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_031507) do
+ActiveRecord::Schema.define(version: 2018_12_10_004643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
-
-  create_table "access_permission_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid "access_permission_id"
-    t.uuid "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["access_permission_id"], name: "index_access_permission_entities_on_access_permission_id"
-  end
-
-  create_table "access_permissions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid "organization_id"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "remote_id"
-    t.string "remote_source"
-    t.index ["organization_id"], name: "index_access_permissions_on_organization_id"
-    t.index ["remote_id", "remote_source"], name: "index_access_permissions_on_remote_id_and_remote_source", unique: true
-  end
-
-  create_table "demographic_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid "demographic_id"
-    t.uuid "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["demographic_id"], name: "index_demographic_entities_on_demographic_id"
-  end
-
-  create_table "demographics", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid "organization_id"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "remote_id"
-    t.string "remote_source"
-    t.index ["organization_id"], name: "index_demographics_on_organization_id"
-    t.index ["remote_id", "remote_source"], name: "index_demographics_on_remote_id_and_remote_source", unique: true
-  end
 
   create_table "department_leaders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "person_id"
@@ -100,25 +62,6 @@ ActiveRecord::Schema.define(version: 2018_12_03_031507) do
     t.datetime "expires_at"
     t.index ["organization_id", "type"], name: "index_integrations_on_organization_id_and_type", unique: true
     t.index ["organization_id"], name: "index_integrations_on_organization_id"
-  end
-
-  create_table "location_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid "location_id"
-    t.uuid "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_location_entities_on_location_id"
-  end
-
-  create_table "locations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid "organization_id"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "remote_id"
-    t.string "remote_source"
-    t.index ["organization_id"], name: "index_locations_on_organization_id"
-    t.index ["remote_id", "remote_source"], name: "index_locations_on_remote_id_and_remote_source", unique: true
   end
 
   create_table "objective_key_results", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -264,7 +207,6 @@ ActiveRecord::Schema.define(version: 2018_12_03_031507) do
 
   create_table "positions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "organization_id"
-    t.uuid "department_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -274,7 +216,7 @@ ActiveRecord::Schema.define(version: 2018_12_03_031507) do
     t.integer "people_needed", default: 0
     t.text "training_description"
     t.datetime "discarded_at"
-    t.index ["department_id"], name: "index_positions_on_department_id"
+    t.uuid "team_id"
     t.index ["discarded_at"], name: "index_positions_on_discarded_at"
     t.index ["organization_id"], name: "index_positions_on_organization_id"
     t.index ["remote_id", "remote_source"], name: "index_positions_on_remote_id_and_remote_source", unique: true
@@ -290,33 +232,21 @@ ActiveRecord::Schema.define(version: 2018_12_03_031507) do
     t.index ["name"], name: "index_roles_on_name"
   end
 
-  create_table "service_type_connections", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "resource_id"
-    t.string "resource_type"
-    t.uuid "service_type_id"
+  create_table "team_links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "team_id"
+    t.uuid "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["resource_id", "resource_type", "service_type_id"], name: "index_service_type_connections_on_resource_and_service_type_id", unique: true
-    t.index ["service_type_id"], name: "index_service_type_connections_on_service_type_id"
+    t.index ["department_id"], name: "index_team_links_on_department_id"
+    t.index ["team_id"], name: "index_team_links_on_team_id"
   end
 
-  create_table "service_type_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid "service_type_id"
-    t.uuid "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["service_type_id"], name: "index_service_type_entities_on_service_type_id"
-  end
-
-  create_table "service_types", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+  create_table "teams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "organization_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "remote_id"
-    t.string "remote_source"
-    t.index ["organization_id"], name: "index_service_types_on_organization_id"
-    t.index ["remote_id", "remote_source"], name: "index_service_types_on_remote_id_and_remote_source", unique: true
+    t.index ["organization_id"], name: "index_teams_on_organization_id"
   end
 
   create_table "user_links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -379,29 +309,20 @@ ActiveRecord::Schema.define(version: 2018_12_03_031507) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
   end
 
-  add_foreign_key "access_permission_entities", "access_permissions"
-  add_foreign_key "access_permission_entities", "people"
-  add_foreign_key "demographic_entities", "demographics"
-  add_foreign_key "demographic_entities", "people"
-  add_foreign_key "demographics", "organizations"
   add_foreign_key "department_leaders", "departments"
   add_foreign_key "department_leaders", "people"
   add_foreign_key "integrations", "organizations"
-  add_foreign_key "location_entities", "locations"
-  add_foreign_key "location_entities", "people"
-  add_foreign_key "locations", "organizations"
   add_foreign_key "objective_key_results", "objectives"
   add_foreign_key "objective_links", "objectives", column: "child_id"
   add_foreign_key "objective_links", "objectives", column: "parent_id"
   add_foreign_key "position_entities", "people"
   add_foreign_key "position_entities", "positions"
   add_foreign_key "position_items", "positions", on_delete: :cascade
-  add_foreign_key "positions", "departments"
   add_foreign_key "positions", "organizations"
-  add_foreign_key "service_type_connections", "service_types", on_delete: :cascade
-  add_foreign_key "service_type_entities", "people"
-  add_foreign_key "service_type_entities", "service_types"
-  add_foreign_key "service_types", "organizations"
+  add_foreign_key "positions", "teams", on_delete: :cascade
+  add_foreign_key "team_links", "departments"
+  add_foreign_key "team_links", "teams"
+  add_foreign_key "teams", "organizations"
   add_foreign_key "user_links", "organizations"
   add_foreign_key "user_links", "people"
   add_foreign_key "user_links", "users"

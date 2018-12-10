@@ -20,10 +20,6 @@ class Positions {
             id
             name
           }
-          service_types {
-            id
-            name
-          }
         }
       }
     `, { department_id: departmentId }).then((data) => {
@@ -39,10 +35,6 @@ class Positions {
         ) {
           id
           person {
-            id
-            name
-          }
-          service_types {
             id
             name
           }
@@ -68,10 +60,6 @@ class Positions {
         ) {
           id
           person {
-            id
-            name
-          }
-          service_types {
             id
             name
           }
