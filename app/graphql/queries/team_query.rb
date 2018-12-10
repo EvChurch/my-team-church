@@ -3,13 +3,13 @@
 module Queries::TeamQuery
   List = GraphQL::Field.define do
     type !types[Types::TeamType]
-    argument :department_id, !types.ID
     description 'List of Teams'
     before_scope
-    resource lambda { |organization, args, _ctx|
-      organization.teams.kept.joins(:departments).where(departments: { id: args[:department_id] })
+    resource lambda { |organization, _args, _ctx|
+      organization.teams
+                  .kept
     }
-    resolve ->(positions, _args, _ctx) { positions.decorate }
+    resolve ->(teams, _args, _ctx) { teams.decorate }
   end
 
   Get = GraphQL::Field.define do
@@ -18,7 +18,9 @@ module Queries::TeamQuery
     description 'Get Team by ID'
     authorize :show
     resource lambda { |organization, args, _ctx|
-      organization.teams.kept.find(args[:id])
+      organization.teams
+                  .kept
+                  .find(args[:id])
     }
     resolve ->(team, _args, _ctx) { team.decorate }
   end

@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
-module Mutations::PositionMutation
+module Mutations::Team::PositionMutation
   Create = GraphQL::Field.define do
     description 'Create Position'
-    argument :department_id, !types.ID
+    argument :team_id, !types.ID
     argument :position, !InputTypes::PositionInputType
     type Types::PositionType
     resolve lambda { |organization, args, _ctx|
-      organization.positions
-                  .where(department_id: args[:department_id])
+      organization.teams
+                  .where(id: args[:team_id])
+                  .positions
                   .create!(args[:position].to_h)
                   .decorate
     }
@@ -16,14 +17,12 @@ module Mutations::PositionMutation
 
   Update = GraphQL::Field.define do
     description 'Update Position'
-    argument :department_id, !types.ID
     argument :id, !types.ID
     argument :position, !InputTypes::PositionInputType
-    type Types::PositionType
+    type Types::Team::PositionType
     resolve lambda { |organization, args, _ctx|
-      position = organization.positions
+      position = organization.team_positions
                              .kept
-                             .where(department_id: args[:department_id])
                              .find(args[:id])
       position.update!(args[:position].to_h)
       position.decorate
@@ -32,15 +31,14 @@ module Mutations::PositionMutation
 
   Delete = GraphQL::Field.define do
     description 'Delete Position'
-    argument :department_id, !types.ID
     argument :id, !types.ID
-    type Types::PositionType
+    type Types::Team::PositionType
     resolve lambda { |organization, args, _ctx|
-      organization.positions
-                  .where(department_id: args[:department_id])
-                  .kept
-                  .find(args[:id])
-                  .discard
+      position = organization.team_positions
+                             .kept
+                             .find(args[:id])
+      position.discard
+      position.decorate
     }
   end
 end

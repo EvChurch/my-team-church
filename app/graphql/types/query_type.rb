@@ -14,12 +14,14 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :objective, Queries::ObjectiveQuery::Get
   field :objectiveKeyResults, Queries::Objective::KeyResultQuery::List
   field :objectiveKeyResult, Queries::Objective::KeyResultQuery::Get
-  field :positions, Queries::PositionQuery::List
-  field :position, Queries::PositionQuery::Get
-  field :positionEntities, Queries::Position::EntityQuery::List
-  field :positionEntity, Queries::Position::EntityQuery::Get
-  field :positionItems, Queries::Position::ItemQuery::List
-  field :positionItem, Queries::Position::ItemQuery::Get
+  field :teams, Queries::TeamQuery::List
+  field :team, Queries::TeamQuery::Get
+  field :teamPositions, Queries::Team::PositionQuery::List
+  field :teamPosition, Queries::Team::PositionQuery::Get
+  field :teamPositionEntities, Queries::Team::Position::EntityQuery::List
+  field :teamPositionEntity, Queries::Team::Position::EntityQuery::Get
+  field :teamPositionItems, Queries::Team::Position::ItemQuery::List
+  field :teamPositionItem, Queries::Team::Position::ItemQuery::Get
   connection :people, Types::PersonType.connection_type do
     argument :search_string, types.String
     description 'List of People'
@@ -31,8 +33,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   end
   field :person, Queries::PersonQuery::Get
   field :me, Queries::PersonQuery::Me
-  field :personPositionEntities, Queries::Person::PositionEntityQuery::List
-  field :personPositionEntity, Queries::Person::PositionEntityQuery::Get
+  field :personTeamPositionEntities, Queries::Person::Team::Position::EntityQuery::List
   field :integrations, Queries::IntegrationQuery::List
   field :integration, Queries::IntegrationQuery::Get
 end

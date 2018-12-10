@@ -6,7 +6,9 @@ module Queries::DepartmentQuery
     description 'List of Departments'
     before_scope
     resource lambda { |organization, _args, ctx|
-      organization.departments.kept.with_leader(ctx[:current_user])
+      organization.departments
+                  .kept
+                  .with_leader(ctx[:current_user])
     }
     resolve lambda { |departments, _args, _ctx|
       departments.decorate
@@ -19,7 +21,9 @@ module Queries::DepartmentQuery
     description 'Get Department by ID'
     authorize :show
     resource lambda { |organization, args, _ctx|
-      organization.departments.kept.find(args[:id])
+      organization.departments
+                  .kept
+                  .find(args[:id])
     }
     resolve ->(department, _args, _ctx) { department.decorate }
   end

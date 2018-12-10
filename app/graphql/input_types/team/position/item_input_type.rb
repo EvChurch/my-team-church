@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-InputTypes::Position::ItemInputType = GraphQL::InputObjectType.define do
-  name 'PositionItemInputType'
+InputTypes::Team::Position::ItemInputType = GraphQL::InputObjectType.define do
+  name 'TeamPositionItemInputType'
   description 'Properties for creating a Item under a position'
 
   argument :name, !types.String do

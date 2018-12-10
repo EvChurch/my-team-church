@@ -7,6 +7,7 @@ module Queries::IntegrationQuery
     before_scope
     resource lambda { |organization, _args, _ctx|
       organization.integrations
+                  .kept
     }
     resolve ->(integrations, _args, _ctx) { integrations.decorate }
   end
@@ -17,7 +18,9 @@ module Queries::IntegrationQuery
     description 'Get Integrations by ID'
     authorize :show
     resource lambda { |organization, args, _ctx|
-      organization.integrations.find(args[:id])
+      organization.integrations
+                  .kept
+                  .find(args[:id])
     }
     resolve ->(integration, _args, _ctx) { integration.decorate }
   end

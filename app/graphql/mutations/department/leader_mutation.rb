@@ -2,27 +2,29 @@
 
 module Mutations::Department::LeaderMutation
   Create = GraphQL::Field.define do
-    description 'Create DepartmentLeader'
+    description 'Create Leader'
     argument :department_id, !types.ID
-    argument :department_leader, !InputTypes::Department::LeaderInputType
+    argument :leader, !InputTypes::Department::LeaderInputType
     type Types::Department::LeaderType
     resolve lambda { |organization, args, _ctx|
       organization.departments
                   .find(args[:department_id])
                   .leaders
-                  .create!(args[:department_leader].to_h)
+                  .create!(args[:leader].to_h)
                   .decorate
     }
   end
 
   Delete = GraphQL::Field.define do
-    description 'Delete DepartmentLeader'
+    description 'Delete Leader'
     argument :id, !types.ID
     type Types::Department::LeaderType
     resolve lambda { |organization, args, _ctx|
-      organization.department_leaders
-                  .find(args[:id])
-                  .destroy
+      leader = organization.department_leaders
+                           .kept
+                           .find(args[:id])
+      leader.discard
+      leader.decorate
     }
   end
 end

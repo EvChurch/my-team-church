@@ -18,7 +18,9 @@ module Mutations::DepartmentMutation
     argument :department, !InputTypes::DepartmentInputType
     type Types::DepartmentType
     resolve lambda { |organization, args, _ctx|
-      department = organization.departments.kept.find(args[:id])
+      department = organization.departments
+                               .kept
+                               .find(args[:id])
       department.update!(args[:department].to_h)
       department.decorate
     }
@@ -29,7 +31,9 @@ module Mutations::DepartmentMutation
     argument :id, !types.ID
     type Types::DepartmentType
     resolve lambda { |organization, args, _ctx|
-      department = organization.departments.kept.find(args[:id])
+      department = organization.departments
+                               .kept
+                               .find(args[:id])
       department.discard
       department.decorate
     }

@@ -10,8 +10,10 @@ module Queries::Objective::KeyResultQuery
     resolve lambda { |organization, args, _ctx|
       ResourceFinderService.find(organization, args[:resource_id], args[:resource_type], [:objectives])
                            .objectives
+                           .kept
                            .find(args[:objective_id])
                            .key_results
+                           .kept
                            .decorate
     }
   end
@@ -29,8 +31,10 @@ module Queries::Objective::KeyResultQuery
                                  args[:resource_type],
                                  [objectives: [:key_results]])
                            .objectives
+                           .kept
                            .find(args[:objective_id])
                            .key_results
+                           .kept
                            .find(args[:id])
                            .decorate
     }

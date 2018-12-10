@@ -18,6 +18,7 @@ module Queries::PersonQuery
     description 'Find Person associated with user'
     resolve lambda { |organization, _args, ctx|
       organization.user_links
+                  .kept
                   .find_by!(user: ctx[:current_user])
                   .person
                   .decorate

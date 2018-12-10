@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-Types::PositionType = GraphQL::ObjectType.define do
-  name 'Position'
+Types::Team::PositionType = GraphQL::ObjectType.define do
+  name 'TeamPosition'
   field :id, !types.ID
   field :name, !types.String
   field :description, types.String
@@ -10,5 +10,5 @@ Types::PositionType = GraphQL::ObjectType.define do
   field :people_active, types.Int
   field :objectives, types[Types::ObjectiveType]
   field :team, !Types::TeamType
-  field :position_entities, types[Types::Position::EntityType]
+  field :entities, types[Types::Team::Position::EntityType]
 end

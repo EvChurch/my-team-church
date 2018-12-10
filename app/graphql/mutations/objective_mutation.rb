@@ -25,6 +25,7 @@ module Mutations::ObjectiveMutation
     resolve lambda { |organization, args, _ctx|
       objective = ResourceFinderService.find(organization, args[:resource_id], args[:resource_type])
                                        .objectives
+                                       .kept
                                        .find(args[:id])
       objective.update!(args[:objective].to_h)
       objective.decorate
@@ -38,10 +39,12 @@ module Mutations::ObjectiveMutation
     argument :id, !types.ID
     type Types::ObjectiveType
     resolve lambda { |organization, args, _ctx|
-      ResourceFinderService.find(organization, args[:resource_id], args[:resource_type])
-                           .objectives
-                           .find(args[:id])
-                           .destroy!
+      objective = ResourceFinderService.find(organization, args[:resource_id], args[:resource_type])
+                                       .objectives
+                                       .kept
+                                       .find(args[:id])
+      objective.discard
+      objective.decorate
     }
   end
 end

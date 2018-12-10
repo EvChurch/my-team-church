@@ -19,6 +19,7 @@ module Mutations::OrganizationMutation
     type Types::OrganizationType
     resolve lambda { |_organization, args, ctx|
       organization = Organization.with_role(:admin, ctx[:current_user])
+                                 .kept
                                  .find(args[:id])
       organization.update!(args[:organization].to_h)
       organization.decorate

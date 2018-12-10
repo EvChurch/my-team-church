@@ -2,7 +2,7 @@
 
 module Mutations::Objective::KeyResultMutation
   Create = GraphQL::Field.define do
-    description 'Create ObjectiveKeyResult'
+    description 'Create KeyResult'
     argument :resource_id, !types.ID
     argument :resource_type, !types.String
     argument :objective_id, !types.ID
@@ -19,7 +19,7 @@ module Mutations::Objective::KeyResultMutation
   end
 
   Update = GraphQL::Field.define do
-    description 'Update ObjectiveKeyResult'
+    description 'Update KeyResult'
     argument :resource_id, !types.ID
     argument :resource_type, !types.String
     argument :objective_id, !types.ID
@@ -31,6 +31,7 @@ module Mutations::Objective::KeyResultMutation
                                         .objectives
                                         .find(args[:objective_id])
                                         .key_results
+                                        .kept
                                         .find(args[:id])
       key_result.update!(args[:key_result].to_h)
       key_result.decorate
@@ -38,19 +39,22 @@ module Mutations::Objective::KeyResultMutation
   end
 
   Delete = GraphQL::Field.define do
-    description 'Delete ObjectiveKeyResult'
+    description 'Delete KeyResult'
     argument :resource_id, !types.ID
     argument :resource_type, !types.String
     argument :objective_id, !types.ID
     argument :id, !types.ID
     type Types::Objective::KeyResultType
     resolve lambda { |organization, args, _ctx|
-      ResourceFinderService.find(organization, args[:resource_id], args[:resource_type])
-                           .objectives
-                           .find(args[:objective_id])
-                           .key_results
-                           .find(args[:id])
-                           .destroy!
+      key_result = ResourceFinderService.find(organization, args[:resource_id], args[:resource_type])
+                                        .objectives
+                                        .kept
+                                        .find(args[:objective_id])
+                                        .key_results
+                                        .kept
+                                        .find(args[:id])
+      key_result.discard
+      key_result.decorate
     }
   end
 end

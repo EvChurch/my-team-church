@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 InputTypes::PositionInputType = GraphQL::InputObjectType.define do
-  name 'DepartmentInputType'
+  name 'TeamInputType'
   description 'Properties for creating a Team'
 
   argument :name, types.String do

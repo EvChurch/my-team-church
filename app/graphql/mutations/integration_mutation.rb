@@ -6,7 +6,9 @@ module Mutations::IntegrationMutation
     argument :integration, InputTypes::IntegrationInputType
     type Types::IntegrationType
     resolve lambda { |organization, args, _ctx|
-      integration = organization.integrations.find_or_initialize_by(type: args[:integration][:type])
+      integration = organization.integrations
+                                .kept
+                                .find_or_initialize_by(type: args[:integration][:type])
       integration.update!(args[:integration].to_h)
       integration.decorate
     }
@@ -17,9 +19,10 @@ module Mutations::IntegrationMutation
     argument :id, !types.ID
     type Types::IntegrationType
     resolve lambda { |organization, args, _ctx|
-      organization.integrations
-                  .find(args[:id])
-                  .destroy
+      integration = organization.integrations
+                                .find(args[:id])
+      integration.discard
+      integration.decorate
     }
   end
 end

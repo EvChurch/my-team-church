@@ -9,6 +9,7 @@ module Queries::ObjectiveQuery
     resolve lambda { |organization, args, _ctx|
       ResourceFinderService.find(organization, args[:resource_id], args[:resource_type], [:objectives])
                            .objectives
+                           .kept
                            .decorate
     }
   end
@@ -22,6 +23,7 @@ module Queries::ObjectiveQuery
     resolve lambda { |organization, args, _ctx|
       ResourceFinderService.find(organization, args[:resource_id], args[:resource_type], [:objectives])
                            .objectives
+                           .kept
                            .find(args[:id])
                            .decorate
     }

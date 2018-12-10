@@ -7,7 +7,8 @@ module Mutations::TeamMutation
     argument :team, !InputTypes::TeamInputType
     type Types::PositionType
     resolve lambda { |organization, args, _ctx|
-      organization.departments.find(args[:department_id])
+      organization.departments
+                  .find(args[:department_id])
                   .teams
                   .create!(args[:team].to_h)
                   .decorate
@@ -15,32 +16,29 @@ module Mutations::TeamMutation
   end
 
   Update = GraphQL::Field.define do
-    description 'Update Position'
-    argument :department_id, !types.ID
+    description 'Update Team'
     argument :id, !types.ID
-    argument :position, !InputTypes::PositionInputType
-    type Types::PositionType
+    argument :team, !InputTypes::TeamInputType
+    type Types::TeamType
     resolve lambda { |organization, args, _ctx|
-      position = organization.positions
-                             .kept
-                             .where(department_id: args[:department_id])
-                             .find(args[:id])
-      position.update!(args[:position].to_h)
-      position.decorate
+      team = organization.teams
+                         .kept
+                         .find(args[:id])
+      team.update!(args[:team].to_h)
+      team.decorate
     }
   end
 
   Delete = GraphQL::Field.define do
-    description 'Delete Position'
-    argument :department_id, !types.ID
+    description 'Delete team'
     argument :id, !types.ID
-    type Types::PositionType
+    type Types::TeamType
     resolve lambda { |organization, args, _ctx|
-      organization.positions
-                  .where(department_id: args[:department_id])
-                  .kept
-                  .find(args[:id])
-                  .discard
+      team = organization.teams
+                         .kept
+                         .find(args[:id])
+      team.discard
+      team.decorate
     }
   end
 end

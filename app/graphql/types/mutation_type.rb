@@ -13,16 +13,18 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :createObjectiveKeyResult, Mutations::Objective::KeyResultMutation::Create
   field :updateObjectiveKeyResult, Mutations::Objective::KeyResultMutation::Update
   field :deleteObjectiveKeyResult, Mutations::Objective::KeyResultMutation::Delete
-  field :createPosition, Mutations::PositionMutation::Create
-  field :updatePosition, Mutations::PositionMutation::Update
-  field :deletePosition, Mutations::PositionMutation::Delete
-  field :createPositionEntity, Mutations::Position::EntityMutation::Create
-  field :updatePositionEntity, Mutations::Position::EntityMutation::Update
-  field :deletePositionEntity, Mutations::Position::EntityMutation::Delete
-  field :createPositionItem, Mutations::Position::ItemMutation::Create
-  field :updatePositionItem, Mutations::Position::ItemMutation::Update
-  field :deletePositionItem, Mutations::Position::ItemMutation::Delete
-  field :deletePersonPositionEntity, Mutations::Position::EntityMutation::DeleteByPerson
+  field :createTeam, Mutations::TeamMutation::Create
+  field :updateTeam, Mutations::TeamMutation::Update
+  field :deleteTeam, Mutations::TeamMutation::Delete
+  field :createTeamPosition, Mutations::Team::PositionMutation::Create
+  field :updateTeamPosition, Mutations::Team::PositionMutation::Update
+  field :deleteTeamPosition, Mutations::Team::PositionMutation::Delete
+  field :createTeamPositionEntity, Mutations::Team::Position::EntityMutation::Create
+  field :updateTeamPositionEntity, Mutations::Team::Position::EntityMutation::Update
+  field :deleteTeamPositionEntity, Mutations::Team::Position::EntityMutation::Delete
+  field :createTeamPositionItem, Mutations::Team::Position::ItemMutation::Create
+  field :updateTeamPositionItem, Mutations::Team::Position::ItemMutation::Update
+  field :deleteTeamPositionItem, Mutations::Team::Position::ItemMutation::Delete
   field :authenticateUser, Mutations::UserMutation::Authenticate
   field :createUser, Mutations::UserMutation::Create
   field :createOrganization, Mutations::OrganizationMutation::Create
