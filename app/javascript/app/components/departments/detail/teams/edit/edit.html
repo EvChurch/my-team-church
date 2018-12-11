@@ -1,0 +1,11 @@
+<modal title="Edit Team" save="$ctrl.save()" delete="$ctrl.delete()" cancel="$hide()" show-delete="true">
+  <div class="form-group">
+    <label>Name<span class="text-danger">*</span></label>
+    <input class="form-control"
+           type="text"
+           ng-model="$ctrl.team.name"
+           placeholder="Name"
+           autofocus
+           required>
+  </div>
+</modal>

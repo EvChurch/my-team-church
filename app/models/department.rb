@@ -6,7 +6,7 @@ class Department < ApplicationRecord
   has_ancestry
   belongs_to :organization
 
-  has_many :team_links, dependent: :destroy, inverse_of: :department
+  has_many :team_links, class_name: 'Team::Link', dependent: :destroy, inverse_of: :department
   has_many :teams, through: :team_links
   has_many :positions, through: :teams
   has_many :leaders, dependent: :destroy, inverse_of: :department
@@ -33,6 +33,7 @@ class Department < ApplicationRecord
   end
 
   def positions_needing_people
+    return 0
     people_active = people_active_grouped_by_position_id
     people_needed_grouped_by_position_id.select do |key, value|
       value > (people_active[key] || 0)

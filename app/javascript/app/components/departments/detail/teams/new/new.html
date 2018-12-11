@@ -1,0 +1,11 @@
+<modal title="New Team" save="$ctrl.save()" cancel="$hide()">
+  <div class="form-group">
+    <label>Name<span class="text-danger">*</span></label>
+    <input class="form-control"
+           type="text"
+           ng-model="$ctrl.team.name"
+           placeholder="Name"
+           autofocus
+           required>
+  </div>
+</modal>

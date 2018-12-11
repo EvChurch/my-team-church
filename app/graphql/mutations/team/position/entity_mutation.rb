@@ -5,7 +5,7 @@ module Mutations::Team::Position::EntityMutation
     description 'Create Entity'
     argument :position_id, !types.ID
     argument :entity, !InputTypes::Team::Position::EntityInputType
-    type Types::Position::EntityType
+    type Types::Team::Position::EntityType
     resolve lambda { |organization, args, _ctx|
       organization.team_positions
                   .find(args[:position_id])

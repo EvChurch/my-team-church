@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Queries::PositionQuery
+module Queries::Team::PositionQuery
   List = GraphQL::Field.define do
     type !types[Types::Team::PositionType]
     argument :team_id, !types.ID
@@ -15,7 +15,7 @@ module Queries::PositionQuery
   end
 
   Get = GraphQL::Field.define do
-    type Types::PositionType
+    type Types::Team::PositionType
     argument :id, !types.ID
     description 'Get Position by ID'
     authorize :show

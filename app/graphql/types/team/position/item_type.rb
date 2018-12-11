@@ -5,6 +5,6 @@ Types::Team::Position::ItemType = GraphQL::ObjectType.define do
   field :id, !types.ID
   field :name, !types.String
   field :order, !types.Float
-  field :position, Types::PositionType
+  field :position, Types::Team::PositionType
   field :parent, Types::DepartmentType
 end

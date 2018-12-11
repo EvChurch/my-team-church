@@ -11,7 +11,7 @@ Types::PersonType = GraphQL::ObjectType.define do
   field :mobile, types.String
   field :phone, types.String
   field :gender, types.String
-  field :positions, types[Types::PositionType]
+  field :positions, types[Types::Team::PositionType]
   field :departments, types[Types::DepartmentType]
   field :objectives, types[Types::ObjectiveType]
   field :users, types[Types::UserType]

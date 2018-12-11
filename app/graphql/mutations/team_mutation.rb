@@ -5,7 +5,7 @@ module Mutations::TeamMutation
     description 'Create Team'
     argument :department_id, !types.ID
     argument :team, !InputTypes::TeamInputType
-    type Types::PositionType
+    type Types::Team::PositionType
     resolve lambda { |organization, args, _ctx|
       organization.departments
                   .find(args[:department_id])

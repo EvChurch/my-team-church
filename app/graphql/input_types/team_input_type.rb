@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-InputTypes::PositionInputType = GraphQL::InputObjectType.define do
+InputTypes::TeamInputType = GraphQL::InputObjectType.define do
   name 'TeamInputType'
   description 'Properties for creating a Team'
 

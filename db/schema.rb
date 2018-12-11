@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_004643) do
+ActiveRecord::Schema.define(version: 2018_12_10_035622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -22,7 +22,9 @@ ActiveRecord::Schema.define(version: 2018_12_10_004643) do
     t.uuid "department_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
     t.index ["department_id"], name: "index_department_leaders_on_department_id"
+    t.index ["discarded_at"], name: "index_department_leaders_on_discarded_at"
     t.index ["person_id", "department_id"], name: "index_department_leaders_on_person_id_and_department_id", unique: true
     t.index ["person_id"], name: "index_department_leaders_on_person_id"
   end
@@ -60,6 +62,8 @@ ActiveRecord::Schema.define(version: 2018_12_10_004643) do
     t.string "encrypted_api_refresh_key"
     t.string "encrypted_api_refresh_key_iv"
     t.datetime "expires_at"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_integrations_on_discarded_at"
     t.index ["organization_id", "type"], name: "index_integrations_on_organization_id_and_type", unique: true
     t.index ["organization_id"], name: "index_integrations_on_organization_id"
   end
@@ -76,17 +80,9 @@ ActiveRecord::Schema.define(version: 2018_12_10_004643) do
     t.decimal "current_value", default: "0.0"
     t.datetime "start_at"
     t.datetime "end_at"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_objective_key_results_on_discarded_at"
     t.index ["objective_id"], name: "index_objective_key_results_on_objective_id"
-  end
-
-  create_table "objective_links", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid "parent_id"
-    t.uuid "child_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["child_id"], name: "index_objective_links_on_child_id"
-    t.index ["parent_id", "child_id"], name: "index_objective_links_on_parent_id_and_child_id", unique: true
-    t.index ["parent_id"], name: "index_objective_links_on_parent_id"
   end
 
   create_table "objectives", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -96,6 +92,8 @@ ActiveRecord::Schema.define(version: 2018_12_10_004643) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_objectives_on_discarded_at"
     t.index ["resource_type", "resource_id"], name: "index_objectives_on_resource_type_and_resource_id"
   end
 
@@ -121,6 +119,8 @@ ActiveRecord::Schema.define(version: 2018_12_10_004643) do
     t.string "logo_content_type"
     t.integer "logo_file_size"
     t.datetime "logo_updated_at"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_organizations_on_discarded_at"
     t.index ["subdomain"], name: "index_organizations_on_subdomain", unique: true
   end
 
@@ -183,7 +183,30 @@ ActiveRecord::Schema.define(version: 2018_12_10_004643) do
     t.index ["remote_id", "remote_source"], name: "index_people_on_remote_id_and_remote_source", unique: true
   end
 
-  create_table "position_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+  create_table "roles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.uuid "resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_roles_on_discarded_at"
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["name"], name: "index_roles_on_name"
+  end
+
+  create_table "team_links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "team_id"
+    t.uuid "department_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["department_id"], name: "index_team_links_on_department_id"
+    t.index ["discarded_at"], name: "index_team_links_on_discarded_at"
+    t.index ["team_id"], name: "index_team_links_on_team_id"
+  end
+
+  create_table "team_position_entities", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "position_id"
     t.uuid "person_id"
     t.datetime "created_at", null: false
@@ -191,22 +214,25 @@ ActiveRecord::Schema.define(version: 2018_12_10_004643) do
     t.datetime "start_at"
     t.datetime "end_at"
     t.boolean "trial", default: false
-    t.index ["position_id"], name: "index_position_entities_on_position_id"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_team_position_entities_on_discarded_at"
+    t.index ["position_id"], name: "index_team_position_entities_on_position_id"
   end
 
-  create_table "position_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "team_position_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "ancestry"
     t.uuid "position_id"
     t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["ancestry"], name: "index_position_items_on_ancestry"
-    t.index ["position_id"], name: "index_position_items_on_position_id"
+    t.datetime "discarded_at"
+    t.index ["ancestry"], name: "index_team_position_items_on_ancestry"
+    t.index ["discarded_at"], name: "index_team_position_items_on_discarded_at"
+    t.index ["position_id"], name: "index_team_position_items_on_position_id"
   end
 
-  create_table "positions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid "organization_id"
+  create_table "team_positions", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -217,28 +243,8 @@ ActiveRecord::Schema.define(version: 2018_12_10_004643) do
     t.text "training_description"
     t.datetime "discarded_at"
     t.uuid "team_id"
-    t.index ["discarded_at"], name: "index_positions_on_discarded_at"
-    t.index ["organization_id"], name: "index_positions_on_organization_id"
-    t.index ["remote_id", "remote_source"], name: "index_positions_on_remote_id_and_remote_source", unique: true
-  end
-
-  create_table "roles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string "name"
-    t.string "resource_type"
-    t.uuid "resource_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
-    t.index ["name"], name: "index_roles_on_name"
-  end
-
-  create_table "team_links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "team_id"
-    t.uuid "department_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_team_links_on_department_id"
-    t.index ["team_id"], name: "index_team_links_on_team_id"
+    t.index ["discarded_at"], name: "index_team_positions_on_discarded_at"
+    t.index ["remote_id", "remote_source"], name: "index_team_positions_on_remote_id_and_remote_source", unique: true
   end
 
   create_table "teams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -246,6 +252,8 @@ ActiveRecord::Schema.define(version: 2018_12_10_004643) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_teams_on_discarded_at"
     t.index ["organization_id"], name: "index_teams_on_organization_id"
   end
 
@@ -255,6 +263,8 @@ ActiveRecord::Schema.define(version: 2018_12_10_004643) do
     t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_user_links_on_discarded_at"
     t.index ["organization_id", "user_id"], name: "index_user_links_on_organization_id_and_user_id", unique: true
     t.index ["organization_id"], name: "index_user_links_on_organization_id"
     t.index ["person_id"], name: "index_user_links_on_person_id"
@@ -267,6 +277,8 @@ ActiveRecord::Schema.define(version: 2018_12_10_004643) do
     t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_user_options_on_discarded_at"
     t.index ["user_id", "key"], name: "index_user_options_on_user_id_and_key", unique: true
   end
 
@@ -298,6 +310,8 @@ ActiveRecord::Schema.define(version: 2018_12_10_004643) do
     t.string "time_zone"
     t.string "subdomain"
     t.string "token"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_users_on_discarded_at"
     t.index ["email", "subdomain"], name: "index_users_on_email_and_subdomain", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["token"], name: "index_users_on_token", unique: true
@@ -306,25 +320,27 @@ ActiveRecord::Schema.define(version: 2018_12_10_004643) do
   create_table "users_roles", id: false, force: :cascade do |t|
     t.uuid "user_id"
     t.uuid "role_id"
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_users_roles_on_discarded_at"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
   end
 
-  add_foreign_key "department_leaders", "departments"
-  add_foreign_key "department_leaders", "people"
+  add_foreign_key "department_leaders", "departments", on_delete: :cascade
+  add_foreign_key "department_leaders", "people", on_delete: :cascade
+  add_foreign_key "departments", "organizations", on_delete: :cascade
   add_foreign_key "integrations", "organizations"
-  add_foreign_key "objective_key_results", "objectives"
-  add_foreign_key "objective_links", "objectives", column: "child_id"
-  add_foreign_key "objective_links", "objectives", column: "parent_id"
-  add_foreign_key "position_entities", "people"
-  add_foreign_key "position_entities", "positions"
-  add_foreign_key "position_items", "positions", on_delete: :cascade
-  add_foreign_key "positions", "organizations"
-  add_foreign_key "positions", "teams", on_delete: :cascade
-  add_foreign_key "team_links", "departments"
-  add_foreign_key "team_links", "teams"
-  add_foreign_key "teams", "organizations"
-  add_foreign_key "user_links", "organizations"
-  add_foreign_key "user_links", "people"
-  add_foreign_key "user_links", "users"
-  add_foreign_key "user_options", "users"
+  add_foreign_key "objective_key_results", "objectives", on_delete: :cascade
+  add_foreign_key "team_links", "departments", on_delete: :cascade
+  add_foreign_key "team_links", "teams", on_delete: :cascade
+  add_foreign_key "team_position_entities", "people", on_delete: :cascade
+  add_foreign_key "team_position_entities", "team_positions", column: "position_id", on_delete: :cascade
+  add_foreign_key "team_position_items", "team_positions", column: "position_id", on_delete: :cascade
+  add_foreign_key "team_positions", "teams", on_delete: :cascade
+  add_foreign_key "teams", "organizations", on_delete: :cascade
+  add_foreign_key "user_links", "organizations", on_delete: :cascade
+  add_foreign_key "user_links", "people", on_delete: :cascade
+  add_foreign_key "user_links", "users", on_delete: :cascade
+  add_foreign_key "user_options", "users", on_delete: :cascade
+  add_foreign_key "users_roles", "roles", on_delete: :cascade
+  add_foreign_key "users_roles", "users", on_delete: :cascade
 end

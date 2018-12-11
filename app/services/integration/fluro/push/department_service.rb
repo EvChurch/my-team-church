@@ -16,22 +16,15 @@ class Integration::Fluro::Push::DepartmentService
   def create
     response = create_realm
     department.update(remote_id: response['_id'], remote_source: 'fluro', pushable: false)
-    move_realm(response['_id'], department.parent&.remote_id) if department.parent&.remote_id
   end
 
   def update
-    if department.remote_id
-      update_realm
-      move_realm(department.remote_id, department.parent&.remote_id) if department.parent&.remote_id
-    else
-      create
-    end
+    department.remote_id ? update_realm : create
   end
 
   def discard
     destroy_realm
   end
-
 
   protected
 
@@ -41,10 +34,7 @@ class Integration::Fluro::Push::DepartmentService
       headers: {
         'Authorization' => "Bearer #{integration.api_key}"
       },
-      body: {
-        title: department.name,
-        status: 'active'
-      }
+      body: department_params
     )
   end
 
@@ -54,11 +44,17 @@ class Integration::Fluro::Push::DepartmentService
       headers: {
         'Authorization' => "Bearer #{integration.api_key}"
       },
-      body: {
-        title: department.name,
-        status: 'active'
-      }
+      body: department_params
     )
+  end
+
+  def department_params
+    department_params = {
+      title: department.name,
+      status: 'active'
+    }
+    department_params[:trail] = [department.parent&.remote_id] if department.parent&.remote_id
+    department_params
   end
 
   def destroy_realm
@@ -66,19 +62,6 @@ class Integration::Fluro::Push::DepartmentService
       "https://api.fluro.io/content/realm/#{department.remote_id}",
       headers: {
         'Authorization' => "Bearer #{integration.api_key}"
-      }
-    )
-  end
-
-  def move_realm(realm_id, parent_id)
-    HTTParty.put(
-      'https://api.fluro.io/realm/move',
-      headers: {
-        'Authorization' => "Bearer #{integration.api_key}"
-      },
-      body: {
-        parent: parent_id,
-        realm: realm_id
       }
     )
   end

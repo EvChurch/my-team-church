@@ -6,8 +6,6 @@ module Pushable
   attr_accessor :pushable
 
   included do
-    include Discard::Model
-
     after_commit :push_create_to_integrations, on: :create
     after_commit :push_update_to_integrations, on: :update
     after_discard :push_discard_to_integrations

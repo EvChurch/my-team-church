@@ -1,0 +1,37 @@
+<div class="input-group search">
+  <input type="text" class="form-control" ng-model="$ctrl.search" placeholder="Filter Teams">
+  <div class="input-group-append">
+    <span class="input-group-text">
+      <i class="fas fa-search"></i>
+    </span>
+    <span class="input-group-text"
+          ng-click="$ctrl.departmentTeams.openNewModal($ctrl.departmentId)"
+          data-title="Add Team"
+          data-trigger="hover"
+          data-placement="left"
+          bs-tooltip>
+      <i class="fas fa-plus"></i>
+    </span>
+  </div>
+</div>
+<div class="list-group list-group-flush">
+  <loading-list ng-if="$ctrl.loading && $ctrl.list.length == 0"></loading-list>
+  <a class="list-group-item list-group-item-action d-flex align-items-center"
+      ng-repeat="teams in $ctrl.list | filter: { name:$ctrl.search } track by teams.id"
+      ui-sref="departments.detail.teams.detail({teamId: team.id})"
+      ui-sref-active="active">
+    <div class="flex-fill">
+      {{team.name}}
+    </div>
+  </a>
+</div>
+<div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.list.length == 0">
+  <i class="fas fa-id-card blankslate-icon"></i>
+  <h5>No Teams</h5>
+  <p>
+    Get started by adding a team
+  </p>
+  <a ng-click="$ctrl.departmentTeams.openNewModal($ctrl.departmentId)" class="btn btn-primary">
+    Add Team
+  </a>
+</div>

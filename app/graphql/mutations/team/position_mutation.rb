@@ -4,8 +4,8 @@ module Mutations::Team::PositionMutation
   Create = GraphQL::Field.define do
     description 'Create Position'
     argument :team_id, !types.ID
-    argument :position, !InputTypes::PositionInputType
-    type Types::PositionType
+    argument :position, !InputTypes::Team::PositionInputType
+    type Types::Team::PositionType
     resolve lambda { |organization, args, _ctx|
       organization.teams
                   .where(id: args[:team_id])
@@ -18,7 +18,7 @@ module Mutations::Team::PositionMutation
   Update = GraphQL::Field.define do
     description 'Update Position'
     argument :id, !types.ID
-    argument :position, !InputTypes::PositionInputType
+    argument :position, !InputTypes::Team::PositionInputType
     type Types::Team::PositionType
     resolve lambda { |organization, args, _ctx|
       position = organization.team_positions

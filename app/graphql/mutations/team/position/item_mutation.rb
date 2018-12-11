@@ -5,7 +5,7 @@ module Mutations::Team::Position::ItemMutation
     description 'Create Item'
     argument :position_id, !types.ID
     argument :item, !InputTypes::Team::Position::ItemInputType
-    type Types::Position::ItemType
+    type Types::Team::Position::ItemType
     resolve lambda { |organization, args, _ctx|
       organization.team_positions
                   .find(args[:position_id])
