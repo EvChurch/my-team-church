@@ -13,7 +13,7 @@ class Entities {
   }
   load(positionId) {
     return this.api.query(gql`
-      query positionEntities(
+      query teamPositionEntities(
         $position_id: ID!
       ) {
         positionEntities(
@@ -40,14 +40,12 @@ class Entities {
       return this.data;
     });
   }
-  get(positionId, id) {
+  get(id) {
     return this.api.query(gql`
-      query positionEntity(
-        $position_id: ID!,
+      query teamPositionEntity(
         $id: ID!
       ) {
-        positionEntity(
-          position_id: $position_id,
+        teamPositionEntity(
           id: $id
         ) {
           id
@@ -63,9 +61,9 @@ class Entities {
           }
         }
       }
-    `, { position_id: positionId, id: id }).then((data) => {
-      if (data.positionEntity) {
-        return this.format(data.positionEntity);
+    `, { id: id }).then((data) => {
+      if (data.teamPositionEntity) {
+        return this.format(data.teamPositionEntity);
       } else {
         throw 'Not Found';
       }
@@ -73,11 +71,11 @@ class Entities {
   }
   create(positionId, positionEntity) {
     return this.api.mutate(gql`
-      mutation createPositionEntity(
+      mutation createTeamPositionEntity(
         $position_id: ID!,
         $position_entity: PositionEntityInputType!
       ) {
-        createPositionEntity(
+        createTeamPositionEntity(
           position_id: $position_id,
           position_entity: $position_entity
         ) {
@@ -95,19 +93,19 @@ class Entities {
         }
       }
     `, { position_id: positionId, position_entity: positionEntity }).then((data) => {
-      const positionEntity = this.format(data.createPositionEntity);
+      const positionEntity = this.format(data.createTeamPositionEntity);
       this.$rootScope.$emit('departmentPositionEntityCreate', positionId, positionEntity);
       return positionEntity;
     });
   }
   update(positionId, id, positionEntity) {
     return this.api.mutate(gql`
-      mutation updatePositionEntity(
+      mutation updateTeamPositionEntity(
         $position_id: ID!,
         $id: ID!,
         $position_entity: PositionEntityInputType!
       ) {
-        updatePositionEntity(
+        updateTeamPositionEntity(
           position_id: $position_id,
           id: $id,
           position_entity: $position_entity
@@ -126,18 +124,18 @@ class Entities {
         }
       }
     `, { position_id: positionId, id: id, position_entity: positionEntity }).then((data) => {
-      const positionEntity = this.format(data.updatePositionEntity);
+      const positionEntity = this.format(data.updateTeamPositionEntity);
       this.$rootScope.$emit('departmentPositionEntityUpdate', positionId, positionEntity);
       return positionEntity;
     });
   }
   delete(positionId, id) {
     return this.api.mutate(gql`
-      mutation deletePositionEntity(
+      mutation deleteTeamPositionEntity(
         $position_id: ID!,
         $id: ID!
       ) {
-        deletePositionEntity(
+        deleteTeamPositionEntity(
           position_id: $position_id,
           id: $id
         ) {
@@ -145,7 +143,7 @@ class Entities {
         }
       }
     `, { position_id: positionId, id: id }).then((data) => {
-      const positionEntity = data.deletePositionEntity;
+      const positionEntity = data.deleteTeamPositionEntity;
       this.$rootScope.$emit('departmentPositionEntityDelete', positionId, positionEntity);
       return positionEntity;
     });
@@ -178,5 +176,5 @@ class Entities {
   }
 }
 
-export default angular.module('app.components.departments.detail.entities.service', [
-]).service('departmentPositionEntities', Entities).name;
+export default angular.module('app.components.departments.detail.teams.detail.positions.detail.entities.service', [
+]).service('departmentsDetailTeamsDetailPositionsDetailEntities', Entities).name;

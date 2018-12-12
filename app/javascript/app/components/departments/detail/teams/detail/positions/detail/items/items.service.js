@@ -10,7 +10,7 @@ class Items {
   }
   load(positionId) {
     return this.api.query(gql`
-      query positionItems($position_id: ID!) {
+      query teamPositionItems($position_id: ID!) {
         positionItems(
           position_id: $position_id,
         ) {
@@ -24,7 +24,7 @@ class Items {
   }
   get(positionId, id) {
     return this.api.query(gql`
-      query positionItem($position_id: ID!, $id: ID!){
+      query teamPositionItem($position_id: ID!, $id: ID!){
         positionItem(
           position_id: $position_id,
           id: $id
@@ -43,11 +43,11 @@ class Items {
   }
   create(positionId, positionItem) {
     return this.api.mutate(gql`
-      mutation createPositionItem(
+      mutation createTeamPositionItem(
         $position_id: ID!,
         $position_item: PositionItemInputType!
       ) {
-        createPositionItem(
+        createTeamPositionItem(
           position_id: $position_id,
           position_item: $position_item
         ) {
@@ -56,18 +56,18 @@ class Items {
         }
       }
     `, { position_id: positionId, position_item: positionItem }).then((data) => {
-      const positionItem = data.createPositionItem;
+      const positionItem = data.createTeamPositionItem;
       this.$rootScope.$emit('departmentPositionItemCreate', positionId, positionItem);
       return positionItem;
     });
   }
   update(positionId, id, positionItem) {
     return this.api.mutate(gql`
-      mutation updatePositionItem(
+      mutation updateTeamPositionItem(
         $id: ID!,
         $position_item: PositionItemInputType!
       ) {
-        updatePositionItem(
+        updateTeamPositionItem(
           id: $id,
           position_item: $position_item
         ) {
@@ -76,24 +76,24 @@ class Items {
         }
       }
     `, { id: id, position_item: positionItem }).then((data) => {
-      const positionItem = data.updatePositionItem;
+      const positionItem = data.updateTeamPositionItem;
       this.$rootScope.$emit('departmentPositionItemUpdate', positionId, positionItem);
       return positionItem;
     });
   }
   delete(positionId, id) {
     return this.api.mutate(gql`
-      mutation deletePositionItem(
+      mutation deleteTeamPositionItem(
         $id: ID!
       ) {
-        deletePositionItem(
+        deleteTeamPositionItem(
           id: $id,
         ) {
           id
         }
       }
     `, { id: id }).then((data) => {
-      const positionItem = data.deletePositionItem;
+      const positionItem = data.deleteTeamPositionItem;
       this.$rootScope.$emit('departmentPositionItemDelete', positionId, positionItem);
       return positionItem;
     });

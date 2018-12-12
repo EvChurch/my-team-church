@@ -5,7 +5,7 @@
       <i class="fas fa-search"></i>
     </span>
     <span class="input-group-text"
-          ng-click="$ctrl.departmentPositions.openNewModal($ctrl.departmentId)"
+          ng-click="$ctrl.departmentsDetailTeamsDetailPositions.openNewModal($ctrl.teamId)"
           data-title="Add Position"
           data-trigger="hover"
           data-placement="left"
@@ -18,7 +18,7 @@
   <loading-list ng-if="$ctrl.loading && $ctrl.list.length == 0"></loading-list>
   <a class="list-group-item list-group-item-action d-flex align-items-center"
       ng-repeat="position in $ctrl.list | filter: { name:$ctrl.search } track by position.id"
-      ui-sref="departments.detail.positions.detail({positionId: position.id})"
+      ui-sref="departments.detail.teams.detail.positions.detail({positionId: position.id})"
       ui-sref-active="active">
     <div class="flex-fill">
       {{position.name}}
@@ -39,7 +39,7 @@
   <p>
     Get started by adding a position
   </p>
-  <a ng-click="$ctrl.departmentPositions.openNewModal($ctrl.departmentId)" class="btn btn-primary">
+  <a ng-click="$ctrl.departmentsDetailTeamsDetailPositions.openNewModal($ctrl.teamId)" class="btn btn-primary">
     Add Position
   </a>
 </div>

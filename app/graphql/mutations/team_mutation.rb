@@ -7,11 +7,11 @@ module Mutations::TeamMutation
     argument :team, !InputTypes::TeamInputType
     type Types::Team::PositionType
     resolve lambda { |organization, args, _ctx|
-      organization.departments
-                  .find(args[:department_id])
-                  .teams
-                  .create!(args[:team].to_h)
-                  .decorate
+      department = organization.departments.find(args[:department_id])
+      team = organization.teams.build(args[:team].to_h)
+      team.departments << department
+      team.save
+      team.decorate
     }
   end
 

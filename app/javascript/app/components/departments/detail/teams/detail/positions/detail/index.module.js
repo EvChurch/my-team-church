@@ -4,7 +4,7 @@ import Items from './items/index.module';
 import JobDescription from './jobDescription/jobDescription.component';
 import Training from './training/training.component';
 
-export default angular.module('app.components.departments.detail.positions.detail', [
+export default angular.module('app.components.departments.detail.teams.detail.positions.detail', [
   Component,
   Entities,
   Items,

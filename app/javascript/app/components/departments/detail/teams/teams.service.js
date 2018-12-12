@@ -21,7 +21,7 @@ class Teams {
         }
       }
     `, { department_id: departmentId }).then((data) => {
-      return data.positions;
+      return data.teams;
     });
   }
   get(id) {
@@ -67,7 +67,6 @@ class Teams {
   update(departmentId, id, team) {
     return this.api.mutate(gql`
       mutation updateTeam(
-        $department_id: ID!,
         $id: ID!,
         $team: TeamInputType!
       ) {
@@ -106,7 +105,7 @@ class Teams {
   openNewModal(departmentId) {
     return this.modal.open({
       template: require('./new/new.html'),
-      controller: 'departmentTeamsNewModalController',
+      controller: 'departmentDetailTeamsNewModalController',
       locals: {
         departmentId: departmentId
       }
@@ -115,7 +114,7 @@ class Teams {
   openEditModal(departmentId, team) {
     return this.modal.open({
       template: require('./edit/edit.html'),
-      controller: 'departmentTeamsEditModalController',
+      controller: 'departmentDetailTeamsEditModalController',
       locals: {
         departmentId: departmentId,
         team: team
@@ -125,4 +124,4 @@ class Teams {
 }
 
 export default angular.module('app.components.departments.detail.teams.service', [
-]).service('departmentDetailTeams', Teams).name;
+]).service('departmentsDetailTeams', Teams).name;

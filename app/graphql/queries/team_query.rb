@@ -3,10 +3,14 @@
 module Queries::TeamQuery
   List = GraphQL::Field.define do
     type !types[Types::TeamType]
+    argument :department_id, !types.ID
     description 'List of Teams'
     before_scope
-    resource lambda { |organization, _args, _ctx|
-      organization.teams
+    resource lambda { |organization, args, _ctx|
+      organization.departments
+                  .kept
+                  .find(args[:department_id])
+                  .teams
                   .kept
     }
     resolve ->(teams, _args, _ctx) { teams.decorate }

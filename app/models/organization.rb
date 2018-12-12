@@ -6,7 +6,7 @@ class Organization < ApplicationRecord
   has_many :department_leaders, class_name: 'Department::Leader', through: :departments, source: :leaders
   has_many :people, dependent: :destroy
   has_many :teams, dependent: :destroy
-  has_many :team_positions, dependent: :destroy
+  has_many :team_positions, class_name: 'Team::Position', through: :teams, source: :positions
   has_many :team_position_entities, through: :team_positions, source: :entities
   has_many :team_position_items, through: :team_positions, source: :items
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
@@ -26,7 +26,7 @@ class Organization < ApplicationRecord
 
   def run_integration_push_job(model, action)
     integrations.pushable.each do |integration|
-      integration.run_integration_push_job(model, action)
+      # integration.run_integration_push_job(model, action)
     end
   end
 end

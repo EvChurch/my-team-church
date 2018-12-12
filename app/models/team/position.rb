@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
-class Position < ApplicationRecord
+class Team::Position < ApplicationRecord
   include Pushable
   include ActionView::Helpers
 
   belongs_to :team, required: true
-  has_many :entities, class_name: 'Position::Entity', dependent: :destroy, inverse_of: :position
+  has_many :entities, class_name: 'Team::Position::Entity', dependent: :destroy, inverse_of: :position
   has_many :people, through: :entities
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
-  has_many :items, class_name: 'Position::Item', dependent: :destroy, inverse_of: :position
+  has_many :items, class_name: 'Team::Position::Item', dependent: :destroy, inverse_of: :position
   validates :name, presence: true
   default_scope -> { order(:name) }
+
+  delegate :organization, to: :team
 
   def description=(unsafe_description)
     super sanitize(unsafe_description)

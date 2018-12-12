@@ -1,22 +1,23 @@
 class TeamsController {
   constructor(
-    $rootScope,
-    departmentDetailTeams
+    $rootScope, $stateParams,
+    departmentsDetailTeams
   ) {
     this.$rootScope = $rootScope;
-    this.departmentDetailTeams = departmentDetailTeams;
+    this.$stateParams = $stateParams;
+    this.departmentsDetailTeams = departmentsDetailTeams;
     this.list = [];
   }
   $onInit() {
     this.load();
     this.watcher0 = this.$rootScope.$on('teamCreate', (_event, departmentId) => {
-      if (departmentId === this.departmentId) this.load();
+      if (departmentId === this.$stateParams.departmentId) this.load();
     });
     this.watcher1 = this.$rootScope.$on('teamUpdate', (_event, departmentId) => {
-      if (departmentId === this.departmentId) this.load();
+      if (departmentId === this.$stateParams.departmentId) this.load();
     });
     this.watcher2 = this.$rootScope.$on('teamDelete', (_event, departmentId) => {
-      if (departmentId === this.departmentId) this.load();
+      if (departmentId === this.$stateParams.departmentId) this.load();
     });
   }
   $onDestroy() {
@@ -26,7 +27,7 @@ class TeamsController {
   }
   load() {
     this.loading = true;
-    this.departmentDetailTeams.load(this.departmentId).then((teams) => {
+    this.departmentsDetailTeams.load(this.$stateParams.departmentId).then((teams) => {
       this.loading = false;
       this.list = angular.copy(teams);
     });
@@ -34,9 +35,6 @@ class TeamsController {
 }
 
 let Teams = {
-  bindings: {
-    departmentId: '<'
-  },
   template: require('./teams.html'),
   controller: TeamsController
 };

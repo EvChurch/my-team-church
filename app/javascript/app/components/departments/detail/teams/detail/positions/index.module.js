@@ -4,7 +4,7 @@ import Detail from './detail/index.module';
 import Edit from './edit/edit.controller';
 import New from './new/new.controller';
 
-export default angular.module('app.components.departments.detail.positions', [
+export default angular.module('app.components.departments.detail.teams.details.positions', [
   Component,
   Service,
   Detail,

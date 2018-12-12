@@ -8,7 +8,7 @@ module Mutations::Team::PositionMutation
     type Types::Team::PositionType
     resolve lambda { |organization, args, _ctx|
       organization.teams
-                  .where(id: args[:team_id])
+                  .find(args[:team_id])
                   .positions
                   .create!(args[:position].to_h)
                   .decorate

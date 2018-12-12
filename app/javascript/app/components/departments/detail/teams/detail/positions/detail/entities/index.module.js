@@ -5,7 +5,7 @@ import Item from './item/item.component';
 import New from './new/new.controller';
 import Edit from './edit/edit.controller';
 
-export default angular.module('app.components.departments.detail.positions.detail.entities', [
+export default angular.module('app.components.departments.detail.teams.detail.positions.detail.entities', [
   Component,
   Service,
   Detail,

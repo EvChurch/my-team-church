@@ -30,7 +30,6 @@ class DepartmentsController {
 }
 
 let Departments = {
-  bindings: {},
   template: require('./departments.html'),
   controller: DepartmentsController
 };

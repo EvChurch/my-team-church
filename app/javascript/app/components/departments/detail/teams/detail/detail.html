@@ -1,6 +1,6 @@
-<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.positions.detail.entities') || $ctrl.$state.is('departments.detail.positions.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.items'), 'terminus' : $ctrl.$state.is('departments.detail.positions.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.items') || $ctrl.$state.is('departments.detail.positions.detail.jobDescription') || $ctrl.$state.is('departments.detail.positions.detail.training') }">
+<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.teams.detail.objectives') || $ctrl.$state.is('departments.detail.teams.detail.positions'), 'terminus' : $ctrl.$state.is('departments.detail.teams.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.items') || $ctrl.$state.is('departments.detail.positions.detail.jobDescription') || $ctrl.$state.is('departments.detail.positions.detail.training') }">
   <div class="heading">
-    <a class="back" ui-sref="departments.detail.positions"><i class="fas fa-chevron-left"></i></a>
+    <a class="back" ui-sref="departments.detail.teams"><i class="fas fa-chevron-left"></i></a>
     <div class="title">
       <div class="ph-col-12" ng-if="$ctrl.loading">
         <div class="ph-row mb-0">
@@ -10,32 +10,23 @@
         </div>
       </div>
       <div ng-if="!$ctrl.loading">
-        <h1>{{$ctrl.position.name}}</h1>
+        <h1>{{$ctrl.team.name}}</h1>
         <div class="menu-toggle" ng-click="$ctrl.open = !$ctrl.open" ng-class="{ 'open': $ctrl.open }">
           <div class="icon">
             <i class="fas fa-chevron-down"></i>
           </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.entities')">
-            People
+          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions')">
+            Positions
           </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.objectives')">
+          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.objectives')">
             Objectives
-          </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.items')">
-            Checklist
-          </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.jobDescription')">
-            Job Description
-          </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.training')">
-            Training
           </div>
         </div>
       </div>
     </div>
     <div class="actions">
-      <a ng-click="$ctrl.departmentPositions.openEditModal($ctrl.departmentId, $ctrl.position)"
-         data-title="Edit Position"
+      <a ng-click="$ctrl.departmentsDetailTeams.openEditModal($ctrl.departmentId, $ctrl.team)"
+         data-title="Edit Team"
          data-placement="left"
          data-trigger="hover"
          bs-tooltip>
@@ -45,30 +36,18 @@
   </div>
   <div class="list">
     <div class="menu fade" ng-if="$ctrl.open" ng-click="$ctrl.open = false">
-      <a class="menu-item" ui-sref=".entities">
-        <div>People</div>
+      <a class="menu-item" ui-sref=".positions">
+        <div>Positions</div>
         <div class="icon"><i class="fas fa-user"></i></div>
       </a>
       <a class="menu-item" ui-sref=".objectives">
         <div>Objectives</div>
         <div class="icon"><i class="fas fa-bullseye"></i></div>
       </a>
-      <a class="menu-item" ui-sref=".items">
-        <div>Checklist</div>
-        <div class="icon"><i class="fas fa-list"></i></div>
-      </a>
-      <a class="menu-item" ui-sref=".jobDescription">
-        <div>Job Description</div>
-        <div class="icon"><i class="fas fa-pencil-ruler"></i></div>
-      </a>
-      <a class="menu-item" ui-sref=".training">
-        <div>Training</div>
-        <div class="icon"><i class="fas fa-graduation-cap"></i></div>
-      </a>
     </div>
     <div ui-view="list"></div>
   </div>
-  <div class="branch" ui-view="branch" ng-if="!$ctrl.$state.is('departments.detail.positions.detail.objectives') && !$ctrl.$state.is('departments.detail.positions.detail.items') && !$ctrl.$state.is('departments.detail.positions.detail.jobDescription') && !$ctrl.$state.is('departments.detail.positions.detail.training')">
+  <div class="branch" ui-view="branch" ng-if="!$ctrl.$state.is('departments.detail.teams.detail.objectives')">
     <div class="placeholder"></div>
   </div>
 </div>

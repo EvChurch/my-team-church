@@ -1,14 +1,12 @@
 class DetailController {
   constructor(
     $rootScope, $state, $stateParams,
-    departments, departmentPositions, objectives
+    departments
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.departments = departments;
-    this.departmentPositions = departmentPositions;
-    this.objectives = objectives;
   }
   $onInit() {
     this.loading = true;
@@ -19,7 +17,7 @@ class DetailController {
       this.$state.go('departments');
       throw ex;
     });
-    this.$state.go('.positions');
+    this.$state.go('.teams');
     this.watcher0 = this.$rootScope.$on('departmentUpdate', (_event, department) => {
       if (department.id === this.department.id) this.department = department;
     });
@@ -34,9 +32,6 @@ class DetailController {
 }
 
 let Detail = {
-  bindings: {
-    department: '<'
-  },
   template: require('./detail.html'),
   controller: DetailController
 };

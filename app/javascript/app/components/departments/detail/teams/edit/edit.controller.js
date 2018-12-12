@@ -2,12 +2,12 @@ class EditModalController {
   constructor(
     $scope,
     departmentsDetailTeams,
-    departmentId, position
+    departmentId, team
   ) {
     this.$scope = $scope;
     this.departmentsDetailTeams = departmentsDetailTeams;
     this.departmentId = departmentId;
-    this.id = position.id;
+    this.id = team.id;
     this.team = {
       name: team.name
     };

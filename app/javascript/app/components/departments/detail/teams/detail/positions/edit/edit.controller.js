@@ -1,12 +1,12 @@
 class EditModalController {
   constructor(
     $scope,
-    departmentPositions,
-    departmentId, position
+    departmentsDetailTeamsDetailPositions,
+    teamId, position
   ) {
     this.$scope = $scope;
-    this.departmentPositions = departmentPositions;
-    this.departmentId = departmentId;
+    this.departmentsDetailTeamsDetailPositions = departmentsDetailTeamsDetailPositions;
+    this.teamId = teamId;
     this.id = position.id;
     this.position = {
       name: position.name,
@@ -14,16 +14,16 @@ class EditModalController {
     };
   }
   save() {
-    return this.departmentPositions.update(this.departmentId, this.id, this.position).then(() => {
+    return this.departmentsDetailTeamsDetailPositions.update(this.teamId, this.id, this.position).then(() => {
       this.$scope.$hide();
     });
   }
   delete() {
-    return this.departmentPositions.delete(this.departmentId, this.id).then(() => {
+    return this.departmentsDetailTeamsDetailPositions.delete(this.teamId, this.id).then(() => {
       this.$scope.$hide();
     });
   }
 }
 
-export default angular.module('app.components.departments.detail.departmentPositions.edit.controller', [])
-  .controller('positionsEditModalController', EditModalController).name;
+export default angular.module('app.components.departments.detail.teams.detail.positions.edit.controller', [])
+  .controller('departmentTeamPositionsEditModalController', EditModalController).name;

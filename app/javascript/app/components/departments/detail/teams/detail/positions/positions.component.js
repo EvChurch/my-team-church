@@ -1,22 +1,23 @@
 class PositionsController {
   constructor(
-    $rootScope,
-    departmentPositions
+    $rootScope, $stateParams,
+    departmentsDetailTeamsDetailPositions
   ) {
     this.$rootScope = $rootScope;
-    this.departmentPositions = departmentPositions;
+    this.$stateParams = $stateParams;
+    this.departmentsDetailTeamsDetailPositions = departmentsDetailTeamsDetailPositions;
     this.list = [];
   }
   $onInit() {
     this.load();
-    this.watcher0 = this.$rootScope.$on('positionCreate', (_event, departmentId) => {
-      if (departmentId === this.departmentId) this.load();
+    this.watcher0 = this.$rootScope.$on('positionCreate', (_event, teamId) => {
+      if (teamId === this.$stateParams.teamId) this.load();
     });
-    this.watcher1 = this.$rootScope.$on('positionUpdate', (_event, departmentId) => {
-      if (departmentId === this.departmentId) this.load();
+    this.watcher1 = this.$rootScope.$on('positionUpdate', (_event, teamId) => {
+      if (teamId === this.$stateParams.teamId) this.load();
     });
-    this.watcher2 = this.$rootScope.$on('positionDelete', (_event, departmentId) => {
-      if (departmentId === this.departmentId) this.load();
+    this.watcher2 = this.$rootScope.$on('positionDelete', (_event, teamId) => {
+      if (teamId === this.$stateParams.teamId) this.load();
     });
   }
   $onDestroy() {
@@ -26,20 +27,17 @@ class PositionsController {
   }
   load() {
     this.loading = true;
-    this.departmentPositions.load(this.departmentId).then((departmentPositions) => {
+    this.departmentsDetailTeamsDetailPositions.load(this.$stateParams.teamId).then((positions) => {
       this.loading = false;
-      this.list = angular.copy(departmentPositions);
+      this.list = angular.copy(positions);
     });
   }
 }
 
 let Positions = {
-  bindings: {
-    departmentId: '<'
-  },
   template: require('./positions.html'),
   controller: PositionsController
 };
 
-export default angular.module('app.components.departments.detail.positions.component', [
-]).component('departmentsDetailPositions', Positions).name;
+export default angular.module('app.components.departments.detail.team.detail.positions.component', [
+]).component('departmentsDetailTeamsDetailPositions', Positions).name;

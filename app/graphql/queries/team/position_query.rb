@@ -20,7 +20,7 @@ module Queries::Team::PositionQuery
     description 'Get Position by ID'
     authorize :show
     resource lambda { |organization, args, _ctx|
-      organization.positions
+      organization.team_positions
                   .kept
                   .find(args[:id])
     }

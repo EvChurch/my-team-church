@@ -9,11 +9,11 @@ class Positions {
     this.api = api;
     this.modal = modal;
   }
-  load(departmentId) {
+  load(teamId) {
     return this.api.query(gql`
-      query positions($department_id: ID!) {
-        positions(
-          department_id: $department_id
+      query teamPositions($team_id: ID!) {
+        teamPositions(
+          team_id: $team_id
         ) {
           id
           name
@@ -21,15 +21,14 @@ class Positions {
           people_active
         }
       }
-    `, { department_id: departmentId }).then((data) => {
-      return data.positions;
+    `, { team_id: teamId }).then((data) => {
+      return data.teamPositions;
     });
   }
-  get(departmentId, id) {
+  get(id) {
     return this.api.query(gql`
-      query position($department_id: ID!, $id: ID!){
-        position(
-          department_id: $department_id,
+      query teamPosition($id: ID!){
+        teamPosition(
           id: $id
         ) {
           id
@@ -40,22 +39,22 @@ class Positions {
           people_active
         }
       }
-    `, { department_id: departmentId, id: id }).then((data) => {
-      if (data.position) {
-        return data.position;
+    `, { id: id }).then((data) => {
+      if (data.teamPosition) {
+        return data.teamPosition;
       } else {
         throw 'Not Found';
       }
     });
   }
-  create(departmentId, position) {
+  create(teamId, position) {
     return this.api.mutate(gql`
-      mutation createPosition(
-        $department_id: ID!,
-        $position: PositionInputType!
+      mutation createTeamPosition(
+        $team_id: ID!,
+        $position: TeamPositionInputType!
       ) {
-        createPosition(
-          department_id: $department_id,
+        createTeamPosition(
+          team_id: $team_id,
           position: $position
         ) {
           id
@@ -65,21 +64,19 @@ class Positions {
           people_needed
         }
       }
-    `, { department_id: departmentId, position: position }).then((data) => {
-      const position = data.createPosition;
-      this.$rootScope.$emit('positionCreate', departmentId, position);
+    `, { team_id: teamId, position: position }).then((data) => {
+      const position = data.createTeamPosition;
+      this.$rootScope.$emit('positionCreate', teamId, position);
       return position;
     });
   }
-  update(departmentId, id, position) {
+  update(teamId, id, position) {
     return this.api.mutate(gql`
-      mutation updatePosition(
-        $department_id: ID!,
+      mutation updateTeamPosition(
         $id: ID!,
-        $position: PositionInputType!
+        $position: TeamPositionInputType!
       ) {
-        updatePosition(
-          department_id: $department_id,
+        updateTeamPosition(
           id: $id,
           position: $position
         ) {
@@ -90,51 +87,49 @@ class Positions {
           people_needed
         }
       }
-    `, { department_id: departmentId, id: id, position: position }).then((data) => {
-      const position = data.updatePosition;
-      this.$rootScope.$emit('positionUpdate', departmentId, position);
+    `, { id: id, position: position }).then((data) => {
+      const position = data.updateTeamPosition;
+      this.$rootScope.$emit('positionUpdate', teamId, position);
       return position;
     });
   }
-  delete(departmentId, id) {
+  delete(teamId, id) {
     return this.api.mutate(gql`
-      mutation deletePosition(
-        $department_id: ID!,
+      mutation deleteTeamPosition(
         $id: ID!
       ) {
-        deletePosition(
-          department_id: $department_id,
+        deleteTeamPosition(
           id: $id,
         ) {
           id
         }
       }
-    `, { department_id: departmentId, id: id }).then((data) => {
-      const position = data.deletePosition;
-      this.$rootScope.$emit('positionDelete', departmentId, position);
+    `, { id: id }).then((data) => {
+      const position = data.deleteTeamPosition;
+      this.$rootScope.$emit('positionDelete', teamId, position);
       return position;
     });
   }
-  openNewModal(departmentId) {
+  openNewModal(teamId) {
     return this.modal.open({
       template: require('./new/new.html'),
-      controller: 'positionsNewModalController',
+      controller: 'departmentTeamPositionsNewModalController',
       locals: {
-        departmentId: departmentId
+        teamId: teamId
       }
     });
   }
-  openEditModal(departmentId, position) {
+  openEditModal(teamId, position) {
     return this.modal.open({
       template: require('./edit/edit.html'),
-      controller: 'positionsEditModalController',
+      controller: 'departmentTeamPositionsEditModalController',
       locals: {
-        departmentId: departmentId,
+        teamId: teamId,
         position: position
       }
     });
   }
 }
 
-export default angular.module('app.components.departments.detail.positions.service', [
-]).service('departmentPositions', Positions).name;
+export default angular.module('app.components.departments.detail.teams.detail.positions.service', [
+]).service('departmentsDetailTeamsDetailPositions', Positions).name;

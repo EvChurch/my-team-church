@@ -16,8 +16,8 @@
           <div class="icon">
             <i class="fas fa-chevron-down"></i>
           </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.positions')">
-            Positions
+          <div ng-if="$ctrl.$state.includes('departments.detail.teams')">
+            Teams
           </div>
           <div ng-if="$ctrl.$state.includes('departments.detail.leaders')">
             Leaders
@@ -47,8 +47,8 @@
   </div>
   <div class="list">
     <div class="menu fade" ng-if="$ctrl.open" ng-click="$ctrl.open = false">
-      <a class="menu-item" ui-sref=".positions">
-        <div>Positions</div>
+      <a class="menu-item" ui-sref=".teams">
+        <div>Teams</div>
         <div class="icon"><i class="fas fa-id-card"></i></div>
       </a>
       <a class="menu-item" ui-sref=".leaders">
