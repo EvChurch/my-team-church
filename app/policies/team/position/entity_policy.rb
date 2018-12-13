@@ -22,7 +22,10 @@ class Team::Position::EntityPolicy < ApplicationPolicy
 
     def organization_ids
       @organization_ids ||=
-        scope.joins([{ position: :team }, :person]).pluck('teams.organization_id', 'people.organization_id').flatten.uniq
+        scope.joins([{ position: :team }, :person])
+             .pluck('teams.organization_id', 'people.organization_id')
+             .flatten
+             .uniq
     end
   end
 end

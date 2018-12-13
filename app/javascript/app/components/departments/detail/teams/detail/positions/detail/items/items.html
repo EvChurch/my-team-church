@@ -11,13 +11,11 @@
         <i class="fas fa-bars"></i>
       </div>
       <div class="col flex-fill p-0">
-        <departments-detail-positions-detail-items-detail position-id="$ctrl.positionId"
-                                                          position-item="item"
-                                                          read-only="$ctrl.readOnly">
+        <departments-detail-positions-detail-items-detail item="item" read-only="$ctrl.readOnly">
         </departments-detail-positions-detail-items-detail>
       </div>
     </div>
   </div>
-  <departments-detail-positions-detail-items-new position-id= "$ctrl.positionId" ng-if="!$ctrl.readOnly">
+  <departments-detail-positions-detail-items-new ng-if="!$ctrl.readOnly">
   </departments-detail-positions-detail-items-new>
 </div>

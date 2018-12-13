@@ -3,14 +3,15 @@
 module Queries::Team::Position::ItemQuery
   List = GraphQL::Field.define do
     type !types[Types::Team::Position::ItemType]
-    argument :team_id, !types.ID
     argument :position_id, !types.ID
     description 'List of Items'
     before_scope
     resource lambda { |organization, args, _ctx|
-      organization.team_position_items
+      organization.team_positions
                   .kept
-                  .where(team_positions: { id: args[:position_id] }, teams: { id: args[:team_id] })
+                  .find(args[:position_id])
+                  .items
+                  .kept
                   .order(order: :asc)
     }
     resolve ->(items, _args, _ctx) { items.decorate }

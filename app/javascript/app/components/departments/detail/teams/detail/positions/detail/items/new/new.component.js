@@ -1,28 +1,28 @@
 class NewController {
   constructor(
-    $rootScope, $state,
-    departmentPositionItems
+    $rootScope, $state, $stateParams,
+    departmentsDetailTeamDetailPositionsDetailItems
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
-    this.departmentPositionItems = departmentPositionItems;
+    this.$stateParams = $stateParams;
+    this.departmentsDetailTeamDetailPositionsDetailItems = departmentsDetailTeamDetailPositionsDetailItems;
     this.item = {
       name: '',
     };
   }
   save() {
     if (this.item.name !== '') {
-      return this.departmentPositionItems.create(this.positionId, this.item).then(() => {
-        this.item.name = '';
-      });
+      return this.departmentsDetailTeamDetailPositionsDetailItems.create(this.$stateParams.positionId, this.item).then(
+        () => {
+          this.item.name = '';
+        }
+      );
     }
   }
 }
 
 let New = {
-  bindings: {
-    positionId: '<'
-  },
   template: require('./new.html'),
   controller: NewController
 };

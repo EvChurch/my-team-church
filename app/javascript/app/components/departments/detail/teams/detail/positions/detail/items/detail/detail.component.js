@@ -1,31 +1,31 @@
 class DetailController {
   constructor(
-    $rootScope, $state,
-    departmentPositionItems
+    $rootScope, $state, $stateParams,
+    departmentsDetailTeamDetailPositionsDetailItems
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
-    this.departmentPositionItems = departmentPositionItems;
+    this.$stateParams = $stateParams;
+    this.departmentsDetailTeamDetailPositionsDetailItems = departmentsDetailTeamDetailPositionsDetailItems;
     this.complete = false;
   }
   save() {
-    if (this.positionItem.name !== '') {
-      return this.departmentPositionItems.update(
-        this.positionId, this.positionItem.id, { name: this.positionItem.name }
-      ).then((positionItem) => {
-        this.positionItem = positionItem;
+    if (this.item.name !== '') {
+      return this.departmentsDetailTeamDetailPositionsDetailItems.update(
+        this.$stateParams.positionId, this.item.id, { name: this.item.name }
+      ).then((item) => {
+        this.item = item;
       });
     }
   }
   delete() {
-    return this.departmentPositionItems.delete(this.positionId, this.positionItem.id);
+    return this.departmentsDetailTeamDetailPositionsDetailItems.delete(this.$stateParams.positionId, this.item.id);
   }
 }
 
 let Detail = {
   bindings: {
-    positionId: '<',
-    positionItem: '<',
+    item: '<',
     readOnly: '<'
   },
   template: require('./detail.html'),

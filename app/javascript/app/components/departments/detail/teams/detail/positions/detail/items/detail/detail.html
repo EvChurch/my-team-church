@@ -9,14 +9,14 @@
   </div>
   <div class="col flex-fill pl-0" ng-if="!$ctrl.readOnly">
     <input class="form-control pl-0"
-           ng-model="$ctrl.positionItem.name"
+           ng-model="$ctrl.item.name"
            placeholder="Item name"
            ng-model-options="{ debounce: 500 }"
            ng-change="$ctrl.save()"
            required>
   </div>
   <div class="col flex-fill pl-0" ng-if="$ctrl.readOnly" ng-click="$ctrl.complete = !$ctrl.complete">
-    {{$ctrl.positionItem.name}}
+    {{$ctrl.item.name}}
   </div>
   <div class="col" ng-click="$ctrl.delete()" ng-if="!$ctrl.readOnly">
     <i class="fas fa-trash"></i>

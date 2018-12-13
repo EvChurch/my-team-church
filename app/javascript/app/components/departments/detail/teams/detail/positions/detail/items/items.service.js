@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 class Items {
   constructor(
     $rootScope,
-    api, modal
+    api
   ) {
     this.$rootScope = $rootScope;
     this.api = api;
@@ -11,7 +11,7 @@ class Items {
   load(positionId) {
     return this.api.query(gql`
       query teamPositionItems($position_id: ID!) {
-        positionItems(
+        teamPositionItems(
           position_id: $position_id,
         ) {
           id
@@ -19,66 +19,65 @@ class Items {
         }
       }
     `, { position_id: positionId }).then((data) => {
-      return data.positionItems;
+      return data.teamPositionItems;
     });
   }
-  get(positionId, id) {
+  get(id) {
     return this.api.query(gql`
       query teamPositionItem($position_id: ID!, $id: ID!){
-        positionItem(
-          position_id: $position_id,
+        teamPositionItem(
           id: $id
         ) {
           id
           name
         }
       }
-    `, { position_id: positionId, id: id }).then((data) => {
-      if (data.positionItem) {
-        return data.positionItem;
+    `, { id: id }).then((data) => {
+      if (data.teamPositionItem) {
+        return data.teamPositionItem;
       } else {
         throw 'Not Found';
       }
     });
   }
-  create(positionId, positionItem) {
+  create(positionId, item) {
     return this.api.mutate(gql`
       mutation createTeamPositionItem(
         $position_id: ID!,
-        $position_item: PositionItemInputType!
+        $item: TeamPositionItemInputType!
       ) {
         createTeamPositionItem(
           position_id: $position_id,
-          position_item: $position_item
+          item: $item
         ) {
           id
           name
         }
       }
-    `, { position_id: positionId, position_item: positionItem }).then((data) => {
-      const positionItem = data.createTeamPositionItem;
-      this.$rootScope.$emit('departmentPositionItemCreate', positionId, positionItem);
-      return positionItem;
+    `, { position_id: positionId, item: item }).then((data) => {
+      const item = data.createTeamPositionItem;
+      this.$rootScope.$emit('itemCreate', positionId, item);
+      return item;
     });
   }
-  update(positionId, id, positionItem) {
+  update(positionId, id, item) {
     return this.api.mutate(gql`
       mutation updateTeamPositionItem(
         $id: ID!,
-        $position_item: PositionItemInputType!
+        $item: TeamPositionItemInputType!
       ) {
         updateTeamPositionItem(
           id: $id,
-          position_item: $position_item
+          item: $item
         ) {
           id
           name
         }
       }
-    `, { id: id, position_item: positionItem }).then((data) => {
-      const positionItem = data.updateTeamPositionItem;
-      this.$rootScope.$emit('departmentPositionItemUpdate', positionId, positionItem);
-      return positionItem;
+    `, { id: id, item: item }).then((data) => {
+      const item = data.updateTeamPositionItem;
+      this.$rootScope.$emit('itemUpdate', positionId, item);
+      return item;
     });
   }
   delete(positionId, id) {
@@ -93,9 +92,9 @@ class Items {
         }
       }
     `, { id: id }).then((data) => {
-      const positionItem = data.deleteTeamPositionItem;
-      this.$rootScope.$emit('departmentPositionItemDelete', positionId, positionItem);
-      return positionItem;
+      const item = data.deleteTeamPositionItem;
+      this.$rootScope.$emit('itemDelete', positionId, item);
+      return item;
     });
   }
 }
