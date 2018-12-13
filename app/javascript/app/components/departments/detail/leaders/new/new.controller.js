@@ -1,23 +1,23 @@
 class NewModalController {
   constructor(
     $scope,
-    departmentLeaders,
+    departmentsDetailLeaders,
     departmentId
   ) {
     this.$scope = $scope;
-    this.departmentLeaders = departmentLeaders;
+    this.departmentsDetailLeaders = departmentsDetailLeaders;
     this.departmentId = departmentId;
-    this.departmentLeader = { person_id: null };
+    this.leader = { person_id: null };
   }
   save() {
-    return this.departmentLeaders.create(this.departmentId, this.departmentLeader).then(() => {
+    return this.departmentsDetailLeaders.create(this.departmentId, this.leader).then(() => {
       this.$scope.$hide();
     });
   }
   setPersonId($id) {
-    this.departmentLeader.person_id = $id;
+    this.leader.person_id = $id;
   }
 }
 
 export default angular.module('app.components.departments.detail.leaders.new.controller', [])
-  .controller('departmentLeadersNewModalController', NewModalController).name;
+  .controller('departmentsDetailLeadersNewModalController', NewModalController).name;

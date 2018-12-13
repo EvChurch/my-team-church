@@ -1,6 +1,6 @@
-<modal title="Add Person" save="$ctrl.save()" cancel="$hide()">
+<modal title="Add Leader" save="$ctrl.save()" cancel="$hide()">
   <div class="form-group">
     <people-search set-person-id="$ctrl.setPersonId($id)"></people-search>
-    <input type="hidden" ng-model="$ctrl.departmentLeader.person_id" required>
+    <input type="hidden" ng-model="$ctrl.leader.person_id" required>
   </div>
 </modal>

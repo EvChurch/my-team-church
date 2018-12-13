@@ -1,11 +1,11 @@
 class NewController {
   constructor(
     $rootScope, $state,
-    keyResults
+    objectivesDetailsKeyResults
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
-    this.keyResults = keyResults;
+    this.objectivesDetailsKeyResults = objectivesDetailsKeyResults;
     this.keyResult = {
       name: '',
       result_type: '%',
@@ -16,7 +16,9 @@ class NewController {
     };
   }
   save() {
-    return this.keyResults.create(this.resourceId, this.resourceType, this.objective.id, this.keyResult).then(() => {
+    return this.objectivesDetailsKeyResults.create(
+      this.resourceId, this.resourceType, this.objective.id, this.keyResult
+    ).then(() => {
       this.keyResult.name = '';
     });
   }

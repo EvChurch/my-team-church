@@ -5,7 +5,7 @@
       <i class="fas fa-search"></i>
     </span>
     <span class="input-group-text"
-          ng-click="$ctrl.departmentDetailTeams.openNewModal($ctrl.departmentId)"
+          ng-click="$ctrl.departmentsDetailTeams.openNewModal($ctrl.$stateParams.departmentId)"
           data-title="Add Team"
           data-trigger="hover"
           data-placement="left"
@@ -31,7 +31,7 @@
   <p>
     Get started by adding a team
   </p>
-  <a ng-click="$ctrl.departmentDetailTeams.openNewModal($ctrl.departmentId)" class="btn btn-primary">
+  <a ng-click="$ctrl.departmentsDetailTeams.openNewModal($ctrl.$stateParams.departmentId)" class="btn btn-primary">
     Add Team
   </a>
 </div>

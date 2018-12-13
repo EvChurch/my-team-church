@@ -1,6 +1,6 @@
-<div class="tree terminus" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.positions.detail.entities.detail.objectives') }">
+<div class="tree terminus" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.teams.detail.positions.detail.entities.detail.objectives') }">
   <div class="heading">
-    <a class="back" ui-sref="departments.detail.positions.detail.entities"><i class="fas fa-chevron-left"></i></a>
+    <a class="back" ui-sref="departments.detail.teams.detail.positions.detail.entities"><i class="fas fa-chevron-left"></i></a>
     <div class="title">
       <div class="ph-item" ng-if="$ctrl.loading">
         <div class="ph-col-12 p-0">
@@ -20,21 +20,21 @@
           <div class="icon">
             <i class="fas fa-chevron-down"></i>
           </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.positions.detail.entities.detail.objectives')">
+          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions.detail.entities.detail.objectives')">
             Objectives
           </div>
         </div>
       </div>
     </div>
     <div class="actions">
-      <a ng-click="$ctrl.departmentPositionEntities.openEditModal($ctrl.positionId, $ctrl.entity.id, $ctrl.entity)"
+      <a ng-click="$ctrl.departmentsDetailTeamsDetailPositionsDetailEntities.openEditModal($ctrl.$stateParams.positionId, $ctrl.entity)"
           data-title="Edit Assigned Person"
           data-placement="left"
           data-trigger="hover"
           bs-tooltip>
         <i class="far fa-edit"></i>
       </a>
-      <a ng-click="$ctrl.departmentPositionEntities.delete($ctrl.positionId, $ctrl.entity.id)"
+      <a ng-click="$ctrl.departmentsDetailTeamsDetailPositionsDetailEntities.delete($ctrl.$stateParams.positionId, $ctrl.entity.id)"
           data-title="Remove Assigned Person"
           data-placement="left"
           data-trigger="hover"

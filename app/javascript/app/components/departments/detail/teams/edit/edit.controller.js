@@ -25,4 +25,4 @@ class EditModalController {
 }
 
 export default angular.module('app.components.departments.detail.teams.edit.controller', [])
-  .controller('departmentDetailTeamsEditModalController', EditModalController).name;
+  .controller('departmentsDetailTeamsEditModalController', EditModalController).name;

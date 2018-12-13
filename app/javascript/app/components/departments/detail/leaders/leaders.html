@@ -5,7 +5,7 @@
       <i class="fas fa-search"></i>
     </span>
     <span class="input-group-text"
-          ng-click="$ctrl.departmentLeaders.openNewModal($ctrl.departmentId)"
+          ng-click="$ctrl.departmentsDetailLeaders.openNewModal($ctrl.$stateParams.departmentId)"
           data-title="Add Leader"
           data-trigger="hover"
           data-placement="left"
@@ -29,7 +29,7 @@
   <p>
     Get started by adding a leader
   </p>
-  <a ng-click="$ctrl.departmentLeaders.openNewModal($ctrl.departmentId)" class="btn btn-primary">
+  <a ng-click="$ctrl.departmentsDetailLeaders.openNewModal($ctrl.$stateParams.departmentId)" class="btn btn-primary">
     Add Leader
   </a>
 </div>

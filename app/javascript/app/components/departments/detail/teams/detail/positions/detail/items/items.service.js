@@ -100,5 +100,5 @@ class Items {
   }
 }
 
-export default angular.module('app.components.departments.detail.positions.detail.items.service', [
-]).service('departmentPositionItems', Items).name;
+export default angular.module('app.components.departments.detail.teams.detail.positions.detail.items.service', [
+]).service('departmentsDetailTeamDetailPositionsDetailItems', Items).name;

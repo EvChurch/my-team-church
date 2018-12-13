@@ -3,11 +3,11 @@
     <label>Person</label>
     <ul class="list-group mt-2">
       <li class="list-group-item d-flex align-items-center">
-        <avatar class="mr-3" source="$ctrl.positionEntity.person.picture"></avatar>
+        <avatar class="mr-3" source="$ctrl.entity.person.picture"></avatar>
         <div>
-          {{$ctrl.positionEntity.person.first_name}}
-          {{$ctrl.positionEntity.person.last_name}}
-          <div ng-if="$ctrl.positionEntity.person.email">{{$ctrl.positionEntity.person.email}}</div>
+          {{$ctrl.entity.person.first_name}}
+          {{$ctrl.entity.person.last_name}}
+          <div ng-if="$ctrl.entity.person.email">{{$ctrl.entity.person.email}}</div>
         </div>
       </li>
     </ul>
@@ -16,17 +16,17 @@
     <div class="row">
       <div class="col">
         <label>Term Start Date</label>
-        <input ng-model="$ctrl.positionEntity.start_at" type="date" class="form-control">
+        <input ng-model="$ctrl.entity.start_at" type="date" class="form-control">
       </div>
       <div class="col">
         <label>Term End Date</label>
-        <input ng-model="$ctrl.positionEntity.end_at" type="date" class="form-control">
+        <input ng-model="$ctrl.entity.end_at" type="date" class="form-control">
       </div>
     </div>
   </div>
   <div class="form-group">
     <label>
-      <input type="checkbox" ng-model="$ctrl.positionEntity.trial">
+      <input type="checkbox" ng-model="$ctrl.entity.trial">
       <strong>Term is a Trial</strong>
     </label>
   </div>

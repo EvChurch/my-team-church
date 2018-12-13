@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Position::EntityPolicy < ApplicationPolicy
+class Team::Position::EntityPolicy < ApplicationPolicy
   class Scope < DepartmentPolicy::Scope
     protected
 
@@ -22,7 +22,7 @@ class Position::EntityPolicy < ApplicationPolicy
 
     def organization_ids
       @organization_ids ||=
-        scope.joins(:position, :person).pluck('positions.organization_id', 'people.organization_id').flatten.uniq
+        scope.joins([{ position: :team }, :person]).pluck('teams.organization_id', 'people.organization_id').flatten.uniq
     end
   end
 end

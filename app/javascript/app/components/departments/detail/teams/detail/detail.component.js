@@ -22,7 +22,7 @@
       if (team.id === this.team.id) this.team = team;
     });
     this.watcher1 = this.$rootScope.$on('teamDelete', (_event, _departmentId, team) => {
-      if (team.id === this.team.id) this.$state.go('^');
+      if (team.id === this.team.id) this.$state.go('departments.detail.teams');
     });
   }
   $onDestroy() {

@@ -16,7 +16,7 @@ class Entities {
       query teamPositionEntities(
         $position_id: ID!
       ) {
-        positionEntities(
+        teamPositionEntities(
           position_id: $position_id
         ) {
           id
@@ -33,11 +33,10 @@ class Entities {
         }
       }
     `, { position_id: positionId }).then((data) => {
-      this.data = reduce((result, positionEntity) => {
-        result.push(this.format(positionEntity));
+      return reduce((result, entity) => {
+        result.push(this.format(entity));
         return result;
-      }, [], JSON.parse(JSON.stringify(data.positionEntities)));
-      return this.data;
+      }, [], JSON.parse(JSON.stringify(data.teamPositionEntities)));
     });
   }
   get(id) {
@@ -69,15 +68,15 @@ class Entities {
       }
     });
   }
-  create(positionId, positionEntity) {
+  create(positionId, entity) {
     return this.api.mutate(gql`
       mutation createTeamPositionEntity(
         $position_id: ID!,
-        $position_entity: PositionEntityInputType!
+        $entity: TeamPositionEntityInputType!
       ) {
         createTeamPositionEntity(
           position_id: $position_id,
-          position_entity: $position_entity
+          entity: $entity
         ) {
           id
           start_at
@@ -92,23 +91,21 @@ class Entities {
           }
         }
       }
-    `, { position_id: positionId, position_entity: positionEntity }).then((data) => {
-      const positionEntity = this.format(data.createTeamPositionEntity);
-      this.$rootScope.$emit('departmentPositionEntityCreate', positionId, positionEntity);
-      return positionEntity;
+    `, { position_id: positionId, entity: entity }).then((data) => {
+      const entity = this.format(data.createTeamPositionEntity);
+      this.$rootScope.$emit('entityCreate', positionId, entity);
+      return entity;
     });
   }
-  update(positionId, id, positionEntity) {
+  update(positionId, id, entity) {
     return this.api.mutate(gql`
       mutation updateTeamPositionEntity(
-        $position_id: ID!,
         $id: ID!,
-        $position_entity: PositionEntityInputType!
+        $entity: TeamPositionEntityInputType!
       ) {
         updateTeamPositionEntity(
-          position_id: $position_id,
           id: $id,
-          position_entity: $position_entity
+          entity: $entity
         ) {
           id
           start_at
@@ -123,56 +120,53 @@ class Entities {
           }
         }
       }
-    `, { position_id: positionId, id: id, position_entity: positionEntity }).then((data) => {
-      const positionEntity = this.format(data.updateTeamPositionEntity);
-      this.$rootScope.$emit('departmentPositionEntityUpdate', positionId, positionEntity);
-      return positionEntity;
+    `, { id: id, entity: entity }).then((data) => {
+      const entity = this.format(data.updateTeamPositionEntity);
+      this.$rootScope.$emit('entityUpdate', positionId, entity);
+      return entity;
     });
   }
   delete(positionId, id) {
     return this.api.mutate(gql`
       mutation deleteTeamPositionEntity(
-        $position_id: ID!,
         $id: ID!
       ) {
         deleteTeamPositionEntity(
-          position_id: $position_id,
           id: $id
         ) {
           id
         }
       }
-    `, { position_id: positionId, id: id }).then((data) => {
-      const positionEntity = data.deleteTeamPositionEntity;
-      this.$rootScope.$emit('departmentPositionEntityDelete', positionId, positionEntity);
-      return positionEntity;
+    `, { id: id }).then((data) => {
+      const entity = data.deleteTeamPositionEntity;
+      this.$rootScope.$emit('entityDelete', positionId, entity);
+      return entity;
     });
   }
   openNewModal(positionId) {
     return this.modal.open({
       template: require('./new/new.html'),
-      controller: 'departmentPositionEntitiesNewModalController',
+      controller: 'departmentsDetailTeamsDetailPositionsDetailEntitiesNewModalController',
       locals: {
         positionId: positionId
       }
     });
   }
-  openEditModal(positionId, id, positionEntity) {
+  openEditModal(positionId, entity) {
     return this.modal.open({
       template: require('./edit/edit.html'),
-      controller: 'departmentPositionEntitiesEditModalController',
+      controller: 'departmentsDetailTeamsDetailPositionsDetailEntitiesEditModalController',
       locals: {
         positionId: positionId,
-        id: id,
-        positionEntity
+        entity: entity
       }
     });
   }
-  format(positionEntity) {
-    positionEntity = JSON.parse(JSON.stringify(positionEntity));
-    positionEntity.start_at = positionEntity.start_at ? new Date(moment(positionEntity.start_at).format('l LT')) : null;
-    positionEntity.end_at = positionEntity.end_at ? new Date(moment(positionEntity.end_at).format('l LT')) : null;
-    return positionEntity;
+  format(entity) {
+    entity = JSON.parse(JSON.stringify(entity));
+    entity.start_at = entity.start_at ? new Date(moment(entity.start_at).format('l LT')) : null;
+    entity.end_at = entity.end_at ? new Date(moment(entity.end_at).format('l LT')) : null;
+    return entity;
   }
 }
 

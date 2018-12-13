@@ -142,7 +142,7 @@ export default class Routes {
         resourceType: () => 'team_position'
       }
     }).state({
-      name: 'departments.detail.team.detail.positions.detail.entities',
+      name: 'departments.detail.teams.detail.positions.detail.entities',
       url: '/entities',
       views: {
         'list@departments.detail.teams.detail.positions.detail': {
@@ -167,7 +167,7 @@ export default class Routes {
       },
       resolve: {
         resourceId: /* @ngInject*/ ($stateParams) => $stateParams.entityId,
-        resourceType: () => 'position_entity'
+        resourceType: () => 'team_position_entity'
       }
     }).state({
       name: 'departments.detail.teams.detail.positions.detail.items',

@@ -97,15 +97,15 @@ class Teams {
         }
       }
     `, { id: id }).then((data) => {
-      const position = data.deleteTeam;
+      const team = data.deleteTeam;
       this.$rootScope.$emit('teamDelete', departmentId, team);
-      return position;
+      return team;
     });
   }
   openNewModal(departmentId) {
     return this.modal.open({
       template: require('./new/new.html'),
-      controller: 'departmentDetailTeamsNewModalController',
+      controller: 'departmentsDetailTeamsNewModalController',
       locals: {
         departmentId: departmentId
       }
@@ -114,7 +114,7 @@ class Teams {
   openEditModal(departmentId, team) {
     return this.modal.open({
       template: require('./edit/edit.html'),
-      controller: 'departmentDetailTeamsEditModalController',
+      controller: 'departmentsDetailTeamsEditModalController',
       locals: {
         departmentId: departmentId,
         team: team

@@ -1,11 +1,11 @@
 class EditModalController {
   constructor(
     $scope,
-    keyResults,
+    objectivesDetailsKeyResults,
     resourceId, resourceType, objective, id, keyResult
   ) {
     this.$scope = $scope;
-    this.keyResults = keyResults;
+    this.objectivesDetailsKeyResults = objectivesDetailsKeyResults;
     this.resourceId = resourceId;
     this.resourceType = resourceType;
     this.objective = objective;
@@ -13,14 +13,14 @@ class EditModalController {
     this.keyResult = angular.copy(keyResult);
   }
   save() {
-    return this.keyResults.update(
+    return this.objectivesDetailsKeyResults.update(
       this.resourceId, this.resourceType, this.objective.id, this.id, this.keyResult
     ).then(() => {
       this.$scope.$hide();
     });
   }
   delete() {
-    return this.keyResults.delete(
+    return this.objectivesDetailsKeyResults.delete(
       this.resourceId, this.resourceType, this.objective.id, this.id
     ).then(() => {
       this.$scope.$hide();

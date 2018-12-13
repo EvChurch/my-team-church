@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-class Positions {
+class Leaders {
   constructor(
     $rootScope,
     api, modal
@@ -26,11 +26,10 @@ class Positions {
       return data.departmentLeaders;
     });
   }
-  get(departmentId, id) {
+  get(id) {
     return this.api.query(gql`
-      query departmentLeader($department_id: ID!, $id: ID!){
+      query departmentLeader($id: ID!){
         departmentLeader(
-          department_id: $department_id,
           id: $id
         ) {
           id
@@ -40,7 +39,7 @@ class Positions {
           }
         }
       }
-    `, { department_id: departmentId, id: id }).then((data) => {
+    `, { id: id }).then((data) => {
       if (data.departmentLeader) {
         return data.departmentLeader;
       } else {
@@ -48,15 +47,15 @@ class Positions {
       }
     });
   }
-  create(departmentId, departmentLeader) {
+  create(departmentId, leader) {
     return this.api.mutate(gql`
       mutation createDepartmentLeader(
         $department_id: ID!,
-        $department_leader: DepartmentLeaderInputType!
+        $leader: DepartmentLeaderInputType!
       ) {
         createDepartmentLeader(
           department_id: $department_id,
-          department_leader: $department_leader
+          leader: $leader
         ) {
           id
           person {
@@ -65,9 +64,9 @@ class Positions {
           }
         }
       }
-    `, { department_id: departmentId, department_leader: departmentLeader }).then((data) => {
+    `, { department_id: departmentId, leader: leader }).then((data) => {
       const departmentLeader = data.createDepartmentLeader;
-      this.$rootScope.$emit('departmentLeaderCreate', departmentId, departmentLeader);
+      this.$rootScope.$emit('leaderCreate', departmentId, departmentLeader);
       return departmentLeader;
     });
   }
@@ -84,14 +83,14 @@ class Positions {
       }
     `, { id: id }).then((data) => {
       const leader = data.deleteDepartmentLeader;
-      this.$rootScope.$emit('departmentLeaderDelete', departmentId, leader);
+      this.$rootScope.$emit('leaderDelete', departmentId, leader);
       return leader;
     });
   }
   openNewModal(departmentId) {
     return this.modal.open({
       template: require('./new/new.html'),
-      controller: 'departmentLeadersNewModalController',
+      controller: 'departmentsDetailLeadersNewModalController',
       locals: {
         departmentId: departmentId
       }
@@ -100,4 +99,4 @@ class Positions {
 }
 
 export default angular.module('app.components.departments.detail.leaders.service', [
-]).service('departmentLeaders', Positions).name;
+]).service('departmentsDetailLeaders', Leaders).name;

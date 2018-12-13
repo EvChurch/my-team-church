@@ -1,18 +1,17 @@
 class DetailController {
   constructor(
     $rootScope, $state, $stateParams,
-    departmentPositionEntities, objectives
+    departmentsDetailTeamsDetailPositionsDetailEntities
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.$stateParams = $stateParams;
-    this.departmentPositionEntities = departmentPositionEntities;
-    this.objectives = objectives;
+    this.departmentsDetailTeamsDetailPositionsDetailEntities = departmentsDetailTeamsDetailPositionsDetailEntities;
   }
   $onInit() {
     this.loading = true;
-    this.departmentPositionEntities.get(
-      this.$stateParams.positionId, this.$stateParams.entityId
+    this.departmentsDetailTeamsDetailPositionsDetailEntities.get(
+      this.$stateParams.entityId
     ).then((entity) => {
       this.entity = entity;
       this.loading = false;
@@ -21,8 +20,8 @@ class DetailController {
       throw ex;
     });
     this.$state.go('.objectives');
-    this.watcher0 = this.$rootScope.$on('departmentPositionEntityDelete', (_event, positionId, entity) => {
-      if (entity.id === this.entity.id) this.$state.go('departments.detail.position');
+    this.watcher0 = this.$rootScope.$on('entityDelete', (_event, positionId, entity) => {
+      if (entity.id === this.entity.id) this.$state.go('^');
     });
   }
   $onDestroy() {
@@ -31,12 +30,10 @@ class DetailController {
 }
 
 let Detail = {
-  bindings: {
-    positionId: '<'
-  },
   template: require('./detail.html'),
   controller: DetailController
 };
 
-export default angular.module('app.components.departments.detail.positions.detail.entities.detail.component', [
-]).component('departmentsDetailPositionsDetailEntitiesDetail', Detail).name;
+export default angular.module(
+  'app.components.departments.detail.teams.detail.positions.detail.entities.detail.component', []
+).component('departmentsDetailTeamsDetailPositionsDetailEntitiesDetail', Detail).name;

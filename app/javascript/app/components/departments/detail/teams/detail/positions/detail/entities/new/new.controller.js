@@ -1,23 +1,26 @@
 class NewModalController {
   constructor(
     $scope,
-    departmentPositionEntities,
+    departmentsDetailTeamsDetailPositionsDetailEntities,
     positionId
   ) {
     this.$scope = $scope;
-    this.positionEntities = departmentPositionEntities;
+    this.departmentsDetailTeamsDetailPositionsDetailEntities = departmentsDetailTeamsDetailPositionsDetailEntities;
     this.positionId = positionId;
-    this.positionEntity = { person_id: null };
+    this.entity = { person_id: null };
   }
   save() {
-    return this.positionEntities.create(this.positionId, this.positionEntity).then(() => {
-      this.$scope.$hide();
-    });
+    return this.departmentsDetailTeamsDetailPositionsDetailEntities.create(this.positionId, this.entity).then(
+      () => {
+        this.$scope.$hide();
+      }
+    );
   }
-  setPersonId($id) {
-    this.positionEntity.person_id = $id;
+  setPersonId(id) {
+    this.entity.person_id = id;
   }
 }
 
-export default angular.module('app.components.departments.detail.positions.detail.entities.new.controller', [])
-  .controller('departmentPositionEntitiesNewModalController', NewModalController).name;
+export default angular.module(
+  'app.components.departments.detail.teams.detail.positions.detail.entities.new.controller', []
+).controller('departmentsDetailTeamsDetailPositionsDetailEntitiesNewModalController', NewModalController).name;

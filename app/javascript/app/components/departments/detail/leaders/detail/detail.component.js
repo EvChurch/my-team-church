@@ -3,23 +3,23 @@ import { find } from 'lodash/fp';
 class DetailController {
   constructor(
     $rootScope, $state, $stateParams,
-    departmentLeaders
+    departmentsDetailLeaders
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.$stateParams = $stateParams;
-    this.departmentLeaders = departmentLeaders;
+    this.departmentsDetailLeaders = departmentsDetailLeaders;
   }
   $onInit() {
     this.loading = true;
-    this.departmentLeaders.get(this.$stateParams.departmentId, this.$stateParams.leaderId).then((leader) => {
+    this.departmentsDetailLeaders.get(this.$stateParams.leaderId).then((leader) => {
       this.loading = false;
       this.leader = leader;
     }).catch((ex) => {
-      $state.go('departments.detail.leaders');
+      this.$state.go('departments.detail.leaders');
       throw ex;
     });
-    this.watcher0 = this.$rootScope.$on('departmentLeaderDelete', (_event, departmentId, leader) => {
+    this.watcher0 = this.$rootScope.$on('leaderDelete', (_event, departmentId, leader) => {
       if (leader.id === this.leader.id) this.$state.go('departments.detail.leaders');
     });
     this.$state.go('.objectives');
@@ -30,9 +30,6 @@ class DetailController {
 }
 
 let Detail = {
-  bindings: {
-    leader: '<'
-  },
   template: require('./detail.html'),
   controller: DetailController
 };

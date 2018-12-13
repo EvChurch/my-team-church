@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Position::ItemPolicy < ApplicationPolicy
+class Team::Position::ItemPolicy < ApplicationPolicy
   class Scope < DepartmentPolicy::Scope
     protected
 

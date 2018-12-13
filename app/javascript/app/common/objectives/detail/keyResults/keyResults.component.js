@@ -1,11 +1,11 @@
 class KeyResultsController {
   constructor(
     $rootScope, $state,
-    keyResults
+    objectivesDetailsKeyResults
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
-    this.keyResults = keyResults;
+    this.objectivesDetailsKeyResults = objectivesDetailsKeyResults;
   }
   $onInit() {
     this.load();
@@ -26,7 +26,7 @@ class KeyResultsController {
   }
   load() {
     this.loading = true;
-    this.keyResults.load(this.resourceId, this.resourceType, this.objective.id).then((keyResults) => {
+    this.objectivesDetailsKeyResults.load(this.resourceId, this.resourceType, this.objective.id).then((keyResults) => {
       this.loading = false;
       this.list = angular.copy(keyResults);
     });

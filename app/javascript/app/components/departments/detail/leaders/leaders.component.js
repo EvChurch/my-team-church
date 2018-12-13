@@ -1,20 +1,21 @@
 class LeadersController {
   constructor(
-    $rootScope,
-    departmentLeaders
+    $rootScope, $stateParams,
+    departmentsDetailLeaders
   ) {
     this.$rootScope = $rootScope;
-    this.departmentLeaders = departmentLeaders;
+    this.$stateParams = $stateParams;
+    this.departmentsDetailLeaders = departmentsDetailLeaders;
 
     this.list = [];
   }
   $onInit() {
     this.load();
-    this.watcher0 = this.$rootScope.$on('departmentLeaderCreate', (_event, departmentId) => {
-      if (departmentId === this.departmentId) this.load();
+    this.watcher0 = this.$rootScope.$on('leaderCreate', (_event, departmentId) => {
+      if (departmentId === this.$stateParams.departmentId) this.load();
     });
-    this.watcher1 = this.$rootScope.$on('departmentLeaderDelete', (_event, departmentId) => {
-      if (departmentId === this.departmentId) this.load();
+    this.watcher1 = this.$rootScope.$on('leaderDelete', (_event, departmentId) => {
+      if (departmentId === this.$stateParams.departmentId) this.load();
     });
   }
   $onDestroy() {
@@ -23,17 +24,14 @@ class LeadersController {
   }
   load() {
     this.loading = true;
-    this.departmentLeaders.load(this.departmentId).then((departmentLeaders) => {
+    this.departmentsDetailLeaders.load(this.$stateParams.departmentId).then((leaders) => {
       this.loading = false;
-      this.list = angular.copy(departmentLeaders);
+      this.list = angular.copy(leaders);
     });
   }
 }
 
 let Leaders = {
-  bindings: {
-    departmentId: '<'
-  },
   template: require('./leaders.html'),
   controller: LeadersController
 };

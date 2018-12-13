@@ -22,7 +22,7 @@
       if (position.id === this.position.id) this.position = position;
     });
     this.watcher1 = this.$rootScope.$on('positionDelete', (_event, teamId, position) => {
-      if (position.id === this.position.id) this.$state.go('^');
+      if (position.id === this.position.id) this.$state.go('departments.detail.teams.detail.positions');
     });
   }
   $onDestroy() {

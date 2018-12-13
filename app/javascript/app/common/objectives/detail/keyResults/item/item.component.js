@@ -1,11 +1,11 @@
 class ItemController {
   constructor(
     $rootScope, $state,
-    keyResults
+    objectivesDetailsKeyResults
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
-    this.keyResults = keyResults;
+    this.objectivesDetailsKeyResults = objectivesDetailsKeyResults;
   }
   $onChanges(changesObject) {
     if (changesObject.keyResult) {
@@ -23,7 +23,7 @@ class ItemController {
     }
   }
   openEditModal() {
-    this.keyResults.openEditKeyResultModal(
+    this.objectivesDetailsKeyResults.openEditKeyResultModal(
       this.resourceId,
       this.resourceType,
       this.objective,
@@ -32,7 +32,7 @@ class ItemController {
     );
   }
   save() {
-    return this.keyResults.update(
+    return this.objectivesDetailsKeyResults.update(
       this.resourceId, this.resourceType, this.objective.id, this.id, this.changedKeyResult
     );
   }

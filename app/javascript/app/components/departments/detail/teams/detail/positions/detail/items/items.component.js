@@ -1,19 +1,19 @@
 class ItemsController {
   constructor(
-    $rootScope,
-    departmentPositionItems
+    $rootScope, $stateParams,
+    departmentsDetailTeamDetailPositionsDetailItems
   ) {
     this.$rootScope = $rootScope;
-    this.departmentPositionItems = departmentPositionItems;
+    this.$stateParams = $stateParams;
+    this.departmentsDetailTeamDetailPositionsDetailItems = departmentsDetailTeamDetailPositionsDetailItems;
     this.sortableOptions = {
       containment: '.departments-detail-positions-detail-items',
-      // restrict move across columns. move only within column.
       accept: (sourceItemHandleScope, destSortableScope) =>
           sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id,
       orderChanged: (event) => {
           const index = event.dest.index;
-          return this.departmentPositionItems.update(
-            this.positionId, this.items[index].id, { name: this.items[index].name, order: index + 1 }
+          return this.departmentsDetailTeamDetailPositionsDetailItems.update(
+            this.$stateParams.positionId, this.items[index].id, { name: this.items[index].name, order: index + 1 }
           );
       },
       containerPositioning: 'relative'
@@ -21,14 +21,14 @@ class ItemsController {
   }
   $onInit() {
     this.load();
-    this.watcher0 = this.$rootScope.$on('departmentPositionItemCreate', (_event, positionId) => {
-      if (positionId === this.positionId) this.load();
+    this.watcher0 = this.$rootScope.$on('itemCreate', (_event, positionId) => {
+      if (positionId === this.$stateParams.positionId) this.load();
     });
-    this.watcher1 = this.$rootScope.$on('departmentPositionItemUpdate', (_event, positionId) => {
-      if (positionId === this.positionId) this.load();
+    this.watcher1 = this.$rootScope.$on('itemUpdate', (_event, positionId) => {
+      if (positionId === this.$stateParams.positionId) this.load();
     });
-    this.watcher2 = this.$rootScope.$on('departmentPositionItemDelete', (_event, positionId) => {
-      if (positionId === this.positionId) this.load();
+    this.watcher2 = this.$rootScope.$on('itemDelete', (_event, positionId) => {
+      if (positionId === this.$stateParams.positionId) this.load();
     });
   }
   $onDestroy() {
@@ -38,21 +38,22 @@ class ItemsController {
   }
   load() {
     this.loading = true;
-    this.departmentPositionItems.load(this.positionId).then((departmentPositionItems) => {
-      this.loading = false;
-      this.items = angular.copy(departmentPositionItems);
-    });
+    this.departmentsDetailTeamDetailPositionsDetailItems.load(this.$stateParams.positionId).then(
+      (items) => {
+        this.loading = false;
+        this.items = angular.copy(items);
+      }
+    );
   }
 }
 
 let Items = {
   bindings: {
-    positionId: '<',
     readOnly: '<'
   },
   template: require('./items.html'),
   controller: ItemsController
 };
 
-export default angular.module('app.components.departments.detail.positions.detail.items.component', [
-]).component('departmentsDetailPositionsDetailItems', Items).name;
+export default angular.module('app.components.departments.detail.teams.detail.positions.detail.items.component', [
+]).component('departmentsDetailTeamsDetailPositionsDetailItems', Items).name;

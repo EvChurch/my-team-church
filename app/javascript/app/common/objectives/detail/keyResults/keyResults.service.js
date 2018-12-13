@@ -86,7 +86,7 @@ class KeyResults {
         $resource_id: ID!,
         $resource_type: String!,
         $objective_id: ID!,
-        $key_result: KeyResultInputType!
+        $key_result: ObjectiveKeyResultInputType!
       ) {
         createObjectiveKeyResult(
           resource_id: $resource_id,
@@ -123,7 +123,7 @@ class KeyResults {
         $resource_type: String!,
         $objective_id: ID!,
         $id: ID!,
-        $key_result: KeyResultInputType!
+        $key_result: ObjectiveKeyResultInputType!
       ) {
         updateObjectiveKeyResult(
           resource_id: $resource_id,
@@ -206,4 +206,4 @@ class KeyResults {
 
 
 export default angular.module('app.common.objectives.details.keyResults.service', [
-]).service('keyResults', KeyResults).name;
+]).service('objectivesDetailsKeyResults', KeyResults).name;
