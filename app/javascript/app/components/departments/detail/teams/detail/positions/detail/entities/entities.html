@@ -31,7 +31,7 @@
      ui-sref="departments.detail.teams.detail.positions.detail.entities.detail({entityId: entity.id})"
      ui-sref-active="active"
      ng-repeat="entity in $ctrl.list | filter: { person: { name:$ctrl.search } } track by entity.id">
-    <departments-detail-positions-detail-entities-item entity="entity"></departments-detail-positions-detail-entities-item>
+  <departments-detail-teams-detail-positions-detail-entities-item entity="entity"></departments-detail-teams-detail-positions-detail-entities-item>
   </a>
 </div>
 <div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.list.length == 0">

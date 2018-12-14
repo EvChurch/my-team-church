@@ -1,11 +1,4 @@
-import { reject } from 'lodash/fp';
-
 class ItemController {
-  constructor(
-      $rootScope
-  ) {
-      this.$rootScope = $rootScope;
-  }
 }
 
 let Item = {
@@ -16,5 +9,6 @@ let Item = {
   controller: ItemController
 };
 
-export default angular.module('app.components.departments.detail.positions.detail.entities.item.component', [
-]).component('departmentsDetailPositionsDetailEntitiesItem', Item).name;
+export default angular.module(
+  'app.components.departments.detail.teams.detail.positions.detail.entities.item.component', []
+).component('departmentsDetailTeamsDetailPositionsDetailEntitiesItem', Item).name;

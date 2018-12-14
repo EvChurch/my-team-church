@@ -1,24 +1,35 @@
 
 class JobDescriptionController {
   constructor(
-    departmentPositions
+    $stateParams,
+    departmentsDetailTeamsDetailPositions
   ) {
-    this.departmentPositions = departmentPositions;
+    this.$stateParams = $stateParams;
+    this.departmentsDetailTeamsDetailPositions = departmentsDetailTeamsDetailPositions;
   }
   $onInit() {
-    this.id = this.position.id;
-    this.position = { description: this.position.description };
+    this.loading = true;
+    this.departmentsDetailTeamsDetailPositions.get(this.$stateParams.positionId).then((position) => {
+      this.position = angular.copy(position);
+      this.loading = false;
+    }).catch((ex) => {
+      this.$state.go('departments.detail.teams.detail.positions');
+      throw ex;
+    });
   }
   save() {
     if (!this.readOnly) {
-      return this.departmentPositions.update(this.departmentId, this.id, this.position);
+      return this.departmentsDetailTeamsDetailPositions.update(
+        this.$stateParams.teamId,
+        this.$stateParams.positionId,
+        { description: this.position.description }
+      );
     }
   }
 }
 
 let JobDescription = {
   bindings: {
-    departmentId: '<',
     position: '<',
     readOnly: '<'
   },
@@ -26,5 +37,6 @@ let JobDescription = {
   controller: JobDescriptionController
 };
 
-export default angular.module('app.components.departments.detail.positions.detail.jobDescription.component', [
-]).component('departmentsDetailPositionsDetailJobDescription', JobDescription).name;
+export default angular.module(
+  'app.components.departments.detail.teams.details.positions.detail.jobDescription.component', []
+).component('departmentsDetailTeamsDetailPositionsDetailJobDescription', JobDescription).name;

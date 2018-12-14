@@ -22,7 +22,7 @@ class DetailController {
       if (department.id === this.department.id) this.department = department;
     });
     this.watcher1 = this.$rootScope.$on('departmentDelete', (_event, department) => {
-      if (department.id === this.department.id) this.$state.go('^');
+      if (department.id === this.department.id) this.$state.go('departments');
     });
   }
   $onDestroy() {

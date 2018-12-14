@@ -11,6 +11,7 @@ module Queries::Team::Position::EntityQuery
                   .kept
                   .find(args[:position_id])
                   .entities
+                  .kept
                   .includes(:person)
     }
     resolve ->(entities, _args, _ctx) { entities.decorate }

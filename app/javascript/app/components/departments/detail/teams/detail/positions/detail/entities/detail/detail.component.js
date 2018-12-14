@@ -16,12 +16,12 @@ class DetailController {
       this.entity = entity;
       this.loading = false;
     }).catch((ex) => {
-      this.$state.go('departments.detail.positions.detail.entities');
+      this.$state.go('departments.detail.teams.detail.positions.detail.entities');
       throw ex;
     });
     this.$state.go('.objectives');
-    this.watcher0 = this.$rootScope.$on('entityDelete', (_event, positionId, entity) => {
-      if (entity.id === this.entity.id) this.$state.go('^');
+    this.watcher0 = this.$rootScope.$on('entityDelete', (_event, _positionId, entity) => {
+      if (entity.id === this.entity.id) this.$state.go('departments.detail.teams.detail.positions.detail.entities');
     });
   }
   $onDestroy() {

@@ -1,5 +1,5 @@
 <div class="list">
-  <div class="departments-detail-positions-detail-items"
+  <div class="departments-detail-teams-detail-positions-detail-items"
        data-as-sortable="$ctrl.sortableOptions"
        data-ng-model="$ctrl.items">
     <div class="as-sortable-item d-flex align-items-center"
@@ -11,11 +11,11 @@
         <i class="fas fa-bars"></i>
       </div>
       <div class="col flex-fill p-0">
-        <departments-detail-positions-detail-items-detail item="item" read-only="$ctrl.readOnly">
-        </departments-detail-positions-detail-items-detail>
+        <departments-detail-teams-detail-positions-detail-items-detail item="item" read-only="$ctrl.readOnly">
+        </departments-detail-teams-detail-positions-detail-items-detail>
       </div>
     </div>
   </div>
-  <departments-detail-positions-detail-items-new ng-if="!$ctrl.readOnly">
-  </departments-detail-positions-detail-items-new>
+  <departments-detail-teams-detail-positions-detail-items-new ng-if="!$ctrl.readOnly">
+  </departments-detail-teams-detail-positions-detail-items-new>
 </div>

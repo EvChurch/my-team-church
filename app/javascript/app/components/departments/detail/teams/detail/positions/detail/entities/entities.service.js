@@ -126,7 +126,7 @@ class Entities {
       return entity;
     });
   }
-  delete(positionId, id) {
+  delete(positionId, entity) {
     return this.api.mutate(gql`
       mutation deleteTeamPositionEntity(
         $id: ID!
@@ -137,7 +137,7 @@ class Entities {
           id
         }
       }
-    `, { id: id }).then((data) => {
+    `, { id: entity.id }).then((data) => {
       const entity = data.deleteTeamPositionEntity;
       this.$rootScope.$emit('entityDelete', positionId, entity);
       return entity;

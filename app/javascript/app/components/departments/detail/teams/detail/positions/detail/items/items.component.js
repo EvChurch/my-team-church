@@ -7,7 +7,7 @@ class ItemsController {
     this.$stateParams = $stateParams;
     this.departmentsDetailTeamDetailPositionsDetailItems = departmentsDetailTeamDetailPositionsDetailItems;
     this.sortableOptions = {
-      containment: '.departments-detail-positions-detail-items',
+      containment: '.departments-detail-teams-detail-positions-detail-items',
       accept: (sourceItemHandleScope, destSortableScope) =>
           sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id,
       orderChanged: (event) => {
