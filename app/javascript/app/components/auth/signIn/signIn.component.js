@@ -31,7 +31,6 @@ class SignInController {
 }
 
 let SignIn = {
-  bindings: {},
   template: require('./signIn.html'),
   controller: SignInController
 };

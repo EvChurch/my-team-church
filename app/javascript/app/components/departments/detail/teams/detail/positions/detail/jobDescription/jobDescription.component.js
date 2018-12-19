@@ -30,7 +30,6 @@ class JobDescriptionController {
 
 let JobDescription = {
   bindings: {
-    position: '<',
     readOnly: '<'
   },
   template: require('./jobDescription.html'),
@@ -38,5 +37,5 @@ let JobDescription = {
 };
 
 export default angular.module(
-  'app.components.departments.detail.teams.details.positions.detail.jobDescription.component', []
+  'app.components.departments.detail.teams.detail.positions.detail.jobDescription.component', []
 ).component('departmentsDetailTeamsDetailPositionsDetailJobDescription', JobDescription).name;

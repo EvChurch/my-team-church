@@ -39,10 +39,10 @@ class Entities {
   }
   get(id) {
     return this.api.query(gql`
-      query personTeamPositionEntity(
+      query teamPositionEntity(
         $id: ID!
       ) {
-        personPositionEntity(
+        teamPositionEntity(
           id: $id
         ) {
           id
@@ -54,7 +54,7 @@ class Entities {
             name
             description
             training_description
-            department {
+            team {
               id
               name
             }
@@ -62,8 +62,8 @@ class Entities {
         }
       }
     `, { id: id }).then((data) => {
-      if (data.personPositionEntity) {
-        return this.format(data.personPositionEntity);
+      if (data.teamPositionEntity) {
+        return this.format(data.teamPositionEntity);
       } else {
         throw 'Not Found';
       }

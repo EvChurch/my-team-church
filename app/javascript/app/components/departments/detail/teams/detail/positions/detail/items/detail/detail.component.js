@@ -32,5 +32,6 @@ let Detail = {
   controller: DetailController
 };
 
-export default angular.module('app.components.departments.detail.positions.detail.items.detail.component', [
-]).component('departmentsDetailPositionsDetailItemsDetail', Detail).name;
+export default angular.module(
+  'app.components.departments.detail.teams.detail.positions.detail.items.detail.component', []
+).component('departmentsDetailTeamsDetailPositionsDetailItemsDetail', Detail).name;

@@ -21,7 +21,6 @@ class ConnectController {
 }
 
 let Connect = {
-  bindings: {},
   template: require('./connect.html'),
   controller: ConnectController
 };

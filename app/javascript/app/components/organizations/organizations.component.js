@@ -5,7 +5,6 @@ class OrganizationsController {
 }
 
 let Organizations = {
-  bindings: {},
   template: require('./organizations.html'),
   controller: OrganizationsController
 };

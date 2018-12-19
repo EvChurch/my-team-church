@@ -7,7 +7,6 @@ class LoadingListController {
 }
 
 let LoadingList = {
-  bindings: {},
   template: require('./loadingList.html'),
   controller: LoadingListController
 };

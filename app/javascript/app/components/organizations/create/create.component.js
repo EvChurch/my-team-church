@@ -19,7 +19,6 @@ class CreateController {
 }
 
 let Create = {
-  bindings: {},
   template: require('./create.html'),
   controller: CreateController
 };

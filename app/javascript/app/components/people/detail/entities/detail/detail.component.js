@@ -1,25 +1,42 @@
 class DetailController {
   constructor(
-    $rootScope, $state,
-    peopleDetailEntities, objectives
+    $rootScope, $state, $stateParams,
+    peopleDetailEntities
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
+    this.$stateParams = $stateParams;
     this.peopleDetailEntities = peopleDetailEntities;
-    this.objectives = objectives;
   }
   $onInit() {
+    this.load();
     this.$state.go('.objectives');
-    this.watcher0 = this.$rootScope.$on('personPositionEntityDelete', (_event, _personId, positionEntity) => {
-      if (positionEntity.id === this.positionEntity.id) this.$state.go('people.detail.entities');
+    this.watcher0 = this.$rootScope.$on('entityDelete', (_event, _personId, entity) => {
+      if (entity.id === this.entity.id) this.$state.go('people.detail.entities');
     });
   }
   $onDestroy() {
     this.watcher0();
   }
+  load() {
+    this.loading = true;
+    this.peopleDetailEntities.get(
+      this.entityId
+    ).then((entity) => {
+      this.entity = entity;
+      this.loading = false;
+    }).catch((ex) => {
+      this.$state.go('people.detail.entities');
+      throw ex;
+    });
+  }
 }
 
 let Detail = {
+  bindings: {
+    personId: '<',
+    entityId: '<'
+  },
   template: require('./detail.html'),
   controller: DetailController
 };

@@ -7,7 +7,6 @@ class NavbarController {
 }
 
 let Navbar = {
-  bindings: {},
   template: require('./navbar.html'),
   controller: NavbarController
 };

@@ -9,7 +9,6 @@ class RootController {
 }
 
 let Root = {
-  bindings: {},
   template: require('./root.html'),
   controller: RootController
 };

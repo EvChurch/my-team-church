@@ -30,8 +30,6 @@ class TrainingController {
 
 let Training = {
   bindings: {
-    departmentId: '<',
-    position: '<',
     readOnly: '<'
   },
   template: require('./training.html'),

@@ -2,7 +2,6 @@ class HomeController {
 }
 
 let Home = {
-  bindings: {},
   template: require('./home.html'),
   controller: HomeController
 };

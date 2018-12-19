@@ -2,7 +2,6 @@ class AuthController {
 }
 
 let Auth = {
-  bindings: {},
   template: require('./auth.html'),
   controller: AuthController
 };

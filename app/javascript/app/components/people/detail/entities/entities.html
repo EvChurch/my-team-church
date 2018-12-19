@@ -8,22 +8,22 @@
 </div>
 <div class="list-group list-group-flush">
   <a class="list-group-item list-group-item-action d-flex align-items-center"
-    ng-repeat="positionEntity in $ctrl.list | filter: { position: { name: $ctrl.search } } track by positionEntity.id"
-    ui-sref=".detail({positionEntityId: positionEntity.id})"
+    ng-repeat="entity in $ctrl.list | filter: { position: { name: $ctrl.search } } track by entity.id"
+    ui-sref=".detail({entityId: entity.id})"
     ui-sref-active="active">
     <div class="flex-fill">
-      {{positionEntity.position.name}}
-      <div ng-if="positionEntity.start_at && !positionEntity.end_at">
-        <small>Start: {{positionEntity.start_at | date}}</small>
+      {{entity.position.name}}
+      <div ng-if="entity.start_at && !entity.end_at">
+        <small>Start: {{entity.start_at | date}}</small>
       </div>
-      <div ng-if="positionEntity.end_at && !positionEntity.start_at">
-        <small>End: {{positionEntity.end_at | date}}</small>
+      <div ng-if="entity.end_at && !entity.start_at">
+        <small>End: {{entity.end_at | date}}</small>
       </div>
-      <div ng-if="positionEntity.end_at && positionEntity.start_at">
-        <small>{{positionEntity.start_at | date}} - {{positionEntity.end_at | date}}</small>
+      <div ng-if="entity.end_at && entity.start_at">
+        <small>{{entity.start_at | date}} - {{entity.end_at | date}}</small>
       </div>
     </div>
-    <div ng-if="positionEntity.trial"
+    <div ng-if="entity.trial"
         data-title="Trial"
         data-placement="left"
         data-trigger="hover"

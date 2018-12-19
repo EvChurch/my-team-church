@@ -27,5 +27,5 @@ let New = {
   controller: NewController
 };
 
-export default angular.module('app.components.departments.detail.positions.detail.items.new.component', [
-]).component('departmentsDetailPositionsDetailItemsNew', New).name;
+export default angular.module('app.components.departments.detail.teams.detail.positions.detail.items.new.component', [
+]).component('departmentsDetailTeamsDetailPositionsDetailItemsNew', New).name;

@@ -17,7 +17,6 @@ class SidebarController {
 }
 
 let Sidebar = {
-  bindings: {},
   template: require('./sidebar.html'),
   controller: SidebarController
 };

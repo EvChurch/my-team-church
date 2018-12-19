@@ -255,23 +255,22 @@ export default class Routes {
       },
       resolve: {
         resourceId: /* @ngInject */ ($stateParams) => $stateParams.entityId,
-        resourceType: () => 'position_entity'
+        resourceType: () => 'team_position_entity'
       }
     }).state({
       name: 'people.detail.entities.detail.items',
-      url: '/items',
+      url: '/positions/:positionId/items',
       views: {
         'list@people.detail.entities.detail': {
           component: 'departmentsDetailTeamsDetailPositionsDetailItems'
         }
       },
       resolve: {
-        positionId: /* @ngInject */ (positionEntity) => positionEntity.position.id,
         readOnly: () => true
       }
     }).state({
       name: 'people.detail.entities.detail.jobDescription',
-      url: '/job_description',
+      url: '/positions/:positionId/job_description',
       views: {
         'list@people.detail.entities.detail': {
           component: 'departmentsDetailTeamsDetailPositionsDetailJobDescription'
@@ -282,7 +281,7 @@ export default class Routes {
       }
     }).state({
       name: 'people.detail.entities.detail.training',
-      url: '/training',
+      url: '/positions/:positionId/training',
       views: {
         'list@people.detail.entities.detail': {
           component: 'departmentsDetailTeamsDetailPositionsDetailTraining'

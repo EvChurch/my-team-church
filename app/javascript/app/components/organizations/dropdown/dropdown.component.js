@@ -23,7 +23,6 @@ class DropdownController {
 }
 
 let Dropdown = {
-  bindings: {},
   template: require('./dropdown.html'),
   controller: DropdownController
 };

@@ -9,6 +9,16 @@ class DetailController {
     this.departmentsDetailTeamsDetailPositionsDetailEntities = departmentsDetailTeamsDetailPositionsDetailEntities;
   }
   $onInit() {
+    this.load();
+    this.$state.go('.objectives');
+    this.watcher0 = this.$rootScope.$on('entityDelete', (_event, _positionId, entity) => {
+      if (entity.id === this.entity.id) this.$state.go('departments.detail.teams.detail.positions.detail.entities');
+    });
+  }
+  $onDestroy() {
+    this.watcher0();
+  }
+  load() {
     this.loading = true;
     this.departmentsDetailTeamsDetailPositionsDetailEntities.get(
       this.$stateParams.entityId
@@ -19,13 +29,6 @@ class DetailController {
       this.$state.go('departments.detail.teams.detail.positions.detail.entities');
       throw ex;
     });
-    this.$state.go('.objectives');
-    this.watcher0 = this.$rootScope.$on('entityDelete', (_event, _positionId, entity) => {
-      if (entity.id === this.entity.id) this.$state.go('departments.detail.teams.detail.positions.detail.entities');
-    });
-  }
-  $onDestroy() {
-    this.watcher0();
   }
 }
 
