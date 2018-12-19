@@ -4,7 +4,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
 import { createHttpLink } from 'apollo-link-http';
 
-/* @ngInject*/
+/* @ngInject */
 export default function appConfig(
   apolloProvider, $stateProvider, $locationProvider, $windowProvider
 ) {

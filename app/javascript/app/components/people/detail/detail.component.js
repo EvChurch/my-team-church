@@ -51,8 +51,5 @@ let Detail = {
   controller: DetailController
 };
 
-import people from '../people.service';
-
 export default angular.module('app.components.people.detail.component', [
-  people
 ]).component('peopleDetail', Detail).name;

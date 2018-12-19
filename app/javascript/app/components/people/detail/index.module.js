@@ -1,7 +1,7 @@
 import Component from './detail.component';
-import PositionEntities from './positionEntities/index.module';
+import Entities from './entities/index.module';
 
 export default angular.module('app.components.people.detail', [
   Component,
-  PositionEntities
+  Entities
 ]).name;
