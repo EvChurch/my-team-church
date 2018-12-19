@@ -294,10 +294,7 @@ export default class Routes {
       name: 'me',
       url: '/me',
       component: 'peopleDetail',
-      parent: 'root',
-      resolve: {
-        personId: /* @ngInject */ (people) => people.getMe().then((me) => me.id)
-      }
+      parent: 'root'
     }).state({
       name: 'me.objectives',
       url: '/objectives',
@@ -313,9 +310,6 @@ export default class Routes {
         'list@me': {
           component: 'peopleDetailEntities'
         }
-      },
-      resolve: {
-        personId: /* @ngInject */ ($stateParams) => $stateParams.personId
       }
     }).state({
       name: 'me.entities.detail',
@@ -324,10 +318,6 @@ export default class Routes {
         'branch@me': {
           component: 'peopleDetailEntitiesDetail'
         }
-      },
-      resolve: {
-        personId: /* @ngInject */ ($stateParams) => $stateParams.personId,
-        entityId: /* @ngInject */ ($stateParams) => $stateParams.entityId
       }
     }).state({
       name: 'me.entities.detail.objectives',
@@ -336,10 +326,6 @@ export default class Routes {
         'list@me.entities.detail': {
           component: 'objectives',
         }
-      },
-      resolve: {
-        personId: /* @ngInject */ ($stateParams) => $stateParams.personId,
-        entityId: /* @ngInject */ ($stateParams) => $stateParams.entityId
       }
     }).state({
       name: 'me.entities.detail.items',

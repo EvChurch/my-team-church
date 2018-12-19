@@ -1,10 +1,11 @@
 class EntitiesController {
   constructor(
-    $rootScope, $state,
+    $rootScope, $state, $stateParams,
     peopleDetailEntities
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
+    this.$stateParams = $stateParams;
     this.peopleDetailEntities = peopleDetailEntities;
 
     this.list = [];
@@ -12,7 +13,7 @@ class EntitiesController {
   $onInit() {
     this.load();
     this.watcher0 = this.$rootScope.$on('entityDelete', (_event, personId) => {
-      if (personId === this.personId) this.load();
+      if (personId === this.$stateParams.personId) this.load();
     });
   }
   $onDestroy() {
@@ -20,7 +21,7 @@ class EntitiesController {
   }
   load() {
     this.loading = true;
-    this.peopleDetailEntities.load(this.personId).then((entities) => {
+    this.peopleDetailEntities.load(this.$stateParams.personId).then((entities) => {
       this.loading = false;
       this.list = angular.copy(entities);
     });
@@ -28,9 +29,6 @@ class EntitiesController {
 }
 
 let Entities = {
-  bindings: {
-    personId: '<'
-  },
   template: require('./entities.html'),
   controller: EntitiesController
 };
