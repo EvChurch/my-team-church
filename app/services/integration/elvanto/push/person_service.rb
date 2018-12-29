@@ -1,21 +1,29 @@
 # frozen_string_literal: true
 
+require 'elvanto'
+
 class Integration::Elvanto::Push::PersonService < Integration::Elvanto::Push::BaseService
   def create
-    response = ElvantoAPI.post('people/create', elvanto_person_object)
-    record.update(remote_id: response.body.dig('person', 'id'), remote_source: 'elvanto', pushable: false)
+    update
   end
 
   def update
+    create_person unless record.remote_id
     update_person
     update_account
   end
 
   protected
 
+  def create_person
+    ElvantoAPI.configure(api_key: integration.api_key)
+    response = ElvantoAPI.post('people/create', firstname: record.first_name, lastname: record.last_name)
+    record.update(remote_id: response.body.dig('person', 'id'), remote_source: 'elvanto', pushable: false)
+  end
+
   def update_person
     response = post("admin/people/person/?id=#{record.remote_id}", person, 'form')
-    alert_text = Nokogiri::HTML(response).at('.ajax-alerts .message p').text
+    alert_text = Nokogiri::HTML(response).at('.ajax-alerts .message p')&.text
     return if alert_text == 'Person has been saved successfully!'
 
     raise 'person failed to sync'
@@ -35,7 +43,7 @@ class Integration::Elvanto::Push::PersonService < Integration::Elvanto::Push::Ba
 
   def update_account
     response = post("admin/people/person_account/?id=#{record.remote_id}", account, 'form')
-    alert_text = Nokogiri::HTML(response).at('.ajax-alerts .message p').text
+    alert_text = Nokogiri::HTML(response).at('.ajax-alerts .message p')&.text
     return if alert_text == 'Account Details have been saved successfully!'
 
     raise 'person account failed to sync'

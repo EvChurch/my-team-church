@@ -27,11 +27,15 @@ class DetailController {
     this.watcher0();
   }
   save() {
+    this.saving = true;
     if (this.person.id) {
-      this.people.update(this.person.id, this.person);
+      this.people.update(this.person.id, this.person).then((person) => {
+        this.saving = false;
+      });
     } else {
       this.people.create(this.person).then((person) => {
-        this.person = angular.copy(person);
+        this.saving = false;
+        this.$state.go('people.detail', { personId: person.id });
       });
     }
   }
