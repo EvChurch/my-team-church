@@ -12,7 +12,13 @@ class DetailController {
     this.load();
     this.$state.go('.objectives');
     this.watcher0 = this.$rootScope.$on('entityDelete', (_event, _personId, entity) => {
-      if (entity.id === this.entity.id) this.$state.go('people.detail.entities');
+      if (entity.id === this.entity.id) {
+        if (this.$state.includes('me')) {
+          this.$state.go('me.entities');
+        } else {
+          this.$state.go('people.detail.entities');
+        }
+      }
     });
   }
   $onDestroy() {

@@ -59,6 +59,9 @@ class Entities {
               name
             }
           }
+          person {
+            id
+          }
         }
       }
     `, { id: id }).then((data) => {
