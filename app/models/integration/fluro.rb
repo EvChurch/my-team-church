@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
-require 'elvanto'
-
 class Integration::Fluro < Integration
   validates :username, :password, presence: true, if: -> { api_key.nil? }
   validate :validate_username_and_password
-
 
   def active
     if expires_at && Time.zone.now > expires_at

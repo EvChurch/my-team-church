@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Integration::Elvanto::Push::PositionService
-  def self.push(integration, position, action)
-    Integration::Elvanto::Push::DepartmentService.push(integration, position.department, 'update')
+  def self.push(integration, position, _action)
+    Integration::Elvanto::Push::TeamService.push(integration, position.team, 'update')
   end
 end

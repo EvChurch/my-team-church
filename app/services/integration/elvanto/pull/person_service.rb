@@ -18,14 +18,11 @@ class Integration::Elvanto::Pull::PersonService < Integration::Elvanto::Pull::Ba
       attributes['last_name'] = attributes.delete('lastname')
       person.attributes = attributes.select { |k, _v| person.attributes.keys.member?(k.to_s) && k.to_s != 'id' }
       person.save
-      person.access_permission_ids = remote_ids_to_ids(attributes, 'access_permission')
-      person.demographic_ids = remote_ids_to_ids(attributes, 'demographic')
-      person.location_ids = remote_ids_to_ids(attributes, 'location')
       next unless attributes['departments'] != []
 
-      person.position_ids = attributes['departments']['department'].map do |a|
-        a['sub_departments']['sub_department'].map do |b|
-          remote_ids_to_ids(b, 'position')
+      person.position_ids = attributes['departments']['department'].map do |department|
+        department['sub_departments']['sub_department'].map do |sub_department|
+          remote_ids_to_ids(sub_department, 'position')
         end
       end.flatten
     end
