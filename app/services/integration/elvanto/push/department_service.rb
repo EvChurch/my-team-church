@@ -14,11 +14,7 @@ class Integration::Elvanto::Push::DepartmentService
   end
 
   def create
-    return unless Position.where(department_id: department.subtree.ids).exists?
-
-    response = post_department_to_elvanto
-
-    department.update(remote_id: response['id'], remote_source: 'elvanto', pushable: false)
+    update_local(post_department_to_elvanto) unless department.positions.empty?
   end
 
   def update
@@ -33,11 +29,9 @@ class Integration::Elvanto::Push::DepartmentService
       name: department.path.map(&:name).join(' > '),
       self_assign: false,
       has_sub_departments: '',
-      reports_to: [],
       status: '',
       notification: true,
-      non_conflicts: [],
-      sub_departments: sub_departments
+      sub_departments: department.teams.map(&method(:team)).compact
     )
   end
 
@@ -61,35 +55,45 @@ class Integration::Elvanto::Push::DepartmentService
     )['view']['csrf_token']
   end
 
-  def sub_departments
-    department.teams.map do |team|
-      return nil unless team.positions.exists?
-      {
-        id: team.remote_id || 'add',
-        name: team.name,
-        self_assign: false,
-        leadership_position: false,
-        reports_to: [],
-        non_conflicts: [],
-        positions: positions(team)
-      }
-    end.compact
+  def team(local_team)
+    {
+      id: local_team.remote_id || 'add',
+      name: local_team.name,
+      parent_id: department.remote_id,
+      self_assign: false,
+      positions: local_team.positions.map(&method(:position))
+    } unless local_team.positions.empty?
   end
 
-  def positions(team)
-    team.positions.map do |position|
-      {
-        id: position.remote_id || 'add',
-        name: position.name,
-        self_assign: false,
-        leadership_position: false,
-        reports_to: [],
-        non_conflicts: []
-      }
-    end
+  def position(local_position)
+    {
+      id: local_position.remote_id || 'add',
+      name: local_position.name,
+      self_assign: false,
+      leadership_position: false
+    }
   end
 
   def cookies
     @cookies ||= Integration::Elvanto::AuthenticateService.get_authentication_cookies(integration)
+  end
+
+  def update_local(response)
+    return if response['errors']
+    department.update(remote_id: response['id'], remote_source: 'elvanto', pushable: false)
+    response['sub_departments'].each do |team|
+      local_team = department.teams.find_by(remote_id: team['id'], remote_source: 'elvanto')
+      unless local_team
+        local_team = department.teams.find_by(remote_id: nil, remote_source: nil, name: team['name'])
+        local_team.update(remote_id: team['id'], remote_source: 'elvanto', pushable: false)
+      end
+      team['positions'].each do |position|
+        local_position = local_team.positions.find_by(remote_id: position['id'], remote_source: 'elvanto')
+        unless local_position
+          local_position = local_team.positions.find_by(remote_id: nil, remote_source: nil, name: position['name'])
+          local_position.update(remote_id: position['id'], remote_source: 'elvanto', pushable: false)
+        end
+      end
+    end
   end
 end
