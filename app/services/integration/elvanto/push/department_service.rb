@@ -1,20 +1,8 @@
 # frozen_string_literal: true
 
-class Integration::Elvanto::Push::DepartmentService
-  attr_accessor :integration, :department, :action
-
-  def self.push(integration, department, action)
-    new(integration, department.root, action).send(action)
-  end
-
-  def initialize(integration, department, action)
-    @integration = integration
-    @department = department
-    @action = action
-  end
-
+class Integration::Elvanto::Push::DepartmentService < Integration::Elvanto::Push::BaseService
   def create
-    update_local(post_department_to_elvanto) unless department.positions.empty?
+    update_local(post_department_to_elvanto) unless record.positions.empty?
   end
 
   def update
@@ -25,41 +13,25 @@ class Integration::Elvanto::Push::DepartmentService
 
   def post_department_to_elvanto
     post_department(
-      department.remote_id || 'add',
-      name: department.path.map(&:name).join(' > '),
+      record.remote_id || 'add',
+      name: record.path.map(&:name).join(' > '),
       self_assign: false,
       has_sub_departments: '',
       status: '',
       notification: true,
-      sub_departments: department.teams.map(&method(:team)).compact
+      sub_departments: record.teams.map(&method(:team)).compact
     )
   end
 
   def post_department(id, body)
-    url = "https://#{integration.domain}/admin/settings/departments/#{id}"
-    HTTParty.post(
-      url,
-      headers: {
-        'Cookie' => cookies,
-        'Content-Type' => 'application/json',
-        'Accept' => 'application/json'
-      },
-      body: body.merge(id: id, csrf_token: csrf_token(url)).to_json
-    )
-  end
-
-  def csrf_token(url)
-    response = Nokogiri::HTML(HTTParty.get(url, headers: { 'Cookie' => cookies }))
-    JSON.parse(
-      response.at('script:contains("PageData")').text.delete_prefix('var PageData = ').delete_suffix(';')
-    )['view']['csrf_token']
+    post("admin/settings/departments/#{id}", body.merge(id: id))
   end
 
   def team(local_team)
     {
       id: local_team.remote_id || 'add',
       name: local_team.name,
-      parent_id: department.remote_id,
+      parent_id: record.remote_id,
       self_assign: false,
       positions: local_team.positions.map(&method(:position))
     } unless local_team.positions.empty?
@@ -74,17 +46,13 @@ class Integration::Elvanto::Push::DepartmentService
     }
   end
 
-  def cookies
-    @cookies ||= Integration::Elvanto::AuthenticateService.get_authentication_cookies(integration)
-  end
-
   def update_local(response)
     return if response['errors']
-    department.update(remote_id: response['id'], remote_source: 'elvanto', pushable: false)
+    record.update(remote_id: response['id'], remote_source: 'elvanto', pushable: false)
     response['sub_departments'].each do |team|
-      local_team = department.teams.find_by(remote_id: team['id'], remote_source: 'elvanto')
+      local_team = record.teams.find_by(remote_id: team['id'], remote_source: 'elvanto')
       unless local_team
-        local_team = department.teams.find_by(remote_id: nil, remote_source: nil, name: team['name'])
+        local_team = record.teams.find_by(remote_id: nil, remote_source: nil, name: team['name'])
         local_team.update(remote_id: team['id'], remote_source: 'elvanto', pushable: false)
       end
       team['positions'].each do |position|

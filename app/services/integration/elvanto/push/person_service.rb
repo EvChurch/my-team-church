@@ -1,70 +1,50 @@
 # frozen_string_literal: true
 
-require 'elvanto'
-
-class Integration::Elvanto::Push::PersonService
-  attr_accessor :integration, :person, :action
-
-  def self.push(integration, person, action)
-    new(integration, person, action).send(action)
-  end
-
-  def initialize(integration, person, action)
-    @integration = integration
-    @person = person
-    @action = action
-    ElvantoAPI.configure(api_key: integration.api_key)
-  end
-
+class Integration::Elvanto::Push::PersonService < Integration::Elvanto::Push::BaseService
   def create
     response = ElvantoAPI.post('people/create', elvanto_person_object)
-    person.update(remote_id: response.body.dig('person', 'id'), remote_source: 'Elvanto', pushable: false)
+    record.update(remote_id: response.body.dig('person', 'id'), remote_source: 'elvanto', pushable: false)
   end
 
   def update
-    ElvantoAPI.post(
-      'people/edit', elvanto_person_object
-    )
+    update_person
+    update_account
   end
 
   protected
 
-  def elvanto_person_object
+  def update_person
+    response = post("admin/people/person/?id=#{record.remote_id}", person, 'form')
+    alert_text = Nokogiri::HTML(response).at('.ajax-alerts .message p').text
+    return if alert_text == 'Person has been saved successfully!'
+
+    raise 'person failed to sync'
+  end
+
+  def person
     {
-      id: person.remote_id,
-      firstname: person.first_name,
-      lastname: person.last_name,
-      email: person.email,
-      phone: person.phone,
-      mobile: person.mobile,
-      fields: {
-        gender: person.gender,
-        departments_replace: person.positions.map(&method(:position_to_elvanto_department_field))
-      }
+      member_firstname: record.first_name,
+      member_lastname: record.last_name,
+      member_email: record.email,
+      member_phone: record.phone,
+      member_mobile: record.mobile,
+      member_gender: record.gender,
+      save: 1
     }
   end
 
-  def position_to_elvanto_department_field(position)
-    root_department = position.department.path[0]
-    sub_department = position.department.path[1]
-    root_department.name
+  def update_account
+    response = post("admin/people/person_account/?id=#{record.remote_id}", account, 'form')
+    alert_text = Nokogiri::HTML(response).at('.ajax-alerts .message p').text
+    return if alert_text == 'Account Details have been saved successfully!'
+
+    raise 'person account failed to sync'
+  end
+
+  def account
     {
-      'department' => [{
-        'id' => root_department.remote_id || root_department.id,
-        'name' => root_department.name,
-        'sub_departments' => {
-          'sub_department' => [{
-            'id' => sub_department.remote_id || sub_department.id,
-            'name' => sub_department.name,
-            'positions' => {
-              'position' => [{
-                'id' => position.remote_id || id,
-                'name' => position.name
-              }]
-            }
-          }]
-        }
-      }]
+      department_positions: record.positions.where(remote_source: 'elvanto').pluck(:remote_id),
+      save: 'account'
     }
   end
 end

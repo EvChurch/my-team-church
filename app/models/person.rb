@@ -5,10 +5,11 @@ class Person < ApplicationRecord
 
   belongs_to :organization
   has_many :position_entities,
-           class_name: 'Position::Entity',
+           class_name: 'Team::Position::Entity',
            dependent: :destroy,
            inverse_of: :person
   has_many :positions,
+           class_name: 'Team::Position',
            through: :position_entities
   has_many :departments,
            through: :positions

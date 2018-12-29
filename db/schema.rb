@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_29_074907) do
+ActiveRecord::Schema.define(version: 2018_12_29_102921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -217,6 +217,7 @@ ActiveRecord::Schema.define(version: 2018_12_29_074907) do
     t.boolean "trial", default: false
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_team_position_entities_on_discarded_at"
+    t.index ["position_id", "person_id"], name: "index_team_position_entities_on_position_id_and_person_id", unique: true
     t.index ["position_id"], name: "index_team_position_entities_on_position_id"
   end
 

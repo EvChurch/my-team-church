@@ -9,39 +9,35 @@ class Integration::Elvanto::Pull::PersonService < Integration::Elvanto::Pull::Ba
        mailing_postcode mailing_country home_address home_address2 home_city home_state home_postcode
        home_country departments family reports_to].freeze
 
-
   def pull
     people.each do |attributes|
-      person = @organization.people.find_or_initialize_by(remote_id: attributes['id'], remote_source: 'Elvanto')
+      person = @organization.people.find_by(remote_id: attributes['id'], remote_source: 'elvanto')
+      person ||= @organization.people.find_by(email: attributes['email'], remote_id: nil, remote_source: nil)
+      person ||= @organization.people.build
+
       attributes['family'] = attributes['family'] == [] ? {} : attributes['family']
       attributes['first_name'] = attributes.delete('firstname')
       attributes['last_name'] = attributes.delete('lastname')
+      attributes['remote_id'] = attributes['id']
+      attributes['remote_source'] = 'elvanto'
       person.attributes = attributes.select { |k, _v| person.attributes.keys.member?(k.to_s) && k.to_s != 'id' }
       person.save
       next unless attributes['departments'] != []
 
       person.position_ids = attributes['departments']['department'].map do |department|
         department['sub_departments']['sub_department'].map do |sub_department|
-          remote_ids_to_ids(sub_department, 'position')
+          sub_department['positions']['position'].map do |object|
+            @organization.team_positions.find_by!(
+              remote_id: object['id'],
+              remote_source: 'elvanto'
+            ).id
+          end
         end
       end.flatten
     end
   end
 
   protected
-
-  def remote_ids_to_ids(collection, name)
-    plural_name = name.pluralize
-    return [] if collection[plural_name] == []
-
-    collection[plural_name][name].map do |object|
-      name.classify.constantize.find_by!(
-        remote_id: object['id'],
-        remote_source: 'Elvanto',
-        organization: organization
-      ).id
-    end
-  end
 
   def people
     return @people if @people
