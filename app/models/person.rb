@@ -27,4 +27,8 @@ class Person < ApplicationRecord
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
   default_scope -> { order(:first_name, :last_name) }
   serialize :family, Hash
+
+  def gender_as_letter
+    gender&.first&.downcase
+  end
 end

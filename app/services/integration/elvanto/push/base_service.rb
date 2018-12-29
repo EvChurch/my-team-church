@@ -25,18 +25,22 @@ class Integration::Elvanto::Push::BaseService
   end
 
   def payload(body, method)
-    return body.to_json if method == 'json'
-    body
+    method == 'json' ? body.to_json : body
   end
 
   def headers(method)
-    if method == 'json'
-      return {
-        'Cookie' => cookies,
-        'Content-Type' => 'application/json',
-        'Accept' => 'application/json'
-      }
-    end
+    method == 'json' ? json_headers : default_headers
+  end
+
+  def json_headers
+    {
+      'Cookie' => cookies,
+      'Content-Type' => 'application/json',
+      'Accept' => 'application/json'
+    }
+  end
+
+  def default_headers
     {
       'Cookie' => cookies,
       'Content-Type' => 'application/x-www-form-urlencoded'
@@ -45,11 +49,16 @@ class Integration::Elvanto::Push::BaseService
 
   def csrf_token(url, method)
     response = Nokogiri::HTML(HTTParty.get(url, headers: { 'Cookie' => cookies }))
-    if method == 'json'
-      return JSON.parse(
-        response.at('script:contains("PageData")').text.delete_prefix('var PageData = ').delete_suffix(';')
-      )['view']['csrf_token']
-    end
+    method == 'json' ? extract_json_csrf_token(response) : extract_default_csrf_token(response)
+  end
+
+  def extract_json_csrf_token(response)
+    JSON.parse(
+      response.at('script:contains("PageData")').text.delete_prefix('var PageData = ').delete_suffix(';')
+    )['view']['csrf_token']
+  end
+
+  def extract_default_csrf_token(response)
     response.at('input[name="csrf_token"]').attributes['value'].value
   end
 

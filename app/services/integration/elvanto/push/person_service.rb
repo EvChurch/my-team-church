@@ -28,7 +28,7 @@ class Integration::Elvanto::Push::PersonService < Integration::Elvanto::Push::Ba
       member_email: record.email,
       member_phone: record.phone,
       member_mobile: record.mobile,
-      member_gender: record.gender,
+      member_gender: record.gender_as_letter,
       save: 1
     }
   end
