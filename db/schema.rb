@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_29_055925) do
+ActiveRecord::Schema.define(version: 2018_12_29_074907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(version: 2018_12_29_055925) do
     t.datetime "discarded_at"
     t.index ["department_id"], name: "index_team_links_on_department_id"
     t.index ["discarded_at"], name: "index_team_links_on_discarded_at"
+    t.index ["team_id", "department_id"], name: "index_team_links_on_team_id_and_department_id", unique: true
     t.index ["team_id"], name: "index_team_links_on_team_id"
   end
 

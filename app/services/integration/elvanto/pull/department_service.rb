@@ -22,7 +22,7 @@ class Integration::Elvanto::Pull::DepartmentService < Integration::Elvanto::Pull
       remote_id: team['id'], remote_source: 'elvanto'
     )
     local_team.name = team['name']
-    local_team.departments << local_department
+    local_team.departments << local_department unless local_team.departments.include?(local_department)
     local_team.save!
     team['positions'].each do |position|
       import_position(position, local_team)
