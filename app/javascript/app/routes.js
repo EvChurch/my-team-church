@@ -337,7 +337,7 @@ export default class Routes {
       }
     }).state({
       name: 'me.entities.detail.items',
-      url: '/items',
+      url: '/positions/:positionId/items',
       views: {
         'list@me.entities.detail': {
           component: 'departmentsDetailTeamsDetailPositionsDetailItems'
@@ -348,7 +348,7 @@ export default class Routes {
       }
     }).state({
       name: 'me.entities.detail.jobDescription',
-      url: '/job_description',
+      url: '/positions/:positionId/job_description',
       views: {
         'list@me.entities.detail': {
           component: 'departmentsDetailTeamsDetailPositionsDetailJobDescription'
@@ -359,7 +359,7 @@ export default class Routes {
       }
     }).state({
       name: 'me.entities.detail.training',
-      url: '/training',
+      url: '/positions/:positionId/training',
       views: {
         'list@me.entities.detail': {
           component: 'departmentsDetailTeamsDetailPositionsDetailTraining'
