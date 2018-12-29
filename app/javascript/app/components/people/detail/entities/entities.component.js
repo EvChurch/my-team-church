@@ -1,19 +1,21 @@
 class EntitiesController {
   constructor(
-    $rootScope, $state, $stateParams,
-    peopleDetailEntities
+    $q, $rootScope, $state, $stateParams,
+    people, peopleDetailEntities
   ) {
+    this.$q = $q;
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.$stateParams = $stateParams;
+    this.people = people;
     this.peopleDetailEntities = peopleDetailEntities;
 
     this.list = [];
   }
   $onInit() {
-    this.load();
+    this.loadPersonId().then(() => this.load());
     this.watcher0 = this.$rootScope.$on('entityDelete', (_event, personId) => {
-      if (personId === this.$stateParams.personId) this.load();
+      if (personId === this.personId) this.load();
     });
   }
   $onDestroy() {
@@ -21,10 +23,18 @@ class EntitiesController {
   }
   load() {
     this.loading = true;
-    this.peopleDetailEntities.load(this.$stateParams.personId).then((entities) => {
+    this.peopleDetailEntities.load(this.personId).then((entities) => {
       this.loading = false;
       this.list = angular.copy(entities);
     });
+  }
+  loadPersonId() {
+    if (this.$state.includes('me')) {
+      return this.people.getMe().then((me) => this.personId = me.id);
+    } else {
+      this.personId = this.$stateParams.personId;
+      return this.$q.resolve(this.personId);
+    }
   }
 }
 

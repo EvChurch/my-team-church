@@ -21,7 +21,7 @@ class DetailController {
   load() {
     this.loading = true;
     this.peopleDetailEntities.get(
-      this.entityId
+      this.$stateParams.entityId
     ).then((entity) => {
       this.entity = entity;
       this.loading = false;
@@ -33,10 +33,6 @@ class DetailController {
 }
 
 let Detail = {
-  bindings: {
-    personId: '<',
-    entityId: '<'
-  },
   template: require('./detail.html'),
   controller: DetailController
 };

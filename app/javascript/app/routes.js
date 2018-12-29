@@ -302,6 +302,10 @@ export default class Routes {
         'list@me': {
           component: 'objectives'
         }
+      },
+      resolve: {
+        resourceId: /* @ngInject */ (people) => people.getMe().then((me) => me.id),
+        resourceType: () => 'person'
       }
     }).state({
       name: 'me.entities',
@@ -326,6 +330,10 @@ export default class Routes {
         'list@me.entities.detail': {
           component: 'objectives',
         }
+      },
+      resolve: {
+        resourceId: /* @ngInject */ ($stateParams) => $stateParams.entityId,
+        resourceType: () => 'team_position_entity'
       }
     }).state({
       name: 'me.entities.detail.items',
