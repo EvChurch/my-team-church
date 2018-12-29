@@ -35,7 +35,11 @@
       </div>
     </div>
     <div class="actions">
-      <a ng-click="$ctrl.peopleDetailEntities.delete($ctrl.personId, $ctrl.entity.id)">
+      <a ng-click="$ctrl.peopleDetailEntities.delete($ctrl.$stateParams.personId, $ctrl.entity.id)"
+         data-title="Remove Assignment"
+         data-placement="left"
+         data-trigger="hover"
+         bs-tooltip>
         <i class="fas fa-times"></i>
       </a>
     </div>

@@ -10,49 +10,40 @@ class Integration::Elvanto::Push::PersonService < Integration::Elvanto::Push::Ba
   def update
     create_person unless record.remote_id
     update_person
-    update_account
   end
 
   protected
 
   def create_person
-    ElvantoAPI.configure(api_key: integration.api_key)
-    response = ElvantoAPI.post('people/create', firstname: record.first_name, lastname: record.last_name)
+    response = elvanto.post('people/create', firstname: record.first_name, lastname: record.last_name)
     record.update(remote_id: response.body.dig('person', 'id'), remote_source: 'elvanto', pushable: false)
   end
 
   def update_person
-    response = post("admin/people/person/?id=#{record.remote_id}", person, 'form')
-    alert_text = Nokogiri::HTML(response).at('.ajax-alerts .message p')&.text
-    return if alert_text == 'Person has been saved successfully!'
-
-    raise 'person failed to sync'
+    elvanto.post('people/edit', person)
   end
 
   def person
     {
-      member_firstname: record.first_name,
-      member_lastname: record.last_name,
-      member_email: record.email,
-      member_phone: record.phone,
-      member_mobile: record.mobile,
-      member_gender: record.gender_as_letter,
-      save: 1
+      id: record.remote_id,
+      firstname: record.first_name,
+      lastname: record.last_name,
+      email: record.email,
+      phone: record.phone,
+      mobile: record.mobile,
+      fields: {
+        gender: record.gender,
+        departments_replace: record.positions.map(&method(:position_to_elvanto_department_field))
+      }
     }
   end
 
-  def update_account
-    response = post("admin/people/person_account/?id=#{record.remote_id}", account, 'form')
-    alert_text = Nokogiri::HTML(response).at('.ajax-alerts .message p')&.text
-    return if alert_text == 'Account Details have been saved successfully!'
-
-    raise 'person account failed to sync'
+  def position_to_elvanto_department_field(position)
+    "#{position.team.departments.first.name}||#{position.team.name}||#{position.name}"
   end
 
-  def account
-    {
-      department_positions: record.positions.where(remote_source: 'elvanto').pluck(:remote_id),
-      save: 'account'
-    }
+  def elvanto
+    ElvantoAPI.configure(api_key: integration.api_key)
+    ElvantoAPI
   end
 end

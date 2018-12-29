@@ -71,18 +71,17 @@ class Entities {
   }
   delete(personId, id) {
     return this.api.mutate(gql`
-      mutation deletePersonTeamPositionEntity(
+      mutation deleteTeamPositionEntity(
         $id: ID!
       ) {
-        deletePersonTeamPositionEntity(
-          person_id: $person_id,
+        deleteTeamPositionEntity(
           id: $id,
         ) {
           id
         }
       }
-    `, { person_id: personId, id: id }).then((data) => {
-      const entity = data.deletePersonTeamPositionEntity;
+    `, { id: id }).then((data) => {
+      const entity = data.deleteTeamPositionEntity;
       this.$rootScope.$emit('entityDelete', personId, entity);
       return entity;
     });

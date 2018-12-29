@@ -5,6 +5,7 @@ class Person < ApplicationRecord
 
   belongs_to :organization
   has_many :position_entities,
+           -> { where(discarded_at: nil) },
            class_name: 'Team::Position::Entity',
            dependent: :destroy,
            inverse_of: :person

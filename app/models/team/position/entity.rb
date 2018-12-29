@@ -13,5 +13,4 @@ class Team::Position::Entity < ApplicationRecord
       .or(where('start_at <= :now AND end_at >= :now', now: Time.current))
   }
   delegate :organization, to: :position
-  validates :person_id, uniqueness: { scope: :position_id }
 end
