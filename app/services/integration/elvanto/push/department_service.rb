@@ -2,7 +2,7 @@
 
 class Integration::Elvanto::Push::DepartmentService < Integration::Elvanto::Push::BaseService
   def create
-    update_local(post_department_to_elvanto) unless record.positions.empty?
+    update_local(post_department_to_elvanto) unless record.positions.kept.empty?
   end
 
   def update
@@ -19,7 +19,7 @@ class Integration::Elvanto::Push::DepartmentService < Integration::Elvanto::Push
       has_sub_departments: '',
       status: '',
       notification: true,
-      sub_departments: record.teams.map(&method(:team)).compact
+      sub_departments: record.teams.kept.map(&method(:team)).compact
     )
   end
 
@@ -33,8 +33,8 @@ class Integration::Elvanto::Push::DepartmentService < Integration::Elvanto::Push
       name: local_team.name,
       parent_id: record.remote_id,
       self_assign: false,
-      positions: local_team.positions.map(&method(:position))
-    } unless local_team.positions.empty?
+      positions: local_team.positions.kept.map(&method(:position))
+    } unless local_team.positions.kept.empty?
   end
 
   def position(local_position)
