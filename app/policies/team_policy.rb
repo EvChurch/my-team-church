@@ -5,7 +5,7 @@ class TeamPolicy < ApplicationPolicy
     protected
 
     def secure_scope
-      scope.where(department_id: department_and_children_ids)
+      scope.joins(:departments).where(departments: { id: department_and_children_ids })
     end
   end
 end
