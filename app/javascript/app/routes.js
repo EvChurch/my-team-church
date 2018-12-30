@@ -43,7 +43,7 @@ export default class Routes {
       parent: 'root',
       resolve: {
         0: /* @ngInject */ ($state, organizations) => {
-          if(!organizations.primary.admin || !organizations.primary.leader) {
+          if(!organizations.primary.admin && !organizations.primary.leader) {
             $state.go('home');
           }
         }
