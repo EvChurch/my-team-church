@@ -24,16 +24,7 @@ class Department < ApplicationRecord
     where(id: department_ids)
   end)
 
-  def people_needed_grouped_by_position_id
-    positions.group(:id).sum(:people_needed)
-  end
-
-  def people_active_grouped_by_position_id
-    entities.active.group(:position_id).reorder(nil).count
-  end
-
   def positions_needing_people
-    return 0
     people_active = people_active_grouped_by_position_id
     people_needed_grouped_by_position_id.select do |key, value|
       value > (people_active[key] || 0)
@@ -42,5 +33,15 @@ class Department < ApplicationRecord
 
   def children
     super.kept
+  end
+
+  protected
+
+  def people_needed_grouped_by_position_id
+    positions.kept.group(:id).sum(:people_needed)
+  end
+
+  def people_active_grouped_by_position_id
+    entities.active.group(:position_id).reorder(nil).count
   end
 end

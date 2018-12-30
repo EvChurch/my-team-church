@@ -18,6 +18,7 @@ class Teams {
           id
           name
           description
+          positions_needing_people
         }
       }
     `, { department_id: departmentId }).then((data) => {

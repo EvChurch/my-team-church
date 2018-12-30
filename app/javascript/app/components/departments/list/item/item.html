@@ -11,16 +11,16 @@
     </span>
   </div>
   <div class="flex-fill">
-      {{$ctrl.item.name}}
-    </div>
-    <div>
-      <span class="badge badge-warning"
-            ng-if="$ctrl.item.positions_needing_people > 0"
-            data-title="positions in need"
-            data-placement="left"
-            data-trigger="hover"
-            bs-tooltip>{{$ctrl.item.positions_needing_people}}</span>
-    </div>
+    {{$ctrl.item.name}}
+  </div>
+  <div>
+    <span class="badge badge-warning"
+          ng-if="$ctrl.item.positions_needing_people > 0"
+          data-title="positions in need"
+          data-placement="left"
+          data-trigger="hover"
+          bs-tooltip>{{$ctrl.item.positions_needing_people}}</span>
+  </div>
 </a>
 <departments-list
   list="$ctrl.item.children"

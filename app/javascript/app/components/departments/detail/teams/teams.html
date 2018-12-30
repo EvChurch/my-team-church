@@ -23,6 +23,14 @@
     <div class="flex-fill">
       {{team.name}}
     </div>
+    <div>
+      <span class="badge badge-warning"
+            ng-if="team.positions_needing_people > 0"
+            data-title="positions in need"
+            data-placement="left"
+            data-trigger="hover"
+            bs-tooltip>{{team.positions_needing_people}}</span>
+    </div>
   </a>
 </div>
 <div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.list.length == 0">
