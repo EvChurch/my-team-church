@@ -40,7 +40,14 @@ export default class Routes {
       title: 'Departments',
       url: '/departments',
       component: 'departments',
-      parent: 'root'
+      parent: 'root',
+      resolve: {
+        0: /* @ngInject */ ($state, organizations) => {
+          if(!organizations.primary.admin || !organizations.primary.leader) {
+            $state.go('home');
+          }
+        }
+      }
     }).state({
       name: 'departments.detail',
       url: '/:departmentId',
@@ -200,7 +207,12 @@ export default class Routes {
       component: 'people',
       parent: 'root',
       resolve: {
-        0: /* @ngInject */ (people) => people.load()
+        0: /* @ngInject */ ($state, organizations) => {
+          if(!organizations.primary.admin) {
+            $state.go('home');
+          }
+        },
+        1: /* @ngInject */ (people) => people.load()
       }
     }).state({
       name: 'people.new',
@@ -435,6 +447,19 @@ export default class Routes {
       title: 'Connect My Organization',
       component: 'organizationsConnect',
       url: '/connect?access_code'
+    }).state({
+      name: 'admins',
+      title: 'Admins',
+      component: 'admins',
+      url: '/admins',
+      parent: 'root',
+      resolve: {
+        0: /* @ngInject */ ($state, organizations) => {
+          if(!organizations.primary.admin) {
+            $state.go('home');
+          }
+        }
+      }
     });
   }
 }

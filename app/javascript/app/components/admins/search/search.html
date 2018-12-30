@@ -1,0 +1,31 @@
+<input class="form-control"
+       ng-model="$ctrl.searchString"
+       ng-change="$ctrl.search()"
+       ng-model-options="{ debounce: 1000 }">
+<ul class="list-group mt-2">
+  <li class="list-group-item d-flex align-items-center active" ng-if="$ctrl.admin">
+    <div class="flex-fill">
+      {{$ctrl.admin.first_name}}
+      {{$ctrl.admin.last_name}}
+      <div ng-if="$ctrl.admin.email">{{$ctrl.admin.email}}</div>
+    </div>
+    <a ng-click="$ctrl.setPerson()">
+      <i class="fas fa-times"></i>
+    </a>
+  </li>
+  <li class="list-group-item d-flex align-items-center"
+      ng-repeat="edge in $ctrl.list track by edge.cursor"
+      ng-click="$ctrl.setAdmin(edge.node)"
+      ng-if="$ctrl.admin.id !== edge.node.id">
+    <div>
+      {{edge.node.first_name}}
+      {{edge.node.last_name}}
+      <div ng-if="edge.node.email">{{edge.node.email}}</div>
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-center"
+      ng-if="$ctrl.list.hasNextPage"
+      ng-click="$ctrl.loadMore()">
+    Load more users
+  </li>
+</ul>

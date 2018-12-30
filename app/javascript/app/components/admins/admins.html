@@ -1,0 +1,60 @@
+<div class="tree terminus">
+  <div class="heading">
+    <div class="title">
+      <h1>Admins</h1>
+    </div>
+    <div class="actions">
+      <a ng-click="$ctrl.admins.openNewModal()"
+          data-title="Add Admin"
+          data-placement="left"
+          data-trigger="hover"
+          bs-tooltip>
+        <i class="fas fa-plus"></i>
+      </a>
+    </div>
+  </div>
+  <div class="list">
+    <div class="input-group search">
+      <input type="text" class="form-control" ng-model="$ctrl.search" placeholder="Filter Admins">
+      <div class="input-group-append">
+        <span class="input-group-text">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+    </div>
+    <div class="list-group list-group-flush">
+      <loading-list ng-if="$ctrl.loading && $ctrl.list.length == 0"></loading-list>
+      <div class="list-group-item list-group-item-action flex-column align-items-start"
+        ng-repeat="admin in $ctrl.list | filter: { name:$ctrl.search } track by admin.id">
+        <div class="d-flex align-items-center">
+          <div class="flex-fill">
+            {{admin.first_name}}
+            {{admin.last_name}}
+            <div ng-if="admin.email">
+              <a href="mailto:{{admin.email}}">{{admin.email}}</a>
+            </div>
+          </div>
+          <a ng-click="$ctrl.admins.delete(admin.id)"
+            data-title="Remove Admin"
+            data-placement="left"
+            data-trigger="hover"
+            bs-tooltip>
+            <i class="fas fa-times"></i>
+          </a>
+      </div>
+    </div>
+    <div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.list.length == 0" >
+      <i class="fas fa-hiking blankslate-icon"></i>
+      <h5>No Admins</h5>
+      <p>
+        Get started by adding an admin
+      </p>
+      <a ng-click="$ctrl.admins.openNewModal()" class="btn btn-primary">
+        Add Admin
+      </a>
+    </div>
+  </div>
+  <div class="branch" ui-view>
+    <div class="placeholder"></div>
+  </div>
+</div>

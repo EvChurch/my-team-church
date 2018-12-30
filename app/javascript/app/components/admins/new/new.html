@@ -1,0 +1,6 @@
+<modal title="Add Admin" save="$ctrl.save()" cancel="$hide()">
+    <div class="form-group">
+      <admins-search set-admin-id="$ctrl.setAdminId($id)"></admins-search>
+      <input type="hidden" ng-model="$ctrl.admin_id" required>
+    </div>
+  </modal>

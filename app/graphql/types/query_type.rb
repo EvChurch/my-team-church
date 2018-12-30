@@ -36,4 +36,15 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :personTeamPositionEntities, Queries::Person::Team::Position::EntityQuery::List
   field :integrations, Queries::IntegrationQuery::List
   field :integration, Queries::IntegrationQuery::Get
+  field :admins, Queries::AdminQuery::List
+  field :admin, Queries::AdminQuery::Get
+  connection :users, Types::PersonType.connection_type do
+    argument :search_string, types.String
+    description 'List of Users'
+    resource lambda { |organization, args, _ctx|
+      return organization.users if args[:search_string].blank?
+      organization.users.where("concat_ws(' ', email, first_name, last_name) ILIKE ?", "%#{args[:search_string]}%")
+    }
+    resolve ->(users, _args, _ctx) { users.decorate }
+  end
 end
