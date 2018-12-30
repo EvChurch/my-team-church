@@ -20,7 +20,7 @@ class DepartmentPolicy < ApplicationPolicy
 
     def department_and_children_ids
       return @department_and_children_ids if @department_and_children_ids
-      @department_and_children_ids = @department_ids.map { |id| Department.subtree_of(id).pluck(:id) }.flatten
+      @department_and_children_ids = department_ids.map { |id| Department.subtree_of(id).pluck(:id) }.flatten
     end
 
     def organizational_admin?

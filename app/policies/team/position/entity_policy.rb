@@ -5,14 +5,14 @@ class Team::Position::EntityPolicy < ApplicationPolicy
     protected
 
     def secure_scope
-      scope.where(id: (entity_ids_by_leader_ids + entity_ids_by_person_ids).uniq)
+      scope.where(id: (ids_by_department_ids + ids_by_person_ids).uniq)
     end
 
-    def entity_ids_by_leader_ids
-      scope.joins(:position).where('positions.department_id', department_and_children_ids).ids
+    def ids_by_department_ids
+      scope.joins(position: { team: :departments }).where(departments: { id: department_and_children_ids }).ids
     end
 
-    def entity_ids_by_person_ids
+    def ids_by_person_ids
       scope.where(person_id: person_ids).ids
     end
 
