@@ -9,7 +9,7 @@ class OrganizationDecorator < ApplicationDecorator
   end
 
   def leader
-    object.department_leaders.where(
+    object.department_leaders.kept.where(
       person_id: context[:user].links.where(organization_id: object.id).pluck(:person_id)
     ).exists?
   end

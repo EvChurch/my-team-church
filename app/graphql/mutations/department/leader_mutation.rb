@@ -7,11 +7,11 @@ module Mutations::Department::LeaderMutation
     argument :leader, !InputTypes::Department::LeaderInputType
     type Types::Department::LeaderType
     resolve lambda { |organization, args, _ctx|
-      organization.departments
-                  .find(args[:department_id])
-                  .leaders
-                  .create!(args[:leader].to_h)
-                  .decorate
+      scope = organization.departments.find(args[:department_id]).leaders
+      leader = scope.find_by(args[:leader].to_h)
+      leader ||= scope.create!(args[:leader].to_h)
+      leader.undiscard
+      leader.decorate
     }
   end
 

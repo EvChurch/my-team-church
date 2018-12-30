@@ -15,7 +15,10 @@ class DepartmentPolicy < ApplicationPolicy
 
     def department_ids
       return @department_ids if @department_ids
-      @department_ids = user.links.joins(person: :department_leaders).pluck('department_leaders.department_id')
+      @department_ids = user.links
+                            .joins(person: :department_leaders)
+                            .where(department_leaders: { discarded_at: nil })
+                            .pluck('department_leaders.department_id')
     end
 
     def department_and_children_ids
