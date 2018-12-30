@@ -1,0 +1,8 @@
+loading-list {
+  .list-group-item {
+    height: 50px;
+    &:first-child {
+      height: 49px;
+    }
+  }
+}
