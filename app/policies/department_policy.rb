@@ -10,7 +10,7 @@ class DepartmentPolicy < ApplicationPolicy
     protected
 
     def secure_scope
-      scope.where(id: department_ids)
+      scope.where(id: department_and_children_ids)
     end
 
     def department_ids

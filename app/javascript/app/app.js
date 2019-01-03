@@ -1,15 +1,18 @@
+import 'expose-loader?$!jquery'; // import before angular to replace jqlite
+import * as angular from 'angular';
 import AppComponent from './app.component';
 import appConfig from './app.config';
 import appRun from './app.run';
-import angular from 'angular';
 import AngularApollo from 'angular1-apollo';
 import Common from './common/common';
 import Components from './components/components';
 import ngAnimate from 'angular-animate';
 import uiRouter from 'angular-ui-router';
+import 'angular-chosen-localytics';
 import 'angular-strap';
 import 'angular-toastr';
 import 'angular-trix';
+import 'chosen-js';
 import 'countries-and-timezones';
 import 'ng-sortable';
 import 'ngclipboard';
@@ -20,11 +23,12 @@ angular.module('app', [
   Components,
   ngAnimate,
   uiRouter,
-  'mgcrea.ngStrap',
-  'toastr',
   'angularTrix',
   'as.sortable',
-  'ngclipboard'
+  'localytics.directives',
+  'mgcrea.ngStrap',
+  'ngclipboard',
+  'toastr'
 ])
   .config(appConfig)
   .run(appRun)

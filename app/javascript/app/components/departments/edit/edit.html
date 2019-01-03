@@ -14,10 +14,11 @@
   </div>
   <div class="form-group">
     <label>Parent</label>
-    <select class="form-control" ng-model="$ctrl.department.parent_id">
-      <option ng-repeat="department in $ctrl.departments.data track by department.id" value="{{department.id}}">
-        {{department.name}}
-      </option>
+    <select chosen
+            ng-model="$ctrl.department.parent_id"
+            ng-options="department.id as department.name for department in $ctrl.departments.allDepartments"
+            allow-single-deselect="true">
+      <option value=""></option>
     </select>
   </div>
 </modal>

@@ -1,12 +1,11 @@
 class DepartmentsNewModalController {
   constructor(
-    $scope, $state, departments, parent
+    $scope, $state, departments, parentId
   ) {
     this.$scope = $scope;
     this.$state = $state;
     this.departments = departments;
-    this.department = { name: '', description: '', parent_id: parent.id };
-    this.parent = parent;
+    this.department = { name: '', description: '', parent_id: parentId };
   }
   save() {
     return this.departments.create(this.department).then((department) => {

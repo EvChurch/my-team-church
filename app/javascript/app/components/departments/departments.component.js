@@ -2,10 +2,12 @@ class DepartmentsController {
   constructor(
     $rootScope,
     $state,
+    $stateParams,
     departments
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
+    this.$stateParams = $stateParams;
     this.departments = departments;
     this.list = [];
   }

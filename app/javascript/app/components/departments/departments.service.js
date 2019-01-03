@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { clone, pickBy, reduce, filter, reject } from 'lodash/fp';
+import { flattenDeep, map } from 'lodash/fp';
 
 class Departments {
   constructor($rootScope,
@@ -52,8 +52,13 @@ class Departments {
       }
     `).then((data) => {
       this.data = data;
+      this.allDepartments = angular.copy(flattenDeep(this.flattenDepartment(this.data.departments)));
       return this.data.departments;
     });
+  }
+  flattenDepartment(departments) {
+    const children = map((department) => this.flattenDepartment(department.children), departments);
+    return [departments, children];
   }
   get(id) {
     return this.api.query(gql`
@@ -125,12 +130,12 @@ class Departments {
       return department;
     });
   }
-  openNewModal(parent) {
+  openNewModal(parentId = null) {
     return this.modal.open({
       template: require('./new/new.html'),
       controller: 'departmentsNewModalController',
       locals: {
-        parent: parent || { id: null }
+        parentId: parentId
       }
     });
   }

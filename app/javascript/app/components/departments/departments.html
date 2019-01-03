@@ -4,7 +4,7 @@
       <h1>Departments</h1>
     </div>
     <div class="actions">
-      <a ng-click="$ctrl.departments.openNewModal()"
+      <a ng-click="$ctrl.departments.openNewModal($ctrl.$stateParams.departmentId)"
          data-title="Add Department"
          data-placement="left"
          data-trigger="hover"
@@ -32,7 +32,7 @@
       <p>
         Get started by adding a department
       </p>
-      <a class="btn btn-primary" ng-click="$ctrl.departments.openNewModal()">
+      <a class="btn btn-primary" ng-click="$ctrl.departments.openNewModal($ctrl.$stateParams.departmentId)">
         Add Department
       </a>
     </div>
