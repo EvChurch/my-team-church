@@ -16,6 +16,8 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :objectiveKeyResult, Queries::Objective::KeyResultQuery::Get
   field :teams, Queries::TeamQuery::List
   field :team, Queries::TeamQuery::Get
+  field :teamLeaders, Queries::Team::LeaderQuery::List
+  field :teamLeader, Queries::Team::LeaderQuery::Get
   field :teamPositions, Queries::Team::PositionQuery::List
   field :teamPosition, Queries::Team::PositionQuery::Get
   field :teamPositionEntities, Queries::Team::Position::EntityQuery::List

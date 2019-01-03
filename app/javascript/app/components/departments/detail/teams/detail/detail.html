@@ -18,6 +18,9 @@
           <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions')">
             Positions
           </div>
+          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.leaders')">
+            Leaders
+          </div>
           <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.objectives')">
             Objectives
           </div>
@@ -39,6 +42,10 @@
       <a class="menu-item" ui-sref=".positions">
         <div>Positions</div>
         <div class="icon"><i class="fas fa-user"></i></div>
+      </a>
+      <a class="menu-item" ui-sref=".leaders">
+        <div>Leaders</div>
+        <div class="icon"><i class="fas fa-hiking"></i></div>
       </a>
       <a class="menu-item" ui-sref=".objectives">
         <div>Objectives</div>

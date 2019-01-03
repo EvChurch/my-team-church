@@ -14,5 +14,5 @@ let Item = {
   controller: ItemController
 };
 
-export default angular.module('app.components.departments.detail.leaders.item.component', [
-]).component('departmentsDetailLeadersItem', Item).name;
+export default angular.module('app.components.departments.detail.teams.detail.leaders.item.component', [
+]).component('departmentsDetailTeamsDetailLeadersItem', Item).name;

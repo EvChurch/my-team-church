@@ -16,6 +16,8 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :createTeam, Mutations::TeamMutation::Create
   field :updateTeam, Mutations::TeamMutation::Update
   field :deleteTeam, Mutations::TeamMutation::Delete
+  field :createTeamLeader, Mutations::Team::LeaderMutation::Create
+  field :deleteTeamLeader, Mutations::Team::LeaderMutation::Delete
   field :createTeamPosition, Mutations::Team::PositionMutation::Create
   field :updateTeamPosition, Mutations::Team::PositionMutation::Update
   field :deleteTeamPosition, Mutations::Team::PositionMutation::Delete

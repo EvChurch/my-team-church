@@ -1,0 +1,35 @@
+<div class="input-group search">
+  <input type="text" class="form-control" ng-model="$ctrl.search" placeholder="Filter Leaders">
+  <div class="input-group-append">
+    <span class="input-group-text">
+      <i class="fas fa-search"></i>
+    </span>
+    <span class="input-group-text"
+          ng-click="$ctrl.departmentsDetailTeamsDetailLeaders.openNewModal($ctrl.$stateParams.teamId)"
+          data-title="Add Leader"
+          data-trigger="hover"
+          data-placement="left"
+          bs-tooltip>
+      <i class="fas fa-plus"></i>
+    </span>
+  </div>
+</div>
+<div class="list-group list-group-flush">
+  <loading-list ng-if="$ctrl.loading && $ctrl.list.length == 0"></loading-list>
+  <a class="list-group-item list-group-item-action flex-column align-items-start"
+     ui-sref="departments.detail.teams.detail.leaders.detail({leaderId: leader.id})"
+     ui-sref-active="active"
+     ng-repeat="leader in $ctrl.list | filter: { person: { name:$ctrl.search } } track by leader.id">
+    <departments-detail-teams-detail-leaders-item leader="leader"></departments-detail-teams-detail-leaders-item>
+  </a>
+</div>
+<div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.list.length == 0" >
+  <i class="fas fa-hiking blankslate-icon"></i>
+  <h5>No Leaders</h5>
+  <p>
+    Get started by adding a leader
+  </p>
+  <a ng-click="$ctrl.departmentsDetailTeamsDetailLeaders.openNewModal($ctrl.$stateParams.teamId)" class="btn btn-primary">
+    Add Leader
+  </a>
+</div>

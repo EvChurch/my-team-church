@@ -121,6 +121,34 @@ export default class Routes {
         resourceType: () => 'team'
       }
     }).state({
+      name: 'departments.detail.teams.detail.leaders',
+      url: '/leaders',
+      views: {
+        'list@departments.detail.teams.detail': {
+          component: 'departmentsDetailTeamsDetailLeaders'
+        }
+      }
+    }).state({
+      name: 'departments.detail.teams.detail.leaders.detail',
+      url: '/:leaderId',
+      views: {
+        'branch@departments.detail.teams.detail': {
+          component: 'departmentsDetailTeamsDetailLeadersDetail'
+        }
+      }
+    }).state({
+      name: 'departments.detail.teams.detail.leaders.detail.objectives',
+      url: '/objectives',
+      views: {
+        'list@departments.detail.teams.detail.leaders.detail': {
+          component: 'objectives'
+        }
+      },
+      resolve: {
+        resourceId: /* @ngInject */ ($stateParams) => $stateParams.leaderId,
+        resourceType: () => 'team_leader'
+      }
+    }).state({
       name: 'departments.detail.teams.detail.positions',
       url: '/positions',
       views: {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_29_074907) do
+ActiveRecord::Schema.define(version: 2019_01_03_062713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -195,6 +195,18 @@ ActiveRecord::Schema.define(version: 2018_12_29_074907) do
     t.index ["name"], name: "index_roles_on_name"
   end
 
+  create_table "team_leaders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "person_id"
+    t.uuid "team_id"
+    t.datetime "discarded_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discarded_at"], name: "index_team_leaders_on_discarded_at"
+    t.index ["person_id", "team_id"], name: "index_team_leaders_on_person_id_and_team_id", unique: true
+    t.index ["person_id"], name: "index_team_leaders_on_person_id"
+    t.index ["team_id"], name: "index_team_leaders_on_team_id"
+  end
+
   create_table "team_links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "team_id"
     t.uuid "department_id"
@@ -335,6 +347,8 @@ ActiveRecord::Schema.define(version: 2018_12_29_074907) do
   add_foreign_key "departments", "organizations", on_delete: :cascade
   add_foreign_key "integrations", "organizations"
   add_foreign_key "objective_key_results", "objectives", on_delete: :cascade
+  add_foreign_key "team_leaders", "people"
+  add_foreign_key "team_leaders", "teams"
   add_foreign_key "team_links", "departments", on_delete: :cascade
   add_foreign_key "team_links", "teams", on_delete: :cascade
   add_foreign_key "team_position_entities", "people", on_delete: :cascade

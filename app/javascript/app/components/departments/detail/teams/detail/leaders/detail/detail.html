@@ -1,0 +1,48 @@
+<div class="tree terminus visible-on-mobile">
+    <div class="heading">
+      <a class="back" ui-sref="departments.detail.teams.detail.leaders"><i class="fas fa-chevron-left"></i></a>
+      <div class="title">
+        <div class="ph-item" ng-if="$ctrl.loading">
+          <div class="ph-col-12 p-0">
+            <div class="ph-row mb-0">
+              <div class="ph-col-12"></div>
+              <div class="ph-col-8 mb-0"></div>
+            </div>
+          </div>
+        </div>
+        <div ng-if="!$ctrl.loading">
+          <h1>
+            <a ui-sref="people.detail({ personId: $ctrl.leader.person.id })">
+              {{$ctrl.leader.person.name}}
+            </a>
+          </h1>
+          <div class="menu-toggle" ng-click="$ctrl.open = !$ctrl.open" ng-class="{ 'open': $ctrl.open }">
+            <div class="icon">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.leaders.detail.objectives')">
+              Objectives
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <a ng-click="$ctrl.departmentsDetailTeamsDetailLeaders.delete($ctrl.$stateParams.teamId, $ctrl.leader.id)"
+            data-title="Remove Leader"
+            data-placement="left"
+            data-trigger="hover"
+            bs-tooltip>
+          <i class="fas fa-times"></i>
+        </a>
+      </div>
+    </div>
+    <div class="list">
+      <div class="menu fade" ng-if="$ctrl.open" ng-click="$ctrl.open = false">
+        <a class="menu-item" ui-sref=".objectives">
+          <div>Objectives</div>
+          <div class="icon"><i class="fas fa-bullseye"></i></div>
+        </a>
+      </div>
+      <div ui-view="list"></div>
+    </div>
+  </div>
