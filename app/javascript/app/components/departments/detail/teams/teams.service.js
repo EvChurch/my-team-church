@@ -11,7 +11,7 @@ class Teams {
   }
   load(departmentId) {
     return this.api.query(gql`
-      query teams($department_id: ID!) {
+      query teams($department_id: ID) {
         teams(
           department_id: $department_id
         ) {

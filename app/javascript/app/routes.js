@@ -43,7 +43,7 @@ export default class Routes {
       parent: 'root',
       resolve: {
         0: /* @ngInject */ ($state, organizations) => {
-          if(!organizations.primary.admin && !organizations.primary.leader) {
+          if(!organizations.primary.admin && !organizations.primary.department_leader) {
             $state.go('home');
           }
         }
@@ -225,6 +225,143 @@ export default class Routes {
       url: '/training',
       views: {
         'list@departments.detail.teams.detail.positions.detail': {
+          component: 'departmentsDetailTeamsDetailPositionsDetailTraining'
+        }
+      }
+    }).state({
+      name: 'teams',
+      title: 'Teams',
+      url: '/teams',
+      component: 'teams',
+      parent: 'root',
+      resolve: {
+        0: /* @ngInject */ ($state, organizations) => {
+          if(!organizations.primary.admin && !organizations.primary.team_leader) {
+            $state.go('home');
+          }
+        }
+      }
+    }).state({
+      name: 'teams.detail',
+      url: '/:teamId',
+      component: 'departmentsDetailTeamsDetail'
+    }).state({
+      name: 'teams.detail.objectives',
+      url: '/objectives',
+      views: {
+        'list@departments.detail': {
+          component: 'objectives'
+        }
+      },
+      resolve: {
+        resourceId: /* @ngInject */ ($stateParams) => $stateParams.teamId,
+        resourceType: () => 'team'
+      }
+    }).state({
+      name: 'teams.detail.leaders',
+      url: '/leaders',
+      views: {
+        'list@teams.detail': {
+          component: 'departmentsDetailTeamsDetailLeaders'
+        }
+      }
+    }).state({
+      name: 'teams.detail.leaders.detail',
+      url: '/:leaderId',
+      views: {
+        'branch@teams.detail': {
+          component: 'departmentsDetailTeamsDetailLeadersDetail'
+        }
+      }
+    }).state({
+      name: 'teams.detail.leaders.detail.objectives',
+      url: '/objectives',
+      views: {
+        'list@teams.detail.leaders.detail': {
+          component: 'objectives'
+        }
+      },
+      resolve: {
+        resourceId: /* @ngInject */ ($stateParams) => $stateParams.leaderId,
+        resourceType: () => 'team_leader'
+      }
+    }).state({
+      name: 'teams.detail.positions',
+      url: '/positions',
+      views: {
+        'list@teams.detail': {
+          component: 'departmentsDetailTeamsDetailPositions'
+        }
+      }
+    }).state({
+      name: 'teams.detail.positions.detail',
+      url: '/:positionId',
+      views: {
+        'branch@teams.detail': {
+          component: 'departmentsDetailTeamsDetailPositionsDetail'
+        }
+      }
+    }).state({
+      name: 'teams.detail.positions.detail.objectives',
+      url: '/objectives',
+      views: {
+        'list@teams.detail.positions.detail': {
+          component: 'objectives'
+        }
+      },
+      resolve: {
+        resourceId: /* @ngInject */ ($stateParams) => $stateParams.positionId,
+        resourceType: () => 'team_position'
+      }
+    }).state({
+      name: 'teams.detail.positions.detail.entities',
+      url: '/entities',
+      views: {
+        'list@teams.detail.positions.detail': {
+          component: 'departmentsDetailTeamsDetailPositionsDetailEntities'
+        }
+      }
+    }).state({
+      name: 'teams.detail.positions.detail.entities.detail',
+      url: '/:entityId',
+      views: {
+        'branch@teams.detail.positions.detail': {
+          component: 'departmentsDetailTeamsDetailPositionsDetailEntitiesDetail'
+        }
+      }
+    }).state({
+      name: 'teams.detail.positions.detail.entities.detail.objectives',
+      url: '/objectives',
+      views: {
+        'list@teams.detail.positions.detail.entities.detail': {
+          component: 'objectives'
+        }
+      },
+      resolve: {
+        resourceId: /* @ngInject */ ($stateParams) => $stateParams.entityId,
+        resourceType: () => 'team_position_entity'
+      }
+    }).state({
+      name: 'teams.detail.positions.detail.items',
+      url: '/items',
+      views: {
+        'list@teams.detail.positions.detail': {
+          component: 'departmentsDetailTeamsDetailPositionsDetailItems'
+        }
+      }
+    }).state({
+      name: 'teams.detail.positions.detail.jobDescription',
+      url: '/job_description',
+      views: {
+        'list@teams.detail.positions.detail': {
+          component: 'departmentsDetailTeamsDetailPositionsDetailJobDescription'
+        }
+      }
+    }).state({
+      name: 'teams.detail.positions.detail.training',
+      url: '/training',
+      views: {
+        'list@teams.detail.positions.detail': {
           component: 'departmentsDetailTeamsDetailPositionsDetailTraining'
         }
       }

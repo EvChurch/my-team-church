@@ -8,8 +8,14 @@ class OrganizationDecorator < ApplicationDecorator
     context[:user].has_role?(:admin, object)
   end
 
-  def leader
+  def department_leader
     object.department_leaders.kept.where(
+      person_id: context[:user].links.where(organization_id: object.id).pluck(:person_id)
+    ).exists?
+  end
+
+  def team_leader
+    object.team_leaders.kept.where(
       person_id: context[:user].links.where(organization_id: object.id).pluck(:person_id)
     ).exists?
   end

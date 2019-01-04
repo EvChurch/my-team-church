@@ -3,9 +3,13 @@
     <div class="icon"><i class="fas fa-home"></i></div>
     <div class="label">My Profile</div>
   </a>
-  <a ui-sref="departments" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false" ng-if="$ctrl.organizations.primary.admin || $ctrl.organizations.primary.leader">
+  <a ui-sref="departments" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false" ng-if="$ctrl.organizations.primary.admin || $ctrl.organizations.primary.department_leader">
     <div class="icon"><i class="fas fa-sitemap"></i></div>
     <div class="label">Departments</div>
+  </a>
+  <a ui-sref="teams" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false" ng-if="$ctrl.organizations.primary.admin || $ctrl.organizations.primary.team_leader">
+    <div class="icon"><i class="fas fa-users"></i></div>
+    <div class="label">Teams</div>
   </a>
   <a ui-sref="people" ui-sref-active="active" ng-click="$ctrl.visibleOnMobile = false" ng-if="$ctrl.organizations.primary.admin">
     <div class="icon"><i class="fas fa-users"></i></div>
