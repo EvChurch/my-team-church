@@ -1,0 +1,43 @@
+<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('teams') }">
+  <div class="heading">
+    <div class="title">
+      <h1>Teams</h1>
+    </div>
+  </div>
+  <div class="list">
+    <div class="input-group search">
+      <input type="text" class="form-control" ng-model="$ctrl.search" placeholder="Filter Teams">
+      <div class="input-group-append">
+        <span class="input-group-text">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+    </div>
+    <div class="list-group list-group-flush">
+      <loading-list ng-if="$ctrl.loading && $ctrl.list.length == 0"></loading-list>
+      <a class="list-group-item list-group-item-action d-flex align-items-center"
+          ng-repeat="team in $ctrl.list | filter: { name:$ctrl.search } track by team.id"
+          ui-sref="teams.detail({teamId: team.id})"
+          ui-sref-active="active">
+        <div class="flex-fill">
+          {{team.name}}
+        </div>
+        <div>
+          <span class="badge badge-warning"
+                ng-if="team.positions_needing_people > 0"
+                data-title="positions in need"
+                data-placement="left"
+                data-trigger="hover"
+                bs-tooltip>{{team.positions_needing_people}}</span>
+        </div>
+      </a>
+    </div>
+    <div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.list.length == 0">
+      <i class="fas fa-id-card blankslate-icon"></i>
+      <h5>No Teams</h5>
+    </div>
+  </div>
+  <div class="branch" ui-view>
+    <div class="placeholder"></div>
+  </div>
+</div>

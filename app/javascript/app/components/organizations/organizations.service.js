@@ -24,7 +24,8 @@ class Organizations {
             id
             name
             admin
-            leader
+            department_leader
+            team_leader
           }
         }
       `).then((data) => {
@@ -55,7 +56,8 @@ class Organizations {
           country
           time_zone
           admin
-          leader
+          department_leader
+          team_leader
         }
       }
     `, { id: id }).then((data) => {

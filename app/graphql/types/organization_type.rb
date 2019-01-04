@@ -13,5 +13,6 @@ Types::OrganizationType = GraphQL::ObjectType.define do
   field :country, !types.String
   field :time_zone, !types.String
   field :admin, !types.Boolean
-  field :leader, !types.Boolean
+  field :department_leader, !types.Boolean
+  field :team_leader, !types.Boolean
 end
