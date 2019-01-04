@@ -2,7 +2,8 @@ import gql from 'graphql-tag';
 import { flattenDeep, map } from 'lodash/fp';
 
 class Departments {
-  constructor($rootScope,
+  constructor(
+    $rootScope,
     api, modal
   ) {
     this.$rootScope = $rootScope;

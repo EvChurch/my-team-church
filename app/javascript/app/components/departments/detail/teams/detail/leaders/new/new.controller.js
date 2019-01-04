@@ -19,5 +19,5 @@ class NewModalController {
   }
 }
 
-export default angular.module('app.components.departments.detail.leaders.new.controller', [])
+export default angular.module('app.components.departments.detail.teams.detail.leaders.new.controller', [])
   .controller('departmentsDetailTeamsDetailLeadersNewModalController', NewModalController).name;

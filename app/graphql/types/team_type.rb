@@ -6,6 +6,7 @@ Types::TeamType = GraphQL::ObjectType.define do
   field :name, !types.String
   field :description, types.String
   field :departments, types[Types::DepartmentType]
+  field :leaders, types[Types::Team::LeaderType]
   field :positions_needing_people, types.Int
   field :positions, types[Types::Team::PositionType]
   field :objectives, types[Types::ObjectiveType]
