@@ -16,6 +16,7 @@ import 'chosen-js';
 import 'countries-and-timezones';
 import 'ng-sortable';
 import 'ngclipboard';
+import 'orgchart';
 
 angular.module('app', [
   AngularApollo,

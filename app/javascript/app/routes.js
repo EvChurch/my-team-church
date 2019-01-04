@@ -36,6 +36,12 @@ export default class Routes {
       component: 'user',
       parent: 'root'
     }).state({
+      name: 'chart',
+      title: 'Organization Chart',
+      url: '/chart',
+      component: 'chart',
+      parent: 'root'
+    }).state({
       name: 'departments',
       title: 'Departments',
       url: '/departments',
