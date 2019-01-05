@@ -12,7 +12,8 @@ class NewController {
       start_value: 0,
       target_value: 100,
       current_value: 0,
-      weight: 1
+      weight: 1,
+      kind: 'key_result'
     };
   }
   save() {
