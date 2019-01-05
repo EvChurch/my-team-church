@@ -18,6 +18,8 @@ class ItemsController {
       },
       containerPositioning: 'relative'
     };
+
+    this.items = [];
   }
   $onInit() {
     this.load();
