@@ -11,7 +11,7 @@ class Organizations {
   }
   swap(primaryId) {
     this.$window.localStorage.setItem('primaryId', primaryId);
-    this.$window.location.reload();
+    this.$window.location.pathname = '';
   }
   load(reset = false) {
     if (this.data && !reset) {
