@@ -18,7 +18,9 @@
   </div>
   <departments-detail-teams-detail-positions-detail-items-new ng-if="!$ctrl.readOnly">
   </departments-detail-teams-detail-positions-detail-items-new>
-  <div class="empty" ng-if="$ctrl.readOnly && $ctrl.items.length === 0">
-    No items on this checklist
+  <div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.readOnly && $ctrl.items.length == 0">
+    <i class="fas fa-list blankslate-icon"></i>
+    <h5>No Checklist Items</h5>
   </div>
+  <loading-list ng-if="$ctrl.loading && $ctrl.items.length == 0"></loading-list>
 </div>
