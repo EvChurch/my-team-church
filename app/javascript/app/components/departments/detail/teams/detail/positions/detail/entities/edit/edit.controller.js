@@ -19,6 +19,11 @@ class EditModalController {
       this.$scope.$hide();
     });
   }
+  delete() {
+    return this.departmentsDetailTeamsDetailPositionsDetailEntities.delete(this.positionId, this.entity).then(() => {
+      this.$scope.$hide();
+    });
+  }
 }
 
 export default angular.module(

@@ -36,6 +36,7 @@
     </div>
     <div class="actions">
       <a ng-click="$ctrl.peopleDetailEntities.delete($ctrl.entity.person.id, $ctrl.entity.id)"
+         ng-if="$ctrl.$state.includes('people')"
          data-title="Remove Assignment"
          data-placement="left"
          data-trigger="hover"
