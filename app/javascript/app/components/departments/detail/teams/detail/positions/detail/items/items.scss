@@ -36,4 +36,9 @@ departments-detail-teams-detail-positions-detail-items {
     opacity: 0.75;
     z-index: 20000 !important;
   }
+  .empty {
+    border-bottom: 1px solid #ccc;
+    line-height: 49px;
+    padding: 0 15px;
+  }
 }

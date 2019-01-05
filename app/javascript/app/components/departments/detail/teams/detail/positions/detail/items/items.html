@@ -18,4 +18,7 @@
   </div>
   <departments-detail-teams-detail-positions-detail-items-new ng-if="!$ctrl.readOnly">
   </departments-detail-teams-detail-positions-detail-items-new>
+  <div class="empty" ng-if="$ctrl.readOnly && $ctrl.items.length === 0">
+    No items on this checklist
+  </div>
 </div>
