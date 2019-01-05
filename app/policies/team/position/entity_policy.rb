@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Team::Position::EntityPolicy < ApplicationPolicy
-  class Scope < DepartmentPolicy::Scope
+  class Scope < TeamPolicy::Scope
     protected
 
     def secure_scope
