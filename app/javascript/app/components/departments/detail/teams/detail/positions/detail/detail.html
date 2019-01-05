@@ -15,19 +15,19 @@
           <div class="icon">
             <i class="fas fa-chevron-down"></i>
           </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions.detail.entities')">
+          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions.detail.entities') || $ctrl.$state.includes('teams.detail.positions.detail.entities')">
             People
           </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions.detail.objectives')">
+          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions.detail.objectives') || $ctrl.$state.includes('teams.detail.positions.detail.objectives')">
             Objectives
           </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions.detail.items')">
+          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions.detail.items') || $ctrl.$state.includes('teams.detail.positions.detail.items')">
             Checklist
           </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions.detail.jobDescription')">
+          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions.detail.jobDescription') || $ctrl.$state.includes('teams.detail.positions.detail.jobDescription')">
             Job Description
           </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions.detail.training')">
+          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions.detail.training') || $ctrl.$state.includes('teams.detail.positions.detail.training')">
             Training
           </div>
         </div>

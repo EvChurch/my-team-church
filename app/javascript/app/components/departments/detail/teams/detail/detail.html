@@ -15,13 +15,13 @@
           <div class="icon">
             <i class="fas fa-chevron-down"></i>
           </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions')">
+          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.positions') || $ctrl.$state.includes('teams.detail.positions')">
             Positions
           </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.leaders')">
+          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.leaders') || $ctrl.$state.includes('teams.detail.leaders')">
             Leaders
           </div>
-          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.objectives')">
+          <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.objectives') || $ctrl.$state.includes('teams.detail.objectives')">
             Objectives
           </div>
         </div>
