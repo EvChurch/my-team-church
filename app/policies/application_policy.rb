@@ -39,7 +39,12 @@ class ApplicationPolicy
   end
 
   def scope
-    Pundit.policy_scope!(user, record.class)
+    Pundit.policy_scope!(user, default_scope || record.class)
+  end
+
+  def default_scope
+    return unless record.respond_to?(:organization) && record.organization.respond_to?(record.class.table_name)
+    record.organization.send(record.class.table_name)
   end
 
   class Scope

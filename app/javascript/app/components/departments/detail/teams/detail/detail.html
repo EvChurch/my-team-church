@@ -1,4 +1,4 @@
-<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.teams.detail.objectives') || $ctrl.$state.is('departments.detail.teams.detail.positions'), 'terminus' : $ctrl.$state.is('departments.detail.teams.detail.objectives') || $ctrl.$state.is('departments.detail.positions.detail.items') || $ctrl.$state.is('departments.detail.positions.detail.jobDescription') || $ctrl.$state.is('departments.detail.positions.detail.training') }">
+<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.teams.detail.objectives') || $ctrl.$state.is('departments.detail.teams.detail.positions'), 'terminus' : $ctrl.$stateParams.departmentsDetailTeamsDetailExpanded }">
   <div class="heading">
     <a class="back" ui-sref="departments.detail.teams"><i class="fas fa-chevron-left"></i></a>
     <div class="title">
@@ -54,7 +54,7 @@
     </div>
     <div ui-view="list"></div>
   </div>
-  <div class="branch" ui-view="branch" ng-if="!$ctrl.$state.is('departments.detail.teams.detail.objectives')">
+  <div class="branch" ui-view="branch">
     <div class="placeholder"></div>
   </div>
 </div>

@@ -68,6 +68,9 @@ export default class Routes {
       resolve: {
         resourceId: /* @ngInject */ ($stateParams) => $stateParams.departmentId,
         resourceType: () => 'department'
+      },
+      params: {
+        departmentsDetailExapanded: true
       }
     }).state({
       name: 'departments.detail.leaders',
@@ -124,6 +127,9 @@ export default class Routes {
       resolve: {
         resourceId: /* @ngInject */ ($stateParams) => $stateParams.teamId,
         resourceType: () => 'team'
+      },
+      params: {
+        departmentsDetailTeamsDetailExpanded: true
       }
     }).state({
       name: 'departments.detail.teams.detail.leaders',
@@ -180,6 +186,9 @@ export default class Routes {
       resolve: {
         resourceId: /* @ngInject */ ($stateParams) => $stateParams.positionId,
         resourceType: () => 'team_position'
+      },
+      params: {
+        departmentsDetailTeamsDetailPositionsDetailExpanded: true
       }
     }).state({
       name: 'departments.detail.teams.detail.positions.detail.entities',
@@ -216,6 +225,9 @@ export default class Routes {
         'list@departments.detail.teams.detail.positions.detail': {
           component: 'departmentsDetailTeamsDetailPositionsDetailItems'
         }
+      },
+      params: {
+        departmentsDetailTeamsDetailPositionsDetailExpanded: true
       }
     }).state({
       name: 'departments.detail.teams.detail.positions.detail.jobDescription',
@@ -224,6 +236,9 @@ export default class Routes {
         'list@departments.detail.teams.detail.positions.detail': {
           component: 'departmentsDetailTeamsDetailPositionsDetailJobDescription'
         }
+      },
+      params: {
+        departmentsDetailTeamsDetailPositionsDetailExpanded: true
       }
     }).state({
       name: 'departments.detail.teams.detail.positions.detail.training',
@@ -232,6 +247,9 @@ export default class Routes {
         'list@departments.detail.teams.detail.positions.detail': {
           component: 'departmentsDetailTeamsDetailPositionsDetailTraining'
         }
+      },
+      params: {
+        departmentsDetailTeamsDetailPositionsDetailExpanded: true
       }
     }).state({
       name: 'teams',
@@ -254,13 +272,16 @@ export default class Routes {
       name: 'teams.detail.objectives',
       url: '/objectives',
       views: {
-        'list@departments.detail': {
+        'list@teams.detail': {
           component: 'objectives'
         }
       },
       resolve: {
         resourceId: /* @ngInject */ ($stateParams) => $stateParams.teamId,
         resourceType: () => 'team'
+      },
+      params: {
+        departmentsDetailTeamsDetailExpanded: true
       }
     }).state({
       name: 'teams.detail.leaders',
@@ -289,6 +310,9 @@ export default class Routes {
       resolve: {
         resourceId: /* @ngInject */ ($stateParams) => $stateParams.leaderId,
         resourceType: () => 'team_leader'
+      },
+      params: {
+        expanded: true
       }
     }).state({
       name: 'teams.detail.positions',
@@ -317,6 +341,9 @@ export default class Routes {
       resolve: {
         resourceId: /* @ngInject */ ($stateParams) => $stateParams.positionId,
         resourceType: () => 'team_position'
+      },
+      params: {
+        departmentsDetailTeamsDetailPositionsDetailExpanded: true
       }
     }).state({
       name: 'teams.detail.positions.detail.entities',
@@ -353,6 +380,9 @@ export default class Routes {
         'list@teams.detail.positions.detail': {
           component: 'departmentsDetailTeamsDetailPositionsDetailItems'
         }
+      },
+      params: {
+        departmentsDetailTeamsDetailPositionsDetailExpanded: true
       }
     }).state({
       name: 'teams.detail.positions.detail.jobDescription',
@@ -361,6 +391,9 @@ export default class Routes {
         'list@teams.detail.positions.detail': {
           component: 'departmentsDetailTeamsDetailPositionsDetailJobDescription'
         }
+      },
+      params: {
+        departmentsDetailTeamsDetailPositionsDetailExpanded: true
       }
     }).state({
       name: 'teams.detail.positions.detail.training',
@@ -369,6 +402,9 @@ export default class Routes {
         'list@teams.detail.positions.detail': {
           component: 'departmentsDetailTeamsDetailPositionsDetailTraining'
         }
+      },
+      params: {
+        departmentsDetailTeamsDetailPositionsDetailExpanded: true
       }
     }).state({
       name: 'people',
@@ -403,6 +439,9 @@ export default class Routes {
       resolve: {
         resourceId: /* @ngInject */ ($stateParams) => $stateParams.personId,
         resourceType: () => 'person'
+      },
+      params: {
+        peopleDetailExpanded: true
       }
     }).state({
       name: 'people.detail.entities',
@@ -488,6 +527,9 @@ export default class Routes {
       resolve: {
         resourceId: /* @ngInject */ (people) => people.getMe().then((me) => me.id),
         resourceType: () => 'person'
+      },
+      params: {
+        peopleDetailExpanded: true
       }
     }).state({
       name: 'me.entities',

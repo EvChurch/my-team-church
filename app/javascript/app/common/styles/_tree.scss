@@ -4,6 +4,9 @@
    grid-template-rows: 60px auto;
    &.terminus {
      grid-template-columns: auto;
+     .branch {
+       display: none;
+     }
    }
   > .heading {
     grid-column: 1;
