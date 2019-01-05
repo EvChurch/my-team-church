@@ -28,7 +28,7 @@
     </div>
   </div>
   <a class="list-group-item list-group-item-action flex-column align-items-start"
-     ui-sref="departments.detail.teams.detail.positions.detail.entities.detail({entityId: entity.id})"
+     ui-sref=".detail({entityId: entity.id})"
      ui-sref-active="active"
      ng-repeat="entity in $ctrl.list | filter: { person: { name:$ctrl.search } } track by entity.id">
   <departments-detail-teams-detail-positions-detail-entities-item entity="entity"></departments-detail-teams-detail-positions-detail-entities-item>

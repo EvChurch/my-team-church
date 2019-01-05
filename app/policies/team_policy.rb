@@ -24,5 +24,9 @@ class TeamPolicy < ApplicationPolicy
                                         .where(team_leaders: { discarded_at: nil })
                                         .pluck('team_leaders.team_id')
     end
+
+    def person_ids
+      @person_ids ||= user.links.pluck(:person_id)
+    end
   end
 end

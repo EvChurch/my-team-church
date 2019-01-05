@@ -18,7 +18,7 @@
   <loading-list ng-if="$ctrl.loading && $ctrl.list.length == 0"></loading-list>
   <a class="list-group-item list-group-item-action d-flex align-items-center"
       ng-repeat="position in $ctrl.list | filter: { name:$ctrl.search } track by position.id"
-      ui-sref="departments.detail.teams.detail.positions.detail({positionId: position.id})"
+      ui-sref=".detail({positionId: position.id})"
       ui-sref-active="active">
     <div class="flex-fill">
       {{position.name}}

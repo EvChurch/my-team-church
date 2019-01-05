@@ -5,7 +5,11 @@ class Team::Position::ItemPolicy < ApplicationPolicy
     protected
 
     def secure_scope
-      scope.where(id: (ids_by_department_ids + ids_by_person_ids).uniq)
+      scope.where(id: (ids_by_team_ids + ids_by_department_ids + ids_by_person_ids).uniq)
+    end
+
+    def ids_by_team_ids
+      scope.joins(position: :team).where(teams: { id: team_ids }).ids
     end
 
     def ids_by_department_ids
@@ -14,10 +18,6 @@ class Team::Position::ItemPolicy < ApplicationPolicy
 
     def ids_by_person_ids
       scope.joins(position: :entities).where(team_position_entities: { person_id: person_ids }).ids
-    end
-
-    def person_ids
-      @person_ids ||= user.links.pluck(:person_id)
     end
 
     def organization_ids

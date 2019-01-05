@@ -17,7 +17,7 @@
 <div class="list-group list-group-flush">
   <loading-list ng-if="$ctrl.loading && $ctrl.list.length == 0"></loading-list>
   <a class="list-group-item list-group-item-action flex-column align-items-start"
-     ui-sref="departments.detail.teams.detail.leaders.detail({leaderId: leader.id})"
+     ui-sref=".detail({leaderId: leader.id})"
      ui-sref-active="active"
      ng-repeat="leader in $ctrl.list | filter: { person: { name:$ctrl.search } } track by leader.id">
     <departments-detail-teams-detail-leaders-item leader="leader"></departments-detail-teams-detail-leaders-item>
