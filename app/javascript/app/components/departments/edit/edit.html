@@ -17,7 +17,8 @@
     <select chosen
             ng-model="$ctrl.department.parent_id"
             ng-options="department.id as department.name for department in $ctrl.departments.allDepartments"
-            allow-single-deselect="true">
+            allow-single-deselect="true"
+            class="form-control">>
       <option value=""></option>
     </select>
   </div>
