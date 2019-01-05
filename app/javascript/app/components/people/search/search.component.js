@@ -19,6 +19,7 @@ class SearchController {
       this.people.load(this.searchString).then((people) => {
         this.loading = false;
         this.list = angular.copy(people);
+        this.list.hasNextPage = people.hasNextPage;
       });
     }
   }
@@ -33,6 +34,8 @@ class SearchController {
   setPerson(person = null) {
     const id = person ? person.id : null;
     this.person = person;
+    this.searchString = '';
+    this.list = [];
     this.setPersonId({ $id: id });
   }
 }

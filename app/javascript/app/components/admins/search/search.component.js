@@ -18,6 +18,7 @@ class SearchController {
       this.admins.loadUsers(this.searchString).then((admins) => {
         this.loading = false;
         this.list = angular.copy(admins);
+        this.list.hasNextPage = admins.hasNextPage;
       });
     }
   }
@@ -32,6 +33,8 @@ class SearchController {
   setAdmin(admin = null) {
     const id = admin ? admin.id : null;
     this.admin = admin;
+    this.searchString = '';
+    this.list = [];
     this.setAdminId({ $id: id });
   }
 }

@@ -19,6 +19,7 @@ class Leaders {
           person {
             id
             name
+            picture
           }
         }
       }
@@ -36,6 +37,7 @@ class Leaders {
           person {
             id
             name
+            picture
           }
         }
       }
@@ -61,6 +63,7 @@ class Leaders {
           person {
             id
             name
+            picture
           }
         }
       }
