@@ -67,12 +67,15 @@ sidebar {
   @media (max-width: 767px) {
     .sidebar {
       width: 0;
+      a,
+      a:not([href]):not([tabindex]) {
+        margin: 0;
+        border-radius: 0;
+      }
       &.visible-on-mobile {
         width: 180px;
         a,
         a:not([href]):not([tabindex]) {
-          margin: 0;
-          border-radius: 0;
           .label {
             opacity: 1;
             width: 100px;
