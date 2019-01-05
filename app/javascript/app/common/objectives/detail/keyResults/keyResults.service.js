@@ -32,6 +32,7 @@ class KeyResults {
           weight
           start_at
           end_at
+          kind
         }
       }
     `, {
@@ -69,6 +70,7 @@ class KeyResults {
           weight
           start_at
           end_at
+          kind
         }
       }
     `, {
@@ -103,6 +105,7 @@ class KeyResults {
           weight
           start_at
           end_at
+          kind
         }
       }
     `, {
@@ -141,6 +144,7 @@ class KeyResults {
           weight
           start_at
           end_at
+          kind
         }
       }
     `, {

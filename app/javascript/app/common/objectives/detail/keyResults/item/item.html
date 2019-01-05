@@ -1,5 +1,6 @@
 <div class="changed-key-result-name col p-0">
-  <span class="text-muted mr-2">KR</span>
+  <span class="text-muted mr-2" ng-if="$ctrl.keyResult.kind == 'key_result'">KR</span>
+  <span class="text-muted mr-2" ng-if="$ctrl.keyResult.kind == 'initiative'">IN</span>
   {{$ctrl.keyResult.name}}
 </div>
 <div class="changed-key-result">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_05_050925) do
+ActiveRecord::Schema.define(version: 2019_01_05_054201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2019_01_05_050925) do
     t.datetime "start_at"
     t.datetime "end_at"
     t.datetime "discarded_at"
+    t.string "kind", default: "key_result"
     t.index ["discarded_at"], name: "index_objective_key_results_on_discarded_at"
     t.index ["objective_id"], name: "index_objective_key_results_on_objective_id"
   end

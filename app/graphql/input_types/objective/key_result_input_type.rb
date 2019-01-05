@@ -35,4 +35,8 @@ InputTypes::Objective::KeyResultInputType = GraphQL::InputObjectType.define do
   argument :end_at, Types::DateTimeType do
     description 'End Timestamp where key result should be achieved.'
   end
+
+  argument :kind, !types.String do
+    description 'Either initiative or key_result.'
+  end
 end
