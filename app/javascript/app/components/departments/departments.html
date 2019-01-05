@@ -1,8 +1,8 @@
-<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments') }">
+<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.visibleOnMobile() }">
   <div class="heading">
     <div class="title">
       <h1>Departments</h1>
-      <small><a ui-sref=".chart" ui-sref-active="text-muted">Organizational Chart</a></small>
+      <small><a ui-sref=".chart" ui-sref-active="d-none">Organizational Chart</a></small>
     </div>
     <div class="actions">
       <a ng-click="$ctrl.departments.openNewModal($ctrl.$stateParams.departmentId)"

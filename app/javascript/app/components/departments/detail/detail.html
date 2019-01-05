@@ -1,4 +1,4 @@
-<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.positions') || $ctrl.$state.is('departments.detail.leaders') || $ctrl.$state.is('departments.detail.objectives'), 'terminus' : $ctrl.$stateParams.departmentsDetailExapanded }">
+<div class="tree" ng-class="{ 'visible-on-mobile' : $ctrl.visibleOnMobile(), 'terminus' : $ctrl.$stateParams.departmentsDetailExapanded }">
   <div class="heading">
     <a class="back" ui-sref="departments"><i class="fas fa-chevron-left"></i></a>
     <div class="title">

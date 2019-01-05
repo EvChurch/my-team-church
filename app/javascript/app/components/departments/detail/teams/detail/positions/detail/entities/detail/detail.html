@@ -1,6 +1,7 @@
-<div class="tree terminus" ng-class="{ 'visible-on-mobile' : $ctrl.$state.is('departments.detail.teams.detail.positions.detail.entities.detail.objectives') }">
+<div class="tree terminus" ng-class="{ 'visible-on-mobile' : $ctrl.visibleOnMobile() }">
   <div class="heading">
-    <a class="back" ui-sref="departments.detail.teams.detail.positions.detail.entities"><i class="fas fa-chevron-left"></i></a>
+    <a class="back" ui-sref="departments.detail.teams.detail.positions.detail.entities" ng-if="$ctrl.$state.includes('departments.detail')"><i class="fas fa-chevron-left"></i></a>
+    <a class="back" ui-sref="teams.detail.positions.detail.entities" ng-if="$ctrl.$state.includes('teams.detail')"><i class="fas fa-chevron-left"></i></a>
     <div class="title">
       <div class="ph-item" ng-if="$ctrl.loading">
         <div class="ph-col-12 p-0">

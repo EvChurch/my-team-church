@@ -29,6 +29,18 @@
     this.watcher0();
     this.watcher1();
   }
+  visibleOnMobile() {
+    return this.$state.is('departments.detail.teams.detail.positions.detail.entities') ||
+    this.$state.is('departments.detail.teams.detail.positions.detail.objectives') ||
+    this.$state.is('departments.detail.teams.detail.positions.detail.items') ||
+    this.$state.is('departments.detail.teams.detail.positions.detail.jobDescription') ||
+    this.$state.is('departments.detail.teams.detail.positions.detail.training') ||
+    this.$state.is('teams.detail.positions.detail.entities') ||
+    this.$state.is('teams.detail.positions.detail.objectives') ||
+    this.$state.is('teams.detail.positions.detail.items') ||
+    this.$state.is('teams.detail.positions.detail.jobDescription') ||
+    this.$state.is('teams.detail.positions.detail.training');
+  }
 }
 
 let Detail = {

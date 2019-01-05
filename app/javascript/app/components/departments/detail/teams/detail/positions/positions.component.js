@@ -39,5 +39,5 @@ let Positions = {
   controller: PositionsController
 };
 
-export default angular.module('app.components.departments.detail.team.detail.positions.component', [
+export default angular.module('app.components.departments.detail.teams.detail.positions.component', [
 ]).component('departmentsDetailTeamsDetailPositions', Positions).name;

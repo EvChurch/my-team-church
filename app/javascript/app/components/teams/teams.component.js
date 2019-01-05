@@ -1,10 +1,11 @@
 
 class TeamsController {
   constructor(
-    $rootScope, $stateParams,
+    $rootScope, $state, $stateParams,
     departmentsDetailTeams
   ) {
     this.$rootScope = $rootScope;
+    this.$state = $state;
     this.$stateParams = $stateParams;
     this.departmentsDetailTeams = departmentsDetailTeams;
     this.list = [];

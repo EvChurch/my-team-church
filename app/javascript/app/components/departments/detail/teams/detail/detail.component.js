@@ -29,6 +29,14 @@
     this.watcher0();
     this.watcher1();
   }
+  visibleOnMobile() {
+    return this.$state.is('departments.detail.teams.detail.objectives') ||
+      this.$state.is('departments.detail.teams.detail.positions') ||
+      this.$state.is('departments.detail.teams.detail.leaders') ||
+      this.$state.is('teams.detail.objectives') ||
+      this.$state.is('teams.detail.positions') ||
+      this.$state.is('teams.detail.leaders')
+  }
 }
 
 let Detail = {

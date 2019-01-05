@@ -29,6 +29,11 @@ class DetailController {
     this.watcher0();
     this.watcher1();
   }
+  visibleOnMobile() {
+    return this.$state.is('departments.detail.teams') ||
+      this.$state.is('departments.detail.leaders') ||
+      this.$state.is('departments.detail.objectives')
+  }
 }
 
 let Detail = {

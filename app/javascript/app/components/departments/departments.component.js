@@ -29,6 +29,9 @@ class DepartmentsController {
       this.list = angular.copy(departments);
     })
   }
+  visibleOnMobile() {
+    return this.$state.is('departments');
+  }
 }
 
 let Departments = {

@@ -1,5 +1,14 @@
-<div id="chart-container">
-  <div class="loading text-warning" ng-if="$ctrl.loading">
-    <h1><i class="fas fa-circle-notch fa-spin"></i></h1>
+<div class="tree visible-on-mobile terminus">
+  <div class="heading">
+    <a class="back" ui-sref="departments"><i class="fas fa-chevron-left"></i></a>
+    <div class="title">
+      <h1>Organizational Chart</h1>
+    </div>
+  </div>
+  <div class="list">
+    <div class="loading text-warning" ng-if="$ctrl.loading">
+      <h1><i class="fas fa-circle-notch fa-spin"></i></h1>
+    </div>
+    <div id="chart-container"></div>
   </div>
 </div>

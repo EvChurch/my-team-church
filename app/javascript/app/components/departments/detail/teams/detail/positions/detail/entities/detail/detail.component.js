@@ -30,6 +30,10 @@ class DetailController {
       throw ex;
     });
   }
+  visibleOnMobile() {
+    return this.$state.is('departments.detail.teams.detail.positions.detail.entities.detail.objectives') ||
+      this.$state.is('teams.detail.positions.detail.entities.detail.objectives');
+  }
 }
 
 let Detail = {
