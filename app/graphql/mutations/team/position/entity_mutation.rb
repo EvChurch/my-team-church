@@ -7,11 +7,15 @@ module Mutations::Team::Position::EntityMutation
     argument :entity, !InputTypes::Team::Position::EntityInputType
     type Types::Team::Position::EntityType
     resolve lambda { |organization, args, _ctx|
-      organization.team_positions
-                  .find(args[:position_id])
-                  .entities
-                  .create!(args[:entity].to_h)
-                  .decorate
+      scope = organization.team_positions
+                          .find(args[:position_id])
+                          .entities
+      entity = scope.find_by(person_id: args[:entity][:person_id])
+      entity ||= scope.build
+      entity.attributes = args[:entity].to_h
+      entity.save!
+      entity.undiscard
+      entity.decorate
     }
   end
 
