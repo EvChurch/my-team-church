@@ -1,5 +1,7 @@
 sidebar {
   .sidebar {
+    display: flex;
+    flex-direction: column;
     background-color: #162C52;
     position: fixed;
     overflow: auto;
@@ -59,6 +61,9 @@ sidebar {
   .sidebar-toggler, .sidebar-background {
     display: none;
   }
+  organizations-dropdown {
+    display: none;
+  }
   @media (max-width: 767px) {
     .sidebar {
       width: 0;
@@ -66,10 +71,28 @@ sidebar {
         width: 180px;
         a,
         a:not([href]):not([tabindex]) {
+          margin: 0;
+          border-radius: 0;
           .label {
             opacity: 1;
             width: 100px;
           }
+        }
+      }
+      organizations-dropdown {
+        display: block;
+        a,
+        a:not([href]):not([tabindex]) {
+          padding: 0 10px;
+          color: #fff;
+          font-size: 0.9rem;
+          .fa-star {
+            margin-right: 10px;
+          }
+        }
+        .dropdown-divider {
+          margin: 0;
+          border-top-color: lighten(#162C52, 10%);
         }
       }
       z-index: 2;

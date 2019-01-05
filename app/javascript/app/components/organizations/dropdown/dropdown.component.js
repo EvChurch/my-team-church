@@ -24,7 +24,10 @@ class DropdownController {
 
 let Dropdown = {
   template: require('./dropdown.html'),
-  controller: DropdownController
+  controller: DropdownController,
+  bindings: {
+    sidebar: '<'
+  }
 };
 
 export default angular.module('app.components.organizations.dropdown.component', [
