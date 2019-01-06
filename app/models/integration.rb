@@ -12,12 +12,10 @@ class Integration < ApplicationRecord
   scope :pushable, -> { where(pushable: true) }
 
   def run_integration_push_job(model, action)
-    return unless active
     "#{self.class.name}::PushJob".constantize.perform_later(self, model, action)
   end
 
   def run_integration_pull_job
-    return unless active
     "#{self.class.name}::PullJob".constantize.perform_later(self)
   end
 

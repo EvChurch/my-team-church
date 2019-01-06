@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_05_054201) do
+ActiveRecord::Schema.define(version: 2019_01_06_222051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -149,7 +149,6 @@ ActiveRecord::Schema.define(version: 2019_01_05_054201) do
     t.boolean "archived"
     t.boolean "deceased"
     t.boolean "volunteer"
-    t.string "family"
     t.uuid "family_id"
     t.date "anniversary"
     t.date "birthday"

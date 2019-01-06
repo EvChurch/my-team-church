@@ -5,6 +5,7 @@ class Integration::Elvanto::PushJob < ApplicationJob
   queue_as :default
 
   def perform(integration, model, action)
+    return unless integration.active
     @integration = integration
     @model = model
     @action = action

@@ -28,8 +28,10 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :search_string, types.String
     description 'List of People'
     resource lambda { |organization, args, _ctx|
-      return organization.people if args[:search_string].blank?
-      organization.people.where("concat_ws(' ', email, first_name, last_name) ILIKE ?", "%#{args[:search_string]}%")
+      return organization.people.kept if args[:search_string].blank?
+      organization.people.kept.where(
+        "concat_ws(' ', email, first_name, last_name) ILIKE ?", "%#{args[:search_string]}%"
+      )
     }
     resolve ->(people, _args, _ctx) { people.decorate }
   end
@@ -44,8 +46,10 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :search_string, types.String
     description 'List of Users'
     resource lambda { |organization, args, _ctx|
-      return organization.users if args[:search_string].blank?
-      organization.users.where("concat_ws(' ', email, first_name, last_name) ILIKE ?", "%#{args[:search_string]}%")
+      return organization.users.kept if args[:search_string].blank?
+      organization.users.kept.where(
+        "concat_ws(' ', email, first_name, last_name) ILIKE ?", "%#{args[:search_string]}%"
+      )
     }
     resolve ->(users, _args, _ctx) { users.decorate }
   end
