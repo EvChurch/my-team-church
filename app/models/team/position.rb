@@ -33,6 +33,6 @@ class Team::Position < ApplicationRecord
   end
 
   def people_active
-    entities.active.count
+    entities.joins(:person).active.count
   end
 end
