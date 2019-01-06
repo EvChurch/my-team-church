@@ -1,3 +1,5 @@
-<div ng-class="{ 'read-only' : $ctrl.readOnly }">
+<loading-list ng-if="$ctrl.loading"></loading-list>
+<div ng-if="!$ctrl.readOnly">
   <trix-editor angular-trix ng-model="$ctrl.position.training_description" ng-model-options="{ debounce: 1000 }" ng-change="$ctrl.save()"></trix-editor>
 </div>
+<div class="read-only" ng-if="$ctrl.readOnly" ng-bind-html="$ctrl.$sce.trustAsHtml($ctrl.position.training_description)"></div>

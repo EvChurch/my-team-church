@@ -1,9 +1,10 @@
 
 class JobDescriptionController {
   constructor(
-    $stateParams,
+    $sce, $stateParams,
     departmentsDetailTeamsDetailPositions
   ) {
+    this.$sce = $sce;
     this.$stateParams = $stateParams;
     this.departmentsDetailTeamsDetailPositions = departmentsDetailTeamsDetailPositions;
   }
