@@ -7,7 +7,21 @@ departments-detail-teams-detail-positions-detail-job-description {
   top: 0;
   trix-toolbar {
     border-bottom: 1px solid #ccc;
-    padding: 10px 15px 0;
+    padding: 5px 15px;
+    .trix-button-group {
+      margin-bottom: 0;
+      border: 0;
+      border-radius: 0;
+      &:not(:first-child) {
+        margin-left: 0;
+      }
+    }
+    .trix-button {
+      border: 0;
+      &:not(:first-child) {
+        border: 0;
+      }
+    }
   }
   trix-editor {
     position: absolute;
