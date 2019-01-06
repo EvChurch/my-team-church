@@ -49,6 +49,7 @@ class Departments {
       fragment DepartmentFields on Department {
         id
         name
+        breadcrumb
         positions_needing_people
       }
     `).then((data) => {

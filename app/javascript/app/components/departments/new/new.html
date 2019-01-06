@@ -16,7 +16,7 @@
     <label>Parent</label>
     <select chosen
             ng-model="$ctrl.department.parent_id"
-            ng-options="department.id as department.name for department in $ctrl.departments.allDepartments"
+            ng-options="department.id as department.breadcrumb for department in $ctrl.departments.allDepartments"
             allow-single-deselect="true"
             class="form-control">
       <option value=""></option>
