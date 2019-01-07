@@ -15,13 +15,12 @@ class Integration::Elvanto::AuthenticateService
 
   def get_authentication_cookies
     response = HTTParty.post("https://#{integration.domain}/login/",
-      body: {
-        login_username: integration.username,
-        login_password: integration.password,
-        login_to: 'admin'
-      },
-      follow_redirects: false
-    )
+                             body: {
+                               login_username: integration.username,
+                               login_password: integration.password,
+                               login_to: 'admin'
+                             },
+                             follow_redirects: false)
     cookies = HTTParty::CookieHash.new
     raise Unauthorized if response.get_fields('Set-Cookie').nil?
     response.get_fields('Set-Cookie').each { |c| cookies.add_cookies(c) }

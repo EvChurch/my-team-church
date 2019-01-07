@@ -9,7 +9,20 @@ class Integration::Elvanto::Push::DepartmentService < Integration::Elvanto::Push
     create
   end
 
+  def discard
+    return unless record.remote_id.present? && record.remote_source == 'elvanto'
+
+    post(
+      'admin/settings/departments',
+      {
+        action: 'delete',
+        department_id: record.remote_id
+      }
+    )
+  end
+
   protected
+
 
   def post_department_to_elvanto
     post_department(
