@@ -39,7 +39,7 @@ class Integration::Elvanto::Push::PersonService < Integration::Elvanto::Push::Ba
   end
 
   def position_to_elvanto_department_field(position)
-    "#{position.team.departments.first.name}||#{position.team.name}||#{position.name}"
+    "#{position.team.departments.first.breadcrumb}||#{position.team.name}||#{position.name}"
   end
 
   def elvanto

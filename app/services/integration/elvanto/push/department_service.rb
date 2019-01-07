@@ -14,7 +14,7 @@ class Integration::Elvanto::Push::DepartmentService < Integration::Elvanto::Push
   def post_department_to_elvanto
     post_department(
       record.remote_id || 'add',
-      name: record.path.map(&:name).join(' > '),
+      name: record.breadcrumb,
       self_assign: false,
       has_sub_departments: '',
       status: '',

@@ -35,6 +35,10 @@ class Department < ApplicationRecord
     super.kept
   end
 
+  def breadcrumb
+    path.map(&:name).join(' > ')
+  end
+
   protected
 
   def people_needed_grouped_by_position_id
