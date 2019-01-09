@@ -1,18 +1,27 @@
 class DetailController {
   constructor(
-    $rootScope, $state, $stateParams,
+    $rootScope, $state, $stateParams, $transitions,
     departmentsDetailTeamsDetailPositionsDetailEntities
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.$stateParams = $stateParams;
+    this.$transitions = $transitions;
     this.departmentsDetailTeamsDetailPositionsDetailEntities = departmentsDetailTeamsDetailPositionsDetailEntities;
   }
   $onInit() {
     this.load();
-    this.$state.go('.objectives');
     this.watcher0 = this.$rootScope.$on('entityDelete', (_event, _positionId, entity) => {
       if (entity.id === this.entity.id) this.$state.go('departments.detail.teams.detail.positions.detail.entities');
+    });
+    this.$state.go('.objectives');
+    this.$transitions.onSuccess({}, (transition) => {
+      if (
+        transition.to().name == 'departments.detail.teams.detail.positions.detail.entities.detail' ||
+        transition.to().name == 'teams.detail.positions.detail.entities.detail'
+        ) {
+        this.$state.go('.objectives');
+      }
     });
   }
   $onDestroy() {

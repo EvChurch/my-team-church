@@ -1,11 +1,12 @@
 class DetailController {
   constructor(
-    $rootScope, $state, $stateParams,
+    $rootScope, $state, $stateParams, $transitions,
     departments
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.$stateParams = $stateParams;
+    this.$transitions = $transitions;
     this.departments = departments;
   }
   $onInit() {
@@ -17,12 +18,17 @@ class DetailController {
       this.$state.go('departments');
       throw ex;
     });
-    this.$state.go('.teams');
     this.watcher0 = this.$rootScope.$on('departmentUpdate', (_event, department) => {
       if (department.id === this.department.id) this.department = department;
     });
     this.watcher1 = this.$rootScope.$on('departmentDelete', (_event, department) => {
       if (department.id === this.department.id) this.$state.go('departments');
+    });
+    this.$state.go('.teams');
+    this.$transitions.onSuccess({}, (transition) => {
+      if (transition.to().name == 'departments.detail') {
+        this.$state.go('.teams');
+      }
     });
   }
   $onDestroy() {

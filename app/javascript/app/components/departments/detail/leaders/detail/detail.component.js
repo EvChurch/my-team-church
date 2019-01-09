@@ -2,12 +2,13 @@ import { find } from 'lodash/fp';
 
 class DetailController {
   constructor(
-    $rootScope, $state, $stateParams,
+    $rootScope, $state, $stateParams, $transitions,
     departmentsDetailLeaders
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.$stateParams = $stateParams;
+    this.$transitions = $transitions;
     this.departmentsDetailLeaders = departmentsDetailLeaders;
   }
   $onInit() {
@@ -23,6 +24,11 @@ class DetailController {
       if (leader.id === this.leader.id) this.$state.go('departments.detail.leaders');
     });
     this.$state.go('.objectives');
+    this.$transitions.onSuccess({}, (transition) => {
+      if (transition.to().name == 'departments.detail.leaders.detail') {
+        this.$state.go('.objectives');
+      }
+    });
   }
   $onDestroy() {
     this.watcher0();

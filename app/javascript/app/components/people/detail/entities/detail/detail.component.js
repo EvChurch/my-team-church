@@ -1,16 +1,16 @@
 class DetailController {
   constructor(
-    $rootScope, $state, $stateParams,
+    $rootScope, $state, $stateParams, $transitions,
     peopleDetailEntities
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.$stateParams = $stateParams;
+    this.$transitions = $transitions;
     this.peopleDetailEntities = peopleDetailEntities;
   }
   $onInit() {
     this.load();
-    this.$state.go('.objectives');
     this.watcher0 = this.$rootScope.$on('entityDelete', (_event, _personId, entity) => {
       if (entity.id === this.entity.id) {
         if (this.$state.includes('me')) {
@@ -18,6 +18,15 @@ class DetailController {
         } else {
           this.$state.go('people.detail.entities');
         }
+      }
+    });
+    this.$state.go('.objectives');
+    this.$transitions.onSuccess({}, (transition) => {
+      if (
+        transition.to().name == 'people.detail.entities.detail' ||
+        transition.to().name == 'me.entities.detail'
+      ) {
+        this.$state.go('.objectives');
       }
     });
   }
