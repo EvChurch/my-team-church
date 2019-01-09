@@ -1,21 +1,29 @@
 objectives-detail-key-results-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  height: 49px;
-  padding: 0 15px;
+  padding: 10px 15px;
   border-bottom: 1px solid #ccc;
+  @media (max-width: 767px) {
+    grid-template-columns: initial;
+    grid-gap: 5px;
+  }
   .changed-key-result-name {
-    flex-grow: 1;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
   .changed-key-result {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
     > div {
       display: inline-block;
       height: 30px;
       line-height: 30px;
       overflow: hidden;
+    }
+    @media (max-width: 767px) {
+      margin-left: 40px;
     }
   }
   .result-type {
@@ -23,7 +31,6 @@ objectives-detail-key-results-item {
     white-space: nowrap;
     text-overflow: ellipsis;
     text-align: left;
-    margin-right: 10px;
   }
   input[type=number] {
     border: 0;

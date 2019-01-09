@@ -1,8 +1,21 @@
 @import 'keyResults/keyResults';
 
 objectives-detail {
-  > div {
-    height: 49px;
+  > .objective {
+    display: grid;
     border-bottom: 1px solid #ccc;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 10px 15px;
+    @media (max-width: 767px) {
+      grid-template-columns: initial;
+      grid-gap: 5px;
+    }
+    .actions {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 1fr auto;
+      grid-gap: 10px;
+    }
   }
 }

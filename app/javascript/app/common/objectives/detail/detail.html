@@ -1,8 +1,6 @@
-<div class="d-flex align-items-center">
-  <div class="col">
-    {{$ctrl.objective.name}}
-  </div>
-  <div class="col-4">
+<div class="objective">
+  <div class="name">{{$ctrl.objective.name}}</div>
+  <div class="actions">
     <div class="progress">
       <div class="progress-bar"
            role="progressbar"
@@ -11,8 +9,6 @@
         {{$ctrl.objective.percentage_complete | number : 0}}%
       </div>
     </div>
-  </div>
-  <div class="col-auto">
     <a ng-click="$ctrl.objectives.openEditModal($ctrl.resourceId, $ctrl.resourceType, $ctrl.objective)"
        data-title="Edit Objective"
        data-placement="left"
