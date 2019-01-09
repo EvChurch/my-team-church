@@ -8,6 +8,7 @@ class ConnectController {
     this.organizations = organizations;
     if ($stateParams.access_code) {
       this.accessCode = $stateParams.access_code;
+      this.autoAccessCode = true;
       this.submit();
     }
   }
@@ -15,7 +16,7 @@ class ConnectController {
     this.loading = true;
     this.organizations.connect(this.accessCode).then(() => {
       this.loading = false;
-      this.$state.go('me');
+      this.$state.go('me.entities');
     });
   }
 }
