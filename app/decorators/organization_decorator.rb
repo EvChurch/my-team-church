@@ -19,4 +19,8 @@ class OrganizationDecorator < ApplicationDecorator
       person_id: context[:user].links.where(organization_id: object.id).pluck(:person_id)
     ).exists?
   end
+
+  def address
+    [address_1, address_2, city, state, zip].reject(&:blank?).join(', ')
+  end
 end

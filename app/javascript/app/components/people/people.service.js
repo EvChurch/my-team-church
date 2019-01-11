@@ -58,6 +58,7 @@ class People {
           mobile
           phone
           gender
+          invite_url
           users {
             id
             first_name
@@ -89,6 +90,7 @@ class People {
           mobile
           phone
           gender
+          invite_url
           users {
             id
             first_name
@@ -116,6 +118,7 @@ class People {
           mobile
           phone
           gender
+          invite_url
         }
       }
     `, { person: person }).then((data) => {
@@ -139,11 +142,27 @@ class People {
           mobile
           phone
           gender
+          invite_url
         }
       }
     `, { id: id, person: this.inputPerson(person) }).then((data) => {
       const person = data.updatePerson;
       this.$rootScope.$emit('personUpdate', person);
+      return person;
+    });
+  }
+  invite(id) {
+    return this.api.mutate(gql`
+      mutation invitePerson($id: ID!) {
+        invitePerson(
+          id: $id,
+        ) {
+          id
+        }
+      }
+    `, { id: id }).then((data) => {
+      const person = data.invitePerson;
+      this.$rootScope.$emit('personInvite', person);
       return person;
     });
   }

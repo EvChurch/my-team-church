@@ -84,7 +84,7 @@
           </select>
         </div>
         <div class="text-right">
-          <button type="submit"ng-disabled="!personForm.$valid || $ctrl.saving" class="btn btn-primary">Save</button>
+          <button type="submit" ng-disabled="!personForm.$valid || $ctrl.saving" class="btn btn-primary">Save</button>
       </form>
       <div class="list-group list-group-flush user-list mt-3">
         <div class="list-group-item">
@@ -94,10 +94,23 @@
           <div>{{user.first_name}} {{user.last_name}}</div>
           <div class="text-muted">{{user.email}}</div>
         </div>
-        <div class="list-group-item">
+        <div class="list-group-item" ng-if="$ctrl.person.users.length === 0">
+          <div>Invite User by Email</div>
+          <div class="input-group mt-2">
+            <button class="btn btn-secondary btn-block"
+                    ng-click="$ctrl.invite()"
+                    ng-disabled="!$ctrl.person.email">
+              Send Invite Email
+            </button>
+          </div>
+          <div class="text-center">
+            <label ng-if="!$ctrl.person.email">Email must be set first</label>
+          </div>
+        </div>
+        <div class="list-group-item" ng-if="$ctrl.person.users.length === 0">
           <div>Invite User by Link</div>
           <div class="input-group mt-2">
-            <input class="form-control" id="user-link" value="{{$ctrl.$location.protocol()}}://{{$ctrl.$location.host()}}/organizations/connect?access_code={{$ctrl.person.id}}" readonly>
+            <input class="form-control" id="user-link" ng-model="$ctrl.person.invite_url" readonly>
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" ngclipboard data-clipboard-target="#user-link">
                 <i class="far fa-copy"></i>

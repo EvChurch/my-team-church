@@ -1,0 +1,7 @@
+<% content_for :reason do %>
+  You are receiving this email because <%= @user.first_name %> has invited you to join them.
+<% end %>
+<p>
+  <%= @user.name %> from <%= @organization.name %> has invited you to join them on the MyTeam@Church Platform.
+</p>
+<button href="<%= @invite_url %>">Sign Up</button>

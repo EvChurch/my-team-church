@@ -35,4 +35,8 @@ class Person < ApplicationRecord
   def gender_as_letter
     gender&.first&.downcase
   end
+
+  def invite(user)
+    PersonMailer.invite(user, self).deliver_later
+  end
 end

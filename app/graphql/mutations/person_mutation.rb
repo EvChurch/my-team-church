@@ -25,4 +25,17 @@ module Mutations::PersonMutation
       person.decorate
     }
   end
+
+  Invite = GraphQL::Field.define do
+    description 'Invite Person'
+    argument :id, !types.ID
+    type Types::PersonType
+    resolve lambda { |organization, args, ctx|
+      person = organization.people
+                           .kept
+                           .find(args[:id])
+      person.invite(ctx[:current_user])
+      person.decorate
+    }
+  end
 end

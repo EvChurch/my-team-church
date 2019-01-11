@@ -1,6 +1,6 @@
 class DetailController {
   constructor(
-    $location, $q, $state, $stateParams, $rootScope,
+    $location, $q, $state, $stateParams, $rootScope, toastr,
     people
   ) {
     this.$location = $location;
@@ -8,6 +8,7 @@ class DetailController {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$rootScope = $rootScope;
+    this.toastr = toastr;
     this.people = people;
   }
   $onInit() {
@@ -47,6 +48,13 @@ class DetailController {
     } else {
       return this.people.get(this.$stateParams.personId);
     }
+  }
+  invite() {
+    this.people.invite(this.$stateParams.personId).then(() => {
+      this.toastr.success('Email will be sent in the background.', 'Invite email scheduled successfully!');
+    }).catch((error) => {
+      this.toastr.error('Please review this person and try again!', 'Error sending an invite');
+    });
   }
 }
 
