@@ -59,6 +59,7 @@ class People {
           phone
           gender
           invite_url
+          invitable
           users {
             id
             first_name
@@ -91,6 +92,7 @@ class People {
           phone
           gender
           invite_url
+          invitable
           users {
             id
             first_name
@@ -119,6 +121,13 @@ class People {
           phone
           gender
           invite_url
+          invitable
+          users {
+            id
+            first_name
+            last_name
+            email
+          }
         }
       }
     `, { person: person }).then((data) => {
@@ -143,6 +152,13 @@ class People {
           phone
           gender
           invite_url
+          invitable
+          users {
+            id
+            first_name
+            last_name
+            email
+          }
         }
       }
     `, { id: id, person: this.inputPerson(person) }).then((data) => {
@@ -158,6 +174,7 @@ class People {
           id: $id,
         ) {
           id
+          invitable
         }
       }
     `, { id: id }).then((data) => {

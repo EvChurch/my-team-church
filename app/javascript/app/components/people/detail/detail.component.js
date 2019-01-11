@@ -27,14 +27,17 @@ class DetailController {
   $onDestroy() {
     this.watcher0();
   }
-  save() {
+  save(form) {
     this.saving = true;
     if (this.person.id) {
       this.people.update(this.person.id, this.person).then((person) => {
+        this.person = person;
+        form.$setPristine();
         this.saving = false;
       });
     } else {
       this.people.create(this.person).then((person) => {
+        form.$setPristine();
         this.saving = false;
         this.$state.go('people.detail', { personId: person.id });
       });
@@ -50,7 +53,8 @@ class DetailController {
     }
   }
   invite() {
-    this.people.invite(this.$stateParams.personId).then(() => {
+    this.people.invite(this.$stateParams.personId).then((person) => {
+      this.person.invitable = person.invitable;
       this.toastr.success('Email will be sent in the background.', 'Invite email scheduled successfully!');
     }).catch((error) => {
       this.toastr.error('Please review this person and try again!', 'Error sending an invite');

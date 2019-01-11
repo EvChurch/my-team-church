@@ -36,7 +36,14 @@ class Person < ApplicationRecord
     gender&.first&.downcase
   end
 
+  def invitable
+    email && (invited_at.blank? || invited_at < 5.minutes.ago) && users.empty?
+  end
+
   def invite(user)
+    return unless invitable
+
+    update(invited_at: Time.current)
     PersonMailer.invite(user, self).deliver_later
   end
 end
