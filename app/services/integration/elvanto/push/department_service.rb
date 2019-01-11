@@ -14,15 +14,12 @@ class Integration::Elvanto::Push::DepartmentService < Integration::Elvanto::Push
 
     post(
       'admin/settings/departments',
-      {
-        action: 'delete',
-        department_id: record.remote_id
-      }
+      action: 'delete',
+      department_id: record.remote_id
     )
   end
 
   protected
-
 
   def post_department_to_elvanto
     post_department(
@@ -41,13 +38,15 @@ class Integration::Elvanto::Push::DepartmentService < Integration::Elvanto::Push
   end
 
   def team(local_team)
-    {
-      id: local_team.remote_id || 'add',
-      name: local_team.name,
-      parent_id: record.remote_id,
-      self_assign: false,
-      positions: local_team.positions.kept.map(&method(:position))
-    } unless local_team.positions.kept.empty?
+    unless local_team.positions.kept.empty?
+      {
+        id: local_team.remote_id || 'add',
+        name: local_team.name,
+        parent_id: record.remote_id,
+        self_assign: false,
+        positions: local_team.positions.kept.map(&method(:position))
+      }
+    end
   end
 
   def position(local_position)

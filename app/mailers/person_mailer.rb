@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PersonMailer < ApplicationMailer
   def invite(user, person)
     @user         = user.decorate
