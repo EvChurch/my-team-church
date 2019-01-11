@@ -97,10 +97,10 @@
         <div class="list-group-item" ng-if="$ctrl.person.users.length === 0">
           <div>Invite User by Email</div>
           <div class="input-group mt-2">
-            <button class="btn btn-secondary btn-block"
+            <button class="btn btn-outline-secondary btn-block"
                     ng-click="$ctrl.invite()"
                     ng-disabled="!$ctrl.person.email">
-              Send Invite Email
+              Send Invite Email <strong ng-if="$ctrl.person.email">({{$ctrl.person.email}})</strong>
             </button>
           </div>
           <div class="text-center">
