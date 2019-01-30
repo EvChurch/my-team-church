@@ -28,7 +28,7 @@ cd my-team-church
 #### Environment
 
 ```
-cp .env.example .env
+cp .env .env.development
 cp config/database.example.yml config/database.yml
 ```
 
