@@ -23,6 +23,7 @@ export default function appRun(
 
   $transitions.onFinish(null, (trans) => {
     changePageTitle(trans, $rootScope, $window);
+    $('.pad-box').scrollLeft($(document).outerWidth());
   });
 }
 
