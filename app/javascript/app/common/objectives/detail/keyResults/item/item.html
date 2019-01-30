@@ -9,6 +9,8 @@
            ng-model="$ctrl.changedKeyResult.current_value"
            ng-model-options="{ debounce: 500 }"
            ng-change="$ctrl.save()"
+           min="{{$ctrl.changedKeyResult.start_value}}"
+           max="{{$ctrl.changedKeyResult.target_value}}"
            slider
            options="$ctrl.options">
   </div>
