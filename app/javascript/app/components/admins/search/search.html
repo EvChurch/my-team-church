@@ -15,7 +15,8 @@
   <input class="form-control"
         ng-model="$ctrl.searchString"
         ng-change="$ctrl.search()"
-        ng-model-options="{ debounce: 1000 }">
+        ng-model-options="{ debounce: 1000 }"
+        autofocus>
   <ul class="list-group mt-2" ng-if="$ctrl.searchString !== ''">
     <li class="list-group-item d-flex align-items-center"
         ng-repeat="edge in $ctrl.list track by edge.cursor"
