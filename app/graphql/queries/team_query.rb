@@ -6,14 +6,19 @@ module Queries::TeamQuery
     argument :department_id, types.ID
     description 'List of Teams'
     before_scope
-    resource lambda { |organization, args, _ctx|
+    resource lambda { |organization, args, ctx|
       if args[:department_id]
         organization.departments
                     .kept
                     .find(args[:department_id])
                     .teams
       else
+        team_ids = ctx[:current_user].links
+                                     .joins(person: :team_leaders)
+                                     .where(team_leaders: { discarded_at: nil })
+                                     .pluck('team_leaders.team_id')
         organization.teams
+                    .where(id: team_ids)
                     .kept
       end
     }
