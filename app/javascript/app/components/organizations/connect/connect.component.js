@@ -16,7 +16,7 @@ class ConnectController {
     this.loading = true;
     this.organizations.connect(this.accessCode).then(() => {
       this.loading = false;
-      this.$state.go('me.entities');
+      this.$state.go('me.roles');
     });
   }
 }

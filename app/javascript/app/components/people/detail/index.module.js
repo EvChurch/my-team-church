@@ -1,7 +1,7 @@
 import Component from './detail.component';
-import Entities from './entities/index.module';
+import Roles from './roles/index.module';
 
 export default angular.module('app.components.people.detail', [
   Component,
-  Entities
+  Roles
 ]).name;

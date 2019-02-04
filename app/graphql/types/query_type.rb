@@ -37,6 +37,8 @@ Types::QueryType = GraphQL::ObjectType.define do
   end
   field :person, Queries::PersonQuery::Get
   field :me, Queries::PersonQuery::Me
+  field :personDepartmentLeaders, Queries::Person::Department::LeaderQuery::List
+  field :personTeamLeaders, Queries::Person::Team::LeaderQuery::List
   field :personTeamPositionEntities, Queries::Person::Team::Position::EntityQuery::List
   field :integrations, Queries::IntegrationQuery::List
   field :integration, Queries::IntegrationQuery::Get

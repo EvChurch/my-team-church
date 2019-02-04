@@ -26,7 +26,7 @@ export default class Routes {
       parent: 'root',
       resolve: {
         0: /* @ngInject */ ($state) => {
-          $state.go('me.entities');
+          $state.go('me.roles');
         }
       }
     }).state({
@@ -444,22 +444,22 @@ export default class Routes {
         peopleDetailExpanded: true
       }
     }).state({
-      name: 'people.detail.entities',
-      url: '/entities',
+      name: 'people.detail.roles',
+      url: '/roles',
       views: {
         'list@people.detail': {
-          component: 'peopleDetailEntities'
+          component: 'peopleDetailRoles'
         }
       },
       resolve: {
         personId: /* @ngInject */ ($stateParams) => $stateParams.personId,
       }
     }).state({
-      name: 'people.detail.entities.detail',
-      url: '/:entityId',
+      name: 'people.detail.roles.entity',
+      url: '/entities/:entityId',
       views: {
         'branch@people.detail': {
-          component: 'peopleDetailEntitiesDetail',
+          component: 'peopleDetailRolesEntity',
         }
       },
       resolve: {
@@ -467,10 +467,10 @@ export default class Routes {
         entityId: /* @ngInject */ ($stateParams) => $stateParams.entityId
       }
     }).state({
-      name: 'people.detail.entities.detail.objectives',
+      name: 'people.detail.roles.entity.objectives',
       url: '/objectives',
       views: {
-        'list@people.detail.entities.detail': {
+        'list@people.detail.roles.entity': {
           component: 'objectives'
         }
       },
@@ -479,10 +479,10 @@ export default class Routes {
         resourceType: () => 'team_position_entity'
       }
     }).state({
-      name: 'people.detail.entities.detail.items',
+      name: 'people.detail.roles.entity.items',
       url: '/positions/:positionId/items',
       views: {
-        'list@people.detail.entities.detail': {
+        'list@people.detail.roles.entity': {
           component: 'departmentsDetailTeamsDetailPositionsDetailItems'
         }
       },
@@ -490,10 +490,10 @@ export default class Routes {
         readOnly: () => true
       }
     }).state({
-      name: 'people.detail.entities.detail.jobDescription',
+      name: 'people.detail.roles.entity.jobDescription',
       url: '/positions/:positionId/job_description',
       views: {
-        'list@people.detail.entities.detail': {
+        'list@people.detail.roles.entity': {
           component: 'departmentsDetailTeamsDetailPositionsDetailJobDescription'
         }
       },
@@ -501,15 +501,55 @@ export default class Routes {
         readOnly: () => true
       }
     }).state({
-      name: 'people.detail.entities.detail.training',
+      name: 'people.detail.roles.entity.training',
       url: '/positions/:positionId/training',
       views: {
-        'list@people.detail.entities.detail': {
+        'list@people.detail.roles.entity': {
           component: 'departmentsDetailTeamsDetailPositionsDetailTraining'
         }
       },
       resolve: {
         readOnly: () => true
+      }
+    }).state({
+      name: 'people.detail.roles.departmentLeader',
+      url: '/department_leaders/:leaderId',
+      views: {
+        'branch@people.detail': {
+          component: 'departmentsDetailLeadersDetail'
+        }
+      }
+    }).state({
+      name: 'people.detail.roles.departmentLeader.objectives',
+      url: '/objectives',
+      views: {
+        'list@people.detail.roles.departmentLeader': {
+          component: 'objectives',
+        }
+      },
+      resolve: {
+        resourceId: /* @ngInject */ ($stateParams) => $stateParams.leaderId,
+        resourceType: () => 'department_leader'
+      }
+    }).state({
+      name: 'people.detail.roles.teamLeader',
+      url: '/team_leaders/:leaderId',
+      views: {
+        'branch@people.detail': {
+          component: 'departmentsDetailTeamsDetailLeadersDetail'
+        }
+      }
+    }).state({
+      name: 'people.detail.roles.teamLeader.objectives',
+      url: '/objectives',
+      views: {
+        'list@people.detail.roles.teamLeader': {
+          component: 'objectives',
+        }
+      },
+      resolve: {
+        resourceId: /* @ngInject */ ($stateParams) => $stateParams.leaderId,
+        resourceType: () => 'team_leader'
       }
     }).state({
       name: 'me',
@@ -532,26 +572,26 @@ export default class Routes {
         peopleDetailExpanded: true
       }
     }).state({
-      name: 'me.entities',
-      url: '/entities',
+      name: 'me.roles',
+      url: '/roles',
       views: {
         'list@me': {
-          component: 'peopleDetailEntities'
+          component: 'peopleDetailRoles'
         }
       }
     }).state({
-      name: 'me.entities.detail',
-      url: '/:entityId',
+      name: 'me.roles.entity',
+      url: '/entities/:entityId',
       views: {
         'branch@me': {
-          component: 'peopleDetailEntitiesDetail'
+          component: 'peopleDetailRolesEntity'
         }
       }
     }).state({
-      name: 'me.entities.detail.objectives',
+      name: 'me.roles.entity.objectives',
       url: '/objectives',
       views: {
-        'list@me.entities.detail': {
+        'list@me.roles.entity': {
           component: 'objectives',
         }
       },
@@ -560,10 +600,10 @@ export default class Routes {
         resourceType: () => 'team_position_entity'
       }
     }).state({
-      name: 'me.entities.detail.items',
+      name: 'me.roles.entity.items',
       url: '/positions/:positionId/items',
       views: {
-        'list@me.entities.detail': {
+        'list@me.roles.entity': {
           component: 'departmentsDetailTeamsDetailPositionsDetailItems'
         }
       },
@@ -571,10 +611,10 @@ export default class Routes {
         readOnly: () => true
       }
     }).state({
-      name: 'me.entities.detail.jobDescription',
+      name: 'me.roles.entity.jobDescription',
       url: '/positions/:positionId/job_description',
       views: {
-        'list@me.entities.detail': {
+        'list@me.roles.entity': {
           component: 'departmentsDetailTeamsDetailPositionsDetailJobDescription'
         }
       },
@@ -582,15 +622,55 @@ export default class Routes {
         readOnly: () => true
       }
     }).state({
-      name: 'me.entities.detail.training',
+      name: 'me.roles.entity.training',
       url: '/positions/:positionId/training',
       views: {
-        'list@me.entities.detail': {
+        'list@me.roles.entity': {
           component: 'departmentsDetailTeamsDetailPositionsDetailTraining'
         }
       },
       resolve: {
         readOnly: () => true
+      }
+    }).state({
+      name: 'me.roles.departmentLeader',
+      url: '/department_leaders/:leaderId',
+      views: {
+        'branch@me': {
+          component: 'departmentsDetailLeadersDetail'
+        }
+      }
+    }).state({
+      name: 'me.roles.departmentLeader.objectives',
+      url: '/objectives',
+      views: {
+        'list@me.roles.departmentLeader': {
+          component: 'objectives',
+        }
+      },
+      resolve: {
+        resourceId: /* @ngInject */ ($stateParams) => $stateParams.leaderId,
+        resourceType: () => 'department_leader'
+      }
+    }).state({
+      name: 'me.roles.teamLeader',
+      url: '/team_leaders/:leaderId',
+      views: {
+        'branch@me': {
+          component: 'departmentsDetailTeamsDetailLeadersDetail'
+        }
+      }
+    }).state({
+      name: 'me.roles.teamLeader.objectives',
+      url: '/objectives',
+      views: {
+        'list@me.roles.teamLeader': {
+          component: 'objectives',
+        }
+      },
+      resolve: {
+        resourceId: /* @ngInject */ ($stateParams) => $stateParams.leaderId,
+        resourceType: () => 'team_leader'
       }
     }).state({
       name: 'auth',

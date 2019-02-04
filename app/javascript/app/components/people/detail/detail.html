@@ -1,4 +1,4 @@
-<div class="tree" ng-class="{ 'visible-on-mobile': $ctrl.$state.is('people.detail') || $ctrl.$state.is('me') || $ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives') || $ctrl.$state.is('people.detail.entities') || $ctrl.$state.is('me.entities'), 'edit': $ctrl.$state.is('people.detail') || $ctrl.$state.is('people.new') || $ctrl.$state.is('me'), 'terminus': $ctrl.$stateParams.peopleDetailExpanded }">
+<div class="tree" ng-class="{ 'visible-on-mobile': $ctrl.$state.is('people.detail') || $ctrl.$state.is('me') || $ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives') || $ctrl.$state.is('people.detail.entities') || $ctrl.$state.is('me.roles'), 'edit': $ctrl.$state.is('people.detail') || $ctrl.$state.is('people.new') || $ctrl.$state.is('me'), 'terminus': $ctrl.$stateParams.peopleDetailExpanded }">
   <div class="heading">
     <a class="back" ui-sref="people" ng-if="$ctrl.$state.includes('people')"><i class="fas fa-chevron-left"></i></a>
     <div class="title">
@@ -21,7 +21,7 @@
           <div ng-if="$ctrl.$state.is('people.detail') || $ctrl.$state.is('me')">
             Details
           </div>
-          <div ng-if="$ctrl.$state.includes('people.detail.entities') || $ctrl.$state.includes('me.entities')">
+          <div ng-if="$ctrl.$state.includes('people.detail.roles') || $ctrl.$state.includes('me.roles')">
             Positions
           </div>
           <div ng-if="$ctrl.$state.is('people.detail.objectives') || $ctrl.$state.is('me.objectives')">
@@ -43,7 +43,7 @@
         <div>Details</div>
         <div class="icon"><i class="fas fa-edit"></i></div>
       </a>
-      <a class="menu-item" ui-sref=".entities">
+      <a class="menu-item" ui-sref=".roles">
         <div>Positions</div>
         <div class="icon"><i class="fas fa-id-card"></i></div>
       </a>

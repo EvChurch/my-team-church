@@ -11,16 +11,19 @@
           </div>
         </div>
         <div ng-if="!$ctrl.loading">
-          <h1>
-            <a ui-sref="people.detail({ personId: $ctrl.leader.person.id })">
-              {{$ctrl.leader.person.name}}
-            </a>
-          </h1>
+            <h1 ng-if="$ctrl.$state.includes('departments.detail.teams.detail.leaders.detail') || $ctrl.$state.includes('teams.detail.leaders.detail')">
+              <a ui-sref="people.detail({ personId: $ctrl.leader.person.id })">
+                {{$ctrl.leader.person.name}}
+              </a>
+            </h1>
+            <h1 ng-if="$ctrl.$state.includes('me.roles.teamLeader') || $ctrl.$state.includes('people.detail.roles.teamLeader')">
+              {{$ctrl.leader.team.name}} Team Leader
+            </h1>
           <div class="menu-toggle" ng-click="$ctrl.open = !$ctrl.open" ng-class="{ 'open': $ctrl.open }">
             <div class="icon">
               <i class="fas fa-chevron-down"></i>
             </div>
-            <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.leaders.detail.objectives') || $ctrl.$state.includes('teams.detail.leaders.detail.objectives')">
+            <div ng-if="$ctrl.$state.includes('departments.detail.teams.detail.leaders.detail.objectives') || $ctrl.$state.includes('teams.detail.leaders.detail.objectives') || $ctrl.$state.includes('people.detail.roles.teamLeader.objectives') || $ctrl.$state.includes('me.roles.teamLeader.objectives')">
               Objectives
             </div>
           </div>
@@ -28,6 +31,7 @@
       </div>
       <div class="actions">
         <a ng-click="$ctrl.departmentsDetailTeamsDetailLeaders.delete($ctrl.$stateParams.teamId, $ctrl.leader.id)"
+           ng-if="!$ctrl.$state.includes('me.roles.teamLeader')"
             data-title="Remove Leader"
             data-placement="left"
             data-trigger="hover"

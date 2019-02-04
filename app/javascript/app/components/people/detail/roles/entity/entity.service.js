@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import { reduce } from 'lodash/fp';
 import gql from 'graphql-tag';
 
-class Entities {
+class Entity {
   constructor(
     $rootScope,
     api, modal
@@ -97,5 +97,5 @@ class Entities {
   }
 }
 
-export default angular.module('app.components.people.detail.entities.service', [
-]).service('peopleDetailEntities', Entities).name;
+export default angular.module('app.components.people.detail.roles.entity.service', [
+]).service('peopleDetailRolesEntity', Entity).name;

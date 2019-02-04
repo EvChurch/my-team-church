@@ -39,6 +39,10 @@ class Leaders {
             name
             picture
           }
+          team {
+            id
+            name
+          }
         }
       }
     `, { id: id }).then((data) => {

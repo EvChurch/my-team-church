@@ -1,30 +1,30 @@
-class DetailController {
+class EntityController {
   constructor(
     $rootScope, $state, $stateParams, $transitions,
-    peopleDetailEntities
+    peopleDetailRolesEntity
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$transitions = $transitions;
-    this.peopleDetailEntities = peopleDetailEntities;
+    this.peopleDetailRolesEntity = peopleDetailRolesEntity;
   }
   $onInit() {
     this.load();
     this.watcher0 = this.$rootScope.$on('entityDelete', (_event, _personId, entity) => {
       if (entity.id === this.entity.id) {
         if (this.$state.includes('me')) {
-          this.$state.go('me.entities');
+          this.$state.go('me.roles');
         } else {
-          this.$state.go('people.detail.entities');
+          this.$state.go('people.detail.roles');
         }
       }
     });
     this.$state.go('.objectives');
     this.$transitions.onSuccess({}, (transition) => {
       if (
-        transition.to().name == 'people.detail.entities.detail' ||
-        transition.to().name == 'me.entities.detail'
+        transition.to().name == 'people.detail.roles.entity' ||
+        transition.to().name == 'me.roles.entity'
       ) {
         this.$state.go('.objectives');
       }
@@ -35,7 +35,7 @@ class DetailController {
   }
   load() {
     this.loading = true;
-    this.peopleDetailEntities.get(
+    this.peopleDetailRolesEntity.get(
       this.$stateParams.entityId
     ).then((entity) => {
       this.entity = entity;
@@ -47,10 +47,10 @@ class DetailController {
   }
 }
 
-let Detail = {
-  template: require('./detail.html'),
-  controller: DetailController
+let Entity = {
+  template: require('./entity.html'),
+  controller: EntityController
 };
 
-export default angular.module('app.components.people.detail.entities.detail.component', [
-]).component('peopleDetailEntitiesDetail', Detail).name;
+export default angular.module('app.components.people.detail.roles.entity.component', [
+]).component('peopleDetailRolesEntity', Entity).name;

@@ -25,7 +25,9 @@ class DetailController {
     });
     this.$state.go('.objectives');
     this.$transitions.onSuccess({}, (transition) => {
-      if (transition.to().name == 'departments.detail.leaders.detail') {
+      if (transition.to().name == 'departments.detail.leaders.detail' ||
+          transition.to().name == 'me.roles.departmentLeader' ||
+          transition.to().name == 'people.detail.roles.departmentLeader') {
         this.$state.go('.objectives');
       }
     });

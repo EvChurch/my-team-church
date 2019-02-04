@@ -1,7 +1,7 @@
 <div class="tree terminus visible-on-mobile">
   <div class="heading">
     <a class="back" ui-sref="people.detail.entities" ng-if="$ctrl.$state.includes('people')"><i class="fas fa-chevron-left"></i></a>
-    <a class="back" ui-sref="me.entities" ng-if="$ctrl.$state.includes('me')"><i class="fas fa-chevron-left"></i></a>
+    <a class="back" ui-sref="me.roles" ng-if="$ctrl.$state.includes('me')"><i class="fas fa-chevron-left"></i></a>
     <div class="title">
       <div class="ph-item" ng-if="$ctrl.loading">
         <div class="ph-col-12 p-0">
@@ -19,16 +19,16 @@
           <div class="icon">
             <i class="fas fa-chevron-down"></i>
           </div>
-          <div ng-if="$ctrl.$state.includes('people.detail.entities.detail.objectives') || $ctrl.$state.includes('me.entities.detail.objectives')">
+          <div ng-if="$ctrl.$state.includes('people.detail.roles.entity.objectives') || $ctrl.$state.includes('me.roles.entity.objectives')">
             Objectives
           </div>
-          <div ng-if="$ctrl.$state.includes('people.detail.entities.detail.items') || $ctrl.$state.includes('me.entities.detail.items')">
+          <div ng-if="$ctrl.$state.includes('people.detail.roles.entity.items') || $ctrl.$state.includes('me.roles.entity.items')">
             Checklist
           </div>
-          <div ng-if="$ctrl.$state.includes('people.detail.entities.detail.jobDescription') || $ctrl.$state.includes('me.entities.detail.jobDescription')">
+          <div ng-if="$ctrl.$state.includes('people.detail.roles.entity.jobDescription') || $ctrl.$state.includes('me.roles.entity.jobDescription')">
             Job Description
           </div>
-          <div ng-if="$ctrl.$state.includes('people.detail.entities.detail.training') || $ctrl.$state.includes('me.entities.detail.training')">
+          <div ng-if="$ctrl.$state.includes('people.detail.roles.entity.training') || $ctrl.$state.includes('me.roles.entity.training')">
             Training
           </div>
         </div>

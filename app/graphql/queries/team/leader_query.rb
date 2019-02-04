@@ -4,15 +4,15 @@ module Queries::Team::LeaderQuery
   List = GraphQL::Field.define do
     type !types[Types::Team::LeaderType]
     argument :team_id, !types.ID
-    description 'List of Leaders'
+    description 'List of people leading a team'
     before_scope
     resource lambda { |organization, args, _ctx|
       organization.team_leaders
                   .kept
                   .where(team_id: args[:team_id])
     }
-    resolve lambda { |leaders, _args, _ctx|
-      leaders.decorate
+    resolve lambda { |team_leaders, _args, _ctx|
+      team_leaders.decorate
     }
   end
 
@@ -26,6 +26,6 @@ module Queries::Team::LeaderQuery
                   .kept
                   .find(args[:id])
     }
-    resolve ->(leader, _args, _ctx) { leader.decorate }
+    resolve ->(team_leader, _args, _ctx) { team_leader.decorate }
   end
 end

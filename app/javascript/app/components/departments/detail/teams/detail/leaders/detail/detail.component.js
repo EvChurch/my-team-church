@@ -27,7 +27,9 @@ class DetailController {
     this.$transitions.onSuccess({}, (transition) => {
       if (
         transition.to().name == 'departments.detail.teams.detail.leaders.detail' ||
-        transition.to().name == 'teams.detail.leaders.detail'
+        transition.to().name == 'teams.detail.leaders.detail' ||
+        transition.to().name == 'me.roles.teamLeader' ||
+        transition.to().name == 'people.detail.roles.teamLeader'
       ) {
         this.$state.go('.objectives');
       }
