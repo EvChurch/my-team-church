@@ -1,5 +1,5 @@
 <div class="input-group search">
-  <input type="text" class="form-control" ng-model="$ctrl.search" placeholder="Filter Positions">
+  <input type="text" class="form-control" ng-model="$ctrl.search" placeholder="Filter Roles">
   <div class="input-group-append">
     <span class="input-group-text">
       <i class="fas fa-search"></i>
@@ -7,7 +7,38 @@
   </div>
 </div>
 <div class="list-group list-group-flush">
+  <div class="d-flex list-title" ng-if="$ctrl.departmentList.length > 0" ng-click="$ctrl.hideDepartmentList = !$ctrl.hideDepartmentList">
+    <div class="flex-fill">Departments</div>
+    <div class="icon" ng-class="{ 'rotate' : $ctrl.hideDepartmentList }"><i class="fas fa-chevron-down"></i></div>
+  </div>
   <a class="list-group-item list-group-item-action d-flex align-items-center"
+    ng-if="!$ctrl.hideDepartmentList"
+    ng-repeat="leader in $ctrl.departmentList | filter: { department: { name: $ctrl.search } } track by leader.id"
+    ui-sref=".departmentLeader({leaderId: leader.id})"
+    ui-sref-active="active">
+    <div class="flex-fill">
+      {{leader.department.name}}
+    </div>
+  </a>
+  <div class="d-flex list-title" ng-if="$ctrl.teamList.length > 0" ng-click="$ctrl.hideTeamList = !$ctrl.hideTeamList">
+    <div class="flex-fill">Teams</div>
+    <div class="icon" ng-class="{ 'rotate' : $ctrl.hideTeamList }"><i class="fas fa-chevron-down"></i></div>
+  </div>
+  <a class="list-group-item list-group-item-action d-flex align-items-center"
+    ng-if="!$ctrl.hideTeamList"
+    ng-repeat="leader in $ctrl.teamList | filter: { team: { name: $ctrl.search } } track by leader.id"
+    ui-sref=".teamLeader({leaderId: leader.id})"
+    ui-sref-active="active">
+    <div class="flex-fill">
+      {{leader.team.name}}
+    </div>
+  </a>
+  <div class="d-flex list-title" ng-if="$ctrl.entityList.length > 0" ng-click="$ctrl.hideEntityList = !$ctrl.hideEntityList">
+    <div class="flex-fill">Positions</div>
+    <div class="icon" ng-class="{ 'rotate' : $ctrl.hideEntityList }"><i class="fas fa-chevron-down"></i></div>
+  </div>
+  <a class="list-group-item list-group-item-action d-flex align-items-center"
+    ng-if="!$ctrl.hideEntityList"
     ng-repeat="entity in $ctrl.entityList | filter: { position: { name: $ctrl.search } } track by entity.id"
     ui-sref=".entity({entityId: entity.id})"
     ui-sref-active="active">
@@ -29,22 +60,6 @@
         data-trigger="hover"
         bs-tooltip>
       <i class="fas fa-business-time"></i>
-    </div>
-  </a>
-  <a class="list-group-item list-group-item-action d-flex align-items-center"
-    ng-repeat="leader in $ctrl.departmentList | filter: { department: { name: $ctrl.search } } track by leader.id"
-    ui-sref=".departmentLeader({leaderId: leader.id})"
-    ui-sref-active="active">
-    <div class="flex-fill">
-      {{leader.department.name}} Department Leader
-    </div>
-  </a>
-  <a class="list-group-item list-group-item-action d-flex align-items-center"
-    ng-repeat="leader in $ctrl.teamList | filter: { team: { name: $ctrl.search } } track by leader.id"
-    ui-sref=".teamLeader({leaderId: leader.id})"
-    ui-sref-active="active">
-    <div class="flex-fill">
-      {{leader.team.name}} Team Leader
     </div>
   </a>
   <loading-list ng-if="$ctrl.loading"></loading-list>

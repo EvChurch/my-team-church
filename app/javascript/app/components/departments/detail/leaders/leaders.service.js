@@ -42,6 +42,7 @@ class Leaders {
           department {
             id
             name
+            breadcrumb
           }
         }
       }

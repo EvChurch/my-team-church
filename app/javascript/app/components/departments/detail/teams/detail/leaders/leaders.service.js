@@ -42,6 +42,7 @@ class Leaders {
           team {
             id
             name
+            breadcrumb
           }
         }
       }

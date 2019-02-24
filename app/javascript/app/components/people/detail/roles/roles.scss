@@ -1,1 +1,17 @@
 @import 'entity/entity';
+people-detail-roles {
+  .list-title {
+    padding: 5px 10px;
+    background-color: rgb(241, 241, 241);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    .icon {
+      transition: transform 0.2s ease-out;
+      &.rotate {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

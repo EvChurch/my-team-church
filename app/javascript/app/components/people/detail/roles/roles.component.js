@@ -12,8 +12,11 @@ class RolesController {
     this.peopleDetailRoles = peopleDetailRoles;
 
     this.entityList = [];
-    this.departmentLeaderList = [];
-    this.teamLeaderList = [];
+    this.departmentList = [];
+    this.teamList = [];
+    this.hideEntityList = false;
+    this.hideDepartmentList = false;
+    this.hideTeamList = false;
   }
   $onInit() {
     this.loadPersonId().then(() => this.load());

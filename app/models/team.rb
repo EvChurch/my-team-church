@@ -19,6 +19,10 @@ class Team < ApplicationRecord
     end.length
   end
 
+  def breadcrumb
+    [departments.first&.path&.map(&:name), name].compact.join(' > ')
+  end
+
   protected
 
   def people_needed_grouped_by_position_id

@@ -20,6 +20,7 @@ class Roles {
           department {
             id
             name
+            breadcrumb
           }
         }
       }
@@ -39,6 +40,7 @@ class Roles {
           team {
             id
             name
+            breadcrumb
           }
         }
       }

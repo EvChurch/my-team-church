@@ -17,7 +17,7 @@
               </a>
             </h1>
             <h1 ng-if="$ctrl.$state.includes('me.roles.teamLeader') || $ctrl.$state.includes('people.detail.roles.teamLeader')">
-              {{$ctrl.leader.team.name}} Team Leader
+              {{$ctrl.leader.team.breadcrumb}} Team Leader
             </h1>
           <div class="menu-toggle" ng-click="$ctrl.open = !$ctrl.open" ng-class="{ 'open': $ctrl.open }">
             <div class="icon">
