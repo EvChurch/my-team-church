@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-ruby '2.5.3'
+ruby '2.6.1'
 gem 'acts_as_list'
 gem 'ancestry'
 gem 'attr_encrypted', '~> 3.1'
