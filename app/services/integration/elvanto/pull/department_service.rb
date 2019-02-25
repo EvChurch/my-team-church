@@ -9,7 +9,8 @@ class Integration::Elvanto::Pull::DepartmentService < Integration::Elvanto::Pull
     local_department = organization.departments.find_or_initialize_by(
       remote_id: department['id'], remote_source: 'elvanto'
     )
-    local_department.name = department['name']
+    local_department.name =
+      local_department.persisted? ? department['name'].split(' > ').last : department['name']
     local_department.pushable = false
     local_department.save!
     department['sub_departments']&.each do |team|
