@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_11_225421) do
+ActiveRecord::Schema.define(version: 2019_02_25_021528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2019_01_11_225421) do
     t.datetime "discarded_at"
     t.index ["ancestry"], name: "index_departments_on_ancestry"
     t.index ["discarded_at"], name: "index_departments_on_discarded_at"
+    t.index ["organization_id", "remote_id", "remote_source"], name: "departments_remote_idx", unique: true
     t.index ["organization_id"], name: "index_departments_on_organization_id"
-    t.index ["remote_id", "remote_source"], name: "index_departments_on_remote_id_and_remote_source", unique: true
   end
 
   create_table "integrations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -180,8 +180,8 @@ ActiveRecord::Schema.define(version: 2019_01_11_225421) do
     t.datetime "discarded_at"
     t.datetime "invited_at"
     t.index ["discarded_at"], name: "index_people_on_discarded_at"
+    t.index ["organization_id", "remote_id", "remote_source"], name: "people_remote_idx", unique: true
     t.index ["organization_id"], name: "index_people_on_organization_id"
-    t.index ["remote_id", "remote_source"], name: "index_people_on_remote_id_and_remote_source", unique: true
   end
 
   create_table "roles", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -258,7 +258,7 @@ ActiveRecord::Schema.define(version: 2019_01_11_225421) do
     t.datetime "discarded_at"
     t.uuid "team_id"
     t.index ["discarded_at"], name: "index_team_positions_on_discarded_at"
-    t.index ["remote_id", "remote_source"], name: "index_team_positions_on_remote_id_and_remote_source", unique: true
+    t.index ["team_id", "remote_id", "remote_source"], name: "team_positions_remote_idx", unique: true
   end
 
   create_table "teams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -271,8 +271,8 @@ ActiveRecord::Schema.define(version: 2019_01_11_225421) do
     t.string "remote_id"
     t.string "remote_source"
     t.index ["discarded_at"], name: "index_teams_on_discarded_at"
+    t.index ["organization_id", "remote_id", "remote_source"], name: "teams_remote_idx", unique: true
     t.index ["organization_id"], name: "index_teams_on_organization_id"
-    t.index ["remote_id", "remote_source"], name: "index_teams_on_remote_id_and_remote_source", unique: true
   end
 
   create_table "user_links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
