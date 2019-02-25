@@ -12,6 +12,7 @@ module Queries::TeamQuery
                     .kept
                     .find(args[:department_id])
                     .teams
+                    .kept
       else
         team_ids = ctx[:current_user].links
                                      .joins(person: :team_leaders)
