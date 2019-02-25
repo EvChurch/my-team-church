@@ -3,7 +3,7 @@ departments-detail-teams-detail-positions-detail-roles-entity {
     .tree.terminus {
       grid-template-rows: 37px auto;
       .list {
-        height: calc(100vh - 176px);
+        height: calc(var(--vh) - 176px);
         .heading {
           height: 37px;
           padding: 0;

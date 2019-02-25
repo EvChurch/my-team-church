@@ -25,6 +25,16 @@ export default function appRun(
     changePageTitle(trans, $rootScope, $window);
     $('.pad-box').scrollLeft($(document).outerWidth());
   });
+
+  $window.addEventListener('resize', () => {
+    setVh();
+  });
+
+  setVh();
+}
+
+function setVh() {
+  document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
 }
 
 function changePageTitle(transition, $rootScope) {
