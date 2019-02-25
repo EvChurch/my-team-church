@@ -9,6 +9,7 @@ module Pushable
     after_commit :push_create_to_integrations, on: :create
     after_commit :push_update_to_integrations, on: :update
     after_discard :push_discard_to_integrations
+    after_undiscard :push_update_to_integrations
   end
 
   def pushable?
