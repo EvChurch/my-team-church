@@ -14,6 +14,9 @@ class DetailController {
     this.watcher0 = this.$rootScope.$on('entityDelete', (_event, _positionId, entity) => {
       if (entity.id === this.entity.id) this.$state.go('departments.detail.teams.detail.positions.detail.entities');
     });
+    this.watcher1 = this.$rootScope.$on('entityUpdate', (_event, _positionId, entity) => {
+      if (entity.id === this.entity.id) this.entity = entity;
+    });
     this.$state.go('.objectives');
     this.$transitions.onSuccess({}, (transition) => {
       if (
@@ -26,6 +29,7 @@ class DetailController {
   }
   $onDestroy() {
     this.watcher0();
+    this.watcher1();
   }
   load() {
     this.loading = true;

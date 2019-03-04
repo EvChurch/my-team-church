@@ -1,13 +1,21 @@
 class NewModalController {
   constructor(
-    $scope,
-    departmentsDetailTeamsDetailPositionsDetailEntities,
+    $scope, $stateParams,
+    departmentsDetailTeamsDetailPositionsDetailEntities, departmentsDetailTeamsDetailLeaders,
     positionId
   ) {
     this.$scope = $scope;
+    this.$stateParams = $stateParams;
     this.departmentsDetailTeamsDetailPositionsDetailEntities = departmentsDetailTeamsDetailPositionsDetailEntities;
+    this.departmentsDetailTeamsDetailLeaders = departmentsDetailTeamsDetailLeaders;
     this.positionId = positionId;
-    this.entity = { person_id: null };
+    this.entity = { person_id: null, leader_ids: [] };
+    this.loadLeaders();
+  }
+  loadLeaders() {
+    this.departmentsDetailTeamsDetailLeaders.load(this.$stateParams.teamId).then((leaders) => {
+      this.leadersList = angular.copy(leaders);
+    });
   }
   save() {
     return this.departmentsDetailTeamsDetailPositionsDetailEntities.create(this.positionId, this.entity).then(

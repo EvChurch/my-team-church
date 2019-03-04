@@ -1,13 +1,21 @@
+import { find, reduce } from 'lodash/fp';
+
 class EntitiesController {
   constructor(
     $rootScope, $state, $stateParams,
-    departmentsDetailTeamsDetailPositionsDetailEntities
+    departmentsDetailTeamsDetailPositionsDetailEntities, people
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.departmentsDetailTeamsDetailPositionsDetailEntities = departmentsDetailTeamsDetailPositionsDetailEntities;
-    this.list = [];
+    this.people = people;
+    this.mylist = [];
+    this.hideMylist = false;
+    this.assignedlist = [];
+    this.hideAssignedlist = false;
+  this.unassignedList = [];
+    this.hideUnassignedList = false;
   }
   $onInit() {
     this.load();
@@ -30,8 +38,29 @@ class EntitiesController {
     this.loading = true;
     this.departmentsDetailTeamsDetailPositionsDetailEntities.load(this.$stateParams.positionId).then(
       (entities) => {
-        this.loading = false;
-        this.list = angular.copy(entities);
+        return this.people.getMe().then((me) => {
+          this.loading = false;
+          this.myList = reduce((result, entity) => {
+            const leader = find(entity.leaders, (leader) => leader.person.id == me.id);
+            if (leader) {
+              result.push(entity);
+            }
+            return result;
+          }, [], entities);
+          this.assignedList = reduce((result, entity) => {
+            const leader = find(entity.leaders, (leader) => leader.person.id == me.id);
+            if (!leader && entity.leaders.length !== 0) {
+              result.push(entity);
+            }
+            return result;
+          }, [], entities);
+          this.unassignedList = reduce((result, entity) => {
+            if (entity.leaders.length === 0) {
+              result.push(entity);
+            }
+            return result;
+          }, [], entities);
+        });
       }
     );
   }

@@ -2,6 +2,15 @@
   <avatar class="mr-3" source="$ctrl.entity.person.picture"></avatar>
   <div class="flex-fill">
     {{$ctrl.entity.person.name}}
+    <div class="d-flex">
+      <div ng-repeat="leader in $ctrl.entity.leaders track by leader.id"
+          data-title="{{leader.person.name}}"
+          data-trigger="hover"
+          data-placement="bottom"
+          bs-tooltip>
+        <avatar source="leader.person.picture" size="xs"></avatar>
+      </div>
+    </div>
     <div ng-if="$ctrl.entity.start_at && !$ctrl.entity.end_at">
       <small>Start: {{$ctrl.entity.start_at | date}}</small>
     </div>

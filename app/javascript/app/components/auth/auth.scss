@@ -2,7 +2,7 @@ auth {
   background-color: #323232;
   flex-direction: column;
   display: flex;
-  height: var(--vh);
+  height: var(--vh, 100vh);
   align-items: center;
   justify-content: center;
   > .view {

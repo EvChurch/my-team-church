@@ -6,6 +6,8 @@ class Team::Position::Entity < ApplicationRecord
   belongs_to :position, inverse_of: :entities
   belongs_to :person, inverse_of: :position_entities
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
+  has_many :assignees, dependent: :destroy, inverse_of: :entity, class_name: 'Team::Leader::Assignee'
+  has_many :leaders, through: :assignees
   scope :active, lambda {
     where(start_at: nil, end_at: nil)
       .or(where('start_at <= :now AND end_at IS NULL', now: Time.current))

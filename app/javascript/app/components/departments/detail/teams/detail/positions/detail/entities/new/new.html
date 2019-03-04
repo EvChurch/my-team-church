@@ -22,4 +22,14 @@
       <strong>Term is a Trial</strong>
     </label>
   </div>
+  <div class="form-group">
+    <label>Assigned To</label>
+    <select multiple chosen
+      ng-model="$ctrl.entity.leader_ids"
+      ng-options="leader.id as leader.person.name for leader in $ctrl.leadersList"
+      allow-single-deselect="true"
+      class="form-control">>
+      <option value=""></option>
+    </select>
+  </div>
 </modal>

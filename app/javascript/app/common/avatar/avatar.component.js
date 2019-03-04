@@ -2,11 +2,15 @@
 class AvatarController {
   constructor() {
   }
+  $onInit() {
+    this.size = this.size || 'md';
+  }
 }
 
 let Avatar = {
   bindings: {
-    source: '<'
+    source: '<',
+    size: '@'
   },
   template: require('./avatar.html'),
   controller: AvatarController

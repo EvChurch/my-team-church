@@ -19,4 +19,8 @@ InputTypes::Team::Position::EntityInputType = GraphQL::InputObjectType.define do
   argument :end_at, Types::DateTimeType do
     description 'End Timestamp when person serving in role should end.'
   end
+
+  argument :leader_ids, types[types.ID] do
+    description 'ID of leaders who this record is assigned to.'
+  end
 end

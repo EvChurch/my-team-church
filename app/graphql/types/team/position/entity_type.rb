@@ -8,4 +8,5 @@ Types::Team::Position::EntityType = GraphQL::ObjectType.define do
   field :start_at, Types::DateTimeType
   field :end_at, Types::DateTimeType
   field :trial, types.Boolean
+  field :leaders, types[Types::Team::LeaderType]
 end

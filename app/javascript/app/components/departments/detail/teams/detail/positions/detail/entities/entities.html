@@ -15,26 +15,42 @@
   </div>
 </div>
 <div class="list-group list-group-flush">
-  <div class="list-group-item" ng-if="$ctrl.loading && $ctrl.list.length == 0" ng-repeat="n in [4, 12, 10, 8]">
-    <div class="d-flex align-items-center">
-      <div class="ph-avatar mr-3 mb-0"></div>
-      <div class="flex-fill">
-        <div class="ph-row my-0">
-          <div class="ph-col-{{n}}"></div>
-          <div class="ph-col-{{12 - n}} empty"></div>
-          <div class="ph-col-6 mb-0"></div>
-        </div>
-      </div>
-    </div>
+  <loading-list ng-if="$ctrl.loading"></loading-list>
+  <div class="d-flex list-title" ng-if="$ctrl.myList.length > 0" ng-click="$ctrl.hideMyList = !$ctrl.hideMyList">
+    <div class="flex-fill">Assigned to Me</div>
+    <div class="icon" ng-class="{ 'rotate' : $ctrl.hideMyList }"><i class="fas fa-chevron-down"></i></div>
   </div>
   <a class="list-group-item list-group-item-action flex-column align-items-start"
+     ng-if="!$ctrl.hideMyList"
      ui-sref=".detail({entityId: entity.id})"
      ui-sref-active="active"
-     ng-repeat="entity in $ctrl.list | filter: { person: { name:$ctrl.search } } track by entity.id">
-  <departments-detail-teams-detail-positions-detail-entities-item entity="entity"></departments-detail-teams-detail-positions-detail-entities-item>
+     ng-repeat="entity in $ctrl.myList | filter: { person: { name:$ctrl.search } } track by entity.id">
+    <departments-detail-teams-detail-positions-detail-entities-item entity="entity"></departments-detail-teams-detail-positions-detail-entities-item>
+  </a>
+  <div class="d-flex list-title" ng-if="$ctrl.assignedList.length > 0" ng-click="$ctrl.hideAssignedList = !$ctrl.hideAssignedList">
+    <div class="flex-fill">Assigned</div>
+    <div class="icon" ng-class="{ 'rotate' : $ctrl.hideAssignedList }"><i class="fas fa-chevron-down"></i></div>
+  </div>
+  <a class="list-group-item list-group-item-action flex-column align-items-start"
+     ng-if="!$ctrl.hideAssignedList"
+     ui-sref=".detail({entityId: entity.id})"
+     ui-sref-active="active"
+     ng-repeat="entity in $ctrl.assignedList | filter: { person: { name:$ctrl.search } } track by entity.id">
+    <departments-detail-teams-detail-positions-detail-entities-item entity="entity"></departments-detail-teams-detail-positions-detail-entities-item>
+  </a>
+  <div class="d-flex list-title" ng-if="$ctrl.unassignedList.length > 0" ng-click="$ctrl.hideUnassignedList = !$ctrl.hideUnassignedList">
+    <div class="flex-fill">Unassigned</div>
+    <div class="icon" ng-class="{ 'rotate' : $ctrl.hideUnassignedList }"><i class="fas fa-chevron-down"></i></div>
+  </div>
+  <a class="list-group-item list-group-item-action flex-column align-items-start"
+     ng-if="!$ctrl.hideUnassignedList"
+     ui-sref=".detail({entityId: entity.id})"
+     ui-sref-active="active"
+     ng-repeat="entity in $ctrl.unassignedList | filter: { person: { name:$ctrl.search } } track by entity.id">
+    <departments-detail-teams-detail-positions-detail-entities-item entity="entity"></departments-detail-teams-detail-positions-detail-entities-item>
   </a>
 </div>
-<div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.list.length == 0">
+<div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.myList.length == 0 && $ctrl.assignedList.length == 0 && $ctrl.unassignedList.length == 0">
   <i class="fas fa-user blankslate-icon"></i>
   <h5>No Assigned People</h5>
   <p>

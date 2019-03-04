@@ -19,5 +19,9 @@ avatar {
     &.icon {
       align-items: center;
     }
+    &-xs {
+      width: 20px;
+      height: 20px;
+    }
   }
 }

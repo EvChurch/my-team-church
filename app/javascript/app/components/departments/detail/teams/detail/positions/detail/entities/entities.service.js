@@ -30,6 +30,14 @@ class Entities {
             last_name
             picture
           }
+          leaders {
+            id
+            person {
+              id
+              name
+              picture
+            }
+          }
         }
       }
     `, { position_id: positionId }).then((data) => {
@@ -57,6 +65,14 @@ class Entities {
             first_name
             last_name
             picture
+          }
+          leaders {
+            id
+            person {
+              id
+              name
+              picture
+            }
           }
         }
       }
@@ -89,6 +105,14 @@ class Entities {
             last_name
             picture
           }
+          leaders {
+            id
+            person {
+              id
+              name
+              picture
+            }
+          }
         }
       }
     `, { position_id: positionId, entity: entity }).then((data) => {
@@ -117,6 +141,14 @@ class Entities {
             first_name
             last_name
             picture
+          }
+          leaders {
+            id
+            person {
+              id
+              name
+              picture
+            }
           }
         }
       }
