@@ -66,7 +66,7 @@ class Integration::Elvanto::Pull::PersonService < Integration::Elvanto::Pull::Ba
     missing_position_ids = position_ids - person.position_ids
     return if missing_position_ids.empty?
 
-    person.position_ids << missing_position_ids
+    person.position_ids += missing_position_ids
   end
 
   def position_ids(attributes)
