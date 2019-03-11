@@ -15,7 +15,7 @@
   </div>
 </div>
 <div class="list-group list-group-flush">
-  <loading-list ng-if="$ctrl.loading"></loading-list>
+  <loading-list ng-if="$ctrl.loading && $ctrl.myList.length == 0 && $ctrl.assignedList.length == 0 && $ctrl.unassignedList.length == 0"></loading-list>
   <div class="d-flex list-title" ng-if="$ctrl.myList.length > 0" ng-click="$ctrl.hideMyList = !$ctrl.hideMyList">
     <div class="flex-fill">Assigned to Me</div>
     <div class="icon" ng-class="{ 'rotate' : $ctrl.hideMyList }"><i class="fas fa-chevron-down"></i></div>
