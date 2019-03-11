@@ -188,12 +188,13 @@ ActiveRecord::Schema.define(version: 2019_03_04_030723) do
     t.string "name"
     t.string "resource_type"
     t.uuid "resource_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_roles_on_discarded_at"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
   create_table "team_leader_assignees", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -240,6 +241,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_030723) do
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_team_position_entities_on_discarded_at"
     t.index ["position_id", "person_id"], name: "index_team_position_entities_on_position_id_and_person_id", unique: true
+    t.index ["position_id"], name: "index_team_position_entities_on_position_id"
   end
 
   create_table "team_position_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -307,6 +309,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_030723) do
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_user_options_on_discarded_at"
     t.index ["user_id", "key"], name: "index_user_options_on_user_id_and_key", unique: true
+    t.index ["user_id"], name: "index_user_options_on_user_id"
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -349,7 +352,9 @@ ActiveRecord::Schema.define(version: 2019_03_04_030723) do
     t.uuid "role_id"
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_users_roles_on_discarded_at"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
   add_foreign_key "department_leaders", "departments", on_delete: :cascade

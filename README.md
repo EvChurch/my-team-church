@@ -9,10 +9,7 @@ See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
-- Ruby version corresponding to the version in file `.ruby-version` with Bundler
-- Node version corresponding to the version in file `.nvmrc` with Yarn
-- PostgreSQL version 10+
-- Redis
+- Docker
 
 ### Installing
 
@@ -21,7 +18,7 @@ A step by step series of examples that tell you how to get a development env run
 #### Getting Started
 
 ```
-git clone https://github.com/tntsoftware/my-team-church.git
+git clone https://github.com/EvChurch/my-team-church.git
 cd my-team-church
 ```
 
@@ -34,27 +31,13 @@ cp config/database.example.yml config/database.yml
 
 You'll need to configure credentials to local and external services in your .env file
 
-#### Installing Dependencies
+#### Running the Project
 
 ```
-bundle install
-yarn install
-rails db:setup
+docker-compose up --build
 ```
 
-#### Running the App
-
-1. Starting the Rails Server
-```
-rails server
-```
-
-2. Starting the Node Server
-```
-yarn start
-```
-
-3. Navigate to [lvh.me:3000](http://lvh.me:3000)
+Navigate to [lvh.me:3000](http://lvh.me:3000)
 
 ## Deployment
 
@@ -68,13 +51,13 @@ The stage branch is deployed to staging [stage.myteam.church](https://stage.myte
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/tntsoftware/my-team-church/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/EvChurch/my-team-church/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
 * **Tataihono Nikora** - *Initial work* - [ardation](https://github.com/ardation)
 
-See also the list of [contributors](https://github.com/tntsoftware/my-team-church/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/EvChurch/my-team-church/contributors) who participated in this project.
 
 ## License
 
