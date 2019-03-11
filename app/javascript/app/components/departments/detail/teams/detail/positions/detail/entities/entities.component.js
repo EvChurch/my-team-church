@@ -41,14 +41,14 @@ class EntitiesController {
         return this.people.getMe().then((me) => {
           this.loading = false;
           this.myList = reduce((result, entity) => {
-            const leader = find(entity.leaders, (leader) => leader.person.id == me.id);
+            const leader = find((leader) => leader.person.id == me.id, entity.leaders);
             if (leader) {
               result.push(entity);
             }
             return result;
           }, [], entities);
           this.assignedList = reduce((result, entity) => {
-            const leader = find(entity.leaders, (leader) => leader.person.id == me.id);
+            const leader = find((leader) => leader.person.id == me.id, entity.leaders);
             if (!leader && entity.leaders.length !== 0) {
               result.push(entity);
             }

@@ -52,11 +52,11 @@
 </div>
 <div class="text-center m-3 my-5" ng-if="!$ctrl.loading && $ctrl.myList.length == 0 && $ctrl.assignedList.length == 0 && $ctrl.unassignedList.length == 0">
   <i class="fas fa-user blankslate-icon"></i>
-  <h5>No Assigned People</h5>
+  <h5>No People in this Position</h5>
   <p>
-    Get started by assigning a person
+    Get started by adding a person
   </p>
   <a ng-click="$ctrl.departmentsDetailTeamsDetailPositionsDetailEntities.openNewModal($ctrl.$stateParams.positionId)" class="btn btn-primary">
-    Assign a Person
+    Add a Person
   </a>
 </div>
