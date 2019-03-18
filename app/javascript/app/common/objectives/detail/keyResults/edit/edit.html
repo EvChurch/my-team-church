@@ -1,4 +1,11 @@
-<modal title="Edit Key Result" save="$ctrl.save()" delete="$ctrl.delete()" cancel="$hide()" show-delete="true">
+<modal title="Edit Key Result/Initiative" save="$ctrl.save()" delete="$ctrl.delete()" cancel="$hide()" show-delete="true">
+  <div class="form-group">
+    <label>Kind</label>
+    <select ng-model="$ctrl.keyResult.kind" class="form-control">
+        <option value="key_result">Key Result</option>
+        <option value="initiative">Initiative</option>
+    </select>
+  </div>
   <div class="form-group">
     <label>Name<span class="text-danger">*</span></label>
     <input class="form-control"
@@ -65,7 +72,7 @@
   <div class="form-group">
     <label>Weight <span class="text-danger">*</span></label>
     <input ng-model="$ctrl.keyResult.weight" type="number" class="form-control" required>
-    <small class="text-muted">Weight is used to increase or decrease importance of single Key Result when calculating Objective completion %.</small>
+    <small class="text-muted">Weight is used to increase or decrease importance of single Key Result/Initiative when calculating Objective completion %.</small>
   </div>
   <div class="form-group">
     <div class="row">
@@ -78,12 +85,5 @@
         <input ng-model="$ctrl.keyResult.end_at" type="date" class="form-control">
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label>Kind</label>
-    <select ng-model="$ctrl.keyResult.kind" class="form-control">
-        <option value="key_result">Key Result</option>
-        <option value="initiative">Initiative</option>
-    </select>
   </div>
 </modal>
