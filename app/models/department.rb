@@ -42,7 +42,7 @@ class Department < ApplicationRecord
   protected
 
   def people_needed_grouped_by_position_id
-    positions.kept.group(:id).sum(:people_needed)
+    positions.kept.where(teams: { discarded_at: nil }).group(:id).sum(:people_needed)
   end
 
   def people_active_grouped_by_position_id
