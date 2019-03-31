@@ -7,7 +7,7 @@ class Team < ApplicationRecord
   has_many :team_links, class_name: 'Team::Link', dependent: :destroy
   has_many :departments, through: :team_links
   has_many :leaders, dependent: :destroy, inverse_of: :team
-  has_many :positions, dependent: :destroy
+  has_many :positions, -> { kept }, dependent: :destroy
   has_many :entities, through: :positions
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
   validates :name, :departments, presence: true

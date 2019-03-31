@@ -7,7 +7,7 @@ class Department < ApplicationRecord
   belongs_to :organization
 
   has_many :team_links, class_name: 'Team::Link', dependent: :destroy, inverse_of: :department
-  has_many :teams, through: :team_links
+  has_many :teams, -> { kept }, through: :team_links
   has_many :positions, through: :teams, class_name: 'Team::Position'
   has_many :leaders, dependent: :destroy, inverse_of: :department
   has_many :entities, through: :positions
@@ -42,7 +42,7 @@ class Department < ApplicationRecord
   protected
 
   def people_needed_grouped_by_position_id
-    positions.kept.where(teams: { discarded_at: nil }).group(:id).sum(:people_needed)
+    positions.kept.group(:id).sum(:people_needed)
   end
 
   def people_active_grouped_by_position_id
