@@ -6,7 +6,7 @@ import { createHttpLink } from 'apollo-link-http';
 
 /* @ngInject */
 export default function appConfig(
-  apolloProvider, $stateProvider, $locationProvider, $windowProvider, $tooltipProvider
+  apolloProvider, $datepickerProvider, $stateProvider, $locationProvider, $windowProvider, $tooltipProvider
 ) {
   let $window = $windowProvider.$get();
 
@@ -32,6 +32,11 @@ export default function appConfig(
 
   angular.extend($tooltipProvider.defaults, {
     bsEnabled: !isTouchDevice()
+  });
+
+  angular.extend($datepickerProvider.defaults, {
+    dateFormat: 'dd/MM/yyyy',
+    startWeek: 1
   });
 }
 

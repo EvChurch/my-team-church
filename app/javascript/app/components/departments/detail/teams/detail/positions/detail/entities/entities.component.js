@@ -10,11 +10,11 @@ class EntitiesController {
     this.$stateParams = $stateParams;
     this.departmentsDetailTeamsDetailPositionsDetailEntities = departmentsDetailTeamsDetailPositionsDetailEntities;
     this.people = people;
-    this.mylist = [];
-    this.hideMylist = false;
-    this.assignedlist = [];
-    this.hideAssignedlist = false;
-  this.unassignedList = [];
+    this.myList = [];
+    this.hideMyList = false;
+    this.assignedList = [];
+    this.hideAssignedList = false;
+    this.unassignedList = [];
     this.hideUnassignedList = false;
   }
   $onInit() {
