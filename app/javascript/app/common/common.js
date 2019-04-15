@@ -7,6 +7,7 @@ import Modal from './modal/index.module';
 import Navbar from './navbar/navbar.component';
 import Objectives from './objectives/index.module';
 import Sidebar from './sidebar/sidebar.component';
+import Trix from './trix/trix.service';
 import User from './user/user.service';
 
 export default angular.module('app.common', [
@@ -19,5 +20,6 @@ export default angular.module('app.common', [
   Navbar,
   Objectives,
   Sidebar,
+  Trix,
   User
 ]).name;

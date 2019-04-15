@@ -2,11 +2,12 @@
 class TrainingController {
   constructor(
     $sce, $stateParams,
-    departmentsDetailTeamsDetailPositions
+    departmentsDetailTeamsDetailPositions, trix
   ) {
     this.$sce = $sce;
     this.$stateParams = $stateParams;
     this.departmentsDetailTeamsDetailPositions = departmentsDetailTeamsDetailPositions;
+    this.trix = trix;
   }
   $onInit() {
     this.loading = true;
