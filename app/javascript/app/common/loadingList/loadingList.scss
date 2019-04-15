@@ -1,8 +1,14 @@
 loading-list {
   .list-group-item {
     height: 50px;
+    border-right: 0;
+    border-left: 0;
     &:first-child {
       height: 49px;
+      border-top: 0;
+    }
+    &:last-child {
+      border-radius: 0;
     }
   }
 }
