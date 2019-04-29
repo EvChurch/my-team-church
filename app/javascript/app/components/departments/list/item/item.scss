@@ -9,6 +9,9 @@ departments-list-item {
       background-color: #f7f7f9;
       color: #464a4c;
     }
+    &.match {
+      background: #fde09b;
+    }
     &.active {
       background: #007bff;
       color: #fff;

@@ -8,12 +8,16 @@ class ItemController {
   getNumber(num) {
     return new Array(num);
   }
+  searchValueMatches() {
+    return this.searchValue !== '' && this.item.name.toLowerCase().includes(this.searchValue.toLowerCase());
+  }
 }
 
 let Item = {
   bindings: {
     item: '<',
-    level: '<'
+    level: '<',
+    searchValue: '<'
   },
   template: require('./item.html'),
   controller: ItemController

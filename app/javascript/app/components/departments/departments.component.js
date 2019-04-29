@@ -1,3 +1,5 @@
+import { filter, some } from 'lodash/fp';
+
 class DepartmentsController {
   constructor(
     $rootScope,
@@ -10,6 +12,7 @@ class DepartmentsController {
     this.$stateParams = $stateParams;
     this.departments = departments;
     this.list = [];
+    this.searchValue = '';
   }
   $onInit() {
     this.watcher0 = this.$rootScope.$on('departmentCreate', () => this.load());
@@ -27,10 +30,22 @@ class DepartmentsController {
     this.departments.load().then((departments) => {
       this.loading = false;
       this.list = angular.copy(departments);
-    })
+      this.originalList = angular.copy(departments);
+    });
   }
   visibleOnMobile() {
     return this.$state.is('departments');
+  }
+  search() {
+    if (this.searchValue !== '') {
+      this.list = filter((department) => this.searchDepartmentAndChildren(department), this.originalList);
+    } else {
+      this.list = this.originalList;
+    }
+  }
+  searchDepartmentAndChildren(department) {
+    return department.name.toLowerCase().includes(this.searchValue.toLowerCase()) ||
+      some((child) => this.searchDepartmentAndChildren(child), department.children);
   }
 }
 
