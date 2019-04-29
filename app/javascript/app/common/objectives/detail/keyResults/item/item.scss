@@ -1,18 +1,9 @@
 objectives-detail-key-results-item {
   display: grid;
-  grid-template-columns: 1fr auto;
   align-items: center;
   padding: 10px 15px;
   border-bottom: 1px solid #ccc;
-  @media (max-width: 767px) {
-    grid-template-columns: initial;
-    grid-gap: 5px;
-  }
-  .changed-key-result-name {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
+  grid-gap: 5px;
   .changed-key-result {
     display: grid;
     grid-template-columns: 1fr auto auto auto;
@@ -33,6 +24,7 @@ objectives-detail-key-results-item {
     text-align: left;
   }
   input[type=number] {
+    background: transparent;
     border: 0;
     width: 80px;
     outline: none;
