@@ -10,7 +10,7 @@ gem 'acts_as_list'
 gem 'ancestry'
 gem 'attr_encrypted', '~> 3.1'
 gem 'bootsnap', require: false
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'devise'
 gem 'discard', '~> 1.0'
 gem 'draper', '3.0.0'
