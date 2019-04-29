@@ -1,0 +1,10 @@
+<modal title="Are you absolutely sure?" cancel="$ctrl.no()" cancel-text="Cancel" save="$ctrl.yes()" save-text="{{ 'I understand, delete this ' + $ctrl.type }}">
+    <div class="alert alert-warning">Unexpected bad things will happen if you don’t read this!</div>
+    <p>
+        This action cannot be undone. This will permanently delete the <strong>{{$ctrl.name}}</strong> {{$ctrl.type}} and remove all associated records.
+    </p>
+    <p>
+        Please type in <strong>{{$ctrl.name}}</strong> exactly as it appears to confirm.
+    </p>
+    <input class="form-control" ng-model="$ctrl.validationName" compare-to="$ctrl.name" required>
+</modal>

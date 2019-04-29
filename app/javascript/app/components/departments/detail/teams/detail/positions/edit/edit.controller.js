@@ -1,11 +1,12 @@
 class EditModalController {
   constructor(
     $scope,
-    departmentsDetailTeamsDetailPositions,
+    departmentsDetailTeamsDetailPositions, modal,
     teamId, position
   ) {
     this.$scope = $scope;
     this.departmentsDetailTeamsDetailPositions = departmentsDetailTeamsDetailPositions;
+    this.modal = modal;
     this.teamId = teamId;
     this.id = position.id;
     this.position = {
@@ -19,8 +20,10 @@ class EditModalController {
     });
   }
   delete() {
-    return this.departmentsDetailTeamsDetailPositions.delete(this.teamId, this.id).then(() => {
-      this.$scope.$hide();
+    return this.modal.delete(this.position.name, 'position').then(() => {
+      return this.departmentsDetailTeamsDetailPositions.delete(this.teamId, this.id).then(() => {
+        this.$scope.$hide();
+      });
     });
   }
 }
