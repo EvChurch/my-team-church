@@ -1,6 +1,7 @@
 import Api from './api/api.service';
-import Avatar from './avatar/avatar.component';
 import Autofocus from './autofocus/autofocus.directive';
+import Avatar from './avatar/avatar.component';
+import CompareTo from './compareTo/compareTo.directive';
 import CountriesAndTimezones from './countriesAndTimezones/countriesAndTimezones.service';
 import LoadingList from './loadingList/loadingList.component';
 import Modal from './modal/index.module';
@@ -12,8 +13,9 @@ import User from './user/user.service';
 
 export default angular.module('app.common', [
   Api,
-  Avatar,
   Autofocus,
+  Avatar,
+  CompareTo,
   CountriesAndTimezones,
   LoadingList,
   Modal,

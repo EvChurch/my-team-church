@@ -31,6 +31,7 @@ class Integration::Elvanto::Push::PersonService < Integration::Elvanto::Push::Ba
       email: record.email,
       phone: record.phone,
       mobile: record.mobile,
+      volunteer: record.positions.present? ? 'yes' : 'no',
       fields: {
         gender: record.gender,
         departments_replace: record.positions.map(&method(:position_to_elvanto_department_field))

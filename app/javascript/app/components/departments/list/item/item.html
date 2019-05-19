@@ -1,6 +1,7 @@
 <a ui-sref="departments.detail({ departmentId: $ctrl.item.id })"
    ui-sref-active="active"
-   class="d-flex align-items-center">
+   class="d-flex align-items-center"
+   ng-class="{ 'match': $ctrl.searchValueMatches() }">
   <div>
     <span ng-repeat="i in $ctrl.getNumber($ctrl.level) track by $index">
       &nbsp;
@@ -24,5 +25,6 @@
 </a>
 <departments-list
   list="$ctrl.item.children"
+  search-value="$ctrl.searchValue"
   level="$ctrl.level + 1"
 ></departments-list>

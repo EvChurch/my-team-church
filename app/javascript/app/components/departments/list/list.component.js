@@ -4,7 +4,8 @@ class ListController {
 let List = {
   bindings: {
     list: '<',
-    level: '<'
+    level: '<',
+    searchValue: '<'
   },
   template: require('./list.html'),
   controller: ListController

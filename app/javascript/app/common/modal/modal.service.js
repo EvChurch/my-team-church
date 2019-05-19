@@ -41,7 +41,24 @@ class ModalService {
     this.open(params);
     return deferred.promise;
   }
-  info(message, title = null) {
+  delete(name, type = 'record') {
+    let deferred = this.$q.defer();
+    const params = {
+      template: require('./delete/delete.html'),
+      controller: 'deleteController',
+      locals: {
+        name: name,
+        deletePromise: deferred,
+        type: type
+      },
+      onHide: () => {
+        deferred.reject();
+      }
+    };
+    this.open(params);
+    return deferred.promise;
+  }
+  info(message, type = null) {
     let deferred = this.$q.defer();
     const params = {
       template: require('./info/info.html'),
