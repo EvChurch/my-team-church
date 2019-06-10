@@ -66,7 +66,11 @@ class Integration::Elvanto::Pull::PersonService < Integration::Elvanto::Pull::Ba
     missing_position_ids = position_ids - person.position_ids
     return if missing_position_ids.empty?
 
-    person.position_ids += missing_position_ids
+    missing_position_ids.each do |position_id|
+      person.position_ids << position_id
+    rescue ActiveRecord::RecordNotUnique => e
+      Rails.logger.error [e.message, *e.backtrace].join($/)
+    end
   end
 
   def position_ids(attributes)
