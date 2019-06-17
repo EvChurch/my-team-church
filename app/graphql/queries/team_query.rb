@@ -18,9 +18,13 @@ module Queries::TeamQuery
                                      .joins(person: :team_leaders)
                                      .where(team_leaders: { discarded_at: nil })
                                      .pluck('team_leaders.team_id')
-        organization.teams
-                    .where(id: team_ids)
-                    .kept
+        team_ids = organization.departments
+                               .kept
+                               .joins(:teams)
+                               .where(teams: { id: team_ids })
+                               .pluck('teams.id')
+                               .uniq
+        organization.teams.where(id: team_ids)
       end
     }
     resolve ->(teams, _args, _ctx) { teams.decorate }

@@ -7,4 +7,5 @@ class Team::Leader < ApplicationRecord
   has_many :objectives, as: :resource, dependent: :destroy, inverse_of: :resource
   has_many :assignees, dependent: :destroy, inverse_of: :leader, class_name: 'Team::Leader::Assignee'
   delegate :organization, to: :team
+  scope :kept, -> { undiscarded.joins(:team).merge(Team.kept) }
 end
