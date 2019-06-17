@@ -7,9 +7,12 @@ module Queries::Person::Department::LeaderQuery
     description 'List of department leader roles belonging to a person'
     before_scope
     resource lambda { |organization, args, _ctx|
-      organization.department_leaders
-                  .kept
-                  .where(person_id: args[:person_id])
+      ids = organization.departments
+                        .kept
+                        .joins(:leaders)
+                        .where(department_leaders: { discarded_at: nil, person_id: args[:person_id] })
+                        .pluck('department_leaders.id')
+      organization.department_leaders.where(id: ids)
     }
     resolve lambda { |department_leaders, _args, _ctx|
       department_leaders.decorate

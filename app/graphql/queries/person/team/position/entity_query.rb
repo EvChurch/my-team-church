@@ -7,9 +7,14 @@ module Queries::Person::Team::Position::EntityQuery
     description 'List of Positions belonging to a person'
     before_scope
     resource lambda { |organization, args, _ctx|
-      organization.team_position_entities
-                  .kept
-                  .where(person_id: args[:person_id])
+      ids = organization.departments
+                        .kept
+                        .joins(teams: { positions: [:entities] })
+                        .where(teams: { discarded_at: nil },
+                               team_positions: { discarded_at: nil },
+                               team_position_entities: { discarded_at: nil, person_id: args[:person_id] })
+                        .pluck('team_position_entities.id')
+      organization.team_position_entities.where(id: ids)
     }
     resolve lambda { |entities, _args, _ctx|
       entities.decorate
