@@ -1,3 +1,5 @@
+import { find, isEqual } from 'lodash/fp';
+
 class SignUpController {
   constructor($location, $state, $window, user) {
     this.$location = $location;
@@ -9,6 +11,7 @@ class SignUpController {
   }
   submit() {
     this.loading = true;
+    this.errorMessage = null;
     this.user.signUp({
       email: this.email,
       password: this.password,
@@ -22,6 +25,12 @@ class SignUpController {
         this.$window.location.href = redirect;
       } else {
         this.$state.go('home');
+      }
+    }).catch((error) => {
+      this.loading = false;
+      if (error.graphQLErrors) {
+        let messageObj = find((obj) => isEqual(obj.path, ['createUser']), error.graphQLErrors);
+        this.errorMessage = messageObj.message;
       }
     });
   }
