@@ -24,6 +24,8 @@ class Department < ApplicationRecord
     where(id: department_ids)
   end)
 
+  after_discard :discard_descendants
+
   def positions_needing_people
     people_active = people_active_grouped_by_position_id
     people_needed_grouped_by_position_id.select do |key, value|
@@ -47,5 +49,9 @@ class Department < ApplicationRecord
 
   def people_active_grouped_by_position_id
     entities.active.group(:position_id).reorder(nil).count
+  end
+
+  def discard_descendants
+    descendants.each(&:discard)
   end
 end
