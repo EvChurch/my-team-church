@@ -6,8 +6,9 @@ module Mutations::User::LinkMutation
     argument :person_id, !types.ID
     type Types::User::LinkType
     resolve lambda { |_organization, args, ctx|
+      person = Person.find(args[:person_id])
       ctx[:current_user].links
-                        .first_or_create!(person_id: args[:person_id])
+                        .first_or_create!(person: person)
                         .decorate
     }
   end
