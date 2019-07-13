@@ -17,7 +17,7 @@ class QueriesController < ApplicationController
     return unless token
     user = User.find_by(token: token)
     return sign_in(user) if user
-    head :unauthorized unless %w[createUser authenticateUser].include?(operation_name)
+    head :unauthorized unless %w[createUser authenticateUser IntrospectionQuery].include?(operation_name)
   end
 
   def result
