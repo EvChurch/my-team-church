@@ -2,6 +2,6 @@
 
 class ActiveStorage::AttachmentDecorator < ApplicationDecorator
   def url
-    object.service_url
+    helpers.polymorphic_url(object)
   end
 end
