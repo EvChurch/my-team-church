@@ -2,12 +2,12 @@
 class TrainingController {
   constructor(
     $sce, $stateParams,
-    departmentsDetailTeamsDetailPositions, trix
+    departmentsDetailTeamsDetailPositions, upload
   ) {
     this.$sce = $sce;
     this.$stateParams = $stateParams;
     this.departmentsDetailTeamsDetailPositions = departmentsDetailTeamsDetailPositions;
-    this.trix = trix;
+    this.upload = upload;
   }
   $onInit() {
     this.loading = true;
@@ -18,6 +18,18 @@ class TrainingController {
       this.$state.go('departments.detail.teams.detail.positions');
       throw ex;
     });
+  }
+  async uploadAttachment(event) {
+    if (event.attachment.file) {
+      const signedBlobId = await this.upload.upload(event.attachment.file);
+      const attachment = await this.departmentsDetailTeamsDetailPositions.attach(
+        this.$stateParams.positionId, signedBlobId
+      );
+      event.attachment.setAttributes({
+        url: attachment.url,
+        href: attachment.url
+      });
+    }
   }
   save() {
     if (!this.readOnly) {

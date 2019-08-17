@@ -41,4 +41,17 @@ module Mutations::Team::PositionMutation
       position.decorate
     }
   end
+
+  Attach = GraphQL::Field.define do
+    description 'Attach File to Position'
+    argument :id, !types.ID
+    argument :signed_blob_id, !types.String
+    type Types::AttachmentType
+    resolve lambda { |organization, args, _ctx|
+      position = organization.team_positions
+                             .kept
+                             .find(args[:id])
+      position.files.attach(args[:signed_blob_id]).first&.decorate
+    }
+  end
 end

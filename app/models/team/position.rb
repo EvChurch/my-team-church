@@ -11,7 +11,7 @@ class Team::Position < ApplicationRecord
   has_many :items, class_name: 'Team::Position::Item', dependent: :destroy, inverse_of: :position
   validates :name, presence: true
   default_scope -> { order(:name) }
-
+  has_many_attached :files
   delegate :organization, to: :team
 
   def description=(unsafe_description)
