@@ -20,6 +20,7 @@ class Integration::Fluro::AuthenticateService
   def fetch_access_token
     response = token_login
     raise Unauthorized if response['status'] == 401
+
     {
       api_key: response['token'],
       api_refresh_key: response['refreshToken'],
@@ -30,6 +31,7 @@ class Integration::Fluro::AuthenticateService
   def refresh_access_token
     response = token_refresh
     raise Unauthorized if response == 'invalid_refresh_token'
+
     {
       api_key: response['token'],
       api_refresh_key: response['refreshToken'],

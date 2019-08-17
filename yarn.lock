@@ -6,6 +6,13 @@
   version "5.8.1"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.8.1.tgz#cbafbfe8894c4e3e3c3a9da6774e249ac1f2da8b"
 
+"@rails/activestorage@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-6.0.0.tgz#6d9cc98f3dcf195c38ca65e80acd2e759336dd7a"
+  integrity sha512-RZqTVlUYSWcI88pSJ7ImuTtDYQvqVc2PNuOo+5R3hcVupD+d2TO8xmluqQ5TvByjPqKX4acEK0mjEIK5ip9kCg==
+  dependencies:
+    spark-md5 "^3.0.0"
+
 "@rails/webpacker@3.5":
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/@rails/webpacker/-/webpacker-3.5.3.tgz#8be7f4bfb1ce6f00c3456cbbe3dc363ca72bafc8"
@@ -6214,6 +6221,11 @@ source-map@^0.5.3, source-map@^0.5.6, source-map@~0.5.1:
 source-map@^0.6.1, source-map@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
+
+spark-md5@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.0.tgz#3722227c54e2faf24b1dc6d933cc144e6f71bfef"
+  integrity sha1-NyIifFTi+vJLHcbZM8wUTm9xv+8=
 
 spdx-correct@~1.0.0:
   version "1.0.2"

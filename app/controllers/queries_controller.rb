@@ -12,9 +12,11 @@ class QueriesController < ApplicationController
 
   def authenticate_with_http_token!
     return if current_user
+
     auth_header = request.headers['Authorization'].to_s
     token = auth_header.remove('Bearer ')
     return unless token
+
     user = User.find_by(token: token)
     return sign_in(user) if user
     head :unauthorized unless %w[createUser authenticateUser IntrospectionQuery].include?(operation_name)

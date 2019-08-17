@@ -10,12 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_04_030723) do
+ActiveRecord::Schema.define(version: 2019_04_15_025402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "department_leaders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "person_id"
@@ -188,13 +209,12 @@ ActiveRecord::Schema.define(version: 2019_03_04_030723) do
     t.string "name"
     t.string "resource_type"
     t.uuid "resource_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_roles_on_discarded_at"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
   create_table "team_leader_assignees", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -241,7 +261,6 @@ ActiveRecord::Schema.define(version: 2019_03_04_030723) do
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_team_position_entities_on_discarded_at"
     t.index ["position_id", "person_id"], name: "index_team_position_entities_on_position_id_and_person_id", unique: true
-    t.index ["position_id"], name: "index_team_position_entities_on_position_id"
   end
 
   create_table "team_position_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -309,7 +328,6 @@ ActiveRecord::Schema.define(version: 2019_03_04_030723) do
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_user_options_on_discarded_at"
     t.index ["user_id", "key"], name: "index_user_options_on_user_id_and_key", unique: true
-    t.index ["user_id"], name: "index_user_options_on_user_id"
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -352,11 +370,10 @@ ActiveRecord::Schema.define(version: 2019_03_04_030723) do
     t.uuid "role_id"
     t.datetime "discarded_at"
     t.index ["discarded_at"], name: "index_users_roles_on_discarded_at"
-    t.index ["role_id"], name: "index_users_roles_on_role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
-    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "department_leaders", "departments", on_delete: :cascade
   add_foreign_key "department_leaders", "people", on_delete: :cascade
   add_foreign_key "departments", "organizations", on_delete: :cascade

@@ -4,6 +4,7 @@ class IntegrationPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       return scope.all if organizational_admin?
+
       scope.none
     end
 

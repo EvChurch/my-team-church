@@ -14,6 +14,7 @@ class Integration::Fluro::Pull::BaseService
 
   def pull
     return unless integration.active
+
     collection.map(&method(:import_record))
   end
 

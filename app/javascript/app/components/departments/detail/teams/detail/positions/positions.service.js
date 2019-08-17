@@ -110,6 +110,26 @@ class Positions {
       return position;
     });
   }
+  attach(id, signedblobId) {
+    return this.api.mutate(gql`
+      mutation attachTeamPosition(
+        $id: ID!,
+        $signedblobId: String!
+      ) {
+        attachTeamPosition(
+          id: $id,
+          signed_blob_id: $signedblobId
+        ) {
+          id
+          url
+        }
+      }
+    `, { id: id, signedblobId: signedblobId }).then((data) => {
+      const attachment = data.attachTeamPosition;
+      this.$rootScope.$emit('positionAttach', id, attachment);
+      return attachment;
+    });
+  }
   openNewModal(teamId) {
     return this.modal.open({
       template: require('./new/new.html'),

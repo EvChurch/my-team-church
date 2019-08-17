@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Concerns::SetCurrentHostForDiskService
   include Pundit
   include ApplicationHelper
   protect_from_forgery with: :exception, except: :preflight, prepend: true

@@ -23,6 +23,7 @@ class Integration::Elvanto::AuthenticateService
                              follow_redirects: false)
     cookies = HTTParty::CookieHash.new
     raise Unauthorized if response.get_fields('Set-Cookie').nil?
+
     response.get_fields('Set-Cookie').each { |c| cookies.add_cookies(c) }
     cookies.to_cookie_string
   end

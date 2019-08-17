@@ -32,7 +32,7 @@ module MyTeam
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: %i[post options]
+        resource '*', headers: :any, methods: %i[post put options]
       end
     end
   end

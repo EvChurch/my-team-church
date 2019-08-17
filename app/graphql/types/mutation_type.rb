@@ -21,6 +21,7 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :createTeamPosition, Mutations::Team::PositionMutation::Create
   field :updateTeamPosition, Mutations::Team::PositionMutation::Update
   field :deleteTeamPosition, Mutations::Team::PositionMutation::Delete
+  field :attachTeamPosition, Mutations::Team::PositionMutation::Attach
   field :createTeamPositionEntity, Mutations::Team::Position::EntityMutation::Create
   field :updateTeamPositionEntity, Mutations::Team::Position::EntityMutation::Update
   field :deleteTeamPositionEntity, Mutations::Team::Position::EntityMutation::Delete
@@ -39,4 +40,5 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :createUserLink, Mutations::User::LinkMutation::Create
   field :createAdmin, Mutations::AdminMutation::Create
   field :deleteAdmin, Mutations::AdminMutation::Delete
+  field :createUpload, Mutations::UploadMutation::Create
 end

@@ -4,6 +4,7 @@ class DepartmentPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       return scope.all if organizational_admin?
+
       secure_scope
     end
 
@@ -15,6 +16,7 @@ class DepartmentPolicy < ApplicationPolicy
 
     def department_ids
       return @department_ids if @department_ids
+
       @department_ids = user.links
                             .joins(person: :department_leaders)
                             .where(department_leaders: { discarded_at: nil })
@@ -23,6 +25,7 @@ class DepartmentPolicy < ApplicationPolicy
 
     def department_and_children_ids
       return @department_and_children_ids if @department_and_children_ids
+
       @department_and_children_ids = department_ids.map { |id| Department.subtree_of(id).pluck(:id) }.flatten
     end
 
