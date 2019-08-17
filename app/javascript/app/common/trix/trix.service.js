@@ -1,4 +1,6 @@
 import gql from 'graphql-tag';
+import { FileChecksum } from "@rails/activestorage/src/file_checksum";
+import { BlobUpload } from "@rails/activestorage/src/blob_upload";
 
 class Trix {
   constructor(
@@ -11,14 +13,15 @@ class Trix {
       this.getBlob(event.attachment);
     }
   }
-  getBlob(attachment) {
+  async getBlob({ file }) {
+    const checksum = await this.calculateChecksum(file);
     let upload = {
-      filename: "dev.to", // file name
-      content_type: "image/jpeg", // file content type
-      checksum: "Z3Yzc2Q5iA5eXIgeTJn", // checksum
-      byte_size: 2019 // size in bytes
+      filename: file.name,
+      content_type: file.type,
+      checksum: checksum,
+      byte_size: file.size
     }
-    return this.api.mutate(gql`
+    const { createUpload: { url, headers, signed_blob_id } } = await this.api.mutate(gql`
       mutation createUpload($upload: UploadInputType!) {
         createUpload(
           upload: $upload
@@ -29,8 +32,33 @@ class Trix {
             url
         }
       }
-    `, { upload: upload }).then((data) => {
-      console.log(data);
+    `, { upload: upload });
+    console.log(headers);
+    await this.upload(url, JSON.parse(headers), file);
+    return signed_blob_id;
+  }
+  calculateChecksum(file) {
+    return new Promise((resolve, reject) => {
+      FileChecksum.create(file, (error, checksum) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        resolve(checksum);
+      });
+    });
+  }
+  upload(url, headers, file) {
+    const upload = new BlobUpload({ file, directUploadData: { url, headers } });
+    return new Promise((resolve, reject) => {
+      upload.create(error => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve();
+        }
+      })
     });
   }
   // uploadFileAttachment(attachment) {

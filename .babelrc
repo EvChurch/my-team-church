@@ -3,15 +3,14 @@
     ["env", {
       "modules": false,
       "targets": {
-        "browsers": "> 1%",
-        "uglify": true
+        "node": "current"
       },
       "useBuiltIns": true
     }]
   ],
 
   "plugins": [
-    "angularjs-annotate",    
+    "angularjs-annotate",
     "syntax-dynamic-import",
     "transform-object-rest-spread",
     ["transform-class-properties", { "spec": true }]
