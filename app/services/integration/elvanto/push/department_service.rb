@@ -38,15 +38,15 @@ class Integration::Elvanto::Push::DepartmentService < Integration::Elvanto::Push
   end
 
   def team(local_team)
-    unless local_team.positions.kept.empty?
-      {
-        id: local_team.remote_id || 'add',
-        name: local_team.name,
-        parent_id: record.remote_id,
-        self_assign: false,
-        positions: local_team.positions.kept.map(&method(:position))
-      }
-    end
+    return if local_team.positions.kept.empty?
+
+    {
+      id: local_team.remote_id || 'add',
+      name: local_team.name,
+      parent_id: record.remote_id,
+      self_assign: false,
+      positions: local_team.positions.kept.map(&method(:position))
+    }
   end
 
   def position(local_position)
@@ -60,6 +60,7 @@ class Integration::Elvanto::Push::DepartmentService < Integration::Elvanto::Push
 
   def update_local(response)
     return if response['errors']
+
     record.update(remote_id: response['id'], remote_source: 'elvanto', pushable: false)
     response['sub_departments'].each do |team|
       local_team = record.teams.find_by(remote_id: team['id'], remote_source: 'elvanto')

@@ -29,6 +29,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     description 'List of People'
     resource lambda { |organization, args, _ctx|
       return organization.people.kept if args[:search_string].blank?
+
       organization.people.kept.where(
         "concat_ws(' ', email, first_name, last_name) ILIKE ?", "%#{args[:search_string]}%"
       )
@@ -49,6 +50,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     description 'List of Users'
     resource lambda { |organization, args, _ctx|
       return organization.users.kept if args[:search_string].blank?
+
       organization.users.kept.where(
         "concat_ws(' ', email, first_name, last_name) ILIKE ?", "%#{args[:search_string]}%"
       )

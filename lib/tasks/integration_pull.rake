@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :integration do
   task pull: :environment do
     Integration.find_each do |integration|

@@ -8,6 +8,7 @@ module Mutations::UserMutation
     resolve lambda { |_organization, args, _ctx|
       user = User.find_for_authentication(email: args[:user][:email])
       return unless user
+
       user.valid_password?(args[:user][:password]) ? user.decorate : nil
     }
   end

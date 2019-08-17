@@ -6,6 +6,7 @@ class Integration::Elvanto::PushJob < ApplicationJob
 
   def perform(integration, model, action)
     return unless integration.active
+
     @integration = integration
     @model = model
     @action = action
