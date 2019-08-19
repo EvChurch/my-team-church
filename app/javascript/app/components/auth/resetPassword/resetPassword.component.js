@@ -17,7 +17,6 @@ class ResetPasswordController {
     this.loading = true;
     const resetPassword = {
       password: this.password,
-      password_confirmation: this.passwordConfirmation,
       reset_password_token: this.$stateParams.token
     }
     this.user.resetPassword(resetPassword).then((success) => {

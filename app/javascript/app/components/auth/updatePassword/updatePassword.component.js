@@ -7,6 +7,7 @@ class UpdatePasswordController {
     this.$state = $state;
     this.$window = $window;
     this.user = user;
+    this.passwordCurrent = '';
     this.password = '';
     this.passwordConfirmation = '';
 
@@ -15,8 +16,8 @@ class UpdatePasswordController {
   submit() {
     this.loading = true;
     const updatePassword = {
+      current_password: this.passwordCurrent,
       password: this.password,
-      password_confirmation: this.passwordConfirmation
     }
     this.user.updatePassword(updatePassword).then((success) => {
       this.loading = false;
@@ -28,7 +29,14 @@ class UpdatePasswordController {
           'Password Updated'
         );
         this.$state.go('home');
+      } else {
+        this.toastr.error(
+          'Your current password is incorrect',
+          'Unable to Update Password'
+        );
       }
+    }).catch(() => {
+      this.loading = false;
     });
   }
 }

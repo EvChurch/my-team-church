@@ -22,7 +22,7 @@ module Mutations::User::PasswordMutation
       user = User.with_reset_password_token(args[:user_password_reset][:reset_password_token])
       return false if !user
 
-      user.reset_password(args[:user_password_reset][:password], args[:user_password_reset][:password_confirmation])
+      user.reset_password(args[:user_password_reset][:password], args[:user_password_reset][:password])
       true
     }
   end
@@ -32,11 +32,7 @@ module Mutations::User::PasswordMutation
     argument :user_password, !InputTypes::User::PasswordInputType
     type !types.Boolean
     resolve lambda { |_organization, args, ctx|
-      ctx[:current_user].update!(
-        password: args[:user_password][:password],
-        password_confirmation: args[:user_password][:password_confirmation]
-      )
-      true
+      ctx[:current_user].update_with_password(args[:user_password].to_h.transform_keys(&:to_sym))
     }
   end
 end
