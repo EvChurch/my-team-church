@@ -150,7 +150,7 @@ GEM
     foundation_emails (2.2.1.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    graphiql-rails (1.4.10)
+    graphiql-rails (1.7.0)
       railties
       sprockets-rails
     graphql (1.7.14)
