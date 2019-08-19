@@ -13,6 +13,7 @@ gem 'aws-sdk-s3', require: false
 gem 'bootsnap', require: false
 gem 'bootstrap', '~> 4.3.1'
 gem 'devise'
+gem 'devise-async'
 gem 'discard', '~> 1.0'
 gem 'draper', '3.0.0'
 gem 'elvanto-api', github: 'ardation/api-ruby'

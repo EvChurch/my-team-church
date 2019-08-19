@@ -2,6 +2,6 @@
   You are receiving this email because <%= @user.first_name %> has invited you to join them.
 <% end %>
 <p>
-  <%= @user.name %> from <%= @organization.name %> has invited you to join them on the MyTeam@Church Platform.
+  <%= @user.name %> from <%= @organization.name %> has invited you to join them on My Team @ Church.
 </p>
-<button href="<%= @invite_url %>">Sign Up</button>
+<button href="<%= WebRouterService.invite_url(@person.id) %>">Sign Up</button>

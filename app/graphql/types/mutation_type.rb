@@ -30,6 +30,10 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :deleteTeamPositionItem, Mutations::Team::Position::ItemMutation::Delete
   field :authenticateUser, Mutations::UserMutation::Authenticate
   field :createUser, Mutations::UserMutation::Create
+  field :forgotUserPassword, Mutations::User::PasswordMutation::Forgot
+  field :resetUserPassword, Mutations::User::PasswordMutation::Reset
+  field :updateUserPassword, Mutations::User::PasswordMutation::Update
+  field :createUserLink, Mutations::User::LinkMutation::Create
   field :createOrganization, Mutations::OrganizationMutation::Create
   field :updateOrganization, Mutations::OrganizationMutation::Update
   field :createOrUpdateIntegration, Mutations::IntegrationMutation::CreateOrUpdate
@@ -37,7 +41,6 @@ Types::MutationType = GraphQL::ObjectType.define do
   field :createPerson, Mutations::PersonMutation::Create
   field :updatePerson, Mutations::PersonMutation::Update
   field :invitePerson, Mutations::PersonMutation::Invite
-  field :createUserLink, Mutations::User::LinkMutation::Create
   field :createAdmin, Mutations::AdminMutation::Create
   field :deleteAdmin, Mutations::AdminMutation::Delete
   field :createUpload, Mutations::UploadMutation::Create

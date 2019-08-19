@@ -14,11 +14,12 @@
   <div class="form-group">
     <input class="form-control" type="email" placeholder="Email" ng-model="$ctrl.email" required>
   </div>
-
   <div class="form-group">
     <input class="form-control" placeholder="Password" type="password" ng-model="$ctrl.password" required>
   </div>
-
+  <div class="form-group">
+    <input class="form-control" placeholder="Confirm Password" type="password" ng-model="$ctrl.passwordConfirmation" required compare-to="$ctrl.password">
+  </div>
   <input type="submit" value="Sign Up" class="btn btn-block btn-primary btn-xl" ng-disabled="signUp.$invalid || $ctrl.loading">
 </form>
 <div class="text-center py-3">

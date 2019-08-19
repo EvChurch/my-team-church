@@ -3,6 +3,8 @@
 class QueriesController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :authenticate_with_http_token!
+  UNAUTHORIZED_OPERATIONS =
+    %w[createUser authenticateUser forgotUserPassword resetUserPassword IntrospectionQuery].freeze
 
   def create
     render json: result
@@ -19,7 +21,7 @@ class QueriesController < ApplicationController
 
     user = User.find_by(token: token)
     return sign_in(user) if user
-    head :unauthorized unless %w[createUser authenticateUser IntrospectionQuery].include?(operation_name)
+    head :unauthorized unless UNAUTHORIZED_OPERATIONS.include?(operation_name)
   end
 
   def result

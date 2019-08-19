@@ -14,9 +14,6 @@ class PersonDecorator < ApplicationDecorator
   end
 
   def invite_url
-    protocol = Rails.env.production? ? 'https://' : 'http://'
-    url = "app.#{ENV.fetch('DOMAIN_NAME')}"
-    port = Rails.env.production? ? nil : ':3000'
-    "#{protocol}#{url}#{port}/organizations/connect?access_code=#{id}"
+    WebRouterService.invite_url(id)
   end
 end

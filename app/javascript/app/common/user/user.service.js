@@ -74,6 +74,39 @@ class User {
     this.data = null;
     return Promise.resolve();
   }
+  forgotPassword(userPasswordForgot) {
+    return this.api.mutate(gql`
+      mutation forgotUserPassword($userPasswordForgot: UserPasswordForgotInputType!) {
+        forgotUserPassword(
+          user_password_forgot: $userPasswordForgot
+        )
+      }
+    `, { userPasswordForgot: userPasswordForgot }).then((data) => {
+      return data.forgotUserPassword;
+    });
+  }
+  resetPassword(userPasswordReset) {
+    return this.api.mutate(gql`
+      mutation resetUserPassword($userPasswordReset: UserPasswordResetInputType!) {
+        resetUserPassword(
+          user_password_reset: $userPasswordReset
+        )
+      }
+    `, { userPasswordReset: userPasswordReset }).then((data) => {
+      return data.resetUserPassword;
+    });
+  }
+  updatePassword(userPassword) {
+    return this.api.mutate(gql`
+      mutation updateUserPassword($userPassword: UserPasswordInputType!) {
+        updateUserPassword(
+          user_password: $userPassword
+        )
+      }
+    `, { userPassword: userPassword }).then((data) => {
+      return data.updateUserPassword;
+    });
+  }
 }
 
 

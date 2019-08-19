@@ -8,6 +8,7 @@ class SignUpController {
     this.user = user;
     this.email = '';
     this.password = '';
+    this.passwordConfirmation = '';
   }
   submit() {
     this.loading = true;

@@ -8,7 +8,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
-         request_keys: [:subdomain]
+         :async, request_keys: [:subdomain]
   # :omniauthable, omniauth_providers: [:elvanto]
 
   enum role: %i[user vip admin]

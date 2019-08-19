@@ -689,6 +689,24 @@ export default class Routes {
       component: 'authSignUp',
       parent: 'auth'
     }).state({
+      name: 'forgotPassword',
+      title: 'Password Recovery',
+      url: '/forgot_password',
+      component: 'authForgotPassword',
+      parent: 'auth'
+    }).state({
+      name: 'resetPassword',
+      title: 'Reset Password',
+      url: '/reset_password?token',
+      component: 'authResetPassword',
+      parent: 'auth'
+    }).state({
+      name: 'updatePassword',
+      title: 'Update Password',
+      url: '/update_password',
+      component: 'authUpdatePassword',
+      parent: 'root'
+    }).state({
       name: 'organizations',
       title: 'Organizations',
       component: 'organizations',

@@ -11,11 +11,11 @@
         <td class="center" align="center" valign="top">
           <center>
               <container class="header">
-                <h1 style="text-align:right"><%= @organization.name %></h1>
+                <h1 style="text-align:right"><%= @organization&.name %></h1>
               </container>
               <container class="content">
                 <h3>
-                  Hey <%= @person.first_name %>,
+                  Hey <%= @person&.first_name || @user.first_name %>,
                 </h3>
                 <%= yield %>
               </container>
@@ -23,11 +23,11 @@
                 <%= yield(:reason) %>
               </container>
               <container class="footer">
-                <%= @organization.name %> &copy; 2012 – <%= Date.today.year %> - All Rights Reserved
+                My Team @ Church &copy; 2012 – <%= Date.today.year %> - All Rights Reserved
                 <br>
                 Powered by <a href="https://myteam.church">myteam.church</a> - Helping build better leaders and grow the Church.
                 <br>
-                <%= @organization.address %>
+                2 / 2 Gordon Road, Sandringham, Auckland, New Zealand.
               </container>
           </center>
         </td>

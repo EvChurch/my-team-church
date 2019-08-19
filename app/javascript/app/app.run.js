@@ -3,7 +3,9 @@ export default function appRun(
   $location, $rootScope, $transitions, $window, user, organizations
 ) {
   $transitions.onStart({
-    to: (state) => state.name !== 'signIn' && state.name !== 'organizations'
+    to: (state) => {
+      return !['signIn','signUp','forgotPassword','resetPassword','organizations'].includes(state.name)
+    }
   }, (trans) => {
     return user.load().then(() => {
       return organizations.load().then((data) => {
